@@ -73,3 +73,57 @@ All major existing benchmarks use publicly available newspaper clues (Times, Tel
 - r/crosswords
 - Freelance cryptic setters
 - Crossword competition organizers (e.g., Listener Crossword series)
+
+## The London Paper — Candidate Uncontaminated Source
+
+### Background
+The London Paper (stylised "thelondonpaper") was a free evening daily newspaper published by NI Free Newspapers Ltd (News International/News UK). Distributed Monday–Friday in central London from 4 September 2006 until 18 September 2009, when it ceased due to financial losses. Targeted young commuters with celebrity-focused, light content. We have crossword clues saved from 2008.
+
+- Wikipedia: https://en.wikipedia.org/wiki/The_London_Paper
+- Some pages on web.archive.org but poorly preserved (slow, no formatting)
+
+### Contamination Assessment: Very Low Risk
+
+Investigated March 2026 across multiple channels:
+
+**Crossword blogs checked (none cover The London Paper):**
+- Fifteensquared
+- Big Dave's Crossword Blog
+- Times for the Times
+
+**Crossword solver databases checked (no clues attributed to The London Paper):**
+- Dan Word
+- Crossword Nexus
+- Crossword Solver
+
+**Academic datasets checked (not included in any):**
+- Cryptonite — sources are exclusively The Times and The Telegraph
+- Decrypt — sources are exclusively The Guardian
+- George Ho's Cryptics Dataset (cryptics.georgeho.org) — sources are bigdave44, fifteensquared, times_xwd_times, thehinducrosswordcorner, natpostcryptic, cru_cryptics, nytimes, newyorker, thebrowser, leoedit
+
+**Web archive and crawl data:**
+- web.archive.org has some pages from thelondonpaper.com but content is poorly preserved
+- No Common Crawl presence found for crossword content
+- The newspaper's website was basic and likely did not publish crosswords digitally
+
+**Forums and social media:**
+- Reddit searches across r/crosswords, r/crypticcrosswords, r/london, r/unitedkingdom, r/CasualUK — zero relevant results
+- No crossword forum discussions found
+
+**Other:**
+- The crossword setter is unknown to the crossword community (no pseudonym, no biographical info)
+- Wikipedia article on the paper mentions no crossword content — only "Em" cartoon and "City Girl" column as notable features
+- London Transport Museum holds a physical copy (accession 2009-12753), suggesting physical archives are the primary survival path
+- News International (publisher) also owns The Times, but no sign The London Paper content was merged into their digital archives
+
+### Why this source is strong
+- Fits contamination strategy #4 (niche/private sources) from above
+- Physical-first free newspaper with minimal web presence
+- Pre-social-media archiving era (2008) — before the culture of digitizing and blogging every puzzle
+- Short-lived publication (3 years) that left almost no digital trace
+- Not covered by any crossword community that feeds into training data
+
+### Open questions
+- Are the clues cryptic or quick crosswords?
+- How many clues are available?
+- Can we verify answer correctness for all clues?
