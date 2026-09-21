@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cryptic Crossword Bench</title>
+<style>
+  :root {
+    --bg: #fafafa; --fg: #1a1a1a; --accent: #2563eb;
+    --border: #e5e7eb; --muted: #6b7280; --cell: #fff;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #111; --fg: #e5e7eb; --accent: #60a5fa;
+      --border: #333; --muted: #9ca3af; --cell: #1a1a1a;
+    }
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: system-ui, -apple-system, sans-serif;
+    background: var(--bg); color: var(--fg);
+    max-width: 1000px; margin: 0 auto; padding: 2rem 1rem; line-height: 1.6;
+  }
+  h1 { margin-bottom: .25rem; }
+  .subtitle { color: var(--muted); margin-bottom: 2rem; }
+  h2 { margin: 2rem 0 1rem; }
+  table { width: 100%; border-collapse: collapse; margin-bottom: 1rem; }
+  th, td { padding: .5rem .75rem; text-align: left; border-bottom: 1px solid var(--border); }
+  th { font-weight: 600; }
+  td { background: var(--cell); }
+  tr:hover td { background: var(--border); }
+  .meta { color: var(--muted); font-size: .875rem; margin-top: 2rem; }
+  a { color: var(--accent); }
+</style>
+</head>
+<body>
+<h1>Cryptic Crossword Bench</h1>
+<p class="subtitle">Evaluating LLMs on cryptic crossword clues</p>
+
+<h2>Leaderboard</h2>
+<table>
+<thead><tr><th>#</th><th>Model</th><th>Task</th><th>Accuracy</th><th>Date</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>mockllm/model</td><td>cryptic_crossword</td><td>0.0%</td><td>2026-09-21</td></tr>
+
+</tbody>
+</table>
+
+<h2>Accuracy by Clue Type</h2>
+<table>
+<thead><tr><th>Model</th><th>unknown</th></tr></thead>
+<tbody>
+<tr><td>mockllm/model</td><td>0% (0/8)</td></tr>
+
+</tbody>
+</table>
+
+<p class="meta">Last updated: 2026-09-21 07:37 UTC</p>
+</body>
+</html>

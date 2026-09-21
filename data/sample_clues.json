@@ -1,0 +1,27 @@
+[
+  {
+    "input": "Confused lemon is a fruit (5)",
+    "target": "MELON",
+    "metadata": {"clue_type": "anagram"}
+  },
+  {
+    "input": "Flower found in micro sepal (4)",
+    "target": "ROSE",
+    "metadata": {"clue_type": "hidden"}
+  },
+  {
+    "input": "Sphere or formal dance (4)",
+    "target": "BALL",
+    "metadata": {"clue_type": "double_definition"}
+  },
+  {
+    "input": "Almost crows — just one bird (4)",
+    "target": "CROW",
+    "metadata": {"clue_type": "deletion"}
+  },
+  {
+    "input": "Reportedly prohibited musical group (4)",
+    "target": "BAND",
+    "metadata": {"clue_type": "homophone"}
+  }
+]

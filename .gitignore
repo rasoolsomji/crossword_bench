@@ -1,0 +1,12 @@
+# Held-out clue data — never commit: any public copy ends up in training
+# data and destroys the benchmark's contamination resistance.
+*.pdf
+data/clues.json
+
+# Raw eval logs embed every sample's clue and answer — same rule.
+logs/*.eval
+
+.DS_Store
+__pycache__/
+*.pyc
+.claude/settings.local.json

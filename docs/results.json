@@ -1,0 +1,15 @@
+{
+  "mockllm/model": {
+    "task": "cryptic_crossword",
+    "accuracy": 0.0,
+    "stderr": 0.0,
+    "per_type": {
+      "unknown": {
+        "accuracy": 0.0,
+        "correct": 0,
+        "total": 8
+      }
+    },
+    "created": "2026-09-21T07:37:06+00:00"
+  }
+}
