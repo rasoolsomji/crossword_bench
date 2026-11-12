@@ -387,7 +387,8 @@ def render_outcomes(cohort: dict) -> str:
     return f"""<section class="card">
 <h3>How answers went wrong</h3>
 <p class="lede">Every response sorted into one outcome. A wrong-length answer ignores the
-enumeration in the clue; a near miss has the right length and is within two letters.</p>
+enumeration in the clue; a near miss has the right length and is within two letters. A
+placeholder such as UNKNOWN on the answer line counts as no answer.</p>
 <div class="legend">{legend}</div>
 <div class="oc">
 {rows}</div>

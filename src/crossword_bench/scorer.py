@@ -64,6 +64,10 @@ def extract_answer(text: str) -> str | None:
     return leading[0] if leading else None
 
 
+# Normalized placeholders a model writes on the ANSWER line when it gives
+# up. They count as no answer unless they happen to be the target.
+GIVE_UPS = {"UNKNOWN", "UNSURE", "UNSOLVED", "NOANSWER", "NA", "IDK", "DONTKNOW", "IDONTKNOW"}
+
 OUTCOMES = {
     "correct": "Correct",
     "near_miss": "Near miss",
@@ -94,6 +98,8 @@ def classify_outcome(
     got, want = normalize(answer), normalize(target)
     if got == want:
         return "correct"
+    if got in GIVE_UPS:
+        return "no_answer"
     if len(got) != len(want):
         return "wrong_length"
     if len(want) >= 6 and sum(a != b for a, b in zip(got, want)) <= 2:
