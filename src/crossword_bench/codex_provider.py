@@ -9,6 +9,12 @@ built-in tools can't all be switched off. Web search is disabled and the
 sandbox is read-only with no network, but the load-bearing guarantee is
 enforced here: a turn that starts any tool item is interrupted and
 returned as an empty answer flagged in the output metadata.
+
+Reasoning summaries come back as bold headings only ("**Parsing the
+clue**") on a ChatGPT login, whatever `summary` is requested: the server
+streams nothing more, and `codex exec` gets the same. Readable summaries
+need an API key and Inspect's `openai/<model>` provider with
+`--reasoning-summary detailed`.
 """
 
 import asyncio
@@ -154,7 +160,7 @@ class CodexAppServer:
                 queue.put_nowait(message)
 
     async def run_turn(
-        self, model: str, instructions: str, prompt: str, effort: str
+        self, model: str, instructions: str, prompt: str, effort: str, summary: str = "auto"
     ) -> dict[str, Any]:
         await self.start()
         thread = await self.request(
@@ -190,7 +196,7 @@ class CodexAppServer:
                     "threadId": thread_id,
                     "input": [{"type": "text", "text": prompt}],
                     "effort": effort,
-                    "summary": "auto",
+                    "summary": summary,
                 },
             )
             async with asyncio.timeout(TURN_TIMEOUT_SECONDS):
@@ -288,6 +294,7 @@ class CodexAppServerAPI(ModelAPI):
             instructions=instructions,
             prompt=prompt,
             effort=config.reasoning_effort or DEFAULT_EFFORT,
+            summary=config.reasoning_summary or "auto",
         )
 
         if result["tool_items"]:

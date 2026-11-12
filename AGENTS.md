@@ -16,3 +16,7 @@ See [README.md](README.md) for setup and commands, and
 - Live-track runs go to `--log-dir logs/live`, which is published in
   full. Logs anywhere else in `logs/` may hold private anchor clues and
   must stay private.
+- `codex/<slug>` runs log reasoning summaries that are bold headings
+  only. That is what Codex sends on a ChatGPT login, not a provider bug
+  (checked against `codex exec`); see the docstring in
+  [codex_provider.py](src/crossword_bench/codex_provider.py).
