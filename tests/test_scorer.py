@@ -27,6 +27,8 @@ from crossword_bench.scorer import classify_outcome, extract_answer, normalize
         ("FOR THE BETTER?", "FORTHEBETTER"),
         ("MELON\n\nQuietly gives P; LEMON is the fodder.", "MELON"),
         ("HERMIT\n\nHER (female) + M (top of mountain) + IT; a hermit is cold.", "HERMIT"),
+        ("ANSWER: MELON\n\nThe definition is 'fruit'; the answer = anagram of LEMON.", "MELON"),
+        ("ANSWER: MELON\n\n(Note: the answer: an anagram of 'lemon'.)", "MELON"),
     ],
 )
 def test_extract_and_normalize(output, expected):

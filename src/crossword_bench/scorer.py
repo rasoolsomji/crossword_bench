@@ -11,7 +11,8 @@ from inspect_ai.scorer import (
 )
 from inspect_ai.solver import TaskState
 
-_ANSWER_LINE = re.compile(r"ANSWER\W*?[:=]\s*(.+)", re.IGNORECASE)
+_ANSWER_LINE = re.compile(r"ANSWER\W*?[:=]\s*(.+)")
+_ANSWER_LINE_ANY_CASE = re.compile(_ANSWER_LINE.pattern, re.IGNORECASE)
 _WRAPPING = "*_\"'`“”‘’ \t"
 
 
@@ -39,11 +40,13 @@ def _bare_line(line: str) -> str:
 def extract_answer(text: str) -> str | None:
     """Extract the answer from model output.
 
-    Uses the last 'ANSWER: ...' line. Failing that, the last line that is
+    Uses the last 'ANSWER: ...' line, preferring the uppercase form the
+    prompt asks for so prose such as 'the answer: an anagram' written after
+    it is not taken for the answer. Failing that, the last line that is
     nothing but a short all-caps answer, then the last line that starts
     with one ('MELON - an anagram of lemon').
     """
-    matches = _ANSWER_LINE.findall(text)
+    matches = _ANSWER_LINE.findall(text) or _ANSWER_LINE_ANY_CASE.findall(text)
     for raw in reversed(matches):
         candidate = _clean_candidate(raw)
         if normalize(candidate):
