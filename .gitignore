@@ -6,8 +6,11 @@ data/clues.json
 # Live-track puzzles are public but copyrighted — don't mirror them.
 data/live/
 
-# Raw eval logs embed every sample's clue and answer — same rule.
-logs/*.eval
+# Raw eval logs embed every sample's clue and answer — same rule. The one
+# exception is logs/live/: live-track clues are already public and burned
+# on use, so those logs are published. Anchor-set logs must never go there.
+logs/**/*.eval
+!logs/live/*.eval
 
 .DS_Store
 __pycache__/
@@ -15,3 +18,4 @@ __pycache__/
 .claude/settings.local.json
 .env
 .pytest_cache/
+docs/logs/
