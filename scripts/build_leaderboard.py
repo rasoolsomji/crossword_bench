@@ -166,6 +166,13 @@ def summarise_run(run: dict, pricing: dict | None = None) -> dict:
             + tokens["output"] * price["output"]
         ) / 1_000_000
         cost = {"total": dollars, "per_100_clues": dollars / len(usage) * 100}
+    reasoning = None
+    if any(u.get("reasoning") for u in usage):
+        scored = [s for s in run["samples"].values() if s.get("tokens")]
+        reasoning = {
+            "correct": sorted(s["tokens"]["reasoning"] for s in scored if s["outcome"] == "correct"),
+            "missed": sorted(s["tokens"]["reasoning"] for s in scored if s["outcome"] != "correct"),
+        }
     return {
         "model": run["model"],
         "provider": provider_of(run["model"]),
@@ -177,6 +184,7 @@ def summarise_run(run: dict, pricing: dict | None = None) -> dict:
         "ci95": [low, high],
         "outcomes": {name: outcomes[name] for name in OUTCOMES if outcomes[name]},
         "tokens": tokens,
+        "reasoning_by_result": reasoning,
         "estimated_cost": cost,
         "created": run["created"],
         "log_file": run["log_file"] if run["public"] else None,
@@ -462,6 +470,111 @@ prices every token the run used at the provider's API list price.</p>
 <details><summary>Show as table</summary>
 <div class="scroll"><table class="data">
 <thead><tr><th>Run</th><th>Output per clue</th><th>Reasoning share</th><th>Input per clue</th><th>Total output</th><th>Total input</th><th>Output per correct answer</th><th>Est. cost per 100 clues</th></tr></thead>
+<tbody>
+{table_rows}</tbody>
+</table></div>
+</details>
+</section>
+"""
+
+
+def quantile(values: list[float], q: float) -> float:
+    position = (len(values) - 1) * q
+    below = math.floor(position)
+    above = min(below + 1, len(values) - 1)
+    return values[below] + (values[above] - values[below]) * (position - below)
+
+
+def render_reasoning(cohort: dict) -> str:
+    runs = [run for run in cohort["runs"] if run.get("reasoning_by_result")]
+    positive = [v for run in runs for lane in run["reasoning_by_result"].values() for v in lane if v > 0]
+    if not positive:
+        return ""
+    low, high, ticks = log_axis(positive)
+    span = math.log(high / low)
+    zero_width = 8  # percent of the plot kept for clues with no reasoning
+
+    def x_of(value: float) -> float:
+        if value <= 0:
+            return zero_width / 2 - 1
+        return zero_width + (100 - zero_width) * math.log(value / low) / span
+
+    gridlines = '<span class="rt-zero"></span>' + "".join(
+        f'<span class="rt-gx" style="left:{x_of(t):.2f}%"></span>' for t in ticks
+    )
+    lanes = [("correct", "right", "Right answer"), ("missed", "missed", "Missed")]
+    rows = table_rows = ""
+    for run in runs:
+        by_result = run["reasoning_by_result"]
+        cells = f'<div class="lb-name">{run_label_html(run)}</div>'
+        for key, lane_label, name in lanes:
+            values = by_result[key]
+            dots = ""
+            for i, value in enumerate(values):
+                # Golden-ratio offsets spread neighbouring values across the
+                # lane height so dense clusters stay readable.
+                top = 18 + ((i * 0.618034) % 1) * 64
+                # The 0 column has no scale, so its dots also spread sideways
+                # to show how many there are.
+                left = 1 + ((i * 0.381966) % 1) * 4 if value <= 0 else x_of(value)
+                dots += (
+                    f'<span class="rt-dot o-{"correct" if key == "correct" else "wrong_answer"}" '
+                    f'style="left:{left:.2f}%;top:{top:.1f}%" '
+                    f'data-tip="{escape(run["label"])}&#10;{name}: {value:,} reasoning tokens"></span>'
+                )
+            median_text = "–"
+            if values:
+                median = quantile(values, 0.5)
+                median_text = compact(median)
+                tip = f"{run['label']}\n{name}s: median {median:,.0f} reasoning tokens over {len(values)} clues"
+                dots += (
+                    f'<span class="rt-med" style="left:{x_of(median):.2f}%" tabindex="0" '
+                    f'data-tip="{escape(tip)}"></span>'
+                )
+            cells += (
+                f'<div class="rt-lane-name">{lane_label}</div>'
+                f'<div class="rt-lane">{gridlines}{dots}</div>'
+                f'<div class="rt-median">{median_text}</div>'
+            )
+        rows += f'<div class="rt-row">{cells}</div>\n'
+
+        def spread(values: list[int]) -> tuple[str, str]:
+            if not values:
+                return "–", "–"
+            return (
+                f"{quantile(values, 0.5):,.0f}",
+                f"{quantile(values, 0.25):,.0f} to {quantile(values, 0.75):,.0f}",
+            )
+
+        right, missed = by_result["correct"], by_result["missed"]
+        no_reasoning = right.count(0) + missed.count(0)
+        table_rows += (
+            f"<tr><th>{escape(run['label'])}</th><td>{len(right)}</td>"
+            + "".join(f"<td>{cell}</td>" for cell in spread(right))
+            + f"<td>{len(missed)}</td>"
+            + "".join(f"<td>{cell}</td>" for cell in spread(missed))
+            + f"<td>{no_reasoning} ({right.count(0)} right)</td></tr>\n"
+        )
+    axis = '<span class="tick" style="left:{:.2f}%"><b>0</b></span>'.format(x_of(0)) + "".join(
+        f'<span class="tick{"" if math.log10(t).is_integer() else " minor"}" style="left:{x_of(t):.2f}%">'
+        f"<b>{compact(t)}</b></span>"
+        for t in ticks
+    )
+    return f"""<section class="card">
+<h3>Reasoning on right and missed answers</h3>
+<p class="lede">Reasoning tokens spent on each clue, split by whether the answer was right.
+Each dot is one clue and the dark line is the median; clues answered with no reasoning at all
+sit in the 0 column. Hard clues take longer and are also missed more, so a long trace marks a
+hard clue rather than showing that more thinking hurts.</p>
+<div class="legend"><span class="key"><i class="sw o-correct"></i>Right answer</span><span class="key"><i class="sw o-wrong_answer"></i>Missed (any other outcome)</span><span class="key"><i class="rt-key"></i>Median</span></div>
+<div class="rt">
+<div class="rt-row rt-head"><div></div><div></div><div></div><div class="rt-median">median</div></div>
+{rows}<div class="rt-row rt-axis"><div></div><div></div><div class="lb-plot axis">{axis}</div><div></div></div>
+<p class="sc-axis">Reasoning tokens per clue (log scale)</p>
+</div>
+<details><summary>Show as table</summary>
+<div class="scroll"><table class="data">
+<thead><tr><th>Run</th><th>Right</th><th>Median</th><th>Middle half</th><th>Missed</th><th>Median</th><th>Middle half</th><th>No reasoning</th></tr></thead>
 <tbody>
 {table_rows}</tbody>
 </table></div>
@@ -789,6 +902,7 @@ def render_cohort(index: int, cohort: dict) -> str:
 {render_outcomes(cohort)}
 {render_tradeoff(cohort)}
 {render_tokens(cohort)}
+{render_reasoning(cohort)}
 {render_head_to_head(cohort)}
 {render_heat_table("By wordplay device", 'Accuracy on the clues that use each device. A clue using several devices counts under each. Labels follow the <a href="https://github.com/rasoolsomji/crossword_bench/blob/main/clue_taxonomy.md">clue taxonomy</a> and were assigned by a classifier model from published human parsings, so treat small rows with care.', "Device", cohort["by_device"], runs, DEVICE_LABELS)}
 {render_heat_table("By puzzle", "Accuracy on each puzzle. Setters differ a lot in style and difficulty.", "Puzzle", cohort.get("by_puzzle", []), runs)}

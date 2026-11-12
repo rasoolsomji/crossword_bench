@@ -74,3 +74,27 @@ def test_provider_mapping():
     assert site.provider_of("anthropic/claude-haiku-5-5") == "Anthropic"
     assert site.provider_of("openrouter/google/gemini") == "Google"
     assert site.provider_of("somewhere/new-model") == "Other"
+
+
+def test_reasoning_split_by_result():
+    sample = run("a/x", True, ["correct", "wrong_answer", "no_answer"])
+    for i, tokens in enumerate([200, 3000, 0]):
+        sample["samples"][f"clue-{i}"]["tokens"]["reasoning"] = tokens
+    cohort = site.build_cohort("c", [sample], {})
+    assert cohort["runs"][0]["reasoning_by_result"] == {"correct": [200], "missed": [0, 3000]}
+    html = site.render_reasoning(cohort)
+    assert html.count('class="rt-dot') == 3
+    assert "1 (0 right)" in html
+
+
+def test_reasoning_chart_skipped_without_reasoning_tokens():
+    sample = run("a/x", True, ["correct"])
+    sample["samples"]["clue-0"]["tokens"]["reasoning"] = 0
+    cohort = site.build_cohort("c", [sample], {})
+    assert cohort["runs"][0]["reasoning_by_result"] is None
+    assert site.render_reasoning(cohort) == ""
+
+
+def test_quantile_interpolates():
+    assert site.quantile([0, 10], 0.5) == 5
+    assert site.quantile([1, 2, 3, 4], 0.25) == 1.75

@@ -134,6 +134,25 @@
   .side-ar { transform: translate(-6px, -11px); } .side-br { transform: translate(-6px, calc(100% + 11px)); }
   .sc-axis { text-align: center; color: var(--muted); font-size: 12px; margin: 0 0 0 38px; }
 
+  /* reasoning by result */
+  .rt-row {
+    display: grid; grid-template-columns: minmax(150px, 230px) 52px 1fr 52px;
+    gap: 4px 12px; align-items: center; padding: 7px 0;
+  }
+  .rt-row > .lb-name { grid-row: span 2; }
+  .rt-head, .rt-axis { padding: 0; }
+  .rt-lane-name { color: var(--muted); font-size: 12px; text-align: right; }
+  .rt-lane { position: relative; height: 24px; border-left: 1px solid var(--axis); }
+  .rt-zero { position: absolute; top: 0; bottom: 0; left: 0; width: 6%; background: var(--page); border-right: 1px dashed var(--axis); }
+  .rt-gx { position: absolute; top: 0; bottom: 0; border-left: 1px solid var(--grid); }
+  .rt-dot { position: absolute; width: 8px; height: 8px; margin: -4px 0 0 -4px; border-radius: 50%; box-shadow: 0 0 0 1.5px var(--surface); }
+  .rt-med { position: absolute; top: -3px; bottom: -3px; width: 3px; margin-left: -1.5px; background: var(--ink); border-radius: 2px; box-shadow: 0 0 0 1.5px var(--surface); }
+  .rt-med:focus-visible { outline: 2px solid var(--s1); outline-offset: 1px; }
+  .rt-key { display: inline-block; width: 3px; height: 12px; background: var(--ink); border-radius: 2px; }
+  .rt-median { text-align: right; font-variant-numeric: tabular-nums; font-size: 13px; }
+  .rt-head .rt-median { color: var(--muted); font-size: 12px; }
+  .rt .tick:first-child { transform: translateX(-50%); }
+
   /* tables */
   .scroll { overflow-x: auto; }
   table { border-collapse: collapse; width: 100%; font-size: 14px; }
@@ -209,6 +228,10 @@
     .lb-name { grid-column: 1 / -1; }
     .lb-axis { display: none; }
     .oc-row { grid-template-columns: 1fr; gap: 4px; }
+    .rt-row { grid-template-columns: 44px 1fr 44px; gap: 4px 8px; }
+    .rt-row > .lb-name { grid-row: auto; }
+    .rt-head > div:first-child, .rt-axis > div:first-child { display: none; }
+    .rt .tick.minor { display: none; }
     .count { margin-left: 0; width: 100%; }
   }
 </style>
