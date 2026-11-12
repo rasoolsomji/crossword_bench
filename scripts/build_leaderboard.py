@@ -65,7 +65,17 @@ def load_runs(log_dir: Path) -> list[dict]:
             score = next(iter((sample.scores or {}).values()), None)
             answer = score.answer if score else None
             output = sample.output
+            usage = output.usage
             samples[str(sample.id)] = {
+                "tokens": {
+                    "input": usage.input_tokens
+                    + (usage.input_tokens_cache_read or 0)
+                    + (usage.input_tokens_cache_write or 0),
+                    "output": usage.output_tokens,
+                    "reasoning": usage.reasoning_tokens or 0,
+                }
+                if usage
+                else None,
                 "outcome": classify_outcome(
                     answer, sample.target, output.stop_reason, output.error
                 ),
@@ -95,6 +105,12 @@ def summarise_run(run: dict) -> dict:
     total = len(run["samples"])
     correct = outcomes["correct"]
     low, high = wilson_interval(correct, total)
+    usage = [s["tokens"] for s in run["samples"].values() if s.get("tokens")]
+    tokens = None
+    if usage:
+        tokens = {kind: sum(u[kind] for u in usage) for kind in ("input", "output", "reasoning")}
+        tokens["output_per_clue"] = tokens["output"] / len(usage)
+        tokens["input_per_clue"] = tokens["input"] / len(usage)
     return {
         "model": run["model"],
         "effort": run["effort"],
@@ -104,6 +120,7 @@ def summarise_run(run: dict) -> dict:
         "accuracy": correct / total,
         "ci95": [low, high],
         "outcomes": {name: outcomes[name] for name in OUTCOMES if outcomes[name]},
+        "tokens": tokens,
         "created": run["created"],
         "log_file": run["log_file"] if run["public"] else None,
     }
@@ -203,6 +220,7 @@ def build_cohort(name: str, runs: list[dict], annotations: dict) -> dict:
                 {
                     "outcome": run["samples"][clue_id]["outcome"],
                     "answer": run["samples"][clue_id]["answer"],
+                    "output_tokens": (run["samples"][clue_id].get("tokens") or {}).get("output"),
                 }
                 if clue_id in run["samples"]
                 else None
@@ -230,6 +248,14 @@ def pct(value: float, digits: int = 1) -> str:
     return f"{value * 100:.{digits}f}%"
 
 
+def compact(value: float) -> str:
+    if value >= 999_500:
+        return f"{value / 1_000_000:.1f}M"
+    if value >= 1000:
+        return f"{value / 1000:.1f}K"
+    return f"{value:.0f}"
+
+
 def run_label_html(run: dict) -> str:
     return (
         f'<span class="model">{escape(short_model(run["model"]))}</span>'
@@ -249,6 +275,10 @@ def render_leaderboard(cohort: dict) -> str:
             f"{run['correct']} of {run['total']} correct ({pct(run['accuracy'])})\n"
             f"95% interval {pct(low)} to {pct(high)}"
         )
+        tokens = run["tokens"]
+        if tokens:
+            tip += f"\n{tokens['output_per_clue']:,.0f} output tokens per clue"
+        spent = compact(tokens["output_per_clue"]) if tokens else "–"
         rows += f"""<div class="lb-row" tabindex="0" data-tip="{escape(tip)}">
   <div class="lb-rank">{rank}</div>
   <div class="lb-name">{run_label_html(run)}</div>
@@ -257,15 +287,16 @@ def render_leaderboard(cohort: dict) -> str:
     <div class="whisker" style="left:{low * 100:.2f}%;width:{(high - low) * 100:.2f}%"></div>
   </div>
   <div class="lb-value"><strong>{pct(run['accuracy'])}</strong><span>{run['correct']}/{run['total']}</span></div>
+  <div class="lb-value lb-tokens"><strong>{spent}</strong><span>tokens/clue</span></div>
 </div>
 """
     return f"""<section class="card">
 <h3>Leaderboard</h3>
 <p class="lede">Share of clues answered exactly right. The thin line on each bar is the
 95% interval: the range the score would plausibly land in on a different set of clues
-of this size.</p>
+of this size. Tokens per clue is the average output the model generated, reasoning included.</p>
 <div class="lb">
-{rows}<div class="lb-row lb-axis"><div></div><div></div><div class="lb-plot axis">{ticks}</div><div></div></div>
+{rows}<div class="lb-row lb-axis"><div></div><div></div><div class="lb-plot axis">{ticks}</div><div></div><div></div></div>
 </div>
 </section>
 """
@@ -308,6 +339,52 @@ enumeration in the clue; a near miss has the right length and is within two lett
 <details><summary>Show as table</summary>
 <div class="scroll"><table class="data">
 <thead><tr><th>Run</th>{header}</tr></thead>
+<tbody>
+{table_rows}</tbody>
+</table></div>
+</details>
+</section>
+"""
+
+
+def render_tokens(cohort: dict) -> str:
+    runs = [run for run in cohort["runs"] if run["tokens"]]
+    if not runs:
+        return ""
+    longest = max(run["tokens"]["output_per_clue"] for run in runs)
+    rows = table_rows = ""
+    for run in runs:
+        tokens = run["tokens"]
+        per_clue = tokens["output_per_clue"]
+        reasoning_share = tokens["reasoning"] / tokens["output"] if tokens["output"] else 0
+        per_correct = tokens["output"] / run["correct"] if run["correct"] else None
+        tip = (
+            f"{run['label']}\n{per_clue:,.0f} output tokens per clue\n"
+            f"{pct(reasoning_share, 0)} of output was reasoning\n"
+            f"{tokens['input_per_clue']:,.0f} input tokens per clue"
+        )
+        rows += f"""<div class="tk-row" tabindex="0" data-tip="{escape(tip)}">
+  <div class="lb-name">{run_label_html(run)}</div>
+  <div class="tk-plot"><div class="bar" style="width:{per_clue / longest * 100:.2f}%"></div></div>
+  <div class="lb-value"><strong>{per_clue:,.0f}</strong><span>{pct(reasoning_share, 0)} reasoning</span></div>
+</div>
+"""
+        table_rows += (
+            f"<tr><th>{escape(run['label'])}</th><td>{per_clue:,.0f}</td>"
+            f"<td>{pct(reasoning_share, 0)}</td><td>{tokens['input_per_clue']:,.0f}</td>"
+            f"<td>{tokens['output']:,}</td><td>{tokens['input']:,}</td>"
+            f"<td>{f'{per_correct:,.0f}' if per_correct else '–'}</td></tr>\n"
+        )
+    return f"""<section class="card">
+<h3>Tokens spent</h3>
+<p class="lede">Average output tokens per clue, reasoning included. Reasoning is what the
+provider bills as thinking, whether or not it returns the text. Input tokens are mostly the
+prompt: runs through an agent harness carry a few thousand extra per clue.</p>
+<div class="tk">
+{rows}</div>
+<details><summary>Show as table</summary>
+<div class="scroll"><table class="data">
+<thead><tr><th>Run</th><th>Output per clue</th><th>Reasoning share</th><th>Input per clue</th><th>Total output</th><th>Total input</th><th>Output per correct answer</th></tr></thead>
 <tbody>
 {table_rows}</tbody>
 </table></div>
@@ -460,6 +537,7 @@ def render_cohort(index: int, cohort: dict) -> str:
 </header>
 {render_leaderboard(cohort)}
 {render_outcomes(cohort)}
+{render_tokens(cohort)}
 {render_head_to_head(cohort)}
 {render_heat_table("By wordplay device", 'Accuracy on the clues that use each device. A clue using several devices counts under each. Labels follow the <a href="https://github.com/rasoolsomji/crossword_bench/blob/main/clue_taxonomy.md">clue taxonomy</a> and were assigned by a classifier model from published human parsings, so treat small rows with care.', "Device", cohort["by_device"], runs, DEVICE_LABELS)}
 {render_heat_table("By puzzle", "Accuracy on each puzzle. Setters differ a lot in style and difficulty.", "Puzzle", cohort.get("by_puzzle", []), runs)}

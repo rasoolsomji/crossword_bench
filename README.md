@@ -69,7 +69,7 @@ uv run scripts/build_leaderboard.py
 ```
 
 Writes `docs/index.html` and `docs/results.json`: leaderboard with
-intervals, outcome classes, head-to-head, accuracy by device and by
+intervals, outcome classes, token usage, head-to-head, accuracy by device and by
 puzzle, and a per-clue table linking to transcripts. The Pages workflow
 bundles the Inspect log viewer from `logs/live/` on deploy; to preview
 it locally:

@@ -50,7 +50,7 @@
 
   /* leaderboard */
   .lb-row {
-    display: grid; grid-template-columns: 20px minmax(150px, 230px) 1fr 84px;
+    display: grid; grid-template-columns: 20px minmax(150px, 230px) 1fr 76px 76px;
     gap: 12px; align-items: center; padding: 7px 0; border-radius: 6px;
   }
   .lb-row:focus-visible, td:focus-visible, .seg:focus-visible, tr.clue:focus-visible {
@@ -72,6 +72,12 @@
   .lb-value strong { display: block; font-size: 16px; }
   .lb-value span { color: var(--muted); font-size: 12px; }
   .lb-axis { padding: 0; }
+  .tk-row {
+    display: grid; grid-template-columns: minmax(150px, 262px) 1fr 100px;
+    gap: 12px; align-items: center; padding: 6px 0; border-radius: 6px;
+  }
+  .tk-row:focus-visible { outline: 2px solid var(--s1); outline-offset: 1px; }
+  .tk-plot { position: relative; height: 24px; border-left: 1px solid var(--axis); }
   .lb-plot.axis { background: none; border: 0; height: 18px; }
   .tick { position: absolute; top: 2px; transform: translateX(-50%); font-size: 11px; color: var(--muted); }
   .tick b { font-weight: 400; }
@@ -158,7 +164,9 @@
   @media (max-width: 640px) {
     main { padding-top: 28px; }
     .card { padding: 16px; }
-    .lb-row { grid-template-columns: 1fr 84px; gap: 4px 12px; }
+    .lb-row { grid-template-columns: 1fr 76px 76px; gap: 4px 12px; }
+    .tk-row { grid-template-columns: 1fr 100px; gap: 4px 12px; }
+    .tk-row .lb-name { grid-column: 1 / -1; }
     .lb-rank { display: none; }
     .lb-name { grid-column: 1 / -1; }
     .lb-axis { display: none; }
@@ -287,6 +295,9 @@ document.querySelectorAll(".explorer").forEach((section) => {
         document.createTextNode(" · " + DATA.outcomes[result.outcome])
       );
       box.append(said);
+      if (result.output_tokens != null) {
+        box.append(el("span", "who", result.output_tokens.toLocaleString("en") + " output tokens"));
+      }
       if (run.log) {
         const link = el("a", "", "Transcript and reasoning");
         link.href = `logs/#/tasks/${encodeURIComponent(run.log)}/samples/sample/${encodeURIComponent(clue.id)}/1/`;

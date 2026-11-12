@@ -22,6 +22,7 @@ def run(model, public, outcomes):
                 "answer": "SECRETANSWER" if outcome == "correct" else "WRONG",
                 "input": "Secret clue text (12)",
                 "target": "SECRETANSWER",
+                "tokens": {"input": 100, "output": 40, "reasoning": 30},
                 "metadata": {"puzzle": 1, "setter": "S", "date": "2026-01-01", "source": "Src", "number": i, "direction": "across"},
             }
             for i, outcome in enumerate(outcomes)
@@ -50,4 +51,12 @@ def test_public_cohort_has_clues_and_head_to_head():
     pair = cohort["head_to_head"][0]
     assert (pair["both"], pair["only_a"], pair["only_b"], pair["neither"]) == (1, 1, 1, 0)
     assert cohort["by_device"][0]["name"] == "anagram"
+    assert cohort["runs"][0]["tokens"] == {
+        "input": 300,
+        "output": 120,
+        "reasoning": 90,
+        "output_per_clue": 40,
+        "input_per_clue": 100,
+    }
+    assert cohort["clue_list"][0]["results"][0]["output_tokens"] == 40
     assert "Secret clue text" in site.generate_html([cohort])
