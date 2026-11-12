@@ -1,12 +1,12 @@
-name: Deploy Leaderboard
+name: Deploy results site
 
-# Eval logs stay private (they contain the held-out clues), so the
-# leaderboard is built locally with scripts/build_leaderboard.py and the
-# aggregate docs/ output is committed; this workflow only deploys it.
+# docs/ holds the committed results page (built locally with
+# scripts/build_leaderboard.py). The transcript viewer is bundled here
+# from the public live-track logs; private logs never reach this repo.
 on:
   push:
     branches: [main]
-    paths: ['docs/**']
+    paths: ['docs/**', 'logs/live/**']
   workflow_dispatch:
 
 permissions:
@@ -26,6 +26,11 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - uses: actions/checkout@v4
+
+      - uses: astral-sh/setup-uv@v6
+
+      - name: Bundle transcript viewer
+        run: uv run --frozen inspect view bundle --log-dir logs/live --output-dir docs/logs --overwrite
 
       - uses: actions/configure-pages@v5
 

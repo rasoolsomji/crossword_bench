@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cryptic Crossword Bench</title>
+<style>
+  :root {
+    color-scheme: light;
+    --page: #f9f9f7; --surface: #fcfcfb; --ink: #0b0b0b; --ink2: #52514e; --muted: #898781;
+    --grid: #e1e0d9; --axis: #c3c2b7; --border: rgba(11,11,11,.10);
+    --s1: #2a78d6; --s2: #eb6834; --s3: #1baf7a; --s4: #eda100; --s5: #e87ba4;
+    --on-s4: #0b0b0b; --good: #0ca30c; --critical: #d03b3b; --link: #1c5cab;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      color-scheme: dark;
+      --page: #0d0d0d; --surface: #1a1a19; --ink: #f0efec; --ink2: #c3c2b7; --muted: #898781;
+      --grid: #2c2c2a; --axis: #383835; --border: rgba(255,255,255,.10);
+      --s1: #3987e5; --s2: #d95926; --s3: #199e70; --s4: #c98500; --s5: #d55181;
+      --on-s4: #ffffff; --link: #86b6ef;
+    }
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--page); color: var(--ink);
+    font: 15px/1.55 system-ui, -apple-system, "Segoe UI", sans-serif;
+  }
+  main { max-width: 1040px; margin: 0 auto; padding: 40px 16px 64px; }
+  a { color: var(--link); text-underline-offset: 2px; }
+  h1 { font-size: 30px; line-height: 1.15; margin: 0 0 8px; letter-spacing: -0.01em; }
+  h2 { font-size: 20px; margin: 0 0 4px; }
+  h3 { font-size: 16px; margin: 0 0 4px; }
+  code { font: 13px ui-monospace, SFMono-Regular, Menlo, monospace; }
+  .muted { color: var(--muted); margin: 0; font-size: 13px; }
+  .intro { color: var(--ink2); max-width: 68ch; margin: 0 0 14px; }
+  .links { display: flex; flex-wrap: wrap; gap: 8px 18px; font-size: 14px; }
+  .cohort-head { margin: 44px 0 16px; }
+  .card {
+    background: var(--surface); border: 1px solid var(--border); border-radius: 10px;
+    padding: 20px; margin: 0 0 16px;
+  }
+  .lede { color: var(--ink2); font-size: 14px; max-width: 72ch; margin: 0 0 16px; }
+  .model { font-weight: 600; overflow-wrap: anywhere; }
+  .chip {
+    display: inline-block; margin-left: 6px; padding: 0 7px; border-radius: 999px;
+    border: 1px solid var(--border); color: var(--ink2); font-size: 12px; font-weight: 400;
+    line-height: 18px; white-space: nowrap; vertical-align: 1px;
+  }
+
+  /* leaderboard */
+  .lb-row {
+    display: grid; grid-template-columns: 20px minmax(150px, 230px) 1fr 84px;
+    gap: 12px; align-items: center; padding: 7px 0; border-radius: 6px;
+  }
+  .lb-row:focus-visible, td:focus-visible, .seg:focus-visible, tr.clue:focus-visible {
+    outline: 2px solid var(--s1); outline-offset: 1px;
+  }
+  .lb-rank { color: var(--muted); font-variant-numeric: tabular-nums; text-align: right; }
+  .lb-plot {
+    position: relative; height: 24px;
+    background: linear-gradient(to right, var(--grid) 1px, transparent 1px) 0 0 / 25% 100%;
+    border-right: 1px solid var(--grid); border-left: 1px solid var(--axis);
+  }
+  .bar { position: absolute; left: 0; top: 4px; height: 16px; background: var(--s1); border-radius: 0 4px 4px 0; }
+  .whisker { position: absolute; top: 11px; height: 2px; background: var(--ink); }
+  .whisker::before, .whisker::after {
+    content: ""; position: absolute; top: -4px; width: 2px; height: 10px; background: var(--ink);
+  }
+  .whisker::before { left: 0; } .whisker::after { right: 0; }
+  .lb-value { text-align: right; font-variant-numeric: tabular-nums; line-height: 1.2; }
+  .lb-value strong { display: block; font-size: 16px; }
+  .lb-value span { color: var(--muted); font-size: 12px; }
+  .lb-axis { padding: 0; }
+  .lb-plot.axis { background: none; border: 0; height: 18px; }
+  .tick { position: absolute; top: 2px; transform: translateX(-50%); font-size: 11px; color: var(--muted); }
+  .tick b { font-weight: 400; }
+  .tick:first-child { transform: none; } .tick:last-child { transform: translateX(-100%); }
+
+  /* outcomes */
+  .legend { display: flex; flex-wrap: wrap; gap: 6px 16px; font-size: 13px; color: var(--ink2); margin: 0 0 12px; }
+  .key { display: inline-flex; align-items: center; gap: 6px; }
+  .sw { width: 10px; height: 10px; border-radius: 2px; display: inline-block; }
+  .o-correct { background: var(--s1); } .o-wrong_answer { background: var(--s2); }
+  .o-near_miss { background: var(--s3); } .o-wrong_length { background: var(--s4); }
+  .o-no_answer { background: var(--s5); }
+  .oc-row { display: grid; grid-template-columns: minmax(150px, 262px) 1fr; gap: 12px; align-items: center; padding: 6px 0; }
+  .stack { display: flex; gap: 2px; height: 22px; }
+  .seg { min-width: 3px; display: flex; align-items: center; padding-left: 6px; color: #fff; font-size: 12px; font-variant-numeric: tabular-nums; }
+  .seg:last-child { border-radius: 0 4px 4px 0; }
+  .seg.o-wrong_length { color: var(--on-s4); }
+  details { margin-top: 14px; font-size: 14px; }
+  summary { cursor: pointer; color: var(--ink2); width: fit-content; }
+
+  /* tables */
+  .scroll { overflow-x: auto; }
+  table { border-collapse: collapse; width: 100%; font-size: 14px; }
+  th, td { padding: 8px 10px; text-align: left; border-bottom: 1px solid var(--grid); vertical-align: middle; }
+  thead th { font-weight: 500; color: var(--ink2); font-size: 13px; vertical-align: bottom; }
+  table.data td, table.data thead th:not(:first-child) { text-align: right; font-variant-numeric: tabular-nums; }
+  tbody th { font-weight: 500; }
+  .matrix thead th .chip, .matrix thead th .model { display: block; margin: 0; width: fit-content; }
+  .matrix thead th .model { font-weight: 500; }
+  .matrix td {
+    min-width: 92px; font-variant-numeric: tabular-nums; line-height: 1.25;
+    background: color-mix(in oklab, var(--s1) var(--tint, 0%), var(--surface));
+    border-left: 2px solid var(--surface); border-bottom: 2px solid var(--surface);
+  }
+  .matrix td b { display: block; font-weight: 600; }
+  .matrix td span { font-size: 12px; color: var(--ink2); }
+  .matrix td.self { color: var(--muted); background: none; }
+  .heat td b { display: inline-block; min-width: 44px; }
+  .matrix tbody th { white-space: nowrap; }
+  .n { color: var(--muted); font-weight: 400; font-size: 12px; margin-left: 8px; font-variant-numeric: tabular-nums; }
+
+  /* explorer */
+  .filters { display: flex; flex-wrap: wrap; gap: 10px 16px; align-items: center; margin: 0 0 12px; font-size: 13px; color: var(--ink2); }
+  select {
+    font: inherit; color: var(--ink); background: var(--surface); border: 1px solid var(--axis);
+    border-radius: 6px; padding: 4px 8px; margin-left: 4px; max-width: 220px;
+  }
+  .count { margin-left: auto; color: var(--muted); }
+  .glyph { font-style: normal; font-weight: 700; width: 18px; display: inline-block; text-align: center; }
+  .g-correct { color: var(--good); } .g-wrong_answer, .g-wrong_length, .g-no_answer { color: var(--critical); }
+  .g-near_miss { color: var(--s2); }
+  table.clues td { vertical-align: top; }
+  table.clues th, table.clues td { padding-left: 8px; padding-right: 8px; }
+  table.clues thead th.run { text-align: center; min-width: 84px; padding: 8px 4px; font-size: 12px; }
+  table.clues thead th.run .model { overflow-wrap: normal; white-space: nowrap; }
+  table.clues thead th.run .chip { margin: 2px 0 0; }
+  table.clues thead th.run .model { display: block; font-weight: 500; }
+  table.clues td.res { text-align: center; padding: 8px 4px; }
+  tr.clue { cursor: pointer; }
+  tr.clue:hover td, tr.clue.open td { background: color-mix(in oklab, var(--s1) 7%, var(--surface)); }
+  .ref { white-space: nowrap; color: var(--ink2); font-variant-numeric: tabular-nums; }
+  .text { min-width: 200px; }
+  .answer { font: 13px ui-monospace, SFMono-Regular, Menlo, monospace; letter-spacing: .03em; white-space: nowrap; }
+  .dev { display: inline-block; font-size: 12px; color: var(--ink2); border: 1px solid var(--border); border-radius: 4px; padding: 0 6px; margin: 0 4px 4px 0; white-space: nowrap; }
+  tr.detail td { background: var(--page); padding: 12px 16px 16px; }
+  .detail-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 12px; margin-bottom: 10px; }
+  .detail-grid div { font-size: 13px; }
+  .detail-grid .who { color: var(--ink2); display: block; }
+  .detail-grid .said { display: block; margin: 2px 0; }
+  .detail-links { font-size: 13px; display: flex; flex-wrap: wrap; gap: 6px 18px; }
+
+  .notes { color: var(--ink2); font-size: 14px; }
+  .notes ul { margin: 8px 0 0; padding-left: 20px; }
+  .notes li { margin: 4px 0; max-width: 78ch; }
+  footer { color: var(--muted); font-size: 13px; margin-top: 24px; }
+
+  .tip {
+    position: fixed; z-index: 10; pointer-events: none; max-width: 300px;
+    background: var(--ink); color: var(--surface); border-radius: 6px; padding: 8px 10px;
+    font-size: 12.5px; line-height: 1.45; box-shadow: 0 4px 16px rgba(0,0,0,.25);
+  }
+  .tip div:first-child { font-weight: 600; }
+
+  @media (max-width: 640px) {
+    main { padding-top: 28px; }
+    .card { padding: 16px; }
+    .lb-row { grid-template-columns: 1fr 84px; gap: 4px 12px; }
+    .lb-rank { display: none; }
+    .lb-name { grid-column: 1 / -1; }
+    .lb-axis { display: none; }
+    .oc-row { grid-template-columns: 1fr; gap: 4px; }
+    .count { margin-left: 0; width: 100%; }
+  }
+</style>
+</head>
+<body>
+<main>
+<header>
+  <h1>Cryptic Crossword Bench</h1>
+  <p class="intro">How well language models solve cryptic crossword clues they cannot have seen in
+  training. Each clue is posed on its own: no grid, no crossing letters, no tools, no web search.
+  An answer counts only if it matches the published solution exactly.</p>
+  <nav class="links">
+    <a href="logs/">Browse full transcripts</a>
+    <a href="results.json">results.json</a>
+    <a href="https://github.com/rasoolsomji/crossword_bench">Code and raw logs on GitHub</a>
+  </nav>
+</header>
+
+__BODY__
+
+<section class="card notes">
+<h3>Reading these numbers</h3>
+<ul>
+  <li><strong>Accuracy</strong> is simply clues correct divided by clues asked. The interval beside it
+  answers a different question: these clues are a small sample of all the clues a model could be given,
+  so the same model would score a little differently on another week's puzzles. With around a hundred
+  clues that wobble is roughly ±9 points, which is why two models a few points apart are not
+  meaningfully separated. Head to head is the sharper comparison, because both runs faced identical clues.</li>
+  <li><strong>Effort</strong> is each provider's own reasoning setting. The labels are not comparable
+  between providers: "default" on one can spend more reasoning than "high" on another.</li>
+  <li><strong>Harness-backed runs.</strong> Models listed without an API (currently the OpenAI models,
+  reached through the Codex app server) run inside an agent harness that adds its own context. Web
+  search was disabled and any attempt to use a tool is cut off and scored as a miss, but treat those
+  rows as indicative.</li>
+  <li><strong>Transcripts</strong> include whatever reasoning summary the provider returns. Raw chains
+  of thought are not exposed by either provider, and some models return only a line or two.</li>
+  <li><strong>Device labels</strong> are assigned by a classifier model after the runs, from published
+  human parsings. They are not human-verified.</li>
+</ul>
+</section>
+
+<footer>Last updated __UPDATED__</footer>
+</main>
+
+<script type="application/json" id="data">__DATA__</script>
+<script>
+const DATA = JSON.parse(document.getElementById("data").textContent);
+const el = (tag, cls, text) => {
+  const node = document.createElement(tag);
+  if (cls) node.className = cls;
+  if (text != null) node.textContent = text;
+  return node;
+};
+const groupOf = (outcome) => DATA.groupOf[outcome] || outcome;
+
+// Tooltip: hover and keyboard focus show the same content.
+const tip = el("div", "tip");
+tip.hidden = true;
+document.body.append(tip);
+function showTip(target, x, y) {
+  tip.replaceChildren(...target.dataset.tip.split("\n").map((line) => el("div", "", line)));
+  tip.hidden = false;
+  const box = tip.getBoundingClientRect();
+  tip.style.left = Math.max(8, Math.min(x + 14, innerWidth - box.width - 8)) + "px";
+  tip.style.top = (y + 18 + box.height > innerHeight ? y - box.height - 12 : y + 18) + "px";
+}
+document.addEventListener("pointermove", (event) => {
+  const target = event.target.closest?.("[data-tip]");
+  if (target) showTip(target, event.clientX, event.clientY);
+  else tip.hidden = true;
+});
+document.addEventListener("focusin", (event) => {
+  const target = event.target.closest?.("[data-tip]");
+  if (!target) return;
+  const box = target.getBoundingClientRect();
+  showTip(target, box.left + box.width / 2, box.bottom - 12);
+});
+document.addEventListener("focusout", () => { tip.hidden = true; });
+
+document.querySelectorAll(".explorer").forEach((section) => {
+  const cohort = DATA.cohorts[Number(section.dataset.cohort)];
+  const runs = cohort.runs;
+  const selects = Object.fromEntries(
+    [...section.querySelectorAll("select")].map((s) => [s.dataset.filter, s])
+  );
+  const count = section.querySelector(".count");
+  const tbody = section.querySelector("tbody");
+
+  const used = new Set(cohort.clues.flatMap((c) => c.devices));
+  selects.device.append(new Option("All devices", ""));
+  Object.entries(DATA.devices).forEach(([key, label]) => {
+    if (used.has(key)) selects.device.append(new Option(label, key));
+  });
+  selects.puzzle.append(new Option("All puzzles", ""));
+  new Map(cohort.clues.map((c) => [String(c.puzzle), c.setter])).forEach((setter, puzzle) => {
+    selects.puzzle.append(new Option(`No ${Number(puzzle).toLocaleString("en")} · ${setter}`, puzzle));
+  });
+
+  const head = el("tr");
+  ["Clue", "", "Answer", "Devices"].forEach((title) => head.append(el("th", "", title)));
+  runs.forEach((run) => {
+    const th = el("th", "run");
+    th.append(el("span", "model", run.model), el("span", "chip", run.effort));
+    head.append(th);
+  });
+  section.querySelector("thead").append(head);
+
+  function detailRow(clue) {
+    const row = el("tr", "detail");
+    const cell = el("td");
+    cell.colSpan = 4 + runs.length;
+    const grid = el("div", "detail-grid");
+    runs.forEach((run, i) => {
+      const result = clue.results[i];
+      if (!result) return;
+      const box = el("div");
+      box.append(el("span", "who", run.label));
+      const said = el("span", "said");
+      said.append(
+        el("i", "glyph g-" + groupOf(result.outcome), DATA.glyphs[groupOf(result.outcome)]),
+        el("span", "answer", result.answer || "no answer"),
+        document.createTextNode(" · " + DATA.outcomes[result.outcome])
+      );
+      box.append(said);
+      if (run.log) {
+        const link = el("a", "", "Transcript and reasoning");
+        link.href = `logs/#/tasks/${encodeURIComponent(run.log)}/samples/sample/${encodeURIComponent(clue.id)}/1/`;
+        box.append(link);
+      }
+      grid.append(box);
+    });
+    const links = el("div", "detail-links");
+    [[clue.url, "Puzzle on the Guardian"], [clue.parsing_url, "How it parses (Fifteensquared)"]].forEach(
+      ([href, label]) => {
+        if (!href) return;
+        const link = el("a", "", label);
+        link.href = href;
+        links.append(link);
+      }
+    );
+    cell.append(grid, links);
+    row.append(cell);
+    return row;
+  }
+
+  function render() {
+    const device = selects.device.value, puzzle = selects.puzzle.value, result = selects.result.value;
+    const rows = [];
+    let shown = 0;
+    cohort.clues.forEach((clue) => {
+      const hits = clue.results.filter((r) => r && r.outcome === "correct").length;
+      const scored = clue.results.filter(Boolean).length;
+      if (device && !clue.devices.includes(device)) return;
+      if (puzzle && String(clue.puzzle) !== puzzle) return;
+      if (result === "all" && hits !== scored) return;
+      if (result === "none" && hits !== 0) return;
+      if (result === "split" && (hits === 0 || hits === scored)) return;
+      shown += 1;
+
+      const row = el("tr", "clue");
+      row.tabIndex = 0;
+      row.append(el("td", "ref", `${clue.puzzle} · ${clue.ref}`), el("td", "text", clue.clue), el("td", "answer", clue.answer));
+      const devices = el("td");
+      clue.devices.forEach((d) => devices.append(el("span", "dev", DATA.devices[d] || d)));
+      if (clue.and_lit) devices.append(el("span", "dev", "&lit"));
+      row.append(devices);
+      clue.results.forEach((r, i) => {
+        const cell = el("td", "res");
+        if (r) {
+          const glyph = el("i", "glyph g-" + groupOf(r.outcome), DATA.glyphs[groupOf(r.outcome)]);
+          glyph.dataset.tip = `${runs[i].label}\n${DATA.outcomes[r.outcome]}: ${r.answer || "no answer"}`;
+          cell.append(glyph);
+        }
+        row.append(cell);
+      });
+      const toggle = () => {
+        const open = row.classList.toggle("open");
+        if (open) row.after(detailRow(clue));
+        else row.nextElementSibling?.remove();
+      };
+      row.addEventListener("click", toggle);
+      row.addEventListener("keydown", (event) => {
+        if (event.key === "Enter" || event.key === " ") { event.preventDefault(); toggle(); }
+      });
+      rows.push(row);
+    });
+    tbody.replaceChildren(...rows);
+    count.textContent = `${shown} of ${cohort.clues.length} clues`;
+  }
+  Object.values(selects).forEach((select) => select.addEventListener("change", render));
+  render();
+});
+</script>
+</body>
+</html>

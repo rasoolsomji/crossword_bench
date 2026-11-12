@@ -31,7 +31,8 @@ uv run fetch-guardian --since 2026-11-09
 ```bash
 uv run inspect eval src/crossword_bench/task.py \
   --model anthropic/claude-haiku-5-5 --max-tokens 16000 \
-  -T dataset=data/live/guardian -T label=guardian-cryptic-2026-11-09..12
+  -T dataset=data/live/guardian -T label=guardian-cryptic-2026-11-09..12 \
+  --log-dir logs/live
 ```
 
 `dataset` takes a file, directory, glob, or comma-separated list;
@@ -48,15 +49,43 @@ track honest: answers are blogged within hours of publication.
 With `data/clues.json` present, omit `-T dataset=...`. Without it the
 task falls back to the toy `data/sample_clues.json`.
 
-## Leaderboard
+## Clue labels
+
+```bash
+uv run classify-clues
+```
+
+Labels each fetched clue with its wordplay devices, following
+[clue_taxonomy.md](clue_taxonomy.md). A classifier model (Claude Sonnet
+by default) reads the clue, the answer and the Fifteensquared blog's
+parsing of the puzzle; only the labels are stored, in `annotations/`.
+Labels are assigned after the runs and never shown to the models being
+evaluated.
+
+## Results site
 
 ```bash
 uv run scripts/build_leaderboard.py
 ```
 
-Writes aggregates only to `docs/`. Never commit `logs/*.eval`,
-`data/clues.json`, or the source PDFs: eval logs embed every clue and
-answer.
+Writes `docs/index.html` and `docs/results.json`: leaderboard with
+intervals, outcome classes, head-to-head, accuracy by device and by
+puzzle, and a per-clue table linking to transcripts. The Pages workflow
+bundles the Inspect log viewer from `logs/live/` on deploy; to preview
+it locally:
+
+```bash
+uv run inspect view bundle --log-dir logs/live --output-dir docs/logs --overwrite
+```
+
+## What is published
+
+| Path | Published | Why |
+|---|---|---|
+| `logs/live/*.eval` | Yes, in full | Live-track clues are already public and are never reused, so transcripts and reasoning summaries can be open. Pass `--log-dir logs/live` when running a live cohort. |
+| `logs/` (anything else) | Never | Anchor-set logs embed every private clue and answer. The site shows aggregates only for these. |
+| `data/clues.json`, source PDFs | Never | The private anchor set. |
+| `data/live/` | No | Fetched puzzles and cached blog text; reproducible with the fetch commands. |
 
 ## Tests
 

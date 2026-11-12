@@ -10,6 +10,7 @@ dependencies = [
 
 [project.scripts]
 fetch-guardian = "crossword_bench.guardian:main"
+classify-clues = "crossword_bench.classify:main"
 
 [project.entry-points.inspect_ai]
 crossword_bench = "crossword_bench._registry"

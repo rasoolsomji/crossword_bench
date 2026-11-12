@@ -1,6 +1,6 @@
 import pytest
 
-from crossword_bench.scorer import extract_answer, normalize
+from crossword_bench.scorer import classify_outcome, extract_answer, normalize
 
 
 @pytest.mark.parametrize(
@@ -37,3 +37,22 @@ def test_no_answer(output):
 
 def test_normalize_keeps_only_alphanumerics():
     assert normalize("  d'Artagnan-style! ") == "DARTAGNANSTYLE"
+
+
+@pytest.mark.parametrize(
+    "answer, target, kwargs, expected",
+    [
+        ("melon", "MELON", {}, "correct"),
+        ("FOR THE BETTER", "FORTHEBETTER", {}, "correct"),
+        ("BANNED", "BAND", {}, "wrong_length"),
+        ("BARRICADED", "BARRACKED", {}, "wrong_length"),
+        ("RELEARNT", "RELEARNS", {}, "near_miss"),
+        ("BIND", "BAND", {}, "wrong_answer"),
+        ("LEMON", "MELON", {}, "wrong_answer"),
+        (None, "MELON", {}, "no_answer"),
+        (None, "MELON", {"stop_reason": "max_tokens"}, "truncated"),
+        (None, "MELON", {"error": "Turn interrupted"}, "interrupted"),
+    ],
+)
+def test_classify_outcome(answer, target, kwargs, expected):
+    assert classify_outcome(answer, target, **kwargs) == expected

@@ -51,6 +51,43 @@ def extract_answer(text: str) -> str | None:
     return None
 
 
+OUTCOMES = {
+    "correct": "Correct",
+    "near_miss": "Near miss",
+    "wrong_answer": "Wrong answer",
+    "wrong_length": "Wrong length",
+    "no_answer": "No answer",
+    "truncated": "Ran out of tokens",
+    "interrupted": "Used a tool",
+}
+
+
+def classify_outcome(
+    answer: str | None,
+    target: str,
+    stop_reason: str | None = None,
+    error: str | None = None,
+) -> str:
+    """Classify a response into one of OUTCOMES.
+
+    A near miss has the right length and differs from the target in at
+    most two letters (answers of six letters or more only, since two
+    letters of a short word is a different word).
+    """
+    if answer is None or not normalize(answer):
+        if error:
+            return "interrupted"
+        return "truncated" if stop_reason in ("max_tokens", "model_length") else "no_answer"
+    got, want = normalize(answer), normalize(target)
+    if got == want:
+        return "correct"
+    if len(got) != len(want):
+        return "wrong_length"
+    if len(want) >= 6 and sum(a != b for a, b in zip(got, want)) <= 2:
+        return "near_miss"
+    return "wrong_answer"
+
+
 @scorer(metrics=[accuracy(), stderr()])
 def cryptic_scorer():
     """Score cryptic crossword answers with normalization."""
@@ -58,33 +95,19 @@ def cryptic_scorer():
     async def score(state: TaskState, target: Target) -> Score:
         clue_type = (state.metadata or {}).get("clue_type", "unknown")
         extracted = extract_answer(state.output.completion)
-
+        outcome = classify_outcome(
+            extracted, target.text, state.output.stop_reason, state.output.error
+        )
         if extracted is None:
-            return Score(
-                value="I",
-                answer=None,
-                explanation=state.output.error or "Could not extract answer from model output.",
-                metadata={
-                    "clue_type": clue_type,
-                    "failure": "interrupted" if state.output.error else "no_answer",
-                },
-            )
-
-        got, want = normalize(extracted), normalize(target.text)
-        is_correct = got == want
-        failure = None
-        if not is_correct:
-            failure = "wrong_length" if len(got) != len(want) else "wrong_answer"
+            explanation = state.output.error or "Could not extract answer from model output."
+        else:
+            explanation = f"Expected '{target.text}', got '{extracted}'"
 
         return Score(
-            value="C" if is_correct else "I",
+            value="C" if outcome == "correct" else "I",
             answer=extracted,
-            explanation=f"Expected '{target.text}', got '{extracted}'",
-            metadata={
-                "extracted_answer": extracted,
-                "clue_type": clue_type,
-                "failure": failure,
-            },
+            explanation=explanation,
+            metadata={"clue_type": clue_type, "outcome": outcome},
         )
 
     return score

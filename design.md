@@ -78,11 +78,12 @@ because those models will be evaluated on future clues.
 - Models are comparable only within a cohort (same clues). New models
   enter the leaderboard from their arrival date; report a trailing
   window (e.g. 90 days) in which all listed models saw identical clues.
-- Copyright: don't mirror a paper's full puzzle verbatim in the repo;
-  reference clue IDs/URLs alongside our scoring.
+- Copyright: fetched puzzle files stay out of the repo. Published logs
+  and the results page do carry each clue and answer alongside our
+  scoring, with links back to the puzzle (see Publishing rules).
 - Runs as a daily scheduled job (GitHub Action cron or equivalent).
 - Prototype (Nov 2026): `fetch-guardian` pulls puzzles by date range
-  into `data/live/` (gitignored — the copyright rule above), and the
+  into `data/live/` (gitignored), and the
   task runs a directory of them as one cohort. Each clue is posed alone,
   without the grid or crossing letters, so scores understate what a
   model could do on a full puzzle. Guardian Saturday prize puzzles
@@ -116,11 +117,21 @@ model has seen and no scrape will find. Two uses:
 |---|---|
 | All code, this doc, research notes | Source PDFs |
 | Aggregate results (`docs/`: accuracy, stderr, per-type tables) | Clue text + answers (`data/clues.json`) |
-| Per-sample correct/incorrect vectors keyed by opaque IDs | Raw `.eval` logs and transcripts |
+| Per-sample correct/incorrect vectors keyed by opaque IDs | Raw `.eval` logs and transcripts of the anchor set |
+| Live-track logs in full (`logs/live/`): clues, answers, transcripts, reasoning summaries | |
+| Device labels for live clues (`annotations/`) | Cached third-party blog text used to produce them |
 | Optional: SHA-256 commitments of each clue+answer; a handful of sacrificed example clues; used-up rotation batches | Anything else containing clue text |
 
-Enforced by `.gitignore` (`*.pdf`, `data/clues.json`, `logs/*.eval`);
-the Pages workflow deploys committed `docs/` aggregates only.
+Enforced by `.gitignore` (`*.pdf`, `data/clues.json`, every `.eval`
+outside `logs/live/`). The results builder treats a run as public only
+if its log sits in `logs/live/`; any other cohort gets aggregate numbers
+and no clue text. The Pages workflow deploys committed `docs/` plus a
+transcript viewer bundled from `logs/live/`.
+
+Publishing live logs supersedes the earlier "reference clue IDs, don't
+mirror the puzzle" caution: the logs do reproduce each clue and answer.
+That is a deliberate trade for transparency, on the footing that solver
+blogs reproduce every clue daily; revisit it if a publisher objects.
 
 ## Dataset pipeline (August 2009 set)
 
@@ -142,8 +153,10 @@ fell outside the archive, 12 with no consistent slot). Re-run matching
 without OCR via `uv run extraction/extract_crosswords.py
 extraction/output/pages.json`.
 
-Known gaps: extracted metadata has no `clue_type`, so the per-type
-leaderboard table is inert for real data; a human review pass over the
+Known gaps: the anchor set has no device labels (live clues are
+labelled by `classify-clues` from published parsings, which the London
+Paper lacks, so anchor labels would have to rest on the classifier's
+own parsing); a human review pass over the
 350 (OCR noise like "limber" for "climber") is worthwhile before
 calling it the anchor set.
 
@@ -158,5 +171,8 @@ calling it the anchor set.
 - [ ] First real-model runs on the anchor set
 - [x] Prototype live-track fetcher (Guardian) and first live cohort
       (9–12 Nov 2026, 116 clues)
+- [x] Outcome classes, device labels ([clue_taxonomy.md](clue_taxonomy.md)),
+      head-to-head, published live logs
 - [ ] Live-track daily job; second source (Lovatts/FT/Independent)
+- [ ] Human spot-check of the classifier's device labels
 - [ ] Hash commitments + opaque-ID per-sample vectors in `docs/`
