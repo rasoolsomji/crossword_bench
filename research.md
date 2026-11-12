@@ -127,3 +127,65 @@ Investigated March 2026 across multiple channels:
 - Are the clues cryptic or quick crosswords?
 - How many clues are available?
 - Can we verify answer correctness for all clues?
+
+## Live-Track Sources — Survey (13 Nov 2026)
+
+The live track runs on the Guardian daily cryptic, whose puzzle pages embed clues and solutions as JSON. This survey starts from Fifteensquared, which blogs most UK broadsheet cryptics, to look for further sources and harder ones.
+
+### Is the Guardian too easy?
+
+First cohort (Guardian 9–12 Nov 2026, 116 clues from four puzzles), medium-effort runs of 12 Nov:
+
+- DeepSeek v4.1 Flash: 102/116 (88%)
+- Kimi K3.1 Pro: 98/115 (85%; the run was still unfinished when read)
+- No frontier model has been run yet.
+
+Setter matters more than source. In the DeepSeek run, Carpathian's puzzle went 29/30 and Anto's 30/30, while Paul's (No 30,161) went 19/28 and held 9 of its 14 misses. A cohort without a hard setter would barely separate the top models.
+
+### What Fifteensquared covers
+
+Post counts from the blog's WordPress API (`/wp-json/wp/v2/categories`) on 13 Nov 2026. Difficulty is general reputation, not measured here.
+
+| Source | Posts | Format | Fit for clue-at-a-time |
+|---|---|---|---|
+| Independent (daily) | 7,339 | Blocked grid | Good, but see access |
+| Guardian (daily, Prize) | 6,304 | Blocked grid | In use |
+| FT (daily, Mon–Sat) | 5,947 | Blocked grid | Good, but see access; some setters are shared with the Guardian (Paul sets there as Mudd) |
+| Inquisitor (i, weekly) | 1,081 | Barred, thematic | Poor: many clues carry a gimmick (extra letters, misprints), so a clue alone often has no single answer |
+| Azed (Observer, weekly) | 998 | Barred, mostly plain | Good: clues stand alone, answers lean on Chambers vocabulary; special-format weeks (e.g. Printer's Devilry, Playfair) would need filtering |
+| Everyman (Observer, weekly) | 963 | Blocked grid | Easier than the Guardian daily |
+| Enigmatic Variations (Sunday Telegraph) | 951 | Barred, thematic | Poor, as Inquisitor |
+| Guardian Quiptic | 859 | Blocked grid | Easier tier |
+| Private Eye / Cyclops | 507 | Blocked grid | Low volume (fortnightly) |
+| Guardian Genius (monthly) | 239 | Varies, often gimmicky | Low volume |
+| Listener | 132 | Barred, thematic | Poor, as Inquisitor |
+| Spectator | 54 | Barred, thematic | Poor, as Inquisitor |
+| Gemelo (Observer, weekly) | 53 | Barred | About a year old; not assessed |
+
+Beelzebub (Independent on Sunday, 387 posts) has had no posts in the past month. Times-family puzzles (Times, Sunday Times, Mephisto) are blogged on Times for the Times and Telegraph puzzles (Cryptic, Toughie) on Big Dave's Crossword Blog; both papers are paywalled and were not checked further. Lovatts, named in design.md, was not checked.
+
+### Access
+
+- **Guardian daily and Prize**: puzzle JSON in the page (`fetch-guardian`). Prize solutions appear a week later.
+- **Guardian Genius**: now article pages with a PDF (e.g. `/crosswords/2026/aug/03/genius-crossword-no-278`), not the JSON component, so `fetch-guardian` would not pick it up.
+- **Independent**: hosted at puzzles.independent.co.uk on Arkadium's games platform. Neither the page nor its network calls held clue data. On 13 Nov the game page carried a banner saying the Independent Cryptic and Concise crosswords "will be discontinued on Nov. 30th"; unclear whether the puzzle ends or moves.
+- **FT**: ft.com/crossword answers plain requests with a Cloudflare challenge (HTTP 403). No free PDF or data feed found.
+- **Observer (Azed, Everyman, Gemelo)**: observer.co.uk (Tortoise Media since 2025). Each article page carries a puzzle uuid, and `https://content-api.slowdownwiseup.co.uk/api/mobile/v1/puzzle-data/<uuid>/file/data.json` returns grid, clues and enumerations with no login. Everyman includes per-clue answers; Azed and Gemelo withhold them until the next week's JSON, which carries the previous solution as a flat grid string. The API is undocumented.
+
+### Terms
+
+- observer.co.uk/robots.txt: "Any other use is not permitted, including use for large language models (LLMs)", with `Content-Signal: ai-input=no, ai-train=no` and AI crawlers (ClaudeBot, GPTBot, etc.) disallowed.
+- theguardian.com/robots.txt carries the same reservation against LLM, machine-learning and AI uses, and points to <licensing@theguardian.com>.
+- The live track already fetches Guardian puzzles and republishes their clues in `logs/live/`; design.md's Publishing rules treat this as revisitable if a publisher objects. Both publishers have now stated the reservation in writing.
+
+### Fifteensquared as a source
+
+A typical post reproduces each clue with its answer and parsing, and nearly all underline the definition (10–15 of the last 15 posts in each category above). Many use a fixed HTML layout (`fts-*` classes) with the clue, answer and parsing in set places. In the last 15 posts per category that layout was used by: FT 13, Everyman 12, Independent 9, Azed 9, Guardian 5, Inquisitor 4, Spectator 4, Enigmatic Variations 0. This could stand in for sources that can't be fetched directly (FT), at the cost of republishing a third party's transcription (blogger typos, the blog's own copyright).
+
+### Options for more signal
+
+1. **Score the parse, not just the answer.** Have the model state its definition and wordplay, and check them against the blog's underlined definition and parsing. Answer-only accuracy rewards guessing from the definition; this raises the ceiling without changing source, and `classify-clues` already fetches the posts.
+2. **Weight toward hard setters.** Include Prize puzzles once solved, and report results by setter.
+3. **Azed as a hard track**, with the Observer's permission, filtering special-format weeks.
+4. **FT via Fifteensquared**, with the caveats above.
+5. **Run a frontier model on the current cohort first.** Around 95% would mean the Guardian track is saturated whatever else changes.
