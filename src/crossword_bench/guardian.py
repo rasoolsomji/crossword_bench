@@ -10,12 +10,16 @@ import json
 import re
 import sys
 import urllib.request
-from datetime import date, datetime, timedelta, timezone
+from datetime import date, datetime
 from pathlib import Path
+from zoneinfo import ZoneInfo
 
 BASE_URL = "https://www.theguardian.com"
 SERIES_URL = f"{BASE_URL}/crosswords/series/cryptic"
 DEFAULT_OUT = Path(__file__).parent.parent.parent / "data" / "live" / "guardian"
+# Puzzles are dated by the UK publication day, which is a day later than
+# the UTC date for a puzzle stamped at midnight during British Summer Time.
+UK = ZoneInfo("Europe/London")
 
 _PROPS = re.compile(r'<gu-island[^>]*name="CrosswordComponent"[^>]*props="([^"]*)"')
 _PUZZLE_LINK = re.compile(r'href="(?:https://www\.theguardian\.com)?/crosswords/cryptic/(\d+)"')
@@ -45,6 +49,10 @@ def parse_puzzle_page(page: str) -> dict:
     return data
 
 
+def published_date(puzzle: dict) -> date:
+    return datetime.fromtimestamp(puzzle["date"] / 1000, tz=UK).date()
+
+
 def clean_clue(raw: str) -> str:
     return re.sub(r"\s+", " ", html.unescape(_TAG.sub("", raw))).strip()
 
@@ -59,7 +67,7 @@ def puzzle_to_samples(puzzle: dict) -> list[dict]:
         raise ValueError(f"Solutions not yet available for {puzzle.get('id')}")
 
     number = puzzle["number"]
-    published = datetime.fromtimestamp(puzzle["date"] / 1000, tz=timezone.utc).date()
+    published = published_date(puzzle)
     setter = (puzzle.get("creator") or {}).get("name")
     by_id = {entry["id"]: entry for entry in puzzle["entries"]}
 
@@ -111,17 +119,23 @@ def main() -> None:
     parser.add_argument("--out", type=Path, default=DEFAULT_OUT)
     args = parser.parse_args()
 
-    today = datetime.now(timezone.utc).date()
+    today = datetime.now(UK).date()
     since, until = args.since or today, args.until or today
     args.out.mkdir(parents=True, exist_ok=True)
 
+    reached_since = bool(args.numbers)
     for number in args.numbers or recent_puzzle_numbers():
-        puzzle = fetch_puzzle(number)
-        published = datetime.fromtimestamp(puzzle["date"] / 1000, tz=timezone.utc).date()
+        try:
+            puzzle = fetch_puzzle(number)
+        except (ValueError, OSError) as error:
+            print(f"{number}: could not fetch: {error}", file=sys.stderr)
+            continue
+        published = published_date(puzzle)
         if not args.numbers:
             if published > until:
                 continue
             if published < since:
+                reached_since = True
                 break
         try:
             samples = puzzle_to_samples(puzzle)
@@ -131,6 +145,13 @@ def main() -> None:
         path = args.out / f"{published.isoformat()}-cryptic-{number}.json"
         path.write_text(json.dumps(samples, indent=2, ensure_ascii=False) + "\n")
         print(f"{number} ({published}): {len(samples)} clues -> {path}")
+
+    if not reached_since:
+        print(
+            f"Warning: the series page lists nothing older than {since}, so earlier "
+            "puzzles may be missing; fetch them with --numbers.",
+            file=sys.stderr,
+        )
 
 
 if __name__ == "__main__":

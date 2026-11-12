@@ -3,7 +3,7 @@ import json
 
 import pytest
 
-from crossword_bench.guardian import parse_puzzle_page, puzzle_to_samples
+from crossword_bench.guardian import parse_puzzle_page, published_date, puzzle_to_samples
 
 
 def entry(id_, clue, solution, group=None):
@@ -57,6 +57,12 @@ def test_cross_reference_flag_and_enumeration_check():
     )
     assert len(samples) == 1
     assert samples[0]["metadata"]["cross_reference"] is True
+
+
+def test_published_date_is_the_uk_day():
+    # 00:00 BST on 15 June 2027 is 23:00 UTC on 14 June.
+    assert published_date({"date": 1813014000000}).isoformat() == "2027-06-15"
+    assert published_date({"date": 1794441600000}).isoformat() == "2026-11-12"
 
 
 def test_unreleased_solutions_rejected():
