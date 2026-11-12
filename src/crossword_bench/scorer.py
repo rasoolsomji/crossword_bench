@@ -63,8 +63,11 @@ def cryptic_scorer():
             return Score(
                 value="I",
                 answer=None,
-                explanation="Could not extract answer from model output.",
-                metadata={"clue_type": clue_type, "failure": "no_answer"},
+                explanation=state.output.error or "Could not extract answer from model output.",
+                metadata={
+                    "clue_type": clue_type,
+                    "failure": "interrupted" if state.output.error else "no_answer",
+                },
             )
 
         got, want = normalize(extracted), normalize(target.text)
