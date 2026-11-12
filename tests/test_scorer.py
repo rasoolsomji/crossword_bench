@@ -22,6 +22,11 @@ from crossword_bench.scorer import classify_outcome, extract_answer, normalize
         ("The format is ANSWER: <word>.\nANSWER: MELON", "MELON"),
         ("I think it's this:\n\nMELON", "MELON"),
         ("I think it's this:\n\n**MELON**", "MELON"),
+        ("MELON - an anagram of lemon", "MELON"),
+        ("MELON: an anagram of lemon (5)", "MELON"),
+        ("FOR THE BETTER?", "FORTHEBETTER"),
+        ("MELON\n\nQuietly gives P; LEMON is the fodder.", "MELON"),
+        ("HERMIT\n\nHER (female) + M (top of mountain) + IT; a hermit is cold.", "HERMIT"),
     ],
 )
 def test_extract_and_normalize(output, expected):

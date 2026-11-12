@@ -16,7 +16,7 @@ from pathlib import Path
 
 from inspect_ai.log import read_eval_log
 
-from crossword_bench.scorer import OUTCOMES, classify_outcome
+from crossword_bench.scorer import OUTCOMES, classify_outcome, extract_answer
 from crossword_bench.stats import mcnemar_exact, wilson_interval
 
 PROJECT_ROOT = Path(__file__).parent.parent
@@ -87,9 +87,10 @@ def load_runs(log_dir: Path) -> list[dict]:
 
         samples = {}
         for sample in log.samples:
-            score = next(iter((sample.scores or {}).values()), None)
-            answer = score.answer if score else None
             output = sample.output
+            # Re-extracted rather than read from the logged score, so scorer
+            # fixes apply to logs recorded before them.
+            answer = extract_answer(output.completion)
             usage = output.usage
             samples[str(sample.id)] = {
                 "tokens": {

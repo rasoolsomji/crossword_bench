@@ -29,11 +29,19 @@ def _clean_candidate(text: str) -> str:
     return text.strip(_WRAPPING + ".,")
 
 
+def _bare_line(line: str) -> str:
+    """A line with only wrapping, end punctuation and an enumeration removed."""
+    text = line.strip(_WRAPPING)
+    text = re.sub(r"\s*\(\s*\d+(?:\s*[,-]\s*\d+)*\s*\)$", "", text)
+    return text.strip(_WRAPPING + ".,?!")
+
+
 def extract_answer(text: str) -> str | None:
     """Extract the answer from model output.
 
-    Uses the last 'ANSWER: ...' line, falling back to the last short
-    all-caps line.
+    Uses the last 'ANSWER: ...' line. Failing that, the last line that is
+    nothing but a short all-caps answer, then the last line that starts
+    with one ('MELON - an anagram of lemon').
     """
     matches = _ANSWER_LINE.findall(text)
     for raw in reversed(matches):
@@ -43,12 +51,17 @@ def extract_answer(text: str) -> str | None:
     if matches or re.search(r"ANSWER\W*$", text.strip(), re.IGNORECASE):
         return None
 
+    leading = []
     for line in reversed(text.strip().splitlines()):
         candidate = _clean_candidate(line)
         if candidate and candidate.isupper() and len(candidate) <= 40:
-            return candidate
+            # A wordplay line such as 'HER (female) + M + IT' also starts
+            # with capitals, so a line holding only the answer wins.
+            if candidate == _bare_line(line):
+                return candidate
+            leading.append(candidate)
 
-    return None
+    return leading[0] if leading else None
 
 
 OUTCOMES = {
