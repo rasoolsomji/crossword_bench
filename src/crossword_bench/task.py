@@ -2,12 +2,15 @@
 
 import hashlib
 import json
+import urllib.request
+from collections.abc import Callable
+from functools import cache
 from glob import glob
 from pathlib import Path
 
 from inspect_ai import Task, task
 from inspect_ai.dataset import MemoryDataset, Sample, json_dataset
-from inspect_ai.model import GenerateConfig
+from inspect_ai.model import GenerateConfig, Model, get_model
 from inspect_ai.solver import generate, system_message
 
 from crossword_bench.scorer import cryptic_scorer
@@ -16,6 +19,7 @@ PROJECT_ROOT = Path(__file__).parent.parent.parent
 DATA_DIR = PROJECT_ROOT / "data"
 DEFAULT_EFFORT = "medium"
 DEFAULT_MAX_TOKENS = 64000
+OPENROUTER_MODELS_URL = "https://openrouter.ai/api/v1/models"
 
 SYSTEM_PROMPT = """\
 You are solving a cryptic crossword clue. The number in parentheses \
@@ -74,6 +78,44 @@ def content_digest(value: object) -> str:
     return hashlib.sha256(json.dumps(value, sort_keys=True, default=str).encode()).hexdigest()
 
 
+@cache
+def openrouter_efforts(slug: str) -> tuple[str, ...] | None:
+    """Reasoning efforts OpenRouter lists for a model, or None if it lists none."""
+    with urllib.request.urlopen(OPENROUTER_MODELS_URL, timeout=30) as response:
+        listing = json.load(response)["data"]
+    for entry in listing:
+        if entry["id"] == slug:
+            efforts = (entry.get("reasoning") or {}).get("supported_efforts")
+            return tuple(efforts) if efforts else None
+    return None
+
+
+def require_supported_effort(
+    model: str,
+    effort: str,
+    lookup: Callable[[str], tuple[str, ...] | None] | None = None,
+) -> None:
+    """Refuse an effort that OpenRouter would quietly swap for another level."""
+    if not model.startswith("openrouter/"):
+        return
+    supported = (lookup or openrouter_efforts)(model.removeprefix("openrouter/"))
+    if supported and effort not in supported:
+        # OpenRouter maps it to the nearest listed level without saying which,
+        # while the log still records the requested one.
+        raise ValueError(
+            f"{model} has no '{effort}' reasoning effort (OpenRouter lists "
+            f"{', '.join(supported)}). Pass --reasoning-effort with a listed level."
+        )
+
+
+def evaluated_model() -> Model | None:
+    try:
+        return get_model()
+    except ValueError:
+        # Built outside an eval, so there is no model to check.
+        return None
+
+
 @task
 def cryptic_crossword(
     dataset: str | None = None,
@@ -90,6 +132,10 @@ def cryptic_crossword(
             to the dataset file name plus a hash of its clues.
         cot: If True, prepend a chain-of-thought solver.
     """
+    model = evaluated_model()
+    if model is not None:
+        require_supported_effort(str(model), model.config.reasoning_effort or DEFAULT_EFFORT)
+
     files = resolve_dataset_files(dataset)
     samples = load_samples(files)
     if label is None:

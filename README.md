@@ -46,7 +46,11 @@ uv run inspect eval src/crossword_bench/task.py \
 within a cohort, so use the same `dataset` and `label` for every model.
 The task runs at `medium` reasoning effort unless you pass
 `--reasoning-effort high` (etc.), so every log records the effort it
-used; each effort level is its own leaderboard row. It also caps output
+used; each effort level is its own leaderboard row. Some OpenRouter
+models have no `medium` (Kimi K3.1 Pro and DeepSeek v4.1 Flash list only
+low, high and max), and OpenRouter would quietly run a different level, so
+the task refuses any effort the model doesn't list on OpenRouter; pass
+one it does. It also caps output
 at 64,000 tokens (`--max-tokens` overrides it): at 16,000 some models ran
 out mid-reasoning on a sixth of the clues. The Codex provider sets no cap.
 

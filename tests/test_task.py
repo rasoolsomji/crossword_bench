@@ -50,3 +50,41 @@ def test_default_label_changes_with_the_clues(tmp_path):
     assert before.dataset.name.startswith("clues-")
     assert before.dataset.name != after.dataset.name
     assert cryptic_crossword(dataset=str(data), label="fixed").dataset.name == "fixed"
+
+
+KIMI_EFFORTS = ("max", "high", "low", "none")
+
+
+def test_unsupported_openrouter_effort_is_refused():
+    from crossword_bench.task import require_supported_effort
+
+    lookup = {"moonshotai/kimi-k3.1-pro": KIMI_EFFORTS}.get
+    with pytest.raises(ValueError, match="no 'medium' reasoning effort"):
+        require_supported_effort("openrouter/moonshotai/kimi-k3.1-pro", "medium", lookup)
+    require_supported_effort("openrouter/moonshotai/kimi-k3.1-pro", "low", lookup)
+    # Models that list no efforts, and providers other than OpenRouter, are left alone.
+    require_supported_effort("openrouter/deepseek/deepseek-v4.1-flash-1017", "medium", lookup)
+    require_supported_effort("anthropic/claude-haiku-5-5", "medium", lambda slug: pytest.fail(slug))
+
+
+def test_task_checks_the_effort_the_run_will_use(tmp_path, monkeypatch):
+    from inspect_ai.model import GenerateConfig
+
+    from crossword_bench import task as task_module
+
+    class FakeModel:
+        def __init__(self, effort):
+            self.config = GenerateConfig(reasoning_effort=effort)
+
+        def __str__(self):
+            return "openrouter/moonshotai/kimi-k3.1-pro"
+
+    monkeypatch.setattr(task_module, "openrouter_efforts", lambda slug: KIMI_EFFORTS)
+    data = write(tmp_path / "a.json", [{"id": "a1", "input": "x (1)", "target": "X"}])
+
+    monkeypatch.setattr(task_module, "get_model", lambda: FakeModel(None))
+    with pytest.raises(ValueError, match="'medium'"):
+        task_module.cryptic_crossword(dataset=str(data))
+
+    monkeypatch.setattr(task_module, "get_model", lambda: FakeModel("high"))
+    assert task_module.cryptic_crossword(dataset=str(data)).dataset[0].id == "a1"

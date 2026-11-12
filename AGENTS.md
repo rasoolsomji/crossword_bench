@@ -10,6 +10,10 @@ See [README.md](README.md) for setup and commands, and
   leave it to the provider: defaults differ by model and release and are
   not written to the log, and leaderboard rows are keyed by
   (cohort, model, effort).
+- On OpenRouter, an effort the model doesn't list (`supported_efforts`
+  in `/api/v1/models`) is silently run at the nearest listed level while
+  the log keeps the requested one. The task refuses such runs; pass a
+  listed level (Kimi K3.1 Pro and DeepSeek v4.1 Flash have no `medium`).
 - The task caps output at 64,000 tokens; don't pass a lower
   `--max-tokens`. A lower cap cuts off long reasoning and scores it as
   no answer, which the Codex provider (no cap) never does, so rows stop
