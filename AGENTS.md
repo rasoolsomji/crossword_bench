@@ -10,6 +10,9 @@ See [README.md](README.md) for setup and commands, and
   leave it to the provider: defaults differ by model and release and are
   not written to the log, and leaderboard rows are keyed by
   (cohort, model, effort).
+- API-backed runs pass `--max-tokens 64000`. A lower cap cuts off long
+  reasoning and scores it as no answer, which the Codex provider (no
+  cap) never does, so rows stop being comparable.
 - Claude 4.7+ models (Haiku 5.5 included) return readable thinking
   summaries only when an effort is set. Without one the log holds
   encrypted thinking blocks and the published transcripts show nothing.
