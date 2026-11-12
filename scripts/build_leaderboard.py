@@ -8,6 +8,7 @@ contribute aggregate numbers only.
 
 import argparse
 import json
+import math
 from collections import Counter, defaultdict
 from datetime import date, datetime, timezone
 from html import escape
@@ -29,6 +30,19 @@ GLYPHS = {
     "wrong_length": "↔",
     "no_answer": "∅",
 }
+PROVIDER_NAMES = {
+    "codex": "OpenAI",
+    "openai": "OpenAI",
+    "anthropic": "Anthropic",
+    "google": "Google",
+    "vertex": "Google",
+    "mistral": "Mistral",
+    "grok": "xAI",
+    "together": "Together",
+}
+# Colour follows the provider, so this order is fixed: adding a provider
+# appends a slot and never repaints an existing one.
+PROVIDER_ORDER = ["OpenAI", "Anthropic", "Google", "xAI", "Mistral", "Meta", "DeepSeek", "Other"]
 DEVICE_LABELS = {
     "anagram": "Anagram",
     "charade": "Charade",
@@ -48,6 +62,17 @@ DEVICE_LABELS = {
 
 def short_model(model: str) -> str:
     return model.split("/", 1)[-1]
+
+
+def provider_of(model: str) -> str:
+    parts = model.split("/")
+    key = parts[1] if parts[0] == "openrouter" and len(parts) > 2 else parts[0]
+    name = PROVIDER_NAMES.get(key.lower(), key.capitalize())
+    return name if name in PROVIDER_ORDER else "Other"
+
+
+def provider_slot(provider: str) -> int:
+    return PROVIDER_ORDER.index(provider) + 1
 
 
 def load_runs(log_dir: Path) -> list[dict]:
@@ -71,6 +96,7 @@ def load_runs(log_dir: Path) -> list[dict]:
                     "input": usage.input_tokens
                     + (usage.input_tokens_cache_read or 0)
                     + (usage.input_tokens_cache_write or 0),
+                    "cached_input": usage.input_tokens_cache_read or 0,
                     "output": usage.output_tokens,
                     "reasoning": usage.reasoning_tokens or 0,
                 }
@@ -100,7 +126,7 @@ def load_runs(log_dir: Path) -> list[dict]:
     return list(latest.values())
 
 
-def summarise_run(run: dict) -> dict:
+def summarise_run(run: dict, pricing: dict | None = None) -> dict:
     outcomes = Counter(sample["outcome"] for sample in run["samples"].values())
     total = len(run["samples"])
     correct = outcomes["correct"]
@@ -108,11 +134,24 @@ def summarise_run(run: dict) -> dict:
     usage = [s["tokens"] for s in run["samples"].values() if s.get("tokens")]
     tokens = None
     if usage:
-        tokens = {kind: sum(u[kind] for u in usage) for kind in ("input", "output", "reasoning")}
+        tokens = {
+            kind: sum(u.get(kind, 0) for u in usage)
+            for kind in ("input", "cached_input", "output", "reasoning")
+        }
         tokens["output_per_clue"] = tokens["output"] / len(usage)
         tokens["input_per_clue"] = tokens["input"] / len(usage)
+    cost = None
+    price = (pricing or {}).get("models", {}).get(short_model(run["model"]))
+    if tokens and price:
+        dollars = (
+            (tokens["input"] - tokens["cached_input"]) * price["input"]
+            + tokens["cached_input"] * price.get("cached_input", price["input"])
+            + tokens["output"] * price["output"]
+        ) / 1_000_000
+        cost = {"total": dollars, "per_100_clues": dollars / len(usage) * 100}
     return {
         "model": run["model"],
+        "provider": provider_of(run["model"]),
         "effort": run["effort"],
         "label": f"{short_model(run['model'])} · {run['effort']}",
         "correct": correct,
@@ -121,6 +160,7 @@ def summarise_run(run: dict) -> dict:
         "ci95": [low, high],
         "outcomes": {name: outcomes[name] for name in OUTCOMES if outcomes[name]},
         "tokens": tokens,
+        "estimated_cost": cost,
         "created": run["created"],
         "log_file": run["log_file"] if run["public"] else None,
     }
@@ -139,14 +179,18 @@ def breakdown(runs: list[dict], groups: dict[str, list[str]]) -> list[dict]:
                     "total": len(scored),
                 }
             )
-        rows.append({"name": name, "clues": len(ids), "runs": cells})
+        pooled = {
+            "correct": sum(cell["correct"] for cell in cells),
+            "total": sum(cell["total"] for cell in cells),
+        }
+        rows.append({"name": name, "clues": len(ids), "all_runs": pooled, "runs": cells})
     return rows
 
 
-def build_cohort(name: str, runs: list[dict], annotations: dict) -> dict:
+def build_cohort(name: str, runs: list[dict], annotations: dict, pricing: dict | None = None) -> dict:
     runs = sorted(runs, key=lambda r: -summarise_run(r)["accuracy"])
     public = all(run["public"] for run in runs)
-    summaries = [summarise_run(run) for run in runs]
+    summaries = [summarise_run(run, pricing) for run in runs]
     clue_ids = list(runs[0]["samples"])
     labels = annotations.get("clues", {})
 
@@ -263,6 +307,14 @@ def run_label_html(run: dict) -> str:
     )
 
 
+def provider_legend(cohort: dict) -> str:
+    providers = sorted({run["provider"] for run in cohort["runs"]}, key=provider_slot)
+    keys = "".join(
+        f'<span class="key"><i class="mark p-{provider_slot(p)}"></i>{escape(p)}</span>' for p in providers
+    )
+    return f'<div class="legend">{keys}</div>'
+
+
 def render_leaderboard(cohort: dict) -> str:
     ticks = "".join(
         f'<span class="tick" style="left:{t}%"><i></i><b>{t}%</b></span>' for t in (0, 25, 50, 75, 100)
@@ -283,7 +335,7 @@ def render_leaderboard(cohort: dict) -> str:
   <div class="lb-rank">{rank}</div>
   <div class="lb-name">{run_label_html(run)}</div>
   <div class="lb-plot">
-    <div class="bar" style="width:{run['accuracy'] * 100:.2f}%"></div>
+    <div class="bar p-{provider_slot(run['provider'])}" style="width:{run['accuracy'] * 100:.2f}%"></div>
     <div class="whisker" style="left:{low * 100:.2f}%;width:{(high - low) * 100:.2f}%"></div>
   </div>
   <div class="lb-value"><strong>{pct(run['accuracy'])}</strong><span>{run['correct']}/{run['total']}</span></div>
@@ -292,9 +344,11 @@ def render_leaderboard(cohort: dict) -> str:
 """
     return f"""<section class="card">
 <h3>Leaderboard</h3>
-<p class="lede">Share of clues answered exactly right. The thin line on each bar is the
-95% interval: the range the score would plausibly land in on a different set of clues
-of this size. Tokens per clue is the average output the model generated, reasoning included.</p>
+<p class="lede">Share of clues answered exactly right. The thin line on each bar is a 95%
+interval: {cohort['clues']} clues is a small sample, so the model's long-run accuracy could
+sit anywhere in that range. It narrows as more clues are added. Tokens per clue is the
+average output the model generated, reasoning included.</p>
+{provider_legend(cohort)}
 <div class="lb">
 {rows}<div class="lb-row lb-axis"><div></div><div></div><div class="lb-plot axis">{ticks}</div><div></div><div></div></div>
 </div>
@@ -358,14 +412,18 @@ def render_tokens(cohort: dict) -> str:
         per_clue = tokens["output_per_clue"]
         reasoning_share = tokens["reasoning"] / tokens["output"] if tokens["output"] else 0
         per_correct = tokens["output"] / run["correct"] if run["correct"] else None
+        cost = run["estimated_cost"]
+        cost_text = f"${cost['per_100_clues']:.2f}" if cost else "–"
         tip = (
             f"{run['label']}\n{per_clue:,.0f} output tokens per clue\n"
             f"{pct(reasoning_share, 0)} of output was reasoning\n"
             f"{tokens['input_per_clue']:,.0f} input tokens per clue"
         )
+        if cost:
+            tip += f"\nAbout {cost_text} per 100 clues at list prices"
         rows += f"""<div class="tk-row" tabindex="0" data-tip="{escape(tip)}">
   <div class="lb-name">{run_label_html(run)}</div>
-  <div class="tk-plot"><div class="bar" style="width:{per_clue / longest * 100:.2f}%"></div></div>
+  <div class="tk-plot"><div class="bar p-{provider_slot(run['provider'])}" style="width:{per_clue / longest * 100:.2f}%"></div></div>
   <div class="lb-value"><strong>{per_clue:,.0f}</strong><span>{pct(reasoning_share, 0)} reasoning</span></div>
 </div>
 """
@@ -373,22 +431,188 @@ def render_tokens(cohort: dict) -> str:
             f"<tr><th>{escape(run['label'])}</th><td>{per_clue:,.0f}</td>"
             f"<td>{pct(reasoning_share, 0)}</td><td>{tokens['input_per_clue']:,.0f}</td>"
             f"<td>{tokens['output']:,}</td><td>{tokens['input']:,}</td>"
-            f"<td>{f'{per_correct:,.0f}' if per_correct else '–'}</td></tr>\n"
+            f"<td>{f'{per_correct:,.0f}' if per_correct else '–'}</td><td>{cost_text}</td></tr>\n"
         )
     return f"""<section class="card">
 <h3>Tokens spent</h3>
 <p class="lede">Average output tokens per clue, reasoning included. Reasoning is what the
 provider bills as thinking, whether or not it returns the text. Input tokens are mostly the
-prompt: runs through an agent harness carry a few thousand extra per clue.</p>
+prompt: runs through an agent harness carry a few thousand extra per clue. Estimated cost
+prices every token the run used at the provider's API list price.</p>
 <div class="tk">
 {rows}</div>
 <details><summary>Show as table</summary>
 <div class="scroll"><table class="data">
-<thead><tr><th>Run</th><th>Output per clue</th><th>Reasoning share</th><th>Input per clue</th><th>Total output</th><th>Total input</th><th>Output per correct answer</th></tr></thead>
+<thead><tr><th>Run</th><th>Output per clue</th><th>Reasoning share</th><th>Input per clue</th><th>Total output</th><th>Total input</th><th>Output per correct answer</th><th>Est. cost per 100 clues</th></tr></thead>
 <tbody>
 {table_rows}</tbody>
 </table></div>
 </details>
+</section>
+"""
+
+
+def log_axis(values: list[float]) -> tuple[float, float, list[float]]:
+    low, high = min(values) / 1.7, max(values) * 1.7
+    ticks = [
+        m * 10**e
+        for e in range(math.floor(math.log10(low)), math.ceil(math.log10(high)) + 1)
+        for m in (1, 2, 5)
+        if low <= m * 10**e <= high
+    ]
+    return low, high, ticks
+
+
+def place_labels(labels: list[dict], points: list[dict], width: float = 300, height: float = 260) -> None:
+    """Pick a side for each label so labels avoid the marks and each other.
+
+    Works in approximate pixels for a narrow plot; the real plot is fluid
+    and usually wider, so this is a best effort that the tooltip and
+    table back up.
+    """
+    def overlaps(a, b, slack=2):
+        return (
+            a[0] + slack < b[2] and b[0] + slack < a[2] and a[1] + slack < b[3] and b[1] + slack < a[3]
+        )
+
+    marks = [(p["x"] * width - 7, p["y"] * height - 7, p["x"] * width + 7, p["y"] * height + 7) for p in points]
+    placed: list[tuple] = []
+    for label in labels:
+        px, py = label["point"]["x"] * width, label["point"]["y"] * height
+        w, h = len(label["text"]) * 6.6 + 4, 16
+        offsets = {
+            "r": (px + 11, py - h / 2),
+            "l": (px - 11 - w, py - h / 2),
+            "a": (px - w / 2, py + 11),
+            "b": (px - w / 2, py - 11 - h),
+            "al": (px - w + 6, py + 11),
+            "bl": (px - w + 6, py - 11 - h),
+            "ar": (px - 6, py + 11),
+            "br": (px - 6, py - 11 - h),
+        }
+        label["side"] = label["prefer"][0]
+        for side in label["prefer"]:
+            x0, y0 = offsets[side]
+            box = (x0, y0, x0 + w, y0 + h)
+            if box[0] < 0 or box[2] > width or box[1] < 0 or box[3] > height:
+                continue
+            if any(overlaps(box, other) for other in [*marks, *placed]):
+                continue
+            label["side"] = side
+            placed.append(box)
+            break
+
+
+def render_scatter(cohort: dict, title: str, axis_title: str, value_of, tick_label) -> str:
+    runs = [run for run in cohort["runs"] if value_of(run) is not None]
+    if not runs:
+        return ""
+    low, high, ticks = log_axis([value_of(run) for run in runs])
+    span = math.log(high / low)
+    points = [
+        {
+            "run": run,
+            "x": math.log(value_of(run) / low) / span,
+            "y": run["accuracy"],
+            "label": run["effort"],
+        }
+        for run in runs
+    ]
+    # One line per model joins its effort levels. The model is named once,
+    # at the end of its line; each point carries only its effort.
+    by_model: dict[str, list[dict]] = defaultdict(list)
+    for point in points:
+        by_model[point["run"]["model"]].append(point)
+    lines = ""
+    labels = []
+    for model, group in by_model.items():
+        group.sort(key=lambda p: p["x"])
+        labels.append(
+            {
+                "point": group[-1],
+                "text": short_model(model),
+                "kind": "name",
+                "prefer": ["al", "a", "ar", "bl", "b", "br", "l", "r"],
+            }
+        )
+        slot = provider_slot(group[0]["run"]["provider"])
+        for start, end in zip(group, group[1:]):
+            lines += (
+                f'<line class="p-{slot}" x1="{start["x"] * 100:.2f}" y1="{100 - start["y"] * 100:.2f}" '
+                f'x2="{end["x"] * 100:.2f}" y2="{100 - end["y"] * 100:.2f}" vector-effect="non-scaling-stroke"/>'
+            )
+    labels += [
+        {"point": point, "text": point["label"], "kind": "effort", "prefer": ["b", "a", "r", "l", "br", "bl", "ar", "al"]}
+        for point in sorted(points, key=lambda p: p["x"])
+    ]
+    place_labels(labels, points)
+
+    marks = f'<svg class="sc-lines" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">{lines}</svg>'
+    for point in points:
+        run = point["run"]
+        slot = provider_slot(run["provider"])
+        ci_low, ci_high = run["ci95"]
+        tip = (
+            f"{run['label']} ({run['provider']})\n{pct(run['accuracy'])} accuracy\n"
+            f"{axis_title.split(' (')[0]}: {tick_label(value_of(run))}"
+        )
+        position = f"left:{point['x'] * 100:.2f}%;bottom:{point['y'] * 100:.2f}%"
+        marks += (
+            f'<span class="sc-ci" style="left:{point["x"] * 100:.2f}%;bottom:{ci_low * 100:.2f}%;'
+            f'height:{(ci_high - ci_low) * 100:.2f}%"></span>'
+            f'<span class="sc-pt" style="{position}" tabindex="0" data-tip="{escape(tip)}">'
+            f'<i class="mark p-{slot}"></i></span>'
+        )
+    for label in labels:
+        point = label["point"]
+        marks += (
+            f'<span class="sc-label {label["kind"]} side-{label["side"]}" '
+            f'style="left:{point["x"] * 100:.2f}%;bottom:{point["y"] * 100:.2f}%">{escape(label["text"])}</span>'
+        )
+    grid = "".join(
+        f'<span class="sc-gy" style="bottom:{t}%"><b>{t}%</b></span>' for t in (0, 25, 50, 75, 100)
+    )
+    grid += "".join(
+        f'<span class="sc-gx" style="left:{math.log(t / low) / span * 100:.2f}%"><b>{tick_label(t)}</b></span>'
+        for t in ticks
+    )
+    return f"""<figure class="sc">
+<figcaption>{escape(title)}</figcaption>
+<div class="sc-plot">{grid}{marks}</div>
+<p class="sc-axis">{escape(axis_title)}</p>
+</figure>
+"""
+
+
+def render_tradeoff(cohort: dict) -> str:
+    def dollars(value: float) -> str:
+        return f"${value:.2f}" if value >= 0.1 else f"${value:.3f}".rstrip("0")
+
+    tokens = render_scatter(
+        cohort,
+        "Accuracy against tokens",
+        "Output tokens per clue (log scale)",
+        lambda run: run["tokens"]["output_per_clue"] if run["tokens"] else None,
+        compact,
+    )
+    cost = render_scatter(
+        cohort,
+        "Accuracy against estimated cost",
+        "Estimated cost per 100 clues (log scale)",
+        lambda run: run["estimated_cost"]["per_100_clues"] if run["estimated_cost"] else None,
+        dollars,
+    )
+    if not tokens and not cost:
+        return ""
+    return f"""<section class="card">
+<h3>What accuracy costs</h3>
+<p class="lede">Up and to the left is better: more clues solved for less. Colour and shape
+show the provider, and a line joins one model's effort levels. Vertical lines are the same 95%
+intervals as the leaderboard. Cost is an estimate from API list prices, so it can rank models
+differently from raw token counts.</p>
+{provider_legend(cohort)}
+<div class="sc-grid">
+{tokens}{cost}</div>
 </section>
 """
 
@@ -450,16 +674,24 @@ def render_heat_table(title: str, lede: str, first_header: str, rows: list[dict]
         f'<th><span class="model">{escape(short_model(r["model"]))}</span><span class="chip">{escape(r["effort"])}</span></th>'
         for r in runs
     )
+    header = '<th class="all"><span class="model">All runs</span><span class="chip">pooled</span></th>' + header
     body = ""
     for row in rows:
         name = (labels or {}).get(row["name"], row["name"])
         cells = ""
-        for run, cell in zip(runs, row["runs"]):
+        columns = [({"label": "all runs pooled"}, row["all_runs"]), *zip(runs, row["runs"])]
+        for position, (run, cell) in enumerate(columns):
             if not cell["total"]:
                 cells += "<td>–</td>"
                 continue
             share = cell["correct"] / cell["total"]
             tip = f"{name} · {run['label']}\n{cell['correct']} of {cell['total']} correct ({pct(share, 0)})"
+            if position == 0:
+                cells += (
+                    f'<td class="all" tabindex="0" data-tip="{escape(tip)}" style="--tint:{share * 55:.1f}%">'
+                    f"<b>{pct(share, 0)}</b></td>"
+                )
+                continue
             cells += (
                 f'<td tabindex="0" data-tip="{escape(tip)}" style="--tint:{share * 55:.1f}%">'
                 f"<b>{pct(share, 0)}</b><span>{cell['correct']}/{cell['total']}</span></td>"
@@ -537,6 +769,7 @@ def render_cohort(index: int, cohort: dict) -> str:
 </header>
 {render_leaderboard(cohort)}
 {render_outcomes(cohort)}
+{render_tradeoff(cohort)}
 {render_tokens(cohort)}
 {render_head_to_head(cohort)}
 {render_heat_table("By wordplay device", 'Accuracy on the clues that use each device. A clue using several devices counts under each. Labels follow the <a href="https://github.com/rasoolsomji/crossword_bench/blob/main/clue_taxonomy.md">clue taxonomy</a> and were assigned by a classifier model from published human parsings, so treat small rows with care.', "Device", cohort["by_device"], runs, DEVICE_LABELS)}
@@ -584,11 +817,16 @@ PAGE_TEMPLATE = (Path(__file__).parent / "results_page.html").read_text()
 def build(log_dir: Path, annotations_dir: Path, output_dir: Path) -> None:
     output_dir.mkdir(exist_ok=True)
     annotations = load_annotations(annotations_dir)
+    pricing_path = PROJECT_ROOT / "pricing.json"
+    pricing = json.loads(pricing_path.read_text()) if pricing_path.exists() else None
 
     by_cohort: dict[str, list[dict]] = defaultdict(list)
     for run in load_runs(log_dir):
         by_cohort[run["cohort"]].append(run)
-    cohorts = [build_cohort(name, runs, annotations) for name, runs in sorted(by_cohort.items(), reverse=True)]
+    cohorts = [
+        build_cohort(name, runs, annotations, pricing)
+        for name, runs in sorted(by_cohort.items(), reverse=True)
+    ]
 
     (output_dir / "index.html").write_text(generate_html(cohorts))
     (output_dir / "results.json").write_text(

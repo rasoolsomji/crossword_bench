@@ -7,6 +7,7 @@
    "runs": [
     {
      "model": "codex/gpt-6-luna",
+     "provider": "OpenAI",
      "effort": "high",
      "label": "gpt-6-luna · high",
      "correct": 69,
@@ -25,16 +26,22 @@
      },
      "tokens": {
       "input": 665431,
+      "cached_input": 482560,
       "output": 142040,
       "reasoning": 137920,
       "output_per_clue": 1224.4827586206898,
       "input_per_clue": 5736.474137931034
+     },
+     "estimated_cost": {
+      "total": 0.09413270000000001,
+      "per_100_clues": 0.08114887931034484
      },
      "created": "2026-11-12T15:46:51+00:00",
      "log_file": "2026-11-12T15-46-51-00-00_cryptic-crossword_QwfkBSFtpAg8naFSLSDWht.eval"
     },
     {
      "model": "anthropic/claude-haiku-5-5",
+     "provider": "Anthropic",
      "effort": "high",
      "label": "claude-haiku-5-5 · high",
      "correct": 57,
@@ -52,16 +59,22 @@
      },
      "tokens": {
       "input": 17585,
+      "cached_input": 0,
       "output": 508418,
       "reasoning": 491981,
       "output_per_clue": 4382.913793103448,
       "input_per_clue": 151.5948275862069
+     },
+     "estimated_cost": {
+      "total": 0.2559675,
+      "per_100_clues": 0.2206616379310345
      },
      "created": "2026-11-12T16:02:28+00:00",
      "log_file": "2026-11-12T16-02-28-00-00_cryptic-crossword_hwfPkUfeBWM6HrHqT7mUAW.eval"
     },
     {
      "model": "anthropic/claude-haiku-5-5",
+     "provider": "Anthropic",
      "effort": "default",
      "label": "claude-haiku-5-5 · default",
      "correct": 55,
@@ -79,16 +92,22 @@
      },
      "tokens": {
       "input": 17585,
+      "cached_input": 0,
       "output": 207590,
       "reasoning": 191631,
       "output_per_clue": 1789.5689655172414,
       "input_per_clue": 151.5948275862069
+     },
+     "estimated_cost": {
+      "total": 0.1055535,
+      "per_100_clues": 0.09099439655172413
      },
      "created": "2026-11-12T15:59:15+00:00",
      "log_file": "2026-11-12T15-59-15-00-00_cryptic-crossword_AHDsK4Z9fDoS5JyyWcBfcE.eval"
     },
     {
      "model": "codex/gpt-6-luna",
+     "provider": "OpenAI",
      "effort": "default",
      "label": "gpt-6-luna · default",
      "correct": 37,
@@ -107,10 +126,15 @@
      },
      "tokens": {
       "input": 665431,
+      "cached_input": 519040,
       "output": 38276,
       "reasoning": 35988,
       "output_per_clue": 329.9655172413793,
       "input_per_clue": 5736.474137931034
+     },
+     "estimated_cost": {
+      "total": 0.0389675,
+      "per_100_clues": 0.03359267241379311
      },
      "created": "2026-11-12T15:41:50+00:00",
      "log_file": "2026-11-12T15-41-50-00-00_cryptic-crossword_LLPhPn8Ef7yxNdPGUDUvnR.eval"
@@ -176,6 +200,10 @@
     {
      "name": "charade",
      "clues": 51,
+     "all_runs": {
+      "correct": 91,
+      "total": 204
+     },
      "runs": [
       {
        "correct": 30,
@@ -198,6 +226,10 @@
     {
      "name": "container",
      "clues": 27,
+     "all_runs": {
+      "correct": 44,
+      "total": 108
+     },
      "runs": [
       {
        "correct": 14,
@@ -220,6 +252,10 @@
     {
      "name": "anagram",
      "clues": 23,
+     "all_runs": {
+      "correct": 43,
+      "total": 92
+     },
      "runs": [
       {
        "correct": 14,
@@ -242,6 +278,10 @@
     {
      "name": "letter_selection",
      "clues": 19,
+     "all_runs": {
+      "correct": 31,
+      "total": 76
+     },
      "runs": [
       {
        "correct": 10,
@@ -264,6 +304,10 @@
     {
      "name": "deletion",
      "clues": 12,
+     "all_runs": {
+      "correct": 25,
+      "total": 48
+     },
      "runs": [
       {
        "correct": 7,
@@ -286,6 +330,10 @@
     {
      "name": "double_definition",
      "clues": 12,
+     "all_runs": {
+      "correct": 31,
+      "total": 48
+     },
      "runs": [
       {
        "correct": 9,
@@ -308,6 +356,10 @@
     {
      "name": "reversal",
      "clues": 9,
+     "all_runs": {
+      "correct": 15,
+      "total": 36
+     },
      "runs": [
       {
        "correct": 4,
@@ -330,6 +382,10 @@
     {
      "name": "homophone",
      "clues": 5,
+     "all_runs": {
+      "correct": 3,
+      "total": 20
+     },
      "runs": [
       {
        "correct": 0,
@@ -352,6 +408,10 @@
     {
      "name": "hidden",
      "clues": 4,
+     "all_runs": {
+      "correct": 13,
+      "total": 16
+     },
      "runs": [
       {
        "correct": 4,
@@ -374,6 +434,10 @@
     {
      "name": "cryptic_definition",
      "clues": 3,
+     "all_runs": {
+      "correct": 7,
+      "total": 12
+     },
      "runs": [
       {
        "correct": 2,
@@ -396,6 +460,10 @@
     {
      "name": "other",
      "clues": 1,
+     "all_runs": {
+      "correct": 2,
+      "total": 4
+     },
      "runs": [
       {
        "correct": 0,
@@ -420,6 +488,10 @@
     {
      "name": "No 30,159 · Carpathian",
      "clues": 30,
+     "all_runs": {
+      "correct": 67,
+      "total": 120
+     },
      "runs": [
       {
        "correct": 22,
@@ -442,6 +514,10 @@
     {
      "name": "No 30,160 · Anto",
      "clues": 30,
+     "all_runs": {
+      "correct": 55,
+      "total": 120
+     },
      "runs": [
       {
        "correct": 20,
@@ -464,6 +540,10 @@
     {
      "name": "No 30,161 · Paul",
      "clues": 28,
+     "all_runs": {
+      "correct": 41,
+      "total": 112
+     },
      "runs": [
       {
        "correct": 11,
@@ -486,6 +566,10 @@
     {
      "name": "No 30,162 · Pasquale",
      "clues": 28,
+     "all_runs": {
+      "correct": 55,
+      "total": 112
+     },
      "runs": [
       {
        "correct": 16,
