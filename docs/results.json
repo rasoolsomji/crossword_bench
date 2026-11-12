@@ -1,15 +1,85 @@
-{
-  "mockllm/model": {
-    "task": "cryptic_crossword",
-    "accuracy": 0.0,
-    "stderr": 0.0,
+[
+  {
+    "cohort": "guardian-cryptic-2026-11-09..12",
+    "model": "codex/gpt-6-luna",
+    "reasoning_effort": "high",
+    "accuracy": 0.5948275862068966,
+    "stderr": 0.04577902774948881,
+    "samples": 116,
+    "failures": {
+      "wrong_answer": 37,
+      "wrong_length": 7,
+      "no_answer": 3
+    },
     "per_type": {
       "unknown": {
-        "accuracy": 0.0,
-        "correct": 0,
-        "total": 8
+        "correct": 69,
+        "total": 116,
+        "accuracy": 0.5948275862068966
       }
     },
-    "created": "2026-09-21T07:37:06+00:00"
+    "created": "2026-11-12T15:46:51+00:00"
+  },
+  {
+    "cohort": "guardian-cryptic-2026-11-09..12",
+    "model": "anthropic/claude-haiku-5-5",
+    "reasoning_effort": "high",
+    "accuracy": 0.49137931034482757,
+    "stderr": 0.046618309867137275,
+    "samples": 116,
+    "failures": {
+      "wrong_answer": 46,
+      "wrong_length": 10,
+      "no_answer": 3
+    },
+    "per_type": {
+      "unknown": {
+        "correct": 57,
+        "total": 116,
+        "accuracy": 0.49137931034482757
+      }
+    },
+    "created": "2026-11-12T16:02:28+00:00"
+  },
+  {
+    "cohort": "guardian-cryptic-2026-11-09..12",
+    "model": "anthropic/claude-haiku-5-5",
+    "reasoning_effort": null,
+    "accuracy": 0.47413793103448276,
+    "stderr": 0.04656282837188656,
+    "samples": 116,
+    "failures": {
+      "wrong_answer": 48,
+      "wrong_length": 13
+    },
+    "per_type": {
+      "unknown": {
+        "correct": 55,
+        "total": 116,
+        "accuracy": 0.47413793103448276
+      }
+    },
+    "created": "2026-11-12T15:59:15+00:00"
+  },
+  {
+    "cohort": "guardian-cryptic-2026-11-09..12",
+    "model": "codex/gpt-6-luna",
+    "reasoning_effort": null,
+    "accuracy": 0.31896551724137934,
+    "stderr": 0.04346177891598434,
+    "samples": 116,
+    "failures": {
+      "wrong_length": 29,
+      "wrong_answer": 44,
+      "no_answer": 6
+    },
+    "per_type": {
+      "unknown": {
+        "correct": 37,
+        "total": 116,
+        "accuracy": 0.31896551724137934
+      }
+    },
+    "created": "2026-11-12T15:41:50+00:00"
   }
-}
+]

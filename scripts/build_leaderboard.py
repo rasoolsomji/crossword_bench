@@ -22,6 +22,8 @@ def build_leaderboard(log_dir: str = "logs", output_dir: str = "docs") -> None:
         log = read_eval_log(log_info.name)
         if log.status != "success" or log.results is None:
             continue
+        if log.eval.model.startswith("mockllm/"):
+            continue
 
         metrics = {}
         for score_group in log.results.scores or []:
@@ -77,10 +79,8 @@ def build_leaderboard(log_dir: str = "logs", output_dir: str = "docs") -> None:
 
 
 def model_label(result: dict) -> str:
-    label = escape(result["model"])
-    if result["reasoning_effort"]:
-        label += f" <span class=\"muted\">({escape(result['reasoning_effort'])})</span>"
-    return label
+    effort = result["reasoning_effort"] or "default"
+    return f"{escape(result['model'])} <span class=\"muted\">({escape(effort)} effort)</span>"
 
 
 def generate_html(sorted_results: list[dict], all_types: list[str]) -> str:

@@ -29,32 +29,28 @@
   th { font-weight: 600; }
   td { background: var(--cell); }
   tr:hover td { background: var(--border); }
+  .muted { color: var(--muted); }
   .meta { color: var(--muted); font-size: .875rem; margin-top: 2rem; }
   a { color: var(--accent); }
 </style>
 </head>
 <body>
 <h1>Cryptic Crossword Bench</h1>
-<p class="subtitle">Evaluating LLMs on cryptic crossword clues</p>
+<p class="subtitle">Evaluating LLMs on cryptic crossword clues, one clue at a time, no grid, no tools.</p>
 
-<h2>Leaderboard</h2>
+<p class="subtitle">Models are comparable only within a cohort: each table is one fixed set of clues.</p>
+
+<h2>guardian-cryptic-2026-11-09..12</h2>
 <table>
-<thead><tr><th>#</th><th>Model</th><th>Task</th><th>Accuracy</th><th>Date</th></tr></thead>
+<thead><tr><th>#</th><th>Model</th><th>Accuracy</th><th>Clues</th><th>Wrong length</th><th>No answer</th><th>Run date</th></tr></thead>
 <tbody>
-<tr><td>1</td><td>mockllm/model</td><td>cryptic_crossword</td><td>0.0%</td><td>2026-09-21</td></tr>
-
+<tr><td>1</td><td>codex/gpt-6-luna <span class="muted">(high effort)</span></td><td>59.5% &plusmn; 4.6%</td><td>116</td><td>7</td><td>3</td><td>2026-11-12</td></tr>
+<tr><td>2</td><td>anthropic/claude-haiku-5-5 <span class="muted">(high effort)</span></td><td>49.1% &plusmn; 4.7%</td><td>116</td><td>10</td><td>3</td><td>2026-11-12</td></tr>
+<tr><td>3</td><td>anthropic/claude-haiku-5-5 <span class="muted">(default effort)</span></td><td>47.4% &plusmn; 4.7%</td><td>116</td><td>13</td><td>0</td><td>2026-11-12</td></tr>
+<tr><td>4</td><td>codex/gpt-6-luna <span class="muted">(default effort)</span></td><td>31.9% &plusmn; 4.3%</td><td>116</td><td>29</td><td>6</td><td>2026-11-12</td></tr>
 </tbody>
 </table>
 
-<h2>Accuracy by Clue Type</h2>
-<table>
-<thead><tr><th>Model</th><th>unknown</th></tr></thead>
-<tbody>
-<tr><td>mockllm/model</td><td>0% (0/8)</td></tr>
-
-</tbody>
-</table>
-
-<p class="meta">Last updated: 2026-09-21 07:37 UTC</p>
+<p class="meta">Last updated: 2026-11-12 16:08 UTC</p>
 </body>
 </html>
