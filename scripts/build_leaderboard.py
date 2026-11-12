@@ -9,6 +9,7 @@ contribute aggregate numbers only.
 import argparse
 import json
 import math
+import sys
 from collections import Counter, defaultdict
 from datetime import date, datetime, timezone
 from html import escape
@@ -222,6 +223,18 @@ def breakdown(runs: list[dict], groups: dict[str, list[str]]) -> list[dict]:
 
 
 def build_cohort(name: str, runs: list[dict], annotations: dict, pricing: dict | None = None) -> dict:
+    # Runs are only comparable on identical clues: keep the clue set most
+    # runs share (the larger one on a tie) and leave out the rest.
+    id_sets = Counter(frozenset(run["samples"]) for run in runs)
+    clue_set = max(id_sets, key=lambda ids: (id_sets[ids], len(ids)))
+    for run in runs:
+        if frozenset(run["samples"]) != clue_set:
+            print(
+                f"Warning: leaving {run['log_file']} out of cohort {name}: it scored "
+                f"{len(run['samples'])} clues, not the cohort's {len(clue_set)}",
+                file=sys.stderr,
+            )
+    runs = [run for run in runs if frozenset(run["samples"]) == clue_set]
     runs = sorted(runs, key=lambda r: -summarise_run(r)["accuracy"])
     public = all(run["public"] for run in runs)
     summaries = [summarise_run(run, pricing) for run in runs]

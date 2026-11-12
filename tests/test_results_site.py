@@ -75,6 +75,15 @@ def test_only_the_top_level_live_dir_is_public():
     assert not site.is_public_log(site.PUBLIC_LOG_DIR / "nested" / "x.eval")
 
 
+def test_runs_on_a_different_clue_set_are_left_out():
+    full = [run(m, True, ["wrong_answer", "wrong_answer", "correct"]) for m in ("a/x", "b/y")]
+    partial = run("c/z", True, ["correct"])
+    cohort = site.build_cohort("c", [*full, partial], {})
+    assert [r["model"] for r in cohort["runs"]] == ["a/x", "b/y"]
+    assert cohort["clues"] == 3
+    assert len(cohort["clue_list"]) == 3
+
+
 def test_provider_mapping():
     assert site.provider_of("codex/gpt-6-luna") == "OpenAI"
     assert site.provider_of("anthropic/claude-haiku-5-5") == "Anthropic"
