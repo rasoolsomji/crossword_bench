@@ -8,310 +8,465 @@
     {
      "model": "openrouter/deepseek/deepseek-v4.1-flash-1017",
      "provider": "DeepSeek",
-     "effort": "high",
-     "label": "deepseek/deepseek-v4.1-flash-1017 · high",
-     "correct": 96,
+     "effort": "medium",
+     "label": "deepseek/deepseek-v4.1-flash-1017 · medium",
+     "correct": 102,
      "total": 116,
-     "accuracy": 0.8275862068965517,
+     "accuracy": 0.8793103448275862,
      "ci95": [
-      0.7486439764897705,
-      0.8855264618221345
+      0.8075719068442915,
+      0.9267307059379144
      ],
      "outcomes": {
-      "correct": 96,
-      "wrong_answer": 1,
-      "truncated": 19
+      "correct": 102,
+      "wrong_answer": 10,
+      "truncated": 4
      },
      "tokens": {
       "input": 13770,
       "cached_input": 0,
-      "output": 536297,
-      "reasoning": 535624,
-      "output_per_clue": 4623.25,
+      "output": 947745,
+      "reasoning": 946771,
+      "output_per_clue": 8170.2155172413795,
       "input_per_clue": 118.70689655172414
      },
      "reasoning_by_result": {
       "correct": [
-       96,
-       118,
-       149,
-       156,
-       172,
-       188,
-       201,
-       215,
-       217,
-       250,
-       264,
-       282,
+       94,
+       107,
+       124,
+       144,
+       154,
+       160,
+       161,
+       171,
+       210,
+       214,
+       238,
+       240,
+       241,
+       284,
        287,
        292,
-       306,
-       331,
-       343,
-       370,
-       372,
-       372,
-       372,
-       374,
-       408,
-       414,
-       422,
-       471,
-       509,
-       587,
-       608,
-       636,
-       670,
-       698,
-       704,
-       719,
-       730,
-       732,
-       732,
-       762,
-       764,
-       765,
-       782,
-       800,
-       814,
-       850,
-       855,
-       940,
-       956,
-       990,
-       1000,
-       1001,
-       1026,
-       1047,
-       1048,
-       1183,
-       1188,
-       1209,
-       1273,
-       1315,
-       1445,
-       1486,
-       1625,
-       1711,
-       1732,
-       1785,
-       1865,
-       1987,
-       1993,
-       2025,
-       2160,
-       2225,
-       2231,
-       2465,
-       2851,
-       3307,
-       3397,
-       3437,
-       3734,
-       3947,
-       4093,
-       4098,
-       4134,
-       4153,
-       4404,
-       5259,
-       5288,
-       5429,
-       6314,
-       6578,
-       7756,
-       8355,
-       9075,
-       9868,
-       9925,
-       11981,
-       12835,
-       13549
+       295,
+       308,
+       310,
+       318,
+       365,
+       391,
+       411,
+       427,
+       442,
+       444,
+       477,
+       482,
+       491,
+       499,
+       504,
+       508,
+       515,
+       517,
+       525,
+       546,
+       559,
+       566,
+       582,
+       586,
+       609,
+       621,
+       629,
+       634,
+       639,
+       668,
+       675,
+       679,
+       708,
+       710,
+       722,
+       725,
+       737,
+       748,
+       785,
+       793,
+       825,
+       858,
+       932,
+       1009,
+       1162,
+       1179,
+       1297,
+       1485,
+       1516,
+       1783,
+       2078,
+       2109,
+       2169,
+       2177,
+       2224,
+       2473,
+       2904,
+       2926,
+       2936,
+       2986,
+       3638,
+       3785,
+       3837,
+       4031,
+       4798,
+       4935,
+       4983,
+       5173,
+       5331,
+       5410,
+       5783,
+       6992,
+       7205,
+       8683,
+       8954,
+       8968,
+       10780,
+       10786,
+       12905,
+       16758,
+       18092,
+       22278,
+       24874,
+       26394,
+       33368,
+       44016
       ],
       "missed": [
-       15787,
-       16000,
-       16000,
-       16000,
-       16000,
-       16000,
-       16000,
-       16000,
-       16000,
-       16000,
-       16000,
-       16000,
-       16000,
-       16000,
-       16000,
-       16000,
-       16000,
-       16000,
-       16000,
-       16000
+       779,
+       9709,
+       26761,
+       27184,
+       28195,
+       35087,
+       36205,
+       41642,
+       50278,
+       59875,
+       64000,
+       64000,
+       64000,
+       64000
       ]
      },
      "estimated_cost": {
-      "total": 0.159020778,
-      "per_100_clues": 0.13708687758620688
+      "total": 0.27998649,
+      "per_100_clues": 0.24136766379310343
      },
-     "created": "2026-11-12T18:57:46+00:00",
-     "log_file": "2026-11-12T18-57-46-00-00_cryptic-crossword_YW7Kc2G7GF3yTfoBzGQwJi.eval"
+     "created": "2026-11-12T19:23:20+00:00",
+     "log_file": "2026-11-12T19-23-20-00-00_cryptic-crossword_5oXUwri6u6owgMmy2JS3hd.eval"
     },
     {
      "model": "openrouter/deepseek/deepseek-v4.1-flash-1017",
      "provider": "DeepSeek",
-     "effort": "medium",
-     "label": "deepseek/deepseek-v4.1-flash-1017 · medium",
-     "correct": 94,
+     "effort": "high",
+     "label": "deepseek/deepseek-v4.1-flash-1017 · high",
+     "correct": 101,
      "total": 116,
-     "accuracy": 0.8103448275862069,
+     "accuracy": 0.8706896551724138,
      "ci95": [
-      0.7295059337062212,
-      0.8712871131155835
+      0.7975671230239318,
+      0.920046794013224
      ],
      "outcomes": {
-      "correct": 94,
-      "wrong_answer": 4,
-      "truncated": 18
+      "correct": 101,
+      "wrong_answer": 9,
+      "wrong_length": 1,
+      "truncated": 5
      },
      "tokens": {
       "input": 13770,
       "cached_input": 0,
-      "output": 515388,
-      "reasoning": 514418,
-      "output_per_clue": 4443.0,
+      "output": 1143561,
+      "reasoning": 1142753,
+      "output_per_clue": 9858.284482758621,
       "input_per_clue": 118.70689655172414
      },
      "reasoning_by_result": {
       "correct": [
-       101,
-       113,
-       145,
-       150,
-       157,
-       164,
-       189,
-       203,
-       217,
-       235,
-       248,
-       248,
-       251,
+       109,
+       114,
+       117,
+       156,
+       168,
+       184,
+       197,
+       207,
+       210,
+       242,
+       252,
        255,
-       264,
-       282,
-       292,
-       314,
-       314,
-       340,
-       370,
-       373,
-       391,
-       392,
-       400,
-       412,
-       423,
+       260,
+       268,
+       290,
+       310,
+       315,
+       317,
+       336,
+       359,
+       372,
+       404,
+       407,
+       408,
+       418,
+       421,
+       437,
+       446,
+       447,
        451,
+       452,
+       464,
+       464,
+       464,
        471,
        475,
-       476,
-       488,
-       493,
-       510,
-       526,
-       527,
-       535,
-       561,
-       630,
-       710,
-       769,
-       770,
-       794,
-       800,
-       867,
-       878,
-       879,
-       921,
-       925,
-       982,
-       985,
-       995,
-       1131,
-       1133,
-       1137,
-       1197,
-       1236,
-       1274,
-       1297,
-       1318,
-       1353,
-       1419,
-       1493,
-       1582,
-       1605,
-       1640,
-       1714,
-       1875,
-       1996,
-       2004,
-       2091,
-       2235,
-       2500,
-       3255,
-       3293,
-       3400,
-       3486,
-       3662,
-       4330,
-       4525,
-       4709,
-       4832,
-       5067,
-       5802,
-       6110,
-       6286,
-       6374,
-       9239,
-       9398,
-       9642,
-       10469,
-       11442,
-       14800,
-       15098
+       482,
+       512,
+       560,
+       566,
+       585,
+       622,
+       677,
+       694,
+       716,
+       788,
+       795,
+       819,
+       862,
+       892,
+       1065,
+       1070,
+       1200,
+       1204,
+       1290,
+       1373,
+       1441,
+       1463,
+       1570,
+       1633,
+       1693,
+       1711,
+       1747,
+       1806,
+       2028,
+       2137,
+       2208,
+       2300,
+       2447,
+       2849,
+       2894,
+       3015,
+       3204,
+       3455,
+       3553,
+       3966,
+       4059,
+       4221,
+       4360,
+       4389,
+       5007,
+       5071,
+       5455,
+       6406,
+       6909,
+       8009,
+       8500,
+       10016,
+       10676,
+       12258,
+       12754,
+       13481,
+       16589,
+       19948,
+       20332,
+       22157,
+       22505,
+       29475,
+       36070,
+       41118,
+       50791
       ],
       "missed": [
-       256,
-       3289,
-       4709,
-       15056,
-       15999,
-       15999,
-       16000,
-       16000,
-       16000,
-       16000,
-       16000,
-       16000,
-       16000,
-       16000,
-       16000,
-       16000,
-       16000,
-       16000,
-       16000,
-       16000,
-       16000,
-       16000
+       5210,
+       19335,
+       26531,
+       28893,
+       36566,
+       37206,
+       46013,
+       54227,
+       54668,
+       57989,
+       64000,
+       64000,
+       64000,
+       64000,
+       64000
       ]
      },
      "estimated_cost": {
-      "total": 0.15287353199999998,
-      "per_100_clues": 0.13178752758620688
+      "total": 0.33755639400000004,
+      "per_100_clues": 0.2909968913793104
      },
-     "created": "2026-11-12T18:52:44+00:00",
-     "log_file": "2026-11-12T18-52-44-00-00_cryptic-crossword_YVuD5TRgoh9n9pHvKQG2WW.eval"
+     "created": "2026-11-12T19:43:55+00:00",
+     "log_file": "2026-11-12T19-43-55-00-00_cryptic-crossword_buBRE9fP3fChJuGMSBSHSE.eval"
+    },
+    {
+     "model": "openrouter/moonshotai/kimi-k3.1-pro",
+     "provider": "Moonshot",
+     "effort": "medium",
+     "label": "moonshotai/kimi-k3.1-pro · medium",
+     "correct": 98,
+     "total": 116,
+     "accuracy": 0.8448275862068966,
+     "ci95": [
+      0.7680131017143031,
+      0.8995347280877022
+     ],
+     "outcomes": {
+      "correct": 98,
+      "wrong_answer": 11,
+      "truncated": 7
+     },
+     "tokens": {
+      "input": 21884,
+      "cached_input": 0,
+      "output": 577933,
+      "reasoning": 575600,
+      "output_per_clue": 4982.181034482759,
+      "input_per_clue": 188.6551724137931
+     },
+     "reasoning_by_result": {
+      "correct": [
+       26,
+       49,
+       51,
+       56,
+       61,
+       65,
+       67,
+       68,
+       69,
+       75,
+       77,
+       81,
+       82,
+       84,
+       84,
+       86,
+       87,
+       97,
+       100,
+       100,
+       101,
+       105,
+       106,
+       108,
+       110,
+       111,
+       120,
+       125,
+       127,
+       127,
+       128,
+       128,
+       133,
+       143,
+       146,
+       147,
+       151,
+       154,
+       160,
+       163,
+       166,
+       167,
+       177,
+       178,
+       179,
+       182,
+       189,
+       192,
+       196,
+       196,
+       206,
+       206,
+       214,
+       220,
+       232,
+       254,
+       263,
+       268,
+       272,
+       274,
+       279,
+       299,
+       299,
+       302,
+       302,
+       321,
+       328,
+       340,
+       341,
+       346,
+       372,
+       381,
+       487,
+       489,
+       521,
+       539,
+       557,
+       558,
+       629,
+       632,
+       652,
+       699,
+       723,
+       737,
+       745,
+       841,
+       851,
+       858,
+       883,
+       1378,
+       1401,
+       2412,
+       3669,
+       4041,
+       4407,
+       4648,
+       6021,
+       6320
+      ],
+      "missed": [
+       181,
+       340,
+       1018,
+       1373,
+       1593,
+       5538,
+       7631,
+       8798,
+       10802,
+       11440,
+       21010,
+       63997,
+       63997,
+       63997,
+       63997,
+       63997,
+       63997,
+       63997
+      ]
+     },
+     "estimated_cost": {
+      "total": 5.823098,
+      "per_100_clues": 5.0199120689655174
+     },
+     "created": "2026-11-12T19:28:43+00:00",
+     "log_file": "2026-11-12T19-28-43-00-00_cryptic-crossword_BSqPPRZUaFha8giGcGvSBe.eval"
     },
     {
      "model": "codex/gpt-6-luna",
@@ -474,312 +629,312 @@
      "provider": "Anthropic",
      "effort": "high",
      "label": "claude-haiku-5-5 · high",
-     "correct": 57,
+     "correct": 63,
      "total": 116,
-     "accuracy": 0.49137931034482757,
+     "accuracy": 0.5431034482758621,
      "ci95": [
-      0.4021480781194226,
-      0.5811632261355271
+      0.4525238447819796,
+      0.6309196339432711
      ],
      "outcomes": {
-      "correct": 57,
-      "wrong_answer": 46,
-      "wrong_length": 7,
-      "no_answer": 3,
-      "truncated": 3
+      "correct": 63,
+      "near_miss": 1,
+      "wrong_answer": 41,
+      "wrong_length": 8,
+      "no_answer": 3
      },
      "tokens": {
       "input": 17585,
       "cached_input": 0,
-      "output": 508418,
-      "reasoning": 491981,
-      "output_per_clue": 4382.913793103448,
+      "output": 584407,
+      "reasoning": 567948,
+      "output_per_clue": 5037.991379310345,
       "input_per_clue": 151.5948275862069
      },
      "reasoning_by_result": {
       "correct": [
-       119,
-       174,
-       188,
-       219,
-       231,
+       165,
+       177,
+       185,
+       204,
+       225,
+       237,
+       241,
+       250,
        254,
-       259,
-       281,
-       285,
-       294,
-       310,
-       342,
-       371,
+       267,
+       270,
+       277,
+       283,
+       327,
+       344,
        412,
-       416,
-       419,
-       459,
-       489,
-       533,
-       542,
-       599,
+       420,
+       435,
+       465,
+       482,
+       497,
        600,
-       608,
-       609,
-       720,
-       753,
-       829,
-       1007,
-       1023,
-       1090,
-       1116,
-       1143,
-       1148,
-       1189,
-       1306,
-       1356,
-       1405,
-       1438,
-       1453,
-       1580,
-       1621,
-       1865,
-       1901,
-       2262,
-       2369,
-       2509,
-       2829,
-       2968,
-       3157,
-       3277,
-       3315,
-       3683,
-       5855,
-       8465,
-       10043,
-       10098,
-       12590
+       638,
+       643,
+       729,
+       767,
+       839,
+       896,
+       917,
+       927,
+       946,
+       988,
+       1012,
+       1219,
+       1259,
+       1275,
+       1299,
+       1371,
+       1396,
+       1416,
+       1435,
+       1504,
+       1560,
+       1612,
+       1641,
+       1818,
+       1849,
+       2026,
+       2459,
+       2522,
+       3030,
+       3041,
+       3101,
+       3430,
+       3891,
+       4055,
+       6276,
+       6297,
+       6357,
+       6470,
+       7317,
+       7461,
+       8088
       ],
       "missed": [
-       1480,
-       1530,
-       1646,
-       2152,
-       2263,
-       2586,
-       2737,
-       2776,
-       3126,
-       3138,
-       3391,
-       3415,
-       3493,
-       3651,
-       3667,
-       3775,
-       3845,
-       3951,
-       3986,
-       4169,
-       4173,
-       4555,
-       4731,
-       4928,
-       5277,
-       5411,
-       5475,
-       5903,
-       6006,
-       6029,
-       6042,
-       6160,
-       6193,
-       6372,
-       6467,
-       6526,
-       6666,
-       6916,
-       6962,
-       7015,
-       7799,
-       8013,
-       8089,
-       8154,
-       8220,
-       8598,
-       8618,
-       8640,
-       9884,
-       10230,
-       10325,
-       10346,
-       11606,
-       12064,
-       13956,
-       14479,
-       16000,
-       16000,
-       16000
+       538,
+       799,
+       844,
+       1202,
+       1456,
+       2731,
+       3285,
+       3423,
+       3709,
+       3823,
+       4029,
+       4542,
+       4569,
+       4732,
+       4788,
+       5188,
+       5212,
+       5325,
+       5485,
+       5515,
+       5675,
+       5917,
+       5965,
+       6085,
+       6319,
+       6369,
+       6383,
+       6418,
+       6449,
+       6525,
+       6598,
+       7031,
+       7046,
+       7088,
+       7098,
+       7701,
+       8950,
+       8995,
+       9105,
+       9125,
+       9427,
+       9661,
+       10224,
+       11496,
+       13175,
+       13641,
+       13771,
+       17628,
+       18231,
+       19874,
+       29158,
+       33110,
+       43721
       ]
      },
      "estimated_cost": {
-      "total": 0.2559675,
-      "per_100_clues": 0.2206616379310345
+      "total": 0.293962,
+      "per_100_clues": 0.2534155172413793
      },
-     "created": "2026-11-12T16:02:28+00:00",
-     "log_file": "2026-11-12T16-02-28-00-00_cryptic-crossword_hwfPkUfeBWM6HrHqT7mUAW.eval"
+     "created": "2026-11-12T19:24:43+00:00",
+     "log_file": "2026-11-12T19-24-43-00-00_cryptic-crossword_8obmSAHToDTDxkXYTVBnge.eval"
     },
     {
      "model": "anthropic/claude-haiku-5-5",
      "provider": "Anthropic",
      "effort": "medium",
      "label": "claude-haiku-5-5 · medium",
-     "correct": 55,
+     "correct": 56,
      "total": 116,
-     "accuracy": 0.47413793103448276,
+     "accuracy": 0.4827586206896552,
      "ci95": [
-      0.3855624896647156,
-      0.564371423100134
+      0.3938423815560117,
+      0.5727802269538882
      ],
      "outcomes": {
-      "correct": 55,
-      "near_miss": 2,
-      "wrong_answer": 44,
-      "wrong_length": 11,
-      "no_answer": 4
+      "correct": 56,
+      "near_miss": 1,
+      "wrong_answer": 40,
+      "wrong_length": 16,
+      "no_answer": 3
      },
      "tokens": {
       "input": 17585,
       "cached_input": 0,
-      "output": 207590,
-      "reasoning": 191631,
-      "output_per_clue": 1789.5689655172414,
+      "output": 204584,
+      "reasoning": 189472,
+      "output_per_clue": 1763.655172413793,
       "input_per_clue": 151.5948275862069
      },
      "reasoning_by_result": {
       "correct": [
-       100,
-       140,
-       190,
-       199,
+       151,
+       156,
        207,
-       208,
-       221,
-       231,
-       277,
-       285,
+       207,
+       207,
+       212,
+       234,
+       240,
+       245,
+       258,
+       276,
        293,
-       306,
-       307,
-       328,
-       332,
-       350,
-       409,
-       452,
-       461,
-       487,
-       504,
-       515,
-       548,
-       548,
-       569,
-       598,
-       620,
-       621,
-       728,
-       756,
-       758,
-       813,
-       838,
-       890,
-       924,
+       296,
+       299,
+       321,
+       374,
+       378,
+       387,
+       411,
+       416,
+       457,
+       458,
+       473,
+       520,
+       526,
+       564,
+       617,
+       631,
+       669,
+       689,
+       695,
+       727,
+       748,
+       799,
+       840,
        958,
-       1074,
-       1124,
-       1130,
-       1214,
-       1242,
-       1261,
-       1411,
-       1476,
-       1503,
-       1510,
-       1577,
-       1622,
-       1649,
-       2114,
-       2131,
-       2261,
-       2267,
-       2341,
-       3442
+       1013,
+       1026,
+       1058,
+       1084,
+       1110,
+       1183,
+       1232,
+       1235,
+       1243,
+       1256,
+       1273,
+       1346,
+       1432,
+       1480,
+       1532,
+       1710,
+       1871,
+       1945,
+       1989,
+       3722
       ],
       "missed": [
-       983,
-       1075,
-       1170,
-       1247,
-       1274,
-       1329,
-       1502,
-       1540,
-       1599,
-       1637,
-       1700,
-       1714,
-       1724,
-       1732,
-       1760,
-       1763,
-       1839,
-       1855,
-       1930,
-       1948,
-       1953,
-       1956,
-       1968,
-       1977,
-       1990,
-       2015,
-       2050,
-       2071,
-       2080,
-       2174,
-       2227,
-       2230,
-       2306,
-       2358,
-       2383,
-       2442,
-       2453,
-       2495,
-       2504,
-       2540,
-       2551,
-       2554,
-       2576,
-       2595,
-       2718,
-       2768,
-       2861,
-       3022,
-       3065,
-       3174,
-       3206,
-       3240,
-       3318,
-       3323,
-       3345,
-       3405,
-       3615,
-       3645,
-       3777,
-       3835,
-       4225
+       1187,
+       1240,
+       1408,
+       1422,
+       1514,
+       1516,
+       1539,
+       1550,
+       1557,
+       1585,
+       1630,
+       1657,
+       1658,
+       1686,
+       1864,
+       1869,
+       1871,
+       1941,
+       1961,
+       1967,
+       2008,
+       2037,
+       2142,
+       2155,
+       2169,
+       2178,
+       2180,
+       2185,
+       2188,
+       2192,
+       2235,
+       2287,
+       2302,
+       2313,
+       2330,
+       2357,
+       2446,
+       2466,
+       2509,
+       2530,
+       2532,
+       2557,
+       2571,
+       2605,
+       2626,
+       2795,
+       2797,
+       2818,
+       2925,
+       2952,
+       2990,
+       3096,
+       3507,
+       3521,
+       3712,
+       3904,
+       3909,
+       4407,
+       4679,
+       5059
       ]
      },
      "estimated_cost": {
-      "total": 0.1055535,
-      "per_100_clues": 0.09099439655172413
+      "total": 0.1040505,
+      "per_100_clues": 0.08969870689655172
      },
-     "created": "2026-11-12T15:59:15+00:00",
-     "log_file": "2026-11-12T15-59-15-00-00_cryptic-crossword_AHDsK4Z9fDoS5JyyWcBfcE.eval"
+     "created": "2026-11-12T19:23:24+00:00",
+     "log_file": "2026-11-12T19-23-24-00-00_cryptic-crossword_haYJZHbJaxVaaPmavTeCrG.eval"
     },
     {
      "model": "codex/gpt-6-luna",
@@ -942,105 +1097,159 @@
     {
      "a": 0,
      "b": 1,
-     "both": 90,
-     "only_a": 6,
+     "both": 97,
+     "only_a": 5,
      "only_b": 4,
-     "neither": 16,
-     "p": 0.75390625
+     "neither": 10,
+     "p": 1.0
     },
     {
      "a": 0,
      "b": 2,
-     "both": 65,
-     "only_a": 31,
-     "only_b": 4,
-     "neither": 16,
-     "p": 3.4654513001441956e-06
+     "both": 93,
+     "only_a": 9,
+     "only_b": 5,
+     "neither": 9,
+     "p": 0.4239501953125
     },
     {
      "a": 0,
      "b": 3,
-     "both": 54,
-     "only_a": 42,
-     "only_b": 3,
-     "neither": 17,
-     "p": 8.654978955746628e-10
+     "both": 67,
+     "only_a": 35,
+     "only_b": 2,
+     "neither": 12,
+     "p": 1.0244548320770264e-08
     },
     {
      "a": 0,
      "b": 4,
-     "both": 53,
+     "both": 59,
      "only_a": 43,
-     "only_b": 2,
-     "neither": 18,
-     "p": 5.88897819397971e-11
+     "only_b": 4,
+     "neither": 10,
+     "p": 2.781192165457469e-09
     },
     {
      "a": 0,
      "b": 5,
-     "both": 34,
-     "only_a": 62,
-     "only_b": 3,
-     "neither": 17,
-     "p": 2.4842324378160363e-15
+     "both": 54,
+     "only_a": 48,
+     "only_b": 2,
+     "neither": 12,
+     "p": 2.2666313270747196e-12
+    },
+    {
+     "a": 0,
+     "b": 6,
+     "both": 36,
+     "only_a": 66,
+     "only_b": 1,
+     "neither": 13,
+     "p": 9.215718466126788e-19
     },
     {
      "a": 1,
      "b": 2,
-     "both": 66,
-     "only_a": 28,
-     "only_b": 3,
-     "neither": 19,
-     "p": 4.649162292480469e-06
+     "both": 92,
+     "only_a": 9,
+     "only_b": 6,
+     "neither": 9,
+     "p": 0.60723876953125
     },
     {
      "a": 1,
      "b": 3,
-     "both": 54,
-     "only_a": 40,
-     "only_b": 3,
-     "neither": 19,
-     "p": 3.0213413992896676e-09
+     "both": 68,
+     "only_a": 33,
+     "only_b": 1,
+     "neither": 14,
+     "p": 4.0745362639427185e-09
     },
     {
      "a": 1,
      "b": 4,
-     "both": 53,
-     "only_a": 41,
-     "only_b": 2,
-     "neither": 20,
-     "p": 2.1532287064474076e-10
+     "both": 62,
+     "only_a": 39,
+     "only_b": 1,
+     "neither": 14,
+     "p": 7.457856554538012e-11
     },
     {
      "a": 1,
      "b": 5,
-     "both": 35,
-     "only_a": 59,
-     "only_b": 2,
-     "neither": 20,
-     "p": 1.6410484082740595e-15
+     "both": 55,
+     "only_a": 46,
+     "only_b": 1,
+     "neither": 14,
+     "p": 6.821210263296962e-13
+    },
+    {
+     "a": 1,
+     "b": 6,
+     "both": 36,
+     "only_a": 65,
+     "only_b": 1,
+     "neither": 14,
+     "p": 1.81603863891322e-18
     },
     {
      "a": 2,
      "b": 3,
-     "both": 48,
-     "only_a": 21,
-     "only_b": 9,
-     "neither": 38,
-     "p": 0.04277394525706768
+     "both": 66,
+     "only_a": 32,
+     "only_b": 3,
+     "neither": 15,
+     "p": 4.176981747150421e-07
     },
     {
      "a": 2,
      "b": 4,
-     "both": 44,
-     "only_a": 25,
+     "both": 58,
+     "only_a": 40,
+     "only_b": 5,
+     "neither": 13,
+     "p": 7.878384167270269e-08
+    },
+    {
+     "a": 2,
+     "b": 5,
+     "both": 54,
+     "only_a": 44,
+     "only_b": 2,
+     "neither": 16,
+     "p": 3.0752289603697136e-11
+    },
+    {
+     "a": 2,
+     "b": 6,
+     "both": 37,
+     "only_a": 61,
+     "only_b": 0,
+     "neither": 18,
+     "p": 8.673617379884035e-19
+    },
+    {
+     "a": 3,
+     "b": 4,
+     "both": 50,
+     "only_a": 19,
+     "only_b": 13,
+     "neither": 34,
+     "p": 0.37708558747544885
+    },
+    {
+     "a": 3,
+     "b": 5,
+     "both": 45,
+     "only_a": 24,
      "only_b": 11,
      "neither": 36,
-     "p": 0.028816719655878842
+     "p": 0.04095959151163697
     },
     {
-     "a": 2,
-     "b": 5,
+     "a": 3,
+     "b": 6,
      "both": 32,
      "only_a": 37,
      "only_b": 5,
@@ -1048,31 +1257,31 @@
      "p": 4.4337048166198656e-07
     },
     {
-     "a": 3,
-     "b": 4,
-     "both": 46,
-     "only_a": 11,
-     "only_b": 9,
-     "neither": 50,
-     "p": 0.8238029479980469
-    },
-    {
-     "a": 3,
+     "a": 4,
      "b": 5,
-     "both": 27,
-     "only_a": 30,
-     "only_b": 10,
-     "neither": 49,
-     "p": 0.0022214337732293643
+     "both": 49,
+     "only_a": 14,
+     "only_b": 7,
+     "neither": 46,
+     "p": 0.18924713134765625
     },
     {
      "a": 4,
-     "b": 5,
+     "b": 6,
      "both": 23,
-     "only_a": 32,
+     "only_a": 40,
      "only_b": 14,
-     "neither": 47,
-     "p": 0.011351591436778108
+     "neither": 39,
+     "p": 0.0005354355028570623
+    },
+    {
+     "a": 5,
+     "b": 6,
+     "both": 25,
+     "only_a": 31,
+     "only_b": 12,
+     "neither": 48,
+     "p": 0.005401572654591291
     }
    ],
    "by_device": [
@@ -1080,16 +1289,20 @@
      "name": "charade",
      "clues": 51,
      "all_runs": {
-      "correct": 174,
-      "total": 306
+      "correct": 227,
+      "total": 357
      },
      "runs": [
       {
-       "correct": 41,
+       "correct": 44,
        "total": 51
       },
       {
-       "correct": 42,
+       "correct": 43,
+       "total": 51
+      },
+      {
+       "correct": 47,
        "total": 51
       },
       {
@@ -1097,7 +1310,7 @@
        "total": 51
       },
       {
-       "correct": 23,
+       "correct": 25,
        "total": 51
       },
       {
@@ -1114,16 +1327,20 @@
      "name": "container",
      "clues": 27,
      "all_runs": {
-      "correct": 81,
-      "total": 162
+      "correct": 103,
+      "total": 189
      },
      "runs": [
       {
-       "correct": 19,
+       "correct": 20,
        "total": 27
       },
       {
-       "correct": 18,
+       "correct": 21,
+       "total": 27
+      },
+      {
+       "correct": 19,
        "total": 27
       },
       {
@@ -1131,7 +1348,7 @@
        "total": 27
       },
       {
-       "correct": 11,
+       "correct": 10,
        "total": 27
       },
       {
@@ -1148,10 +1365,14 @@
      "name": "anagram",
      "clues": 23,
      "all_runs": {
-      "correct": 83,
-      "total": 138
+      "correct": 104,
+      "total": 161
      },
      "runs": [
+      {
+       "correct": 21,
+       "total": 23
+      },
       {
        "correct": 21,
        "total": 23
@@ -1182,16 +1403,20 @@
      "name": "letter_selection",
      "clues": 19,
      "all_runs": {
-      "correct": 59,
-      "total": 114
+      "correct": 80,
+      "total": 133
      },
      "runs": [
       {
-       "correct": 14,
+       "correct": 17,
        "total": 19
       },
       {
-       "correct": 14,
+       "correct": 16,
+       "total": 19
+      },
+      {
+       "correct": 15,
        "total": 19
       },
       {
@@ -1199,11 +1424,11 @@
        "total": 19
       },
       {
-       "correct": 7,
+       "correct": 9,
        "total": 19
       },
       {
-       "correct": 7,
+       "correct": 6,
        "total": 19
       },
       {
@@ -1216,8 +1441,8 @@
      "name": "deletion",
      "clues": 12,
      "all_runs": {
-      "correct": 43,
-      "total": 72
+      "correct": 55,
+      "total": 84
      },
      "runs": [
       {
@@ -1225,7 +1450,11 @@
        "total": 12
       },
       {
-       "correct": 8,
+       "correct": 10,
+       "total": 12
+      },
+      {
+       "correct": 10,
        "total": 12
       },
       {
@@ -1233,11 +1462,11 @@
        "total": 12
       },
       {
-       "correct": 6,
+       "correct": 7,
        "total": 12
       },
       {
-       "correct": 6,
+       "correct": 5,
        "total": 12
       },
       {
@@ -1250,12 +1479,16 @@
      "name": "double_definition",
      "clues": 12,
      "all_runs": {
-      "correct": 52,
-      "total": 72
+      "correct": 64,
+      "total": 84
      },
      "runs": [
       {
-       "correct": 10,
+       "correct": 11,
+       "total": 12
+      },
+      {
+       "correct": 11,
        "total": 12
       },
       {
@@ -1284,16 +1517,20 @@
      "name": "reversal",
      "clues": 9,
      "all_runs": {
-      "correct": 25,
-      "total": 54
+      "correct": 34,
+      "total": 63
      },
      "runs": [
       {
-       "correct": 4,
+       "correct": 7,
        "total": 9
       },
       {
        "correct": 6,
+       "total": 9
+      },
+      {
+       "correct": 7,
        "total": 9
       },
       {
@@ -1305,7 +1542,7 @@
        "total": 9
       },
       {
-       "correct": 4,
+       "correct": 3,
        "total": 9
       },
       {
@@ -1318,10 +1555,14 @@
      "name": "homophone",
      "clues": 5,
      "all_runs": {
-      "correct": 10,
-      "total": 30
+      "correct": 15,
+      "total": 35
      },
      "runs": [
+      {
+       "correct": 4,
+       "total": 5
+      },
       {
        "correct": 4,
        "total": 5
@@ -1335,7 +1576,7 @@
        "total": 5
       },
       {
-       "correct": 1,
+       "correct": 2,
        "total": 5
       },
       {
@@ -1352,12 +1593,12 @@
      "name": "hidden",
      "clues": 4,
      "all_runs": {
-      "correct": 18,
-      "total": 24
+      "correct": 23,
+      "total": 28
      },
      "runs": [
       {
-       "correct": 2,
+       "correct": 4,
        "total": 4
       },
       {
@@ -1369,7 +1610,11 @@
        "total": 4
       },
       {
-       "correct": 3,
+       "correct": 4,
+       "total": 4
+      },
+      {
+       "correct": 2,
        "total": 4
       },
       {
@@ -1386,10 +1631,14 @@
      "name": "cryptic_definition",
      "clues": 3,
      "all_runs": {
-      "correct": 11,
-      "total": 18
+      "correct": 14,
+      "total": 21
      },
      "runs": [
+      {
+       "correct": 3,
+       "total": 3
+      },
       {
        "correct": 2,
        "total": 3
@@ -1420,11 +1669,15 @@
      "name": "other",
      "clues": 1,
      "all_runs": {
-      "correct": 3,
-      "total": 6
+      "correct": 2,
+      "total": 7
      },
      "runs": [
       {
+       "correct": 0,
+       "total": 1
+      },
+      {
        "correct": 1,
        "total": 1
       },
@@ -1441,7 +1694,7 @@
        "total": 1
       },
       {
-       "correct": 1,
+       "correct": 0,
        "total": 1
       },
       {
@@ -1456,8 +1709,8 @@
      "name": "No 30,159 · Carpathian",
      "clues": 30,
      "all_runs": {
-      "correct": 125,
-      "total": 180
+      "correct": 158,
+      "total": 210
      },
      "runs": [
       {
@@ -1465,7 +1718,11 @@
        "total": 30
       },
       {
-       "correct": 29,
+       "correct": 30,
+       "total": 30
+      },
+      {
+       "correct": 28,
        "total": 30
       },
       {
@@ -1473,11 +1730,11 @@
        "total": 30
       },
       {
-       "correct": 19,
+       "correct": 22,
        "total": 30
       },
       {
-       "correct": 17,
+       "correct": 18,
        "total": 30
       },
       {
@@ -1490,16 +1747,20 @@
      "name": "No 30,160 · Anto",
      "clues": 30,
      "all_runs": {
-      "correct": 108,
-      "total": 180
+      "correct": 145,
+      "total": 210
      },
      "runs": [
       {
-       "correct": 27,
+       "correct": 30,
        "total": 30
       },
       {
-       "correct": 26,
+       "correct": 29,
+       "total": 30
+      },
+      {
+       "correct": 27,
        "total": 30
       },
       {
@@ -1507,11 +1768,11 @@
        "total": 30
       },
       {
-       "correct": 13,
+       "correct": 15,
        "total": 30
       },
       {
-       "correct": 12,
+       "correct": 14,
        "total": 30
       },
       {
@@ -1524,16 +1785,20 @@
      "name": "No 30,161 · Paul",
      "clues": 28,
      "all_runs": {
-      "correct": 73,
-      "total": 168
+      "correct": 93,
+      "total": 196
      },
      "runs": [
       {
-       "correct": 17,
+       "correct": 19,
        "total": 28
       },
       {
-       "correct": 15,
+       "correct": 18,
+       "total": 28
+      },
+      {
+       "correct": 18,
        "total": 28
       },
       {
@@ -1541,7 +1806,7 @@
        "total": 28
       },
       {
-       "correct": 11,
+       "correct": 8,
        "total": 28
       },
       {
@@ -1558,12 +1823,12 @@
      "name": "No 30,162 · Pasquale",
      "clues": 28,
      "all_runs": {
-      "correct": 102,
-      "total": 168
+      "correct": 130,
+      "total": 196
      },
      "runs": [
       {
-       "correct": 23,
+       "correct": 24,
        "total": 28
       },
       {
@@ -1571,15 +1836,19 @@
        "total": 28
       },
       {
+       "correct": 25,
+       "total": 28
+      },
+      {
        "correct": 16,
+       "total": 28
+      },
+      {
+       "correct": 18,
        "total": 28
       },
       {
        "correct": 14,
-       "total": 28
-      },
-      {
-       "correct": 16,
        "total": 28
       },
       {
@@ -1613,12 +1882,17 @@
       {
        "outcome": "correct",
        "answer": "MISGIVING",
-       "output_tokens": 517
+       "output_tokens": 372
       },
       {
        "outcome": "correct",
        "answer": "MISGIVING",
-       "output_tokens": 378
+       "output_tokens": 900
+      },
+      {
+       "outcome": "correct",
+       "answer": "MISGIVING",
+       "output_tokens": 149
       },
       {
        "outcome": "correct",
@@ -1628,12 +1902,12 @@
       {
        "outcome": "correct",
        "answer": "MISGIVING",
-       "output_tokens": 10304
+       "output_tokens": 6595
       },
       {
-       "outcome": "correct",
-       "answer": "MISGIVING",
-       "output_tokens": 2439
+       "outcome": "no_answer",
+       "answer": "UNKNOWN",
+       "output_tokens": 2647
       },
       {
        "outcome": "wrong_length",
@@ -1657,14 +1931,19 @@
      "and_lit": false,
      "results": [
       {
-       "outcome": "truncated",
-       "answer": null,
-       "output_tokens": 16000
+       "outcome": "wrong_answer",
+       "answer": "VIDEO",
+       "output_tokens": 59880
       },
       {
-       "outcome": "truncated",
-       "answer": null,
-       "output_tokens": 16000
+       "outcome": "correct",
+       "answer": "MIDST",
+       "output_tokens": 12264
+      },
+      {
+       "outcome": "correct",
+       "answer": "MIDST",
+       "output_tokens": 226
       },
       {
        "outcome": "wrong_answer",
@@ -1672,14 +1951,14 @@
        "output_tokens": 1073
       },
       {
-       "outcome": "wrong_answer",
-       "answer": "EARTH",
-       "output_tokens": 6157
+       "outcome": "correct",
+       "answer": "MIDST",
+       "output_tokens": 7654
       },
       {
-       "outcome": "wrong_answer",
-       "answer": "CORES",
-       "output_tokens": 2993
+       "outcome": "correct",
+       "answer": "MIDST",
+       "output_tokens": 2049
       },
       {
        "outcome": "wrong_answer",
@@ -1706,12 +1985,17 @@
       {
        "outcome": "correct",
        "answer": "TABS",
-       "output_tokens": 1321
+       "output_tokens": 1491
       },
       {
        "outcome": "correct",
        "answer": "TABS",
-       "output_tokens": 882
+       "output_tokens": 1812
+      },
+      {
+       "outcome": "correct",
+       "answer": "TABS",
+       "output_tokens": 140
       },
       {
        "outcome": "wrong_answer",
@@ -1721,12 +2005,12 @@
       {
        "outcome": "correct",
        "answer": "TABS",
-       "output_tokens": 720
+       "output_tokens": 966
       },
       {
        "outcome": "correct",
        "answer": "TABS",
-       "output_tokens": 1028
+       "output_tokens": 1349
       },
       {
        "outcome": "correct",
@@ -1752,12 +2036,17 @@
       {
        "outcome": "correct",
        "answer": "OPPOSING",
-       "output_tokens": 770
+       "output_tokens": 419
       },
       {
        "outcome": "correct",
        "answer": "OPPOSING",
-       "output_tokens": 484
+       "output_tokens": 318
+      },
+      {
+       "outcome": "correct",
+       "answer": "OPPOSING",
+       "output_tokens": 204
       },
       {
        "outcome": "correct",
@@ -1767,12 +2056,12 @@
       {
        "outcome": "correct",
        "answer": "OPPOSING",
-       "output_tokens": 1551
+       "output_tokens": 867
       },
       {
-       "outcome": "near_miss",
-       "answer": "OPPOSITE",
-       "output_tokens": 1688
+       "outcome": "correct",
+       "answer": "OPPOSING",
+       "output_tokens": 945
       },
       {
        "outcome": "near_miss",
@@ -1798,12 +2087,17 @@
       {
        "outcome": "correct",
        "answer": "LACERATION",
-       "output_tokens": 2233
+       "output_tokens": 5181
       },
       {
        "outcome": "correct",
        "answer": "LACERATION",
-       "output_tokens": 10477
+       "output_tokens": 10684
+      },
+      {
+       "outcome": "correct",
+       "answer": "LACERATION",
+       "output_tokens": 4062
       },
       {
        "outcome": "wrong_answer",
@@ -1811,14 +2105,14 @@
        "output_tokens": 2561
       },
       {
-       "outcome": "wrong_length",
-       "answer": "TRIMMINGS",
-       "output_tokens": 3977
+       "outcome": "wrong_answer",
+       "answer": "ALLOCATION",
+       "output_tokens": 7237
       },
       {
-       "outcome": "wrong_answer",
-       "answer": "BROADCLOTH",
-       "output_tokens": 2380
+       "outcome": "wrong_length",
+       "answer": "SELVEDGE",
+       "output_tokens": 2087
       },
       {
        "outcome": "wrong_answer",
@@ -1844,12 +2138,17 @@
       {
        "outcome": "correct",
        "answer": "PIROUETTES",
-       "output_tokens": 9084
+       "output_tokens": 638
       },
       {
        "outcome": "correct",
        "answer": "PIROUETTES",
-       "output_tokens": 6295
+       "output_tokens": 1450
+      },
+      {
+       "outcome": "truncated",
+       "answer": null,
+       "output_tokens": 64000
       },
       {
        "outcome": "wrong_answer",
@@ -1859,12 +2158,12 @@
       {
        "outcome": "correct",
        "answer": "PIROUETTES",
-       "output_tokens": 358
+       "output_tokens": 606
       },
       {
        "outcome": "correct",
        "answer": "PIROUETTES",
-       "output_tokens": 556
+       "output_tokens": 1157
       },
       {
        "outcome": "wrong_answer",
@@ -1891,12 +2190,17 @@
       {
        "outcome": "correct",
        "answer": "PERVASIVE",
-       "output_tokens": 5267
+       "output_tokens": 4804
       },
       {
        "outcome": "correct",
        "answer": "PERVASIVE",
-       "output_tokens": 3261
+       "output_tokens": 20340
+      },
+      {
+       "outcome": "correct",
+       "answer": "PERVASIVE",
+       "output_tokens": 654
       },
       {
        "outcome": "correct",
@@ -1905,13 +2209,13 @@
       },
       {
        "outcome": "wrong_answer",
-       "answer": "UNREFINED",
-       "output_tokens": 10408
+       "answer": "CUSTOMARY",
+       "output_tokens": 17780
       },
       {
-       "outcome": "wrong_length",
-       "answer": "PLEBEIAN",
-       "output_tokens": 2637
+       "outcome": "wrong_answer",
+       "answer": "PREVALENT",
+       "output_tokens": 3660
       },
       {
        "outcome": "correct",
@@ -1937,12 +2241,17 @@
       {
        "outcome": "correct",
        "answer": "PREVIEWED",
-       "output_tokens": 1033
+       "output_tokens": 684
       },
       {
        "outcome": "correct",
        "answer": "PREVIEWED",
-       "output_tokens": 909
+       "output_tokens": 2035
+      },
+      {
+       "outcome": "correct",
+       "answer": "PREVIEWED",
+       "output_tokens": 2433
       },
       {
        "outcome": "correct",
@@ -1952,12 +2261,12 @@
       {
        "outcome": "correct",
        "answer": "PREVIEWED",
-       "output_tokens": 848
+       "output_tokens": 455
       },
       {
        "outcome": "correct",
        "answer": "PREVIEWED",
-       "output_tokens": 334
+       "output_tokens": 371
       },
       {
        "outcome": "wrong_answer",
@@ -1984,12 +2293,17 @@
       {
        "outcome": "correct",
        "answer": "BLINI",
-       "output_tokens": 414
+       "output_tokens": 2115
       },
       {
        "outcome": "correct",
        "answer": "BLINI",
-       "output_tokens": 775
+       "output_tokens": 683
+      },
+      {
+       "outcome": "correct",
+       "answer": "BLINI",
+       "output_tokens": 130
       },
       {
        "outcome": "wrong_answer",
@@ -1998,13 +2312,13 @@
       },
       {
        "outcome": "wrong_answer",
-       "answer": "CREAM",
-       "output_tokens": 6794
+       "answer": "CREPE",
+       "output_tokens": 33298
       },
       {
-       "outcome": "correct",
-       "answer": "BLINI",
-       "output_tokens": 1707
+       "outcome": "wrong_answer",
+       "answer": "CREPE",
+       "output_tokens": 1778
       },
       {
        "outcome": "wrong_answer",
@@ -2031,12 +2345,17 @@
       {
        "outcome": "correct",
        "answer": "ENDUE",
-       "output_tokens": 1279
+       "output_tokens": 1789
       },
       {
        "outcome": "correct",
        "answer": "ENDUE",
-       "output_tokens": 6116
+       "output_tokens": 1717
+      },
+      {
+       "outcome": "correct",
+       "answer": "ENDUE",
+       "output_tokens": 216
       },
       {
        "outcome": "correct",
@@ -2044,14 +2363,14 @@
        "output_tokens": 1082
       },
       {
-       "outcome": "wrong_answer",
-       "answer": "ENDOW",
-       "output_tokens": 2906
+       "outcome": "correct",
+       "answer": "ENDUE",
+       "output_tokens": 2670
       },
       {
        "outcome": "correct",
        "answer": "ENDUE",
-       "output_tokens": 1369
+       "output_tokens": 581
       },
       {
        "outcome": "wrong_answer",
@@ -2077,12 +2396,17 @@
       {
        "outcome": "correct",
        "answer": "DISPLAY",
-       "output_tokens": 291
+       "output_tokens": 165
       },
       {
        "outcome": "correct",
        "answer": "DISPLAY",
-       "output_tokens": 255
+       "output_tokens": 213
+      },
+      {
+       "outcome": "correct",
+       "answer": "DISPLAY",
+       "output_tokens": 185
       },
       {
        "outcome": "correct",
@@ -2090,14 +2414,14 @@
        "output_tokens": 250
       },
       {
-       "outcome": "wrong_answer",
-       "answer": "DIORAMA",
-       "output_tokens": 1673
+       "outcome": "correct",
+       "answer": "DISPLAY",
+       "output_tokens": 2155
       },
       {
        "outcome": "correct",
        "answer": "DISPLAY",
-       "output_tokens": 597
+       "output_tokens": 621
       },
       {
        "outcome": "wrong_length",
@@ -2123,12 +2447,17 @@
       {
        "outcome": "correct",
        "answer": "OVERLYING",
-       "output_tokens": 4105
+       "output_tokens": 832
       },
       {
        "outcome": "correct",
        "answer": "OVERLYING",
-       "output_tokens": 3437
+       "output_tokens": 3462
+      },
+      {
+       "outcome": "correct",
+       "answer": "OVERLYING",
+       "output_tokens": 146
       },
       {
        "outcome": "correct",
@@ -2137,13 +2466,13 @@
       },
       {
        "outcome": "wrong_answer",
-       "answer": "UNDERHAND",
-       "output_tokens": 8746
+       "answer": "DECEPTION",
+       "output_tokens": 7844
       },
       {
        "outcome": "wrong_answer",
-       "answer": "CHICANERY",
-       "output_tokens": 4353
+       "answer": "DECEPTION",
+       "output_tokens": 1708
       },
       {
        "outcome": "wrong_answer",
@@ -2170,12 +2499,17 @@
       {
        "outcome": "correct",
        "answer": "IMPINGE",
-       "output_tokens": 739
+       "output_tokens": 755
       },
       {
        "outcome": "correct",
        "answer": "IMPINGE",
-       "output_tokens": 380
+       "output_tokens": 451
+      },
+      {
+       "outcome": "correct",
+       "answer": "IMPINGE",
+       "output_tokens": 200
       },
       {
        "outcome": "correct",
@@ -2183,14 +2517,14 @@
        "output_tokens": 2107
       },
       {
-       "outcome": "correct",
-       "answer": "IMPINGE",
-       "output_tokens": 8611
+       "outcome": "wrong_length",
+       "answer": "IMPACT",
+       "output_tokens": 13765
       },
       {
-       "outcome": "wrong_answer",
-       "answer": "HELLION",
-       "output_tokens": 3759
+       "outcome": "wrong_length",
+       "answer": "IMPACT",
+       "output_tokens": 2096
       },
       {
        "outcome": "correct",
@@ -2216,12 +2550,17 @@
       {
        "outcome": "correct",
        "answer": "SLUMBER",
-       "output_tokens": 9929
+       "output_tokens": 12945
       },
       {
        "outcome": "correct",
        "answer": "SLUMBER",
-       "output_tokens": 11448
+       "output_tokens": 4395
+      },
+      {
+       "outcome": "correct",
+       "answer": "SLUMBER",
+       "output_tokens": 904
       },
       {
        "outcome": "correct",
@@ -2229,14 +2568,14 @@
        "output_tokens": 1493
       },
       {
-       "outcome": "wrong_answer",
-       "answer": "PILLION",
-       "output_tokens": 6027
+       "outcome": "wrong_length",
+       "answer": "SETTLE",
+       "output_tokens": 6475
       },
       {
        "outcome": "wrong_answer",
-       "answer": "PILLION",
-       "output_tokens": 2182
+       "answer": "SEATING",
+       "output_tokens": 2362
       },
       {
        "outcome": "wrong_answer",
@@ -2262,12 +2601,17 @@
       {
        "outcome": "correct",
        "answer": "IN SPADES",
-       "output_tokens": 180
+       "output_tokens": 152
       },
       {
        "outcome": "correct",
        "answer": "IN SPADES",
-       "output_tokens": 151
+       "output_tokens": 122
+      },
+      {
+       "outcome": "correct",
+       "answer": "IN SPADES",
+       "output_tokens": 83
       },
       {
        "outcome": "correct",
@@ -2277,12 +2621,12 @@
       {
        "outcome": "correct",
        "answer": "IN SPADES",
-       "output_tokens": 369
+       "output_tokens": 267
       },
       {
        "outcome": "correct",
        "answer": "IN SPADES",
-       "output_tokens": 741
+       "output_tokens": 347
       },
       {
        "outcome": "wrong_length",
@@ -2308,12 +2652,17 @@
       {
        "outcome": "correct",
        "answer": "SPUN",
-       "output_tokens": 3953
+       "output_tokens": 503
       },
       {
        "outcome": "correct",
        "answer": "SPUN",
-       "output_tokens": 1720
+       "output_tokens": 1639
+      },
+      {
+       "outcome": "correct",
+       "answer": "SPUN",
+       "output_tokens": 252
       },
       {
        "outcome": "correct",
@@ -2323,12 +2672,12 @@
       {
        "outcome": "correct",
        "answer": "SPUN",
-       "output_tokens": 1237
+       "output_tokens": 514
       },
       {
        "outcome": "correct",
        "answer": "SPUN",
-       "output_tokens": 1564
+       "output_tokens": 777
       },
       {
        "outcome": "wrong_answer",
@@ -2354,12 +2703,17 @@
       {
        "outcome": "correct",
        "answer": "NUDES",
-       "output_tokens": 289
+       "output_tokens": 398
       },
       {
        "outcome": "correct",
        "answer": "NUDES",
-       "output_tokens": 476
+       "output_tokens": 428
+      },
+      {
+       "outcome": "wrong_answer",
+       "answer": "NUDGE",
+       "output_tokens": 361
       },
       {
        "outcome": "correct",
@@ -2369,12 +2723,12 @@
       {
        "outcome": "correct",
        "answer": "NUDES",
-       "output_tokens": 843
+       "output_tokens": 778
       },
       {
        "outcome": "correct",
        "answer": "NUDES",
-       "output_tokens": 421
+       "output_tokens": 504
       },
       {
        "outcome": "wrong_length",
@@ -2400,12 +2754,17 @@
       {
        "outcome": "correct",
        "answer": "ONTO",
-       "output_tokens": 614
+       "output_tokens": 448
       },
       {
        "outcome": "correct",
        "answer": "ONTO",
-       "output_tokens": 398
+       "output_tokens": 443
+      },
+      {
+       "outcome": "correct",
+       "answer": "ONTO",
+       "output_tokens": 180
       },
       {
        "outcome": "correct",
@@ -2413,14 +2772,14 @@
        "output_tokens": 394
       },
       {
-       "outcome": "wrong_answer",
-       "answer": "WISE",
-       "output_tokens": 11725
+       "outcome": "correct",
+       "answer": "ONTO",
+       "output_tokens": 6438
       },
       {
        "outcome": "correct",
        "answer": "ONTO",
-       "output_tokens": 1405
+       "output_tokens": 474
       },
       {
        "outcome": "correct",
@@ -2446,12 +2805,17 @@
       {
        "outcome": "correct",
        "answer": "DILL",
-       "output_tokens": 102
+       "output_tokens": 113
       },
       {
        "outcome": "correct",
        "answer": "DILL",
-       "output_tokens": 107
+       "output_tokens": 115
+      },
+      {
+       "outcome": "correct",
+       "answer": "DILL",
+       "output_tokens": 46
       },
       {
        "outcome": "correct",
@@ -2461,12 +2825,12 @@
       {
        "outcome": "correct",
        "answer": "DILL",
-       "output_tokens": 2321
+       "output_tokens": 1362
       },
       {
-       "outcome": "wrong_answer",
-       "answer": "LILY",
-       "output_tokens": 1856
+       "outcome": "correct",
+       "answer": "DILL",
+       "output_tokens": 499
       },
       {
        "outcome": "correct",
@@ -2493,12 +2857,17 @@
       {
        "outcome": "correct",
        "answer": "WELL-INTENTIONED",
-       "output_tokens": 4104
+       "output_tokens": 4946
       },
       {
        "outcome": "correct",
        "answer": "WELL-INTENTIONED",
-       "output_tokens": 9250
+       "output_tokens": 6415
+      },
+      {
+       "outcome": "correct",
+       "answer": "WELL-INTENTIONED",
+       "output_tokens": 370
       },
       {
        "outcome": "wrong_length",
@@ -2506,14 +2875,14 @@
        "output_tokens": 1563
       },
       {
-       "outcome": "wrong_length",
-       "answer": "ILL-INTENTIONED",
-       "output_tokens": 6642
+       "outcome": "no_answer",
+       "answer": "UNKNOWN",
+       "output_tokens": 4963
       },
       {
        "outcome": "wrong_length",
-       "answer": "UNDERHANDED",
-       "output_tokens": 3490
+       "answer": "SELF-SERVING",
+       "output_tokens": 2362
       },
       {
        "outcome": "correct",
@@ -2539,12 +2908,17 @@
       {
        "outcome": "correct",
        "answer": "DOYEN",
-       "output_tokens": 857
+       "output_tokens": 178
       },
       {
        "outcome": "correct",
        "answer": "DOYEN",
-       "output_tokens": 262
+       "output_tokens": 163
+      },
+      {
+       "outcome": "correct",
+       "answer": "DOYEN",
+       "output_tokens": 72
       },
       {
        "outcome": "correct",
@@ -2554,12 +2928,12 @@
       {
        "outcome": "correct",
        "answer": "DOYEN",
-       "output_tokens": 2584
+       "output_tokens": 3213
       },
       {
-       "outcome": "wrong_answer",
-       "answer": "CRAVE",
-       "output_tokens": 3431
+       "outcome": "wrong_length",
+       "answer": "PINE",
+       "output_tokens": 2920
       },
       {
        "outcome": "wrong_answer",
@@ -2585,12 +2959,17 @@
       {
        "outcome": "correct",
        "answer": "SHOULDERS",
-       "output_tokens": 156
+       "output_tokens": 131
       },
       {
        "outcome": "correct",
        "answer": "SHOULDERS",
-       "output_tokens": 171
+       "output_tokens": 204
+      },
+      {
+       "outcome": "correct",
+       "answer": "SHOULDERS",
+       "output_tokens": 85
       },
       {
        "outcome": "correct",
@@ -2600,12 +2979,12 @@
       {
        "outcome": "correct",
        "answer": "SHOULDERS",
-       "output_tokens": 388
+       "output_tokens": 753
       },
       {
        "outcome": "correct",
        "answer": "SHOULDERS",
-       "output_tokens": 392
+       "output_tokens": 580
       },
       {
        "outcome": "wrong_length",
@@ -2631,12 +3010,17 @@
       {
        "outcome": "correct",
        "answer": "IDLE",
-       "output_tokens": 124
+       "output_tokens": 100
       },
       {
        "outcome": "correct",
        "answer": "IDLE",
-       "output_tokens": 156
+       "output_tokens": 174
+      },
+      {
+       "outcome": "correct",
+       "answer": "IDLE",
+       "output_tokens": 88
       },
       {
        "outcome": "correct",
@@ -2646,12 +3030,12 @@
       {
        "outcome": "correct",
        "answer": "IDLE",
-       "output_tokens": 264
+       "output_tokens": 286
       },
       {
        "outcome": "correct",
        "answer": "IDLE",
-       "output_tokens": 227
+       "output_tokens": 329
       },
       {
        "outcome": "correct",
@@ -2677,12 +3061,17 @@
       {
        "outcome": "correct",
        "answer": "ITEM",
-       "output_tokens": 223
+       "output_tokens": 316
       },
       {
        "outcome": "correct",
        "answer": "ITEM",
-       "output_tokens": 116
+       "output_tokens": 296
+      },
+      {
+       "outcome": "correct",
+       "answer": "ITEM",
+       "output_tokens": 75
       },
       {
        "outcome": "wrong_answer",
@@ -2690,14 +3079,14 @@
        "output_tokens": 703
       },
       {
-       "outcome": "wrong_answer",
-       "answer": "YOKE",
-       "output_tokens": 4710
+       "outcome": "correct",
+       "answer": "ITEM",
+       "output_tokens": 1072
       },
       {
        "outcome": "wrong_answer",
-       "answer": "CARP",
-       "output_tokens": 2623
+       "answer": "YOKE",
+       "output_tokens": 1808
       },
       {
        "outcome": "wrong_answer",
@@ -2723,12 +3112,17 @@
       {
        "outcome": "correct",
        "answer": "GO TO PIECES",
-       "output_tokens": 821
+       "output_tokens": 595
       },
       {
        "outcome": "correct",
        "answer": "GO TO PIECES",
-       "output_tokens": 932
+       "output_tokens": 1299
+      },
+      {
+       "outcome": "correct",
+       "answer": "GO TO PIECES",
+       "output_tokens": 174
       },
       {
        "outcome": "correct",
@@ -2738,12 +3132,12 @@
       {
        "outcome": "correct",
        "answer": "GO TO PIECES",
-       "output_tokens": 376
+       "output_tokens": 380
       },
       {
        "outcome": "correct",
        "answer": "GO TO PIECES",
-       "output_tokens": 328
+       "output_tokens": 434
       },
       {
        "outcome": "wrong_length",
@@ -2770,12 +3164,17 @@
       {
        "outcome": "correct",
        "answer": "COMTE",
-       "output_tokens": 429
+       "output_tokens": 315
       },
       {
        "outcome": "correct",
        "answer": "COMTE",
-       "output_tokens": 255
+       "output_tokens": 262
+      },
+      {
+       "outcome": "correct",
+       "answer": "COMTE",
+       "output_tokens": 95
       },
       {
        "outcome": "correct",
@@ -2785,12 +3184,12 @@
       {
        "outcome": "correct",
        "answer": "COMTE",
-       "output_tokens": 3453
+       "output_tokens": 7454
       },
       {
        "outcome": "wrong_length",
-       "answer": "EDAM",
-       "output_tokens": 3292
+       "answer": "COME",
+       "output_tokens": 2654
       },
       {
        "outcome": "wrong_answer",
@@ -2817,12 +3216,17 @@
       {
        "outcome": "correct",
        "answer": "CANNONBALL",
-       "output_tokens": 2002
+       "output_tokens": 2233
       },
       {
        "outcome": "correct",
        "answer": "CANNONBALL",
-       "output_tokens": 2005
+       "output_tokens": 3562
+      },
+      {
+       "outcome": "correct",
+       "answer": "CANNONBALL",
+       "output_tokens": 363
       },
       {
        "outcome": "wrong_length",
@@ -2832,12 +3236,12 @@
       {
        "outcome": "correct",
        "answer": "CANNONBALL",
-       "output_tokens": 3087
+       "output_tokens": 6430
       },
       {
        "outcome": "correct",
        "answer": "CANNONBALL",
-       "output_tokens": 1648
+       "output_tokens": 3921
       },
       {
        "outcome": "no_answer",
@@ -2863,12 +3267,17 @@
       {
        "outcome": "correct",
        "answer": "MARTINI",
-       "output_tokens": 997
+       "output_tokens": 522
       },
       {
        "outcome": "correct",
        "answer": "MARTINI",
-       "output_tokens": 1279
+       "output_tokens": 793
+      },
+      {
+       "outcome": "correct",
+       "answer": "MARTINI",
+       "output_tokens": 720
       },
       {
        "outcome": "correct",
@@ -2876,14 +3285,14 @@
        "output_tokens": 1478
       },
       {
-       "outcome": "correct",
-       "answer": "MARTINI",
-       "output_tokens": 2451
+       "outcome": "wrong_answer",
+       "answer": "CAREENS",
+       "output_tokens": 4120
       },
       {
-       "outcome": "no_answer",
-       "answer": "UNKNOWN",
-       "output_tokens": 4018
+       "outcome": "correct",
+       "answer": "MARTINI",
+       "output_tokens": 1301
       },
       {
        "outcome": "correct",
@@ -2910,12 +3319,17 @@
       {
        "outcome": "correct",
        "answer": "EASY-GOING",
-       "output_tokens": 423
+       "output_tokens": 453
       },
       {
        "outcome": "correct",
        "answer": "EASY-GOING",
-       "output_tokens": 544
+       "output_tokens": 484
+      },
+      {
+       "outcome": "correct",
+       "answer": "EASY-GOING",
+       "output_tokens": 149
       },
       {
        "outcome": "correct",
@@ -2924,13 +3338,13 @@
       },
       {
        "outcome": "correct",
-       "answer": "EASYGOING",
-       "output_tokens": 1229
+       "answer": "EASY-GOING",
+       "output_tokens": 1386
       },
       {
        "outcome": "correct",
        "answer": "EASY-GOING",
-       "output_tokens": 681
+       "output_tokens": 390
       },
       {
        "outcome": "correct",
@@ -2956,12 +3370,17 @@
       {
        "outcome": "correct",
        "answer": "DOUBLE ENTENDRES",
-       "output_tokens": 1719
+       "output_tokens": 867
       },
       {
        "outcome": "correct",
        "answer": "DOUBLE ENTENDRES",
-       "output_tokens": 719
+       "output_tokens": 1472
+      },
+      {
+       "outcome": "correct",
+       "answer": "DOUBLE ENTENDRES",
+       "output_tokens": 324
       },
       {
        "outcome": "correct",
@@ -2971,12 +3390,12 @@
       {
        "outcome": "correct",
        "answer": "DOUBLE ENTENDRES",
-       "output_tokens": 1531
+       "output_tokens": 1639
       },
       {
-       "outcome": "correct",
-       "answer": "DOUBLE ENTENDRES",
-       "output_tokens": 1823
+       "outcome": "wrong_length",
+       "answer": "COARSE LANGUAGE",
+       "output_tokens": 3874
       },
       {
        "outcome": "wrong_answer",
@@ -3002,12 +3421,17 @@
       {
        "outcome": "correct",
        "answer": "ABSORBENT",
-       "output_tokens": 948
+       "output_tokens": 5339
       },
       {
        "outcome": "correct",
        "answer": "ABSORBENT",
-       "output_tokens": 1305
+       "output_tokens": 1578
+      },
+      {
+       "outcome": "correct",
+       "answer": "ABSORBENT",
+       "output_tokens": 188
       },
       {
        "outcome": "wrong_answer",
@@ -3015,14 +3439,14 @@
        "output_tokens": 2491
       },
       {
-       "outcome": "wrong_answer",
-       "answer": "CAVERNOUS",
-       "output_tokens": 8789
+       "outcome": "correct",
+       "answer": "ABSORBENT",
+       "output_tokens": 4016
       },
       {
-       "outcome": "wrong_answer",
-       "answer": "SPONGIOSE",
-       "output_tokens": 1739
+       "outcome": "correct",
+       "answer": "ABSORBENT",
+       "output_tokens": 1208
       },
       {
        "outcome": "wrong_length",
@@ -3049,12 +3473,17 @@
       {
        "outcome": "correct",
        "answer": "ALOUD",
-       "output_tokens": 2472
+       "output_tokens": 2943
       },
       {
        "outcome": "correct",
        "answer": "ALOUD",
-       "output_tokens": 989
+       "output_tokens": 8016
+      },
+      {
+       "outcome": "correct",
+       "answer": "ALOUD",
+       "output_tokens": 320
       },
       {
        "outcome": "wrong_answer",
@@ -3064,12 +3493,12 @@
       {
        "outcome": "wrong_length",
        "answer": "LOUD",
-       "output_tokens": 3774
+       "output_tokens": 901
       },
       {
-       "outcome": "correct",
-       "answer": "ALOUD",
-       "output_tokens": 718
+       "outcome": "wrong_length",
+       "answer": "LOUD",
+       "output_tokens": 1287
       },
       {
        "outcome": "wrong_answer",
@@ -3095,12 +3524,17 @@
       {
        "outcome": "correct",
        "answer": "ADULTS",
-       "output_tokens": 1054
+       "output_tokens": 791
       },
       {
        "outcome": "correct",
        "answer": "ADULTS",
-       "output_tokens": 497
+       "output_tokens": 272
+      },
+      {
+       "outcome": "correct",
+       "answer": "ADULTS",
+       "output_tokens": 510
       },
       {
        "outcome": "correct",
@@ -3110,12 +3544,12 @@
       {
        "outcome": "correct",
        "answer": "ADULTS",
-       "output_tokens": 1739
+       "output_tokens": 1816
       },
       {
        "outcome": "correct",
        "answer": "ADULTS",
-       "output_tokens": 1176
+       "output_tokens": 2017
       },
       {
        "outcome": "correct",
@@ -3141,12 +3575,17 @@
       {
        "outcome": "correct",
        "answer": "BRIDGING",
-       "output_tokens": 382
+       "output_tokens": 801
       },
       {
        "outcome": "correct",
        "answer": "BRIDGING",
-       "output_tokens": 290
+       "output_tokens": 342
+      },
+      {
+       "outcome": "correct",
+       "answer": "BRIDGING",
+       "output_tokens": 132
       },
       {
        "outcome": "correct",
@@ -3156,12 +3595,12 @@
       {
        "outcome": "correct",
        "answer": "BRIDGING",
-       "output_tokens": 465
+       "output_tokens": 1627
       },
       {
        "outcome": "correct",
        "answer": "BRIDGING",
-       "output_tokens": 877
+       "output_tokens": 748
       },
       {
        "outcome": "correct",
@@ -3187,12 +3626,17 @@
       {
        "outcome": "correct",
        "answer": "SHOW UP",
-       "output_tokens": 478
+       "output_tokens": 221
       },
       {
        "outcome": "correct",
        "answer": "SHOW UP",
-       "output_tokens": 269
+       "output_tokens": 377
+      },
+      {
+       "outcome": "correct",
+       "answer": "SHOW UP",
+       "output_tokens": 163
       },
       {
        "outcome": "correct",
@@ -3202,12 +3646,12 @@
       {
        "outcome": "correct",
        "answer": "SHOW UP",
-       "output_tokens": 216
+       "output_tokens": 344
       },
       {
        "outcome": "correct",
        "answer": "SHOW UP",
-       "output_tokens": 180
+       "output_tokens": 312
       },
       {
        "outcome": "wrong_answer",
@@ -3233,12 +3677,17 @@
       {
        "outcome": "correct",
        "answer": "HAIRSTYLE",
-       "output_tokens": 1215
+       "output_tokens": 435
       },
       {
        "outcome": "correct",
        "answer": "HAIRSTYLE",
-       "output_tokens": 1139
+       "output_tokens": 455
+      },
+      {
+       "outcome": "correct",
+       "answer": "HAIRSTYLE",
+       "output_tokens": 149
       },
       {
        "outcome": "correct",
@@ -3246,14 +3695,14 @@
        "output_tokens": 885
       },
       {
-       "outcome": "correct",
-       "answer": "HAIRSTYLE",
-       "output_tokens": 736
-      },
-      {
        "outcome": "wrong_answer",
        "answer": "SCALLYWAG",
-       "output_tokens": 2760
+       "output_tokens": 5630
+      },
+      {
+       "outcome": "correct",
+       "answer": "HAIRSTYLE",
+       "output_tokens": 1080
       },
       {
        "outcome": "correct",
@@ -3279,12 +3728,17 @@
       {
        "outcome": "correct",
        "answer": "PROSPECTS",
-       "output_tokens": 644
+       "output_tokens": 617
       },
       {
        "outcome": "correct",
        "answer": "PROSPECTS",
-       "output_tokens": 256
+       "output_tokens": 412
+      },
+      {
+       "outcome": "correct",
+       "answer": "PROSPECTS",
+       "output_tokens": 185
       },
       {
        "outcome": "correct",
@@ -3292,14 +3746,14 @@
        "output_tokens": 455
       },
       {
-       "outcome": "wrong_length",
-       "answer": "PROSPECTUS",
-       "output_tokens": 1625
+       "outcome": "correct",
+       "answer": "PROSPECTS",
+       "output_tokens": 1000
       },
       {
        "outcome": "correct",
        "answer": "PROSPECTS",
-       "output_tokens": 734
+       "output_tokens": 664
       },
       {
        "outcome": "no_answer",
@@ -3325,12 +3779,17 @@
       {
        "outcome": "correct",
        "answer": "EGG TIMER",
-       "output_tokens": 6586
+       "output_tokens": 1524
       },
       {
        "outcome": "correct",
        "answer": "EGG TIMER",
-       "output_tokens": 1361
+       "output_tokens": 2453
+      },
+      {
+       "outcome": "correct",
+       "answer": "EGG TIMER",
+       "output_tokens": 98
       },
       {
        "outcome": "correct",
@@ -3339,13 +3798,13 @@
       },
       {
        "outcome": "wrong_answer",
-       "answer": "DRY CLEAN",
-       "output_tokens": 4312
+       "answer": "AIR FRYER",
+       "output_tokens": 3882
       },
       {
        "outcome": "wrong_answer",
-       "answer": "AIR FRYER",
-       "output_tokens": 2070
+       "answer": "ICE MAKER",
+       "output_tokens": 2290
       },
       {
        "outcome": "wrong_answer",
@@ -3372,12 +3831,17 @@
       {
        "outcome": "correct",
        "answer": "RINGWORM",
-       "output_tokens": 6322
+       "output_tokens": 22286
       },
       {
        "outcome": "correct",
        "answer": "RINGWORM",
-       "output_tokens": 3301
+       "output_tokens": 22513
+      },
+      {
+       "outcome": "correct",
+       "answer": "RINGWORM",
+       "output_tokens": 218
       },
       {
        "outcome": "correct",
@@ -3385,14 +3849,14 @@
        "output_tokens": 1936
       },
       {
-       "outcome": "wrong_answer",
-       "answer": "CRAWLING",
-       "output_tokens": 10546
+       "outcome": "wrong_length",
+       "answer": "OVERRUN",
+       "output_tokens": 7283
       },
       {
        "outcome": "wrong_answer",
-       "answer": "RAMPANCY",
-       "output_tokens": 2909
+       "answer": "INVASION",
+       "output_tokens": 2447
       },
       {
        "outcome": "wrong_length",
@@ -3418,12 +3882,17 @@
       {
        "outcome": "correct",
        "answer": "GROUPIE",
-       "output_tokens": 337
+       "output_tokens": 166
       },
       {
        "outcome": "correct",
        "answer": "GROUPIE",
-       "output_tokens": 636
+       "output_tokens": 825
+      },
+      {
+       "outcome": "correct",
+       "answer": "GROUPIE",
+       "output_tokens": 297
       },
       {
        "outcome": "correct",
@@ -3431,14 +3900,14 @@
        "output_tokens": 195
       },
       {
-       "outcome": "wrong_answer",
-       "answer": "DEVOTEE",
-       "output_tokens": 2733
+       "outcome": "correct",
+       "answer": "GROUPIE",
+       "output_tokens": 4175
       },
       {
-       "outcome": "wrong_answer",
-       "answer": "FANATIC",
-       "output_tokens": 1193
+       "outcome": "correct",
+       "answer": "GROUPIE",
+       "output_tokens": 1339
       },
       {
        "outcome": "correct",
@@ -3464,12 +3933,17 @@
       {
        "outcome": "correct",
        "answer": "MADE MAN",
-       "output_tokens": 271
+       "output_tokens": 161
       },
       {
        "outcome": "correct",
        "answer": "MADE MAN",
-       "output_tokens": 164
+       "output_tokens": 189
+      },
+      {
+       "outcome": "correct",
+       "answer": "MADE MAN",
+       "output_tokens": 102
       },
       {
        "outcome": "correct",
@@ -3479,12 +3953,12 @@
       {
        "outcome": "correct",
        "answer": "MADE MAN",
-       "output_tokens": 403
+       "output_tokens": 259
       },
       {
        "outcome": "correct",
        "answer": "MADE MAN",
-       "output_tokens": 290
+       "output_tokens": 271
       },
       {
        "outcome": "wrong_length",
@@ -3509,14 +3983,19 @@
      "and_lit": false,
      "results": [
       {
-       "outcome": "truncated",
-       "answer": null,
-       "output_tokens": 16000
+       "outcome": "correct",
+       "answer": "ORGASM",
+       "output_tokens": 2177
       },
       {
-       "outcome": "truncated",
-       "answer": null,
-       "output_tokens": 16000
+       "outcome": "correct",
+       "answer": "ORGASM",
+       "output_tokens": 50799
+      },
+      {
+       "outcome": "correct",
+       "answer": "ORGASM",
+       "output_tokens": 289
       },
       {
        "outcome": "correct",
@@ -3525,13 +4004,13 @@
       },
       {
        "outcome": "wrong_answer",
-       "answer": "STRAIN",
-       "output_tokens": 12258
+       "answer": "BRIDLE",
+       "output_tokens": 5329
       },
       {
-       "outcome": "wrong_answer",
-       "answer": "STIFLE",
-       "output_tokens": 3798
+       "outcome": "wrong_length",
+       "answer": "SMOTHER",
+       "output_tokens": 1610
       },
       {
        "outcome": "correct",
@@ -3557,12 +4036,17 @@
       {
        "outcome": "correct",
        "answer": "SOD'S LAW",
-       "output_tokens": 3741
+       "output_tokens": 7212
       },
       {
        "outcome": "correct",
        "answer": "SOD'S LAW",
-       "output_tokens": 4532
+       "output_tokens": 4066
+      },
+      {
+       "outcome": "correct",
+       "answer": "SOD'S LAW",
+       "output_tokens": 561
       },
       {
        "outcome": "wrong_answer",
@@ -3572,12 +4056,12 @@
       {
        "outcome": "wrong_answer",
        "answer": "PIG'S EAR",
-       "output_tokens": 4283
+       "output_tokens": 6605
       },
       {
        "outcome": "wrong_answer",
        "answer": "PIG'S EAR",
-       "output_tokens": 2451
+       "output_tokens": 2425
       },
       {
        "outcome": "wrong_length",
@@ -3601,14 +4085,19 @@
      "and_lit": false,
      "results": [
       {
-       "outcome": "truncated",
-       "answer": null,
-       "output_tokens": 16000
+       "outcome": "correct",
+       "answer": "GLACIER",
+       "output_tokens": 16765
       },
       {
-       "outcome": "truncated",
-       "answer": null,
-       "output_tokens": 16000
+       "outcome": "wrong_answer",
+       "answer": "LIGHTER",
+       "output_tokens": 54675
+      },
+      {
+       "outcome": "correct",
+       "answer": "GLACIER",
+       "output_tokens": 3690
       },
       {
        "outcome": "wrong_answer",
@@ -3616,14 +4105,14 @@
        "output_tokens": 2465
       },
       {
-       "outcome": "correct",
-       "answer": "GLACIER",
-       "output_tokens": 12798
+       "outcome": "wrong_answer",
+       "answer": "CRAWLER",
+       "output_tokens": 29345
       },
       {
        "outcome": "wrong_answer",
        "answer": "CRAWLER",
-       "output_tokens": 3162
+       "output_tokens": 2328
       },
       {
        "outcome": "wrong_answer",
@@ -3650,12 +4139,17 @@
       {
        "outcome": "correct",
        "answer": "ESTOPPED",
-       "output_tokens": 1995
+       "output_tokens": 736
       },
       {
        "outcome": "correct",
        "answer": "ESTOPPED",
-       "output_tokens": 431
+       "output_tokens": 702
+      },
+      {
+       "outcome": "correct",
+       "answer": "ESTOPPED",
+       "output_tokens": 167
       },
       {
        "outcome": "correct",
@@ -3665,12 +4159,12 @@
       {
        "outcome": "correct",
        "answer": "ESTOPPED",
-       "output_tokens": 1288
+       "output_tokens": 3215
       },
       {
-       "outcome": "wrong_answer",
-       "answer": "ENJOINED",
-       "output_tokens": 1617
+       "outcome": "correct",
+       "answer": "ESTOPPED",
+       "output_tokens": 494
       },
       {
        "outcome": "wrong_answer",
@@ -3696,12 +4190,17 @@
       {
        "outcome": "correct",
        "answer": "BRASSY",
-       "output_tokens": 5293
+       "output_tokens": 10787
       },
       {
-       "outcome": "truncated",
-       "answer": null,
-       "output_tokens": 16000
+       "outcome": "correct",
+       "answer": "BRASSY",
+       "output_tokens": 22164
+      },
+      {
+       "outcome": "wrong_answer",
+       "answer": "GLANCE",
+       "output_tokens": 7651
       },
       {
        "outcome": "wrong_answer",
@@ -3709,14 +4208,14 @@
        "output_tokens": 1033
       },
       {
-       "outcome": "wrong_answer",
-       "answer": "FLAUNT",
-       "output_tokens": 8226
+       "outcome": "correct",
+       "answer": "BRASSY",
+       "output_tokens": 1585
       },
       {
        "outcome": "wrong_answer",
-       "answer": "AGHAST",
-       "output_tokens": 1768
+       "answer": "EXPOSE",
+       "output_tokens": 3096
       },
       {
        "outcome": "wrong_length",
@@ -3742,12 +4241,17 @@
       {
        "outcome": "correct",
        "answer": "BOKEH",
-       "output_tokens": 3444
+       "output_tokens": 4038
       },
       {
        "outcome": "correct",
        "answer": "BOKEH",
-       "output_tokens": 398
+       "output_tokens": 573
+      },
+      {
+       "outcome": "correct",
+       "answer": "BOKEH",
+       "output_tokens": 579
       },
       {
        "outcome": "correct",
@@ -3757,12 +4261,12 @@
       {
        "outcome": "wrong_answer",
        "answer": "SMEAR",
-       "output_tokens": 6327
+       "output_tokens": 9146
       },
       {
        "outcome": "wrong_answer",
        "answer": "SMEAR",
-       "output_tokens": 3391
+       "output_tokens": 2296
       },
       {
        "outcome": "correct",
@@ -3788,12 +4292,17 @@
       {
        "outcome": "correct",
        "answer": "STUNT",
-       "output_tokens": 1629
+       "output_tokens": 486
       },
       {
        "outcome": "correct",
        "answer": "STUNT",
-       "output_tokens": 457
+       "output_tokens": 458
+      },
+      {
+       "outcome": "correct",
+       "answer": "STUNT",
+       "output_tokens": 117
       },
       {
        "outcome": "correct",
@@ -3803,12 +4312,12 @@
       {
        "outcome": "correct",
        "answer": "STUNT",
-       "output_tokens": 562
+       "output_tokens": 1121
       },
       {
        "outcome": "correct",
        "answer": "STUNT",
-       "output_tokens": 843
+       "output_tokens": 1365
       },
       {
        "outcome": "correct",
@@ -3835,12 +4344,17 @@
       {
        "outcome": "correct",
        "answer": "MYOPIC",
-       "output_tokens": 377
+       "output_tokens": 302
       },
       {
        "outcome": "correct",
        "answer": "MYOPIC",
-       "output_tokens": 533
+       "output_tokens": 414
+      },
+      {
+       "outcome": "correct",
+       "answer": "MYOPIC",
+       "output_tokens": 105
       },
       {
        "outcome": "correct",
@@ -3849,13 +4363,13 @@
       },
       {
        "outcome": "wrong_answer",
-       "answer": "STRICT",
-       "output_tokens": 3919
+       "answer": "LOOSEN",
+       "output_tokens": 6661
       },
       {
        "outcome": "wrong_answer",
        "answer": "LOOSEN",
-       "output_tokens": 2691
+       "output_tokens": 2167
       },
       {
        "outcome": "correct",
@@ -3881,12 +4395,17 @@
       {
        "outcome": "correct",
        "answer": "MAKE IT UP",
-       "output_tokens": 194
+       "output_tokens": 294
       },
       {
        "outcome": "correct",
        "answer": "MAKE IT UP",
-       "output_tokens": 347
+       "output_tokens": 249
+      },
+      {
+       "outcome": "correct",
+       "answer": "MAKE IT UP",
+       "output_tokens": 122
       },
       {
        "outcome": "correct",
@@ -3896,12 +4415,12 @@
       {
        "outcome": "correct",
        "answer": "MAKE IT UP",
-       "output_tokens": 740
+       "output_tokens": 548
       },
       {
        "outcome": "correct",
        "answer": "MAKE IT UP",
-       "output_tokens": 385
+       "output_tokens": 232
       },
       {
        "outcome": "correct",
@@ -3927,12 +4446,17 @@
       {
        "outcome": "correct",
        "answer": "MERE",
-       "output_tokens": 378
+       "output_tokens": 290
       },
       {
        "outcome": "correct",
        "answer": "MERE",
-       "output_tokens": 481
+       "output_tokens": 424
+      },
+      {
+       "outcome": "correct",
+       "answer": "MERE",
+       "output_tokens": 319
       },
       {
        "outcome": "correct",
@@ -3942,12 +4466,12 @@
       {
        "outcome": "correct",
        "answer": "MERE",
-       "output_tokens": 344
+       "output_tokens": 369
       },
       {
        "outcome": "correct",
        "answer": "MERE",
-       "output_tokens": 333
+       "output_tokens": 296
       },
       {
        "outcome": "wrong_answer",
@@ -3973,12 +4497,17 @@
       {
        "outcome": "correct",
        "answer": "SANDHURST",
-       "output_tokens": 224
+       "output_tokens": 250
       },
       {
        "outcome": "correct",
        "answer": "SANDHURST",
-       "output_tokens": 1591
+       "output_tokens": 259
+      },
+      {
+       "outcome": "correct",
+       "answer": "SANDHURST",
+       "output_tokens": 103
       },
       {
        "outcome": "correct",
@@ -3988,12 +4517,12 @@
       {
        "outcome": "correct",
        "answer": "SANDHURST",
-       "output_tokens": 1106
+       "output_tokens": 543
       },
       {
        "outcome": "correct",
        "answer": "SANDHURST",
-       "output_tokens": 577
+       "output_tokens": 859
       },
       {
        "outcome": "wrong_answer",
@@ -4020,12 +4549,17 @@
       {
        "outcome": "correct",
        "answer": "RILLS",
-       "output_tokens": 1739
+       "output_tokens": 626
       },
       {
        "outcome": "correct",
        "answer": "RILLS",
-       "output_tokens": 1669
+       "output_tokens": 1258
+      },
+      {
+       "outcome": "correct",
+       "answer": "RILLS",
+       "output_tokens": 168
       },
       {
        "outcome": "correct",
@@ -4035,12 +4569,12 @@
       {
        "outcome": "correct",
        "answer": "RILLS",
-       "output_tokens": 2016
+       "output_tokens": 1720
       },
       {
-       "outcome": "correct",
-       "answer": "RILLS",
-       "output_tokens": 2404
+       "outcome": "wrong_answer",
+       "answer": "GULLY",
+       "output_tokens": 2938
       },
       {
        "outcome": "correct",
@@ -4067,12 +4601,17 @@
       {
        "outcome": "correct",
        "answer": "ENNOBLE",
-       "output_tokens": 9875
+       "output_tokens": 26401
       },
       {
-       "outcome": "truncated",
-       "answer": null,
-       "output_tokens": 16000
+       "outcome": "correct",
+       "answer": "ENNOBLE",
+       "output_tokens": 19955
+      },
+      {
+       "outcome": "correct",
+       "answer": "ENNOBLE",
+       "output_tokens": 673
       },
       {
        "outcome": "wrong_answer",
@@ -4081,13 +4620,13 @@
       },
       {
        "outcome": "wrong_answer",
-       "answer": "CHARITY",
-       "output_tokens": 3633
+       "answer": "SHELTER",
+       "output_tokens": 10372
       },
       {
-       "outcome": "no_answer",
-       "answer": "UNKNOWN",
-       "output_tokens": 2215
+       "outcome": "wrong_answer",
+       "answer": "CHARITY",
+       "output_tokens": 2655
       },
       {
        "outcome": "wrong_length",
@@ -4114,12 +4653,17 @@
       {
        "outcome": "correct",
        "answer": "TALKING TO",
-       "output_tokens": 1008
+       "output_tokens": 512
       },
       {
        "outcome": "correct",
        "answer": "TALKING TO",
-       "output_tokens": 1484
+       "output_tokens": 591
+      },
+      {
+       "outcome": "correct",
+       "answer": "TALKING TO",
+       "output_tokens": 767
       },
       {
        "outcome": "correct",
@@ -4129,12 +4673,12 @@
       {
        "outcome": "correct",
        "answer": "TALKING TO",
-       "output_tokens": 3415
+       "output_tokens": 3169
       },
       {
        "outcome": "correct",
        "answer": "TALKING TO",
-       "output_tokens": 2239
+       "output_tokens": 2138
       },
       {
        "outcome": "wrong_length",
@@ -4160,12 +4704,17 @@
       {
        "outcome": "correct",
        "answer": "AGFA",
-       "output_tokens": 1189
+       "output_tokens": 5416
       },
       {
        "outcome": "correct",
        "answer": "AGFA",
-       "output_tokens": 5073
+       "output_tokens": 10022
+      },
+      {
+       "outcome": "wrong_answer",
+       "answer": "IRIS",
+       "output_tokens": 8818
       },
       {
        "outcome": "wrong_answer",
@@ -4175,12 +4724,12 @@
       {
        "outcome": "wrong_answer",
        "answer": "IRIS",
-       "output_tokens": 3256
+       "output_tokens": 3422
       },
       {
        "outcome": "wrong_answer",
-       "answer": "SEEN",
-       "output_tokens": 1955
+       "answer": "IRIS",
+       "output_tokens": 2482
       },
       {
        "outcome": "wrong_answer",
@@ -4206,12 +4755,17 @@
       {
        "outcome": "correct",
        "answer": "ASSEGAI",
-       "output_tokens": 726
+       "output_tokens": 2085
       },
       {
        "outcome": "correct",
        "answer": "ASSEGAI",
-       "output_tokens": 568
+       "output_tokens": 723
+      },
+      {
+       "outcome": "correct",
+       "answer": "ASSEGAI",
+       "output_tokens": 148
       },
       {
        "outcome": "wrong_answer",
@@ -4220,13 +4774,13 @@
       },
       {
        "outcome": "wrong_answer",
-       "answer": "MINIGUN",
-       "output_tokens": 5662
+       "answer": "BAYONET",
+       "output_tokens": 6782
       },
       {
-       "outcome": "wrong_length",
-       "answer": "RAPIER",
-       "output_tokens": 2123
+       "outcome": "wrong_answer",
+       "answer": "CARBINE",
+       "output_tokens": 1832
       },
       {
        "outcome": "wrong_answer",
@@ -4252,12 +4806,17 @@
       {
        "outcome": "correct",
        "answer": "FLOUNDERS",
-       "output_tokens": 7764
+       "output_tokens": 2912
       },
       {
        "outcome": "correct",
        "answer": "FLOUNDERS",
-       "output_tokens": 1003
+       "output_tokens": 2145
+      },
+      {
+       "outcome": "truncated",
+       "answer": null,
+       "output_tokens": 64000
       },
       {
        "outcome": "correct",
@@ -4266,13 +4825,13 @@
       },
       {
        "outcome": "wrong_answer",
-       "answer": "ENQUIRIES",
-       "output_tokens": 6258
+       "answer": "INSPECTOR",
+       "output_tokens": 9842
       },
       {
        "outcome": "wrong_answer",
-       "answer": "INQUIRIES",
-       "output_tokens": 2447
+       "answer": "INVESTING",
+       "output_tokens": 4068
       },
       {
        "outcome": "wrong_length",
@@ -4300,12 +4859,17 @@
       {
        "outcome": "correct",
        "answer": "BOB DYLAN",
-       "output_tokens": 738
+       "output_tokens": 645
       },
       {
        "outcome": "correct",
        "answer": "BOB DYLAN",
-       "output_tokens": 993
+       "output_tokens": 5015
+      },
+      {
+       "outcome": "correct",
+       "answer": "BOB DYLAN",
+       "output_tokens": 200
       },
       {
        "outcome": "wrong_length",
@@ -4313,14 +4877,14 @@
        "output_tokens": 1093
       },
       {
-       "outcome": "wrong_answer",
-       "answer": "SOB STORY",
-       "output_tokens": 4850
+       "outcome": "no_answer",
+       "answer": "UNKNOWN",
+       "output_tokens": 5346
       },
       {
-       "outcome": "wrong_answer",
-       "answer": "SOB STORY",
-       "output_tokens": 1940
+       "outcome": "wrong_length",
+       "answer": "CRY BABY",
+       "output_tokens": 2003
       },
       {
        "outcome": "wrong_answer",
@@ -4344,14 +4908,19 @@
      "and_lit": false,
      "results": [
       {
-       "outcome": "truncated",
-       "answer": null,
-       "output_tokens": 16000
+       "outcome": "correct",
+       "answer": "LESION",
+       "output_tokens": 24880
       },
       {
        "outcome": "correct",
        "answer": "LESION",
-       "output_tokens": 14806
+       "output_tokens": 13487
+      },
+      {
+       "outcome": "correct",
+       "answer": "LESION",
+       "output_tokens": 542
       },
       {
        "outcome": "wrong_answer",
@@ -4360,13 +4929,13 @@
       },
       {
        "outcome": "wrong_answer",
-       "answer": "LETHAL",
-       "output_tokens": 8374
+       "answer": "SPOILT",
+       "output_tokens": 9220
       },
       {
-       "outcome": "wrong_length",
-       "answer": "MARRING",
-       "output_tokens": 1849
+       "outcome": "wrong_answer",
+       "answer": "SCATHE",
+       "output_tokens": 2007
       },
       {
        "outcome": "wrong_answer",
@@ -4392,12 +4961,17 @@
       {
        "outcome": "correct",
        "answer": "DOWNPIPE",
-       "output_tokens": 257
+       "output_tokens": 297
       },
       {
        "outcome": "correct",
        "answer": "DOWNPIPE",
-       "output_tokens": 210
+       "output_tokens": 366
+      },
+      {
+       "outcome": "correct",
+       "answer": "DOWNPIPE",
+       "output_tokens": 292
       },
       {
        "outcome": "correct",
@@ -4407,12 +4981,12 @@
       {
        "outcome": "correct",
        "answer": "DOWNPIPE",
-       "output_tokens": 400
+       "output_tokens": 312
       },
       {
        "outcome": "correct",
        "answer": "DOWNPIPE",
-       "output_tokens": 286
+       "output_tokens": 319
       },
       {
        "outcome": "correct",
@@ -4438,12 +5012,17 @@
       {
        "outcome": "correct",
        "answer": "DEARLY",
-       "output_tokens": 350
+       "output_tokens": 247
       },
       {
        "outcome": "correct",
        "answer": "DEARLY",
-       "output_tokens": 224
+       "output_tokens": 267
+      },
+      {
+       "outcome": "correct",
+       "answer": "DEARLY",
+       "output_tokens": 104
       },
       {
        "outcome": "correct",
@@ -4453,12 +5032,12 @@
       {
        "outcome": "correct",
        "answer": "DEARLY",
-       "output_tokens": 638
+       "output_tokens": 360
       },
       {
        "outcome": "correct",
        "answer": "DEARLY",
-       "output_tokens": 436
+       "output_tokens": 292
       },
       {
        "outcome": "correct",
@@ -4485,12 +5064,17 @@
       {
        "outcome": "correct",
        "answer": "RELEARN",
-       "output_tokens": 1792
+       "output_tokens": 6999
       },
       {
        "outcome": "correct",
        "answer": "RELEARN",
-       "output_tokens": 6381
+       "output_tokens": 1205
+      },
+      {
+       "outcome": "correct",
+       "answer": "RELEARN",
+       "output_tokens": 758
       },
       {
        "outcome": "wrong_answer",
@@ -4498,14 +5082,14 @@
        "output_tokens": 2080
       },
       {
-       "outcome": "truncated",
-       "answer": null,
-       "output_tokens": 16000
+       "outcome": "wrong_answer",
+       "answer": "OTHELLO",
+       "output_tokens": 13365
       },
       {
        "outcome": "wrong_answer",
-       "answer": "HORATIO",
-       "output_tokens": 2678
+       "answer": "CALIBAN",
+       "output_tokens": 2743
       },
       {
        "outcome": "wrong_length",
@@ -4529,14 +5113,19 @@
      "and_lit": false,
      "results": [
       {
-       "outcome": "truncated",
-       "answer": null,
-       "output_tokens": 16000
+       "outcome": "correct",
+       "answer": "REMONSTRATION",
+       "output_tokens": 33376
       },
       {
-       "outcome": "truncated",
-       "answer": null,
-       "output_tokens": 16000
+       "outcome": "correct",
+       "answer": "REMONSTRATION",
+       "output_tokens": 29481
+      },
+      {
+       "outcome": "correct",
+       "answer": "REMONSTRATION",
+       "output_tokens": 6043
       },
       {
        "outcome": "near_miss",
@@ -4544,14 +5133,14 @@
        "output_tokens": 2019
       },
       {
-       "outcome": "no_answer",
-       "answer": "UNKNOWN",
-       "output_tokens": 6611
+       "outcome": "near_miss",
+       "answer": "DEMONSTRATION",
+       "output_tokens": 6156
       },
       {
        "outcome": "near_miss",
        "answer": "DEMONSTRATION",
-       "output_tokens": 2902
+       "output_tokens": 2143
       },
       {
        "outcome": "wrong_length",
@@ -4577,12 +5166,17 @@
       {
        "outcome": "correct",
        "answer": "LOTUS",
-       "output_tokens": 298
+       "output_tokens": 714
       },
       {
        "outcome": "correct",
        "answer": "LOTUS",
-       "output_tokens": 516
+       "output_tokens": 123
+      },
+      {
+       "outcome": "correct",
+       "answer": "LOTUS",
+       "output_tokens": 87
       },
       {
        "outcome": "correct",
@@ -4592,12 +5186,12 @@
       {
        "outcome": "correct",
        "answer": "LOTUS",
-       "output_tokens": 1731
+       "output_tokens": 716
       },
       {
        "outcome": "correct",
        "answer": "LOTUS",
-       "output_tokens": 580
+       "output_tokens": 1334
       },
       {
        "outcome": "correct",
@@ -4625,12 +5219,17 @@
       {
        "outcome": "truncated",
        "answer": null,
-       "output_tokens": 16000
+       "output_tokens": 64000
       },
       {
        "outcome": "truncated",
        "answer": null,
-       "output_tokens": 16000
+       "output_tokens": 64000
+      },
+      {
+       "outcome": "truncated",
+       "answer": null,
+       "output_tokens": 64000
       },
       {
        "outcome": "wrong_answer",
@@ -4638,14 +5237,14 @@
        "output_tokens": 1827
       },
       {
-       "outcome": "wrong_length",
-       "answer": "MEGALITH",
-       "output_tokens": 3567
+       "outcome": "wrong_answer",
+       "answer": "POLYPTYCH",
+       "output_tokens": 7193
       },
       {
-       "outcome": "wrong_answer",
-       "answer": "MEGALITHS",
-       "output_tokens": 2005
+       "outcome": "wrong_length",
+       "answer": "MEGALITH",
+       "output_tokens": 2265
       },
       {
        "outcome": "wrong_answer",
@@ -4670,14 +5269,19 @@
      "and_lit": false,
      "results": [
       {
-       "outcome": "truncated",
-       "answer": null,
-       "output_tokens": 16000
+       "outcome": "wrong_answer",
+       "answer": "SIMPLE-MINDED",
+       "output_tokens": 50287
       },
       {
        "outcome": "truncated",
        "answer": null,
-       "output_tokens": 16000
+       "output_tokens": 64000
+      },
+      {
+       "outcome": "correct",
+       "answer": "MUTTON-HEADED",
+       "output_tokens": 4430
       },
       {
        "outcome": "wrong_answer",
@@ -4685,14 +5289,14 @@
        "output_tokens": 1804
       },
       {
-       "outcome": "no_answer",
-       "answer": "UNKNOWN",
-       "output_tokens": 7126
+       "outcome": "wrong_length",
+       "answer": "DUMBDANDY",
+       "output_tokens": 4909
       },
       {
-       "outcome": "no_answer",
-       "answer": "UNKNOWN",
-       "output_tokens": 1991
+       "outcome": "wrong_length",
+       "answer": "DANDY DOZY",
+       "output_tokens": 1696
       },
       {
        "outcome": "wrong_length",
@@ -4719,12 +5323,17 @@
       {
        "outcome": "correct",
        "answer": "EXOPLANET",
-       "output_tokens": 5437
+       "output_tokens": 3845
       },
       {
-       "outcome": "truncated",
-       "answer": null,
-       "output_tokens": 16000
+       "outcome": "correct",
+       "answer": "EXOPLANET",
+       "output_tokens": 4229
+      },
+      {
+       "outcome": "wrong_answer",
+       "answer": "WATERMARK",
+       "output_tokens": 21030
       },
       {
        "outcome": "correct",
@@ -4733,13 +5342,13 @@
       },
       {
        "outcome": "wrong_answer",
-       "answer": "SPRINGBOK",
-       "output_tokens": 10028
+       "answer": "BLACKBUCK",
+       "output_tokens": 9131
       },
       {
        "outcome": "wrong_answer",
-       "answer": "SITATUNGA",
-       "output_tokens": 2727
+       "answer": "SPRINGBOK",
+       "output_tokens": 2592
       },
       {
        "outcome": "wrong_length",
@@ -4765,12 +5374,17 @@
       {
        "outcome": "correct",
        "answer": "ASSASSIN",
-       "output_tokens": 313
+       "output_tokens": 325
       },
       {
        "outcome": "correct",
        "answer": "ASSASSIN",
-       "output_tokens": 321
+       "output_tokens": 471
+      },
+      {
+       "outcome": "correct",
+       "answer": "ASSASSIN",
+       "output_tokens": 371
       },
       {
        "outcome": "correct",
@@ -4779,13 +5393,13 @@
       },
       {
        "outcome": "wrong_answer",
-       "answer": "NUMSKULL",
-       "output_tokens": 2885
+       "answer": "MANIKINS",
+       "output_tokens": 3574
       },
       {
        "outcome": "wrong_answer",
-       "answer": "MANNIKIN",
-       "output_tokens": 1825
+       "answer": "DUMBBELL",
+       "output_tokens": 1678
       },
       {
        "outcome": "correct",
@@ -4812,12 +5426,17 @@
       {
        "outcome": "truncated",
        "answer": null,
-       "output_tokens": 16000
+       "output_tokens": 64000
       },
       {
        "outcome": "truncated",
        "answer": null,
-       "output_tokens": 16000
+       "output_tokens": 64000
+      },
+      {
+       "outcome": "truncated",
+       "answer": null,
+       "output_tokens": 64000
       },
       {
        "outcome": "wrong_answer",
@@ -4825,14 +5444,14 @@
        "output_tokens": 931
       },
       {
-       "outcome": "truncated",
-       "answer": null,
-       "output_tokens": 16000
+       "outcome": "wrong_answer",
+       "answer": "VINDALOO",
+       "output_tokens": 43898
       },
       {
        "outcome": "wrong_answer",
-       "answer": "FRASCATI",
-       "output_tokens": 3489
+       "answer": "BORDEAUX",
+       "output_tokens": 4820
       },
       {
        "outcome": "no_answer",
@@ -4856,14 +5475,19 @@
      "and_lit": false,
      "results": [
       {
-       "outcome": "correct",
-       "answer": "SKIN FRICTION",
-       "output_tokens": 1196
+       "outcome": "wrong_answer",
+       "answer": "WALL FRICTION",
+       "output_tokens": 35095
       },
       {
        "outcome": "correct",
        "answer": "SKIN FRICTION",
-       "output_tokens": 3494
+       "output_tokens": 3974
+      },
+      {
+       "outcome": "correct",
+       "answer": "SKIN FRICTION",
+       "output_tokens": 652
       },
       {
        "outcome": "correct",
@@ -4873,12 +5497,12 @@
       {
        "outcome": "correct",
        "answer": "SKIN FRICTION",
-       "output_tokens": 1591
+       "output_tokens": 1946
       },
       {
        "outcome": "correct",
        "answer": "SKIN FRICTION",
-       "output_tokens": 1300
+       "output_tokens": 1257
       },
       {
        "outcome": "correct",
@@ -4904,12 +5528,17 @@
       {
        "outcome": "correct",
        "answer": "UGANDA",
-       "output_tokens": 4141
+       "output_tokens": 2933
       },
       {
        "outcome": "correct",
        "answer": "UGANDA",
-       "output_tokens": 4371
+       "output_tokens": 5462
+      },
+      {
+       "outcome": "correct",
+       "answer": "UGANDA",
+       "output_tokens": 873
       },
       {
        "outcome": "wrong_length",
@@ -4918,13 +5547,13 @@
       },
       {
        "outcome": "wrong_answer",
-       "answer": "TURKEY",
-       "output_tokens": 4114
+       "answer": "BRAZIL",
+       "output_tokens": 13914
       },
       {
-       "outcome": "wrong_answer",
-       "answer": "TURKEY",
-       "output_tokens": 1329
+       "outcome": "wrong_length",
+       "answer": "YEMEN",
+       "output_tokens": 1368
       },
       {
        "outcome": "wrong_answer",
@@ -4950,12 +5579,17 @@
       {
        "outcome": "correct",
        "answer": "FROSTY",
-       "output_tokens": 8363
+       "output_tokens": 8691
       },
       {
        "outcome": "correct",
        "answer": "FROSTY",
-       "output_tokens": 4880
+       "output_tokens": 36078
+      },
+      {
+       "outcome": "correct",
+       "answer": "FROSTY",
+       "output_tokens": 863
       },
       {
        "outcome": "wrong_answer",
@@ -4963,14 +5597,14 @@
        "output_tokens": 2287
       },
       {
-       "outcome": "wrong_answer",
-       "answer": "CHILLY",
-       "output_tokens": 14128
+       "outcome": "wrong_length",
+       "answer": "BLEAK",
+       "output_tokens": 5463
       },
       {
-       "outcome": "wrong_answer",
-       "answer": "CHILLY",
-       "output_tokens": 2725
+       "outcome": "wrong_length",
+       "answer": "BLEAK",
+       "output_tokens": 2672
       },
       {
        "outcome": "wrong_answer",
@@ -4996,12 +5630,17 @@
       {
        "outcome": "correct",
        "answer": "WREATH",
-       "output_tokens": 2858
+       "output_tokens": 1169
       },
       {
        "outcome": "correct",
        "answer": "WREATH",
-       "output_tokens": 1144
+       "output_tokens": 5078
+      },
+      {
+       "outcome": "correct",
+       "answer": "WREATH",
+       "output_tokens": 127
       },
       {
        "outcome": "wrong_answer",
@@ -5009,14 +5648,14 @@
        "output_tokens": 1394
       },
       {
-       "outcome": "correct",
-       "answer": "WREATH",
-       "output_tokens": 1014
+       "outcome": "wrong_answer",
+       "answer": "PLAQUE",
+       "output_tokens": 992
       },
       {
        "outcome": "correct",
        "answer": "WREATH",
-       "output_tokens": 481
+       "output_tokens": 567
       },
       {
        "outcome": "wrong_length",
@@ -5043,12 +5682,17 @@
       {
        "outcome": "correct",
        "answer": "APOCRYPHA",
-       "output_tokens": 2168
+       "output_tokens": 2185
       },
       {
        "outcome": "correct",
        "answer": "APOCRYPHA",
-       "output_tokens": 1139
+       "output_tokens": 3023
+      },
+      {
+       "outcome": "correct",
+       "answer": "APOCRYPHA",
+       "output_tokens": 228
       },
       {
        "outcome": "correct",
@@ -5056,14 +5700,14 @@
        "output_tokens": 1479
       },
       {
-       "outcome": "correct",
-       "answer": "APOCRYPHA",
-       "output_tokens": 1345
+       "outcome": "wrong_answer",
+       "answer": "AMBIGUOUS",
+       "output_tokens": 3986
       },
       {
        "outcome": "correct",
        "answer": "APOCRYPHA",
-       "output_tokens": 2282
+       "output_tokens": 1655
       },
       {
        "outcome": "correct",
@@ -5088,14 +5732,19 @@
      "and_lit": false,
      "results": [
       {
-       "outcome": "truncated",
-       "answer": null,
-       "output_tokens": 16000
+       "outcome": "wrong_answer",
+       "answer": "RISHI",
+       "output_tokens": 36212
       },
       {
        "outcome": "wrong_answer",
-       "answer": "REELS",
-       "output_tokens": 4713
+       "answer": "ASTIR",
+       "output_tokens": 57993
+      },
+      {
+       "outcome": "wrong_answer",
+       "answer": "OSCAR",
+       "output_tokens": 1393
       },
       {
        "outcome": "wrong_answer",
@@ -5104,13 +5753,13 @@
       },
       {
        "outcome": "wrong_answer",
-       "answer": "REALT",
-       "output_tokens": 4136
+       "answer": "ALGOL",
+       "output_tokens": 4729
       },
       {
        "outcome": "wrong_answer",
-       "answer": "ROVER",
-       "output_tokens": 2218
+       "answer": "ALGOL",
+       "output_tokens": 2688
       },
       {
        "outcome": "wrong_answer",
@@ -5136,12 +5785,17 @@
       {
        "outcome": "truncated",
        "answer": null,
-       "output_tokens": 16000
+       "output_tokens": 64000
+      },
+      {
+       "outcome": "wrong_answer",
+       "answer": "PRONE",
+       "output_tokens": 54233
       },
       {
        "outcome": "truncated",
        "answer": null,
-       "output_tokens": 16000
+       "output_tokens": 64000
       },
       {
        "outcome": "wrong_answer",
@@ -5150,13 +5804,13 @@
       },
       {
        "outcome": "wrong_answer",
-       "answer": "INLET",
-       "output_tokens": 8252
+       "answer": "BOUGH",
+       "output_tokens": 9239
       },
       {
-       "outcome": "wrong_length",
-       "answer": "PALM",
-       "output_tokens": 2087
+       "outcome": "wrong_answer",
+       "answer": "RIVAL",
+       "output_tokens": 2715
       },
       {
        "outcome": "wrong_answer",
@@ -5181,14 +5835,19 @@
      "and_lit": false,
      "results": [
       {
-       "outcome": "truncated",
-       "answer": null,
-       "output_tokens": 16000
+       "outcome": "correct",
+       "answer": "SWAGGER",
+       "output_tokens": 44023
       },
       {
-       "outcome": "truncated",
-       "answer": null,
-       "output_tokens": 16000
+       "outcome": "wrong_answer",
+       "answer": "HOTDOGS",
+       "output_tokens": 28900
+      },
+      {
+       "outcome": "correct",
+       "answer": "SWAGGER",
+       "output_tokens": 6341
       },
       {
        "outcome": "wrong_answer",
@@ -5197,13 +5856,13 @@
       },
       {
        "outcome": "wrong_answer",
-       "answer": "SHADOWS",
-       "output_tokens": 8789
+       "answer": "TERRACE",
+       "output_tokens": 7174
       },
       {
-       "outcome": "wrong_length",
-       "answer": "ASTERN",
-       "output_tokens": 1929
+       "outcome": "wrong_answer",
+       "answer": "GALLERY",
+       "output_tokens": 3686
       },
       {
        "outcome": "wrong_answer",
@@ -5227,14 +5886,19 @@
      "and_lit": false,
      "results": [
       {
-       "outcome": "correct",
-       "answer": "INNINGS",
-       "output_tokens": 13556
+       "outcome": "wrong_answer",
+       "answer": "BETTING",
+       "output_tokens": 28201
       },
       {
        "outcome": "truncated",
        "answer": null,
-       "output_tokens": 16000
+       "output_tokens": 64000
+      },
+      {
+       "outcome": "wrong_answer",
+       "answer": "BETTING",
+       "output_tokens": 5558
       },
       {
        "outcome": "wrong_answer",
@@ -5243,13 +5907,13 @@
       },
       {
        "outcome": "wrong_answer",
-       "answer": "EXPENSE",
-       "output_tokens": 7049
+       "answer": "OUTLAID",
+       "output_tokens": 6550
       },
       {
        "outcome": "wrong_answer",
        "answer": "OUTLAID",
-       "output_tokens": 2531
+       "output_tokens": 1821
       },
       {
        "outcome": "wrong_answer",
@@ -5275,12 +5939,17 @@
       {
        "outcome": "correct",
        "answer": "NEEDLE",
-       "output_tokens": 206
+       "output_tokens": 216
       },
       {
        "outcome": "correct",
        "answer": "NEEDLE",
-       "output_tokens": 406
+       "output_tokens": 801
+      },
+      {
+       "outcome": "correct",
+       "answer": "NEEDLE",
+       "output_tokens": 125
       },
       {
        "outcome": "correct",
@@ -5290,12 +5959,12 @@
       {
        "outcome": "correct",
        "answer": "NEEDLE",
-       "output_tokens": 518
+       "output_tokens": 1112
       },
       {
        "outcome": "correct",
        "answer": "NEEDLE",
-       "output_tokens": 413
+       "output_tokens": 783
       },
       {
        "outcome": "wrong_length",
@@ -5322,12 +5991,17 @@
       {
        "outcome": "correct",
        "answer": "UNSTEADY",
-       "output_tokens": 706
+       "output_tokens": 554
       },
       {
        "outcome": "correct",
        "answer": "UNSTEADY",
-       "output_tokens": 2012
+       "output_tokens": 630
+      },
+      {
+       "outcome": "truncated",
+       "answer": null,
+       "output_tokens": 64000
       },
       {
        "outcome": "no_answer",
@@ -5336,13 +6010,13 @@
       },
       {
        "outcome": "wrong_answer",
-       "answer": "SWINGING",
-       "output_tokens": 3811
+       "answer": "CRADLING",
+       "output_tokens": 6533
       },
       {
        "outcome": "wrong_answer",
        "answer": "SWINGING",
-       "output_tokens": 2087
+       "output_tokens": 2815
       },
       {
        "outcome": "wrong_length",
@@ -5367,14 +6041,19 @@
      "and_lit": false,
      "results": [
       {
-       "outcome": "truncated",
-       "answer": null,
-       "output_tokens": 16000
+       "outcome": "wrong_answer",
+       "answer": "BLUE RINSE",
+       "output_tokens": 41651
       },
       {
-       "outcome": "truncated",
-       "answer": null,
-       "output_tokens": 16000
+       "outcome": "wrong_answer",
+       "answer": "SACK CLOTH",
+       "output_tokens": 36574
+      },
+      {
+       "outcome": "wrong_answer",
+       "answer": "DRAB MOUSE",
+       "output_tokens": 10824
       },
       {
        "outcome": "wrong_answer",
@@ -5383,13 +6062,13 @@
       },
       {
        "outcome": "wrong_answer",
-       "answer": "GREY MOUSE",
-       "output_tokens": 3272
+       "answer": "PRIMPRUDE",
+       "output_tokens": 6474
       },
       {
        "outcome": "wrong_answer",
-       "answer": "GREY MOUSE",
-       "output_tokens": 3184
+       "answer": "BLUE PETER",
+       "output_tokens": 4566
       },
       {
        "outcome": "no_answer",
@@ -5413,14 +6092,19 @@
      "and_lit": false,
      "results": [
       {
-       "outcome": "truncated",
-       "answer": null,
-       "output_tokens": 16000
+       "outcome": "correct",
+       "answer": "PAINT STRIPPER",
+       "output_tokens": 8963
+      },
+      {
+       "outcome": "wrong_length",
+       "answer": "PAINT THINNER",
+       "output_tokens": 26538
       },
       {
        "outcome": "wrong_answer",
-       "answer": "PAINT THINNERS",
-       "output_tokens": 15066
+       "answer": "COUNT CALORIES",
+       "output_tokens": 1039
       },
       {
        "outcome": "wrong_length",
@@ -5429,13 +6113,13 @@
       },
       {
        "outcome": "wrong_answer",
-       "answer": "DRINK ABSINTHE",
-       "output_tokens": 2357
+       "answer": "COUNT CALORIES",
+       "output_tokens": 1334
       },
       {
        "outcome": "wrong_length",
-       "answer": "WATER DOWN",
-       "output_tokens": 2144
+       "answer": "PAINT THINNER",
+       "output_tokens": 2497
       },
       {
        "outcome": "wrong_answer",
@@ -5462,14 +6146,19 @@
      "and_lit": false,
      "results": [
       {
-       "outcome": "truncated",
-       "answer": null,
-       "output_tokens": 16000
+       "outcome": "correct",
+       "answer": "GANDHI",
+       "output_tokens": 10793
       },
       {
-       "outcome": "truncated",
-       "answer": null,
-       "output_tokens": 16000
+       "outcome": "correct",
+       "answer": "GANDHI",
+       "output_tokens": 41125
+      },
+      {
+       "outcome": "correct",
+       "answer": "GANDHI",
+       "output_tokens": 361
       },
       {
        "outcome": "correct",
@@ -5479,12 +6168,12 @@
       {
        "outcome": "correct",
        "answer": "GANDHI",
-       "output_tokens": 2064
+       "output_tokens": 2611
       },
       {
-       "outcome": "correct",
-       "answer": "GANDHI",
-       "output_tokens": 1209
+       "outcome": "wrong_answer",
+       "answer": "EXODUS",
+       "output_tokens": 1685
       },
       {
        "outcome": "correct",
@@ -5511,12 +6200,17 @@
       {
        "outcome": "correct",
        "answer": "ATLAS",
-       "output_tokens": 1492
+       "output_tokens": 1303
       },
       {
        "outcome": "correct",
        "answer": "ATLAS",
-       "output_tokens": 494
+       "output_tokens": 1699
+      },
+      {
+       "outcome": "correct",
+       "answer": "ATLAS",
+       "output_tokens": 174
       },
       {
        "outcome": "correct",
@@ -5526,12 +6220,12 @@
       {
        "outcome": "correct",
        "answer": "ATLAS",
-       "output_tokens": 1490
+       "output_tokens": 1520
       },
       {
-       "outcome": "wrong_length",
-       "answer": "AXIS",
-       "output_tokens": 1168
+       "outcome": "correct",
+       "answer": "ATLAS",
+       "output_tokens": 661
       },
       {
        "outcome": "correct",
@@ -5557,12 +6251,17 @@
       {
        "outcome": "correct",
        "answer": "DIAMONDS",
-       "output_tokens": 1054
+       "output_tokens": 589
       },
       {
        "outcome": "correct",
        "answer": "DIAMONDS",
-       "output_tokens": 1325
+       "output_tokens": 3211
+      },
+      {
+       "outcome": "correct",
+       "answer": "DIAMONDS",
+       "output_tokens": 213
       },
       {
        "outcome": "wrong_answer",
@@ -5570,14 +6269,14 @@
        "output_tokens": 2106
       },
       {
-       "outcome": "correct",
-       "answer": "DIAMONDS",
-       "output_tokens": 1135
+       "outcome": "wrong_answer",
+       "answer": "ICEFLOES",
+       "output_tokens": 1559
       },
       {
        "outcome": "correct",
        "answer": "DIAMONDS",
-       "output_tokens": 677
+       "output_tokens": 781
       },
       {
        "outcome": "wrong_answer",
@@ -5604,12 +6303,17 @@
       {
        "outcome": "correct",
        "answer": "INNUENDO",
-       "output_tokens": 4161
+       "output_tokens": 940
       },
       {
        "outcome": "correct",
        "answer": "INNUENDO",
-       "output_tokens": 1648
+       "output_tokens": 1755
+      },
+      {
+       "outcome": "correct",
+       "answer": "INNUENDO",
+       "output_tokens": 276
       },
       {
        "outcome": "correct",
@@ -5619,12 +6323,12 @@
       {
        "outcome": "correct",
        "answer": "INNUENDO",
-       "output_tokens": 1498
+       "output_tokens": 1346
       },
       {
        "outcome": "correct",
        "answer": "INNUENDO",
-       "output_tokens": 1263
+       "output_tokens": 1897
       },
       {
        "outcome": "correct",
@@ -5650,14 +6354,19 @@
      "and_lit": false,
      "results": [
       {
-       "outcome": "truncated",
-       "answer": null,
-       "output_tokens": 16000
+       "outcome": "wrong_answer",
+       "answer": "TEHERAN",
+       "output_tokens": 26768
       },
       {
-       "outcome": "truncated",
-       "answer": null,
-       "output_tokens": 16000
+       "outcome": "wrong_answer",
+       "answer": "TEHERAN",
+       "output_tokens": 46020
+      },
+      {
+       "outcome": "wrong_answer",
+       "answer": "NICOSIA",
+       "output_tokens": 1614
       },
       {
        "outcome": "wrong_answer",
@@ -5665,14 +6374,14 @@
        "output_tokens": 2317
       },
       {
-       "outcome": "wrong_answer",
-       "answer": "MUSICAL",
-       "output_tokens": 7162
+       "outcome": "wrong_length",
+       "answer": "PREMIERE",
+       "output_tokens": 5783
       },
       {
-       "outcome": "wrong_answer",
-       "answer": "MANAGUA",
-       "output_tokens": 3491
+       "outcome": "wrong_length",
+       "answer": "PREMIERE",
+       "output_tokens": 2132
       },
       {
        "outcome": "wrong_answer",
@@ -5696,14 +6405,19 @@
      "and_lit": false,
      "results": [
       {
-       "outcome": "correct",
-       "answer": "ASPIC",
-       "output_tokens": 12841
+       "outcome": "wrong_answer",
+       "answer": "PITTA",
+       "output_tokens": 27191
       },
       {
-       "outcome": "truncated",
-       "answer": null,
-       "output_tokens": 16000
+       "outcome": "correct",
+       "answer": "ASPIC",
+       "output_tokens": 6915
+      },
+      {
+       "outcome": "wrong_answer",
+       "answer": "RAITA",
+       "output_tokens": 11461
       },
       {
        "outcome": "wrong_answer",
@@ -5713,12 +6427,12 @@
       {
        "outcome": "correct",
        "answer": "ASPIC",
-       "output_tokens": 10202
+       "output_tokens": 6598
       },
       {
-       "outcome": "correct",
-       "answer": "ASPIC",
-       "output_tokens": 985
+       "outcome": "wrong_answer",
+       "answer": "PASTA",
+       "output_tokens": 3134
       },
       {
        "outcome": "wrong_length",
@@ -5744,12 +6458,17 @@
       {
        "outcome": "correct",
        "answer": "ARNOLD WESKER",
-       "output_tokens": 2033
+       "output_tokens": 721
       },
       {
        "outcome": "correct",
        "answer": "ARNOLD WESKER",
-       "output_tokens": 3673
+       "output_tokens": 2905
+      },
+      {
+       "outcome": "correct",
+       "answer": "ARNOLD WESKER",
+       "output_tokens": 511
       },
       {
        "outcome": "correct",
@@ -5757,14 +6476,14 @@
        "output_tokens": 2082
       },
       {
-       "outcome": "wrong_answer",
-       "answer": "SCRIPTWRITER",
-       "output_tokens": 7946
+       "outcome": "correct",
+       "answer": "ARNOLD WESKER",
+       "output_tokens": 1438
       },
       {
        "outcome": "correct",
-       "answer": "ARNOLD WESKER",
-       "output_tokens": 1679
+       "answer": "ARNOLDWESKER",
+       "output_tokens": 833
       },
       {
        "outcome": "wrong_answer",
@@ -5792,12 +6511,17 @@
       {
        "outcome": "correct",
        "answer": "LITTORAL",
-       "output_tokens": 772
+       "output_tokens": 694
       },
       {
        "outcome": "correct",
        "answer": "LITTORAL",
-       "output_tokens": 300
+       "output_tokens": 568
+      },
+      {
+       "outcome": "correct",
+       "answer": "LITTORAL",
+       "output_tokens": 155
       },
       {
        "outcome": "correct",
@@ -5807,12 +6531,12 @@
       {
        "outcome": "correct",
        "answer": "LITTORAL",
-       "output_tokens": 3365
+       "output_tokens": 1574
       },
       {
        "outcome": "correct",
        "answer": "LITTORAL",
-       "output_tokens": 3597
+       "output_tokens": 1418
       },
       {
        "outcome": "correct",
@@ -5838,12 +6562,17 @@
       {
        "outcome": "correct",
        "answer": "FRIDGE",
-       "output_tokens": 1872
+       "output_tokens": 5790
       },
       {
        "outcome": "correct",
        "answer": "FRIDGE",
-       "output_tokens": 886
+       "output_tokens": 8505
+      },
+      {
+       "outcome": "correct",
+       "answer": "FRIDGE",
+       "output_tokens": 240
       },
       {
        "outcome": "wrong_answer",
@@ -5853,12 +6582,12 @@
       {
        "outcome": "wrong_answer",
        "answer": "CHILLY",
-       "output_tokens": 14712
+       "output_tokens": 20072
       },
       {
        "outcome": "wrong_answer",
-       "answer": "CHILLY",
-       "output_tokens": 3321
+       "answer": "ALPINE",
+       "output_tokens": 4043
       },
       {
        "outcome": "correct",
@@ -5883,14 +6612,19 @@
      "and_lit": false,
      "results": [
       {
-       "outcome": "truncated",
-       "answer": null,
-       "output_tokens": 16000
+       "outcome": "correct",
+       "answer": "WESTBOUND",
+       "output_tokens": 18098
+      },
+      {
+       "outcome": "wrong_answer",
+       "answer": "WESTWARDS",
+       "output_tokens": 19342
       },
       {
        "outcome": "correct",
        "answer": "WESTBOUND",
-       "output_tokens": 9404
+       "output_tokens": 1421
       },
       {
        "outcome": "correct",
@@ -5898,14 +6632,14 @@
        "output_tokens": 1016
       },
       {
-       "outcome": "correct",
-       "answer": "WESTBOUND",
-       "output_tokens": 1351
+       "outcome": "wrong_answer",
+       "answer": "WESTWARDS",
+       "output_tokens": 716
       },
       {
        "outcome": "correct",
        "answer": "WESTBOUND",
-       "output_tokens": 984
+       "output_tokens": 988
       },
       {
        "outcome": "correct",
@@ -5929,14 +6663,19 @@
      "and_lit": false,
      "results": [
       {
-       "outcome": "truncated",
-       "answer": null,
-       "output_tokens": 16000
+       "outcome": "correct",
+       "answer": "BARRACKED",
+       "output_tokens": 499
       },
       {
        "outcome": "correct",
        "answer": "BARRACKED",
-       "output_tokens": 1282
+       "output_tokens": 2216
+      },
+      {
+       "outcome": "correct",
+       "answer": "BARRACKED",
+       "output_tokens": 880
       },
       {
        "outcome": "correct",
@@ -5945,13 +6684,13 @@
       },
       {
        "outcome": "wrong_answer",
-       "answer": "LAMPOONED",
-       "output_tokens": 8298
+       "answer": "PILLORIED",
+       "output_tokens": 4680
       },
       {
        "outcome": "wrong_answer",
        "answer": "PILLORIED",
-       "output_tokens": 2612
+       "output_tokens": 1719
       },
       {
        "outcome": "no_answer",
@@ -5977,12 +6716,17 @@
       {
        "outcome": "correct",
        "answer": "DERVISHES",
-       "output_tokens": 738
+       "output_tokens": 745
       },
       {
        "outcome": "correct",
        "answer": "DERVISHES",
-       "output_tokens": 2241
+       "output_tokens": 1078
+      },
+      {
+       "outcome": "correct",
+       "answer": "DERVISHES",
+       "output_tokens": 236
       },
       {
        "outcome": "wrong_answer",
@@ -5990,14 +6734,14 @@
        "output_tokens": 2113
       },
       {
-       "outcome": "wrong_length",
-       "answer": "SHIVERED",
-       "output_tokens": 5458
+       "outcome": "correct",
+       "answer": "DERVISHES",
+       "output_tokens": 433
       },
       {
-       "outcome": "wrong_length",
-       "answer": "SHIVERED",
-       "output_tokens": 2186
+       "outcome": "correct",
+       "answer": "DERVISHES",
+       "output_tokens": 1156
       },
       {
        "outcome": "wrong_answer",
@@ -6023,12 +6767,17 @@
       {
        "outcome": "correct",
        "answer": "AWARD",
-       "output_tokens": 1007
+       "output_tokens": 531
       },
       {
        "outcome": "correct",
        "answer": "AWARD",
-       "output_tokens": 806
+       "output_tokens": 1071
+      },
+      {
+       "outcome": "correct",
+       "answer": "AWARD",
+       "output_tokens": 106
       },
       {
        "outcome": "correct",
@@ -6038,12 +6787,12 @@
       {
        "outcome": "correct",
        "answer": "AWARD",
-       "output_tokens": 430
+       "output_tokens": 439
       },
       {
        "outcome": "correct",
        "answer": "AWARD",
-       "output_tokens": 504
+       "output_tokens": 374
       },
       {
        "outcome": "correct",
@@ -6069,12 +6818,17 @@
       {
        "outcome": "correct",
        "answer": "ALTERCATE",
-       "output_tokens": 4412
+       "output_tokens": 3643
       },
       {
        "outcome": "correct",
        "answer": "ALTERCATE",
-       "output_tokens": 2508
+       "output_tokens": 459
+      },
+      {
+       "outcome": "correct",
+       "answer": "ALTERCATE",
+       "output_tokens": 342
       },
       {
        "outcome": "wrong_answer",
@@ -6083,13 +6837,13 @@
       },
       {
        "outcome": "wrong_answer",
-       "answer": "REASONING",
-       "output_tokens": 3600
+       "answer": "BICKERING",
+       "output_tokens": 5701
       },
       {
        "outcome": "correct",
        "answer": "ALTERCATE",
-       "output_tokens": 1013
+       "output_tokens": 1210
       },
       {
        "outcome": "wrong_length",
@@ -6113,14 +6867,19 @@
      "and_lit": false,
      "results": [
       {
-       "outcome": "correct",
-       "answer": "SHEER",
-       "output_tokens": 771
+       "outcome": "wrong_answer",
+       "answer": "ALLAY",
+       "output_tokens": 785
       },
       {
        "outcome": "correct",
        "answer": "SHEER",
-       "output_tokens": 799
+       "output_tokens": 322
+      },
+      {
+       "outcome": "correct",
+       "answer": "SHEER",
+       "output_tokens": 209
       },
       {
        "outcome": "correct",
@@ -6128,14 +6887,14 @@
        "output_tokens": 368
       },
       {
-       "outcome": "wrong_answer",
-       "answer": "STILL",
-       "output_tokens": 1819
-      },
-      {
        "outcome": "correct",
        "answer": "SHEER",
-       "output_tokens": 655
+       "output_tokens": 1059
+      },
+      {
+       "outcome": "wrong_answer",
+       "answer": "STILL",
+       "output_tokens": 2325
       },
       {
        "outcome": "wrong_answer",
@@ -6161,12 +6920,17 @@
       {
        "outcome": "correct",
        "answer": "EARTHSTAR",
-       "output_tokens": 676
+       "output_tokens": 574
       },
       {
        "outcome": "correct",
        "answer": "EARTHSTAR",
-       "output_tokens": 776
+       "output_tokens": 414
+      },
+      {
+       "outcome": "correct",
+       "answer": "EARTHSTAR",
+       "output_tokens": 121
       },
       {
        "outcome": "correct",
@@ -6176,12 +6940,12 @@
       {
        "outcome": "correct",
        "answer": "EARTHSTAR",
-       "output_tokens": 632
+       "output_tokens": 869
       },
       {
-       "outcome": "correct",
-       "answer": "EARTHSTAR",
-       "output_tokens": 1382
+       "outcome": "wrong_answer",
+       "answer": "TOADSTOOL",
+       "output_tokens": 2005
       },
       {
        "outcome": "wrong_length",
@@ -6207,12 +6971,17 @@
       {
        "outcome": "correct",
        "answer": "ENTRAP",
-       "output_tokens": 807
+       "output_tokens": 675
       },
       {
        "outcome": "correct",
        "answer": "ENTRAP",
-       "output_tokens": 1882
+       "output_tokens": 869
+      },
+      {
+       "outcome": "correct",
+       "answer": "ENTRAP",
+       "output_tokens": 4669
       },
       {
        "outcome": "correct",
@@ -6222,12 +6991,12 @@
       {
        "outcome": "correct",
        "answer": "ENTRAP",
-       "output_tokens": 659
+       "output_tokens": 330
       },
       {
        "outcome": "correct",
        "answer": "ENTRAP",
-       "output_tokens": 604
+       "output_tokens": 1531
       },
       {
        "outcome": "correct",
@@ -6255,12 +7024,17 @@
       {
        "outcome": "correct",
        "answer": "POLITESSE",
-       "output_tokens": 3402
+       "output_tokens": 732
       },
       {
        "outcome": "correct",
        "answer": "POLITESSE",
-       "output_tokens": 2098
+       "output_tokens": 1380
+      },
+      {
+       "outcome": "correct",
+       "answer": "POLITESSE",
+       "output_tokens": 393
       },
       {
        "outcome": "wrong_answer",
@@ -6270,12 +7044,12 @@
       {
        "outcome": "correct",
        "answer": "POLITESSE",
-       "output_tokens": 3865
+       "output_tokens": 2032
       },
       {
        "outcome": "correct",
        "answer": "POLITESSE",
-       "output_tokens": 1577
+       "output_tokens": 1681
       },
       {
        "outcome": "correct",
@@ -6302,12 +7076,17 @@
       {
        "outcome": "wrong_answer",
        "answer": "PENNY",
-       "output_tokens": 15793
+       "output_tokens": 9715
       },
       {
        "outcome": "wrong_answer",
        "answer": "PENNY",
-       "output_tokens": 3294
+       "output_tokens": 5216
+      },
+      {
+       "outcome": "correct",
+       "answer": "THORA",
+       "output_tokens": 577
       },
       {
        "outcome": "wrong_answer",
@@ -6315,14 +7094,14 @@
        "output_tokens": 1997
       },
       {
-       "outcome": "truncated",
-       "answer": null,
-       "output_tokens": 16000
+       "outcome": "wrong_answer",
+       "answer": "ALICE",
+       "output_tokens": 18392
       },
       {
        "outcome": "wrong_answer",
-       "answer": "ANNIE",
-       "output_tokens": 3898
+       "answer": "PENNY",
+       "output_tokens": 5177
       },
       {
        "outcome": "wrong_answer",
@@ -6349,12 +7128,17 @@
       {
        "outcome": "correct",
        "answer": "DIES IRAE",
-       "output_tokens": 380
+       "output_tokens": 483
       },
       {
        "outcome": "correct",
        "answer": "DIES IRAE",
-       "output_tokens": 535
+       "output_tokens": 520
+      },
+      {
+       "outcome": "correct",
+       "answer": "DIES IRAE",
+       "output_tokens": 403
       },
       {
        "outcome": "correct",
@@ -6362,14 +7146,14 @@
        "output_tokens": 778
       },
       {
-       "outcome": "wrong_answer",
-       "answer": "ROLL OVER",
-       "output_tokens": 6302
+       "outcome": "correct",
+       "answer": "DIES IRAE",
+       "output_tokens": 1080
       },
       {
        "outcome": "wrong_answer",
        "answer": "KEEL OVER",
-       "output_tokens": 2179
+       "output_tokens": 2940
       },
       {
        "outcome": "wrong_length",
@@ -6395,12 +7179,17 @@
       {
        "outcome": "correct",
        "answer": "SOL-FA",
-       "output_tokens": 787
+       "output_tokens": 1186
       },
       {
        "outcome": "correct",
        "answer": "SOL-FA",
-       "output_tokens": 321
+       "output_tokens": 469
+      },
+      {
+       "outcome": "correct",
+       "answer": "SOL-FA",
+       "output_tokens": 121
       },
       {
        "outcome": "wrong_length",
@@ -6410,12 +7199,12 @@
       {
        "outcome": "correct",
        "answer": "SOL FA",
-       "output_tokens": 6076
+       "output_tokens": 8226
       },
       {
        "outcome": "correct",
        "answer": "SOL FA",
-       "output_tokens": 2462
+       "output_tokens": 496
       },
       {
        "outcome": "wrong_answer",
@@ -6442,12 +7231,17 @@
       {
        "outcome": "correct",
        "answer": "BABE",
-       "output_tokens": 709
+       "output_tokens": 514
       },
       {
        "outcome": "correct",
        "answer": "BABE",
-       "output_tokens": 927
+       "output_tokens": 476
+      },
+      {
+       "outcome": "correct",
+       "answer": "BABE",
+       "output_tokens": 198
       },
       {
        "outcome": "correct",
@@ -6457,12 +7251,12 @@
       {
        "outcome": "correct",
        "answer": "BABE",
-       "output_tokens": 418
+       "output_tokens": 353
       },
       {
        "outcome": "correct",
        "answer": "BABE",
-       "output_tokens": 420
+       "output_tokens": 337
       },
       {
        "outcome": "correct",
@@ -6490,12 +7284,17 @@
       {
        "outcome": "truncated",
        "answer": null,
-       "output_tokens": 16000
+       "output_tokens": 64000
       },
       {
        "outcome": "truncated",
        "answer": null,
-       "output_tokens": 16000
+       "output_tokens": 64000
+      },
+      {
+       "outcome": "truncated",
+       "answer": null,
+       "output_tokens": 64000
       },
       {
        "outcome": "no_answer",
@@ -6505,12 +7304,12 @@
       {
        "outcome": "no_answer",
        "answer": "UNKNOWN",
-       "output_tokens": 5618
+       "output_tokens": 6116
       },
       {
        "outcome": "no_answer",
        "answer": "UNKNOWN",
-       "output_tokens": 2365
+       "output_tokens": 2274
       },
       {
        "outcome": "no_answer",
@@ -6536,12 +7335,17 @@
       {
        "outcome": "correct",
        "answer": "HARDNESS",
-       "output_tokens": 862
+       "output_tokens": 4990
       },
       {
        "outcome": "correct",
        "answer": "HARDNESS",
-       "output_tokens": 15105
+       "output_tokens": 12759
+      },
+      {
+       "outcome": "correct",
+       "answer": "HARDNESS",
+       "output_tokens": 743
       },
       {
        "outcome": "wrong_answer",
@@ -6549,14 +7353,14 @@
        "output_tokens": 1254
       },
       {
-       "outcome": "wrong_length",
-       "answer": "SETTING",
-       "output_tokens": 6214
+       "outcome": "wrong_answer",
+       "answer": "PAVILION",
+       "output_tokens": 6256
       },
       {
        "outcome": "wrong_answer",
-       "answer": "PAVILION",
-       "output_tokens": 2494
+       "answer": "SETTINGS",
+       "output_tokens": 1521
       },
       {
        "outcome": "correct",
@@ -6582,12 +7386,17 @@
       {
        "outcome": "correct",
        "answer": "AMEER",
-       "output_tokens": 3314
+       "output_tokens": 2480
+      },
+      {
+       "outcome": "correct",
+       "answer": "AMEER",
+       "output_tokens": 4367
       },
       {
        "outcome": "wrong_answer",
        "answer": "THANE",
-       "output_tokens": 262
+       "output_tokens": 201
       },
       {
        "outcome": "wrong_answer",
@@ -6595,14 +7404,14 @@
        "output_tokens": 1279
       },
       {
-       "outcome": "wrong_answer",
-       "answer": "NEGUS",
-       "output_tokens": 2444
+       "outcome": "correct",
+       "answer": "AMEER",
+       "output_tokens": 3527
       },
       {
        "outcome": "wrong_answer",
-       "answer": "SHEIK",
-       "output_tokens": 2058
+       "answer": "RAJAH",
+       "output_tokens": 1663
       },
       {
        "outcome": "wrong_answer",
@@ -6627,14 +7436,19 @@
      "and_lit": false,
      "results": [
       {
-       "outcome": "truncated",
-       "answer": null,
-       "output_tokens": 16000
+       "outcome": "correct",
+       "answer": "CACAO",
+       "output_tokens": 8975
       },
       {
        "outcome": "correct",
        "answer": "CACAO",
-       "output_tokens": 9649
+       "output_tokens": 16596
+      },
+      {
+       "outcome": "correct",
+       "answer": "CACAO",
+       "output_tokens": 300
       },
       {
        "outcome": "wrong_answer",
@@ -6644,12 +7458,12 @@
       {
        "outcome": "wrong_answer",
        "answer": "ELDER",
-       "output_tokens": 6711
+       "output_tokens": 9650
       },
       {
        "outcome": "wrong_answer",
        "answer": "ELDER",
-       "output_tokens": 1403
+       "output_tokens": 2291
       },
       {
        "outcome": "wrong_answer",
@@ -6676,12 +7490,17 @@
       {
        "outcome": "correct",
        "answer": "MEASURED",
-       "output_tokens": 2239
+       "output_tokens": 1017
       },
       {
        "outcome": "correct",
        "answer": "MEASURED",
-       "output_tokens": 1499
+       "output_tokens": 2308
+      },
+      {
+       "outcome": "correct",
+       "answer": "MEASURED",
+       "output_tokens": 129
       },
       {
        "outcome": "correct",
@@ -6689,14 +7508,14 @@
        "output_tokens": 2585
       },
       {
-       "outcome": "wrong_answer",
-       "answer": "CONFINED",
-       "output_tokens": 10438
+       "outcome": "wrong_length",
+       "answer": "PENNED",
+       "output_tokens": 2837
       },
       {
        "outcome": "wrong_answer",
-       "answer": "SHACKLED",
-       "output_tokens": 1397
+       "answer": "CONFINED",
+       "output_tokens": 3072
       },
       {
        "outcome": "wrong_answer",
@@ -6723,12 +7542,17 @@
       {
        "outcome": "correct",
        "answer": "MINIATURE",
-       "output_tokens": 1452
+       "output_tokens": 2993
       },
       {
        "outcome": "correct",
        "answer": "MINIATURE",
-       "output_tokens": 4716
+       "output_tokens": 2856
+      },
+      {
+       "outcome": "correct",
+       "answer": "MINIATURE",
+       "output_tokens": 284
       },
       {
        "outcome": "correct",
@@ -6736,14 +7560,14 @@
        "output_tokens": 1216
       },
       {
-       "outcome": "correct",
-       "answer": "MINIATURE",
-       "output_tokens": 2948
+       "outcome": "wrong_answer",
+       "answer": "DOLLHOUSE",
+       "output_tokens": 11634
       },
       {
-       "outcome": "correct",
-       "answer": "MINIATURE",
-       "output_tokens": 1768
+       "outcome": "no_answer",
+       "answer": "UNKNOWN",
+       "output_tokens": 3245
       },
       {
        "outcome": "correct",
@@ -6769,12 +7593,17 @@
       {
        "outcome": "correct",
        "answer": "AVER",
-       "output_tokens": 162
+       "output_tokens": 244
       },
       {
        "outcome": "correct",
        "answer": "AVER",
-       "output_tokens": 195
+       "output_tokens": 321
+      },
+      {
+       "outcome": "correct",
+       "answer": "AVER",
+       "output_tokens": 69
       },
       {
        "outcome": "correct",
@@ -6784,12 +7613,12 @@
       {
        "outcome": "correct",
        "answer": "AVER",
-       "output_tokens": 512
+       "output_tokens": 366
       },
       {
        "outcome": "correct",
        "answer": "AVER",
-       "output_tokens": 274
+       "output_tokens": 387
       },
       {
        "outcome": "wrong_length",
@@ -6815,12 +7644,17 @@
       {
        "outcome": "correct",
        "answer": "UNDER OATH",
-       "output_tokens": 376
+       "output_tokens": 728
       },
       {
        "outcome": "correct",
        "answer": "UNDER OATH",
-       "output_tokens": 1204
+       "output_tokens": 470
+      },
+      {
+       "outcome": "correct",
+       "answer": "UNDER OATH",
+       "output_tokens": 108
       },
       {
        "outcome": "correct",
@@ -6830,12 +7664,12 @@
       {
        "outcome": "correct",
        "answer": "UNDER OATH",
-       "output_tokens": 292
+       "output_tokens": 340
       },
       {
        "outcome": "correct",
        "answer": "UNDER OATH",
-       "output_tokens": 426
+       "output_tokens": 417
       },
       {
        "outcome": "wrong_length",
@@ -6861,12 +7695,17 @@
       {
        "outcome": "correct",
        "answer": "ERRED",
-       "output_tokens": 962
+       "output_tokens": 523
       },
       {
        "outcome": "correct",
        "answer": "ERRED",
-       "output_tokens": 241
+       "output_tokens": 214
+      },
+      {
+       "outcome": "correct",
+       "answer": "ERRED",
+       "output_tokens": 88
       },
       {
        "outcome": "correct",
@@ -6876,12 +7715,12 @@
       {
        "outcome": "correct",
        "answer": "ERRED",
-       "output_tokens": 581
+       "output_tokens": 564
       },
       {
-       "outcome": "wrong_answer",
-       "answer": "EDRED",
-       "output_tokens": 1527
+       "outcome": "correct",
+       "answer": "ERRED",
+       "output_tokens": 1419
       },
       {
        "outcome": "wrong_answer",
@@ -6907,12 +7746,17 @@
       {
        "outcome": "correct",
        "answer": "NOLO CONTENDERE",
-       "output_tokens": 11991
+       "output_tokens": 3795
+      },
+      {
+       "outcome": "wrong_answer",
+       "answer": "WILD ALLEGATION",
+       "output_tokens": 37213
       },
       {
        "outcome": "correct",
        "answer": "NOLO CONTENDERE",
-       "output_tokens": 5812
+       "output_tokens": 325
       },
       {
        "outcome": "no_answer",
@@ -6920,14 +7764,14 @@
        "output_tokens": 2515
       },
       {
-       "outcome": "wrong_answer",
-       "answer": "TAKE POSSESSION",
-       "output_tokens": 5060
+       "outcome": "correct",
+       "answer": "NOLO CONTENDERE",
+       "output_tokens": 1839
       },
       {
        "outcome": "wrong_length",
        "answer": "COUNTERCLAIM",
-       "output_tokens": 2693
+       "output_tokens": 2470
       },
       {
        "outcome": "wrong_length",
@@ -6953,12 +7797,17 @@
       {
        "outcome": "correct",
        "answer": "FENDER-BENDER",
-       "output_tokens": 593
+       "output_tokens": 610
       },
       {
        "outcome": "correct",
        "answer": "FENDER-BENDER",
-       "output_tokens": 418
+       "output_tokens": 490
+      },
+      {
+       "outcome": "correct",
+       "answer": "FENDER BENDER",
+       "output_tokens": 1400
       },
       {
        "outcome": "correct",
@@ -6968,12 +7817,12 @@
       {
        "outcome": "correct",
        "answer": "FENDER BENDER",
-       "output_tokens": 813
+       "output_tokens": 712
       },
       {
        "outcome": "correct",
        "answer": "FENDER BENDER",
-       "output_tokens": 894
+       "output_tokens": 791
       },
       {
        "outcome": "wrong_length",
