@@ -84,6 +84,13 @@ def test_runs_on_a_different_clue_set_are_left_out():
     assert len(cohort["clue_list"]) == 3
 
 
+def test_missing_setter_is_shown_as_unknown():
+    sample = run("a/x", True, ["correct"])
+    sample["samples"]["clue-0"]["metadata"]["setter"] = None
+    cohort = site.build_cohort("c", [sample], {})
+    assert cohort["by_puzzle"][0]["name"] == "No 1 · ?"
+
+
 def test_provider_mapping():
     assert site.provider_of("codex/gpt-6-luna") == "OpenAI"
     assert site.provider_of("anthropic/claude-haiku-5-5") == "Anthropic"

@@ -350,7 +350,7 @@ document.querySelectorAll(".explorer").forEach((section) => {
   });
   selects.puzzle.append(new Option("All puzzles", ""));
   new Map(cohort.clues.map((c) => [String(c.puzzle), c.setter])).forEach((setter, puzzle) => {
-    selects.puzzle.append(new Option(`No ${Number(puzzle).toLocaleString("en")} · ${setter}`, puzzle));
+    selects.puzzle.append(new Option(`No ${Number(puzzle).toLocaleString("en")} · ${setter ?? "?"}`, puzzle));
   });
 
   const head = el("tr");

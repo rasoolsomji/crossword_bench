@@ -286,7 +286,7 @@ def build_cohort(name: str, runs: list[dict], annotations: dict, pricing: dict |
     for clue_id in clue_ids:
         meta = metadata[clue_id]
         if "puzzle" in meta:
-            by_puzzle[f"No {meta['puzzle']:,} · {meta.get('setter', '?')}"].append(clue_id)
+            by_puzzle[f"No {meta['puzzle']:,} · {meta.get('setter') or '?'}"].append(clue_id)
     cohort["by_puzzle"] = breakdown(runs, by_puzzle)
 
     dates = sorted({m["date"] for m in metadata.values() if "date" in m})
