@@ -41,13 +41,14 @@ PROVIDER_NAMES = {
     "grok": "xAI",
     "together": "Together",
     "deepseek": "DeepSeek",
+    "moonshotai": "Moonshot",
     "meta-llama": "Meta",
     "mistralai": "Mistral",
     "x-ai": "xAI",
 }
-# Colour follows the provider, so this order is fixed: adding a provider
-# appends a slot and never repaints an existing one.
-PROVIDER_ORDER = ["OpenAI", "Anthropic", "Google", "xAI", "Mistral", "Meta", "DeepSeek", "Other"]
+# Colour follows the provider, so this order is fixed: a new provider
+# takes the slot before "Other", which stays last and neutral grey.
+PROVIDER_ORDER = ["OpenAI", "Anthropic", "Google", "xAI", "Mistral", "Meta", "DeepSeek", "Moonshot", "Other"]
 DEVICE_LABELS = {
     "anagram": "Anagram",
     "charade": "Charade",
