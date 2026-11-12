@@ -199,6 +199,16 @@
   .ref { white-space: nowrap; color: var(--ink2); font-variant-numeric: tabular-nums; }
   .text { min-width: 200px; }
   .answer { font: 13px ui-monospace, SFMono-Regular, Menlo, monospace; letter-spacing: .03em; white-space: nowrap; }
+  .masked { color: var(--muted); }
+  .filters input[type="checkbox"] { margin: 0 6px 0 0; vertical-align: -2px; accent-color: var(--s1); }
+  .eye {
+    display: inline-grid; place-items: center; width: 22px; height: 22px; margin: -3px 4px -3px -4px;
+    padding: 0; border: 0; border-radius: 4px; background: none; color: var(--muted); cursor: pointer; vertical-align: -4px;
+  }
+  .eye[hidden] { display: none; }
+  .eye:hover { color: var(--ink); }
+  .eye:focus-visible { outline: 2px solid var(--s1); outline-offset: 0; }
+  .eye svg { width: 15px; height: 15px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
   .dev { display: inline-block; font-size: 12px; color: var(--ink2); border: 1px solid var(--border); border-radius: 4px; padding: 0 6px; margin: 0 4px 4px 0; white-space: nowrap; }
   tr.detail td { background: var(--page); padding: 12px 16px 16px; }
   .detail-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 12px; margin-bottom: 10px; }
@@ -968,6 +978,7 @@ the reasoning summary the model returned.</p>
     <option value="none">Solved by none</option>
     <option value="split">Runs disagree</option>
   </select></label>
+  <label><input type="checkbox" data-hide-answers>Hide answers</label>
   <span class="count" aria-live="polite"></span>
 </div>
 <div class="legend"><span class="key"><i class="glyph g-correct">✓</i>Correct</span><span class="key"><i class="glyph g-wrong_answer">✗</i>Wrong answer</span><span class="key"><i class="glyph g-near_miss">≈</i>Near miss</span><span class="key"><i class="glyph g-wrong_length">↔</i>Wrong length</span><span class="key"><i class="glyph g-no_answer">∅</i>No answer</span></div>
@@ -1054,6 +1065,9 @@ document.addEventListener("focusin", (event) => {
 });
 document.addEventListener("focusout", () => { tip.hidden = true; });
 
+const EYE = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>';
+const EYE_OFF = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"/><path d="M1 1l22 22"/></svg>';
+
 document.querySelectorAll(".explorer").forEach((section) => {
   const cohort = DATA.cohorts[Number(section.dataset.cohort)];
   const runs = cohort.runs;
@@ -1062,6 +1076,13 @@ document.querySelectorAll(".explorer").forEach((section) => {
   );
   const count = section.querySelector(".count");
   const tbody = section.querySelector("tbody");
+  const hideBox = section.querySelector("[data-hide-answers]");
+  const revealed = new Set();
+  let painters = [];
+  const masked = (clue) => hideBox.checked && !revealed.has(clue.id);
+  const veil = (text) => text.replace(/[\p{L}\p{N}]/gu, "•");
+  // A model's answer is masked along with the solution: a correct one is the solution.
+  const answerText = (clue, answer) => (!answer ? "no answer" : masked(clue) ? veil(answer) : answer);
 
   const used = new Set(cohort.clues.flatMap((c) => c.devices));
   selects.device.append(new Option("All devices", ""));
@@ -1095,7 +1116,7 @@ document.querySelectorAll(".explorer").forEach((section) => {
       const said = el("span", "said");
       said.append(
         el("i", "glyph g-" + groupOf(result.outcome), DATA.glyphs[groupOf(result.outcome)]),
-        el("span", "answer", result.answer || "no answer"),
+        el("span", masked(clue) && result.answer ? "answer masked" : "answer", answerText(clue, result.answer)),
         document.createTextNode(" · " + DATA.outcomes[result.outcome])
       );
       box.append(said);
@@ -1124,6 +1145,7 @@ document.querySelectorAll(".explorer").forEach((section) => {
   function render() {
     const device = selects.device.value, puzzle = selects.puzzle.value, result = selects.result.value;
     const rows = [];
+    painters = [];
     let shown = 0;
     cohort.clues.forEach((clue) => {
       const hits = clue.results.filter((r) => r && r.outcome === "correct").length;
@@ -1137,19 +1159,45 @@ document.querySelectorAll(".explorer").forEach((section) => {
 
       const row = el("tr", "clue");
       row.tabIndex = 0;
-      row.append(el("td", "ref", `${clue.puzzle} · ${clue.ref}`), el("td", "text", clue.clue), el("td", "answer", clue.answer));
+      const answer = el("td", "answer");
+      const eye = el("button", "eye");
+      eye.type = "button";
+      eye.setAttribute("aria-label", `Show answer to ${clue.puzzle} ${clue.ref}`);
+      const word = el("span");
+      answer.append(eye, word);
+      row.append(el("td", "ref", `${clue.puzzle} · ${clue.ref}`), el("td", "text", clue.clue), answer);
       const devices = el("td");
       clue.devices.forEach((d) => devices.append(el("span", "dev", DATA.devices[d] || d)));
       if (clue.and_lit) devices.append(el("span", "dev", "&lit"));
       row.append(devices);
+      const glyphs = [];
       clue.results.forEach((r, i) => {
         const cell = el("td", "res");
         if (r) {
           const glyph = el("i", "glyph g-" + groupOf(r.outcome), DATA.glyphs[groupOf(r.outcome)]);
-          glyph.dataset.tip = `${runs[i].label}\n${DATA.outcomes[r.outcome]}: ${r.answer || "no answer"}`;
+          glyphs.push([glyph, r, runs[i]]);
           cell.append(glyph);
         }
         row.append(cell);
+      });
+      const paint = () => {
+        const hidden = masked(clue);
+        word.textContent = hidden ? veil(clue.answer) : clue.answer;
+        word.className = hidden ? "masked" : "";
+        eye.hidden = !hideBox.checked;
+        eye.innerHTML = hidden ? EYE : EYE_OFF;
+        eye.setAttribute("aria-pressed", String(!hidden));
+        glyphs.forEach(([glyph, r, run]) => {
+          glyph.dataset.tip = `${run.label}\n${DATA.outcomes[r.outcome]}: ${answerText(clue, r.answer)}`;
+        });
+        if (row.classList.contains("open")) row.nextElementSibling.replaceWith(detailRow(clue));
+      };
+      paint();
+      painters.push(paint);
+      eye.addEventListener("click", (event) => {
+        event.stopPropagation();
+        if (!revealed.delete(clue.id)) revealed.add(clue.id);
+        paint();
       });
       const toggle = () => {
         const open = row.classList.toggle("open");
@@ -1158,6 +1206,7 @@ document.querySelectorAll(".explorer").forEach((section) => {
       };
       row.addEventListener("click", toggle);
       row.addEventListener("keydown", (event) => {
+        if (event.target !== row) return;
         if (event.key === "Enter" || event.key === " ") { event.preventDefault(); toggle(); }
       });
       rows.push(row);
@@ -1166,6 +1215,10 @@ document.querySelectorAll(".explorer").forEach((section) => {
     count.textContent = `${shown} of ${cohort.clues.length} clues`;
   }
   Object.values(selects).forEach((select) => select.addEventListener("change", render));
+  hideBox.addEventListener("change", () => {
+    revealed.clear();
+    painters.forEach((paint) => paint());
+  });
   render();
 });
 </script>

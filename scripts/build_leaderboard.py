@@ -921,6 +921,7 @@ the reasoning summary the model returned.</p>
     <option value="none">Solved by none</option>
     <option value="split">Runs disagree</option>
   </select></label>
+  <label><input type="checkbox" data-hide-answers>Hide answers</label>
   <span class="count" aria-live="polite"></span>
 </div>
 <div class="legend">{key}</div>
