@@ -19,6 +19,7 @@ need an API key and Inspect's `openai/<model>` provider with
 
 import asyncio
 import atexit
+import contextlib
 import json
 import shutil
 import sys
@@ -40,6 +41,7 @@ from inspect_ai.tool import ToolChoice, ToolInfo
 PASSIVE_ITEMS = {"userMessage", "agentMessage", "reasoning"}
 DEFAULT_EFFORT = "medium"
 TURN_TIMEOUT_SECONDS = 900
+REQUEST_TIMEOUT_SECONDS = 120
 
 # Harness features that only add tools or prompt boilerplate. Turning them
 # off per thread roughly halves the injected context; it does not remove
@@ -84,6 +86,7 @@ class CodexAppServer:
         self._pending: dict[int, asyncio.Future] = {}
         self._threads: dict[str, asyncio.Queue] = {}
         self._reader: asyncio.Task | None = None
+        self._failure: Exception | None = None
         self._start_lock = asyncio.Lock()
 
     async def start(self) -> None:
@@ -116,12 +119,18 @@ class CodexAppServer:
         await self.process.stdin.drain()
 
     async def request(self, method: str, params: dict) -> dict:
+        if self._failure:
+            raise self._failure
         self._next_id += 1
         request_id = self._next_id
         future: asyncio.Future = asyncio.get_running_loop().create_future()
         self._pending[request_id] = future
-        await self._send({"id": request_id, "method": method, "params": params})
-        return await future
+        try:
+            await self._send({"id": request_id, "method": method, "params": params})
+            async with asyncio.timeout(REQUEST_TIMEOUT_SECONDS):
+                return await future
+        finally:
+            self._pending.pop(request_id, None)
 
     async def _read_loop(self) -> None:
         assert self.process and self.process.stdout
@@ -131,6 +140,9 @@ class CodexAppServer:
                 await self._dispatch(json.loads(line))
         except Exception as ex:  # noqa: BLE001
             error = CodexServerError(f"codex app-server connection failed: {ex}")
+        # Nothing reads the server's output from here on, so later requests
+        # must fail rather than wait for a reply that never arrives.
+        self._failure = error
         for future in self._pending.values():
             if not future.done():
                 future.set_exception(error)
@@ -189,8 +201,9 @@ class CodexAppServer:
             "status": None,
             "error": None,
         }
+        turn_id = None
         try:
-            await self.request(
+            started = await self.request(
                 "turn/start",
                 {
                     "threadId": thread_id,
@@ -199,6 +212,7 @@ class CodexAppServer:
                     "summary": summary,
                 },
             )
+            turn_id = started["turn"]["id"]
             async with asyncio.timeout(TURN_TIMEOUT_SECONDS):
                 while True:
                     event = await queue.get()
@@ -227,6 +241,11 @@ class CodexAppServer:
                         if turn.get("error"):
                             result["error"] = json.dumps(turn["error"])
                         return result
+        except TimeoutError:
+            if turn_id:
+                with contextlib.suppress(Exception):
+                    await self.request("turn/interrupt", {"threadId": thread_id, "turnId": turn_id})
+            raise
         finally:
             self._threads.pop(thread_id, None)
 
