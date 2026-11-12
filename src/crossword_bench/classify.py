@@ -165,10 +165,13 @@ def main() -> None:
     rubric_version = re.search(r"^Version:\s*(\S+)", RUBRIC_PATH.read_text(), re.MULTILINE).group(1)
     annotations = {"rubric_version": rubric_version, "puzzles": {}, "clues": {}}
     if args.out.exists():
-        annotations = json.loads(args.out.read_text())
-        if annotations["rubric_version"] != rubric_version and not args.force:
+        existing = json.loads(args.out.read_text())
+        # After a rubric change nothing is carried over, so labels for puzzles
+        # no longer in --data are dropped rather than kept under the new version.
+        if existing["rubric_version"] == rubric_version:
+            annotations = existing
+        elif not args.force:
             sys.exit("Rubric version changed: re-run with --force to relabel everything.")
-    annotations["rubric_version"] = rubric_version
 
     client = anthropic.Anthropic()
     for path in sorted(args.data.glob("*.json")):
