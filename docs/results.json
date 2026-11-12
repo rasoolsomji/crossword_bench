@@ -317,8 +317,9 @@
     {
      "model": "openrouter/moonshotai/kimi-k3.1-pro",
      "provider": "Moonshot",
-     "effort": "medium",
-     "label": "moonshotai/kimi-k3.1-pro · medium",
+     "effort": "low",
+     "requested_effort": "medium",
+     "label": "moonshotai/kimi-k3.1-pro · low",
      "correct": 98,
      "total": 116,
      "accuracy": 0.8448275862068966,

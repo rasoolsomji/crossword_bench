@@ -82,6 +82,15 @@ def provider_slot(provider: str) -> int:
     return PROVIDER_ORDER.index(provider) + 1
 
 
+# OpenRouter ran these requested efforts at another level the model lists,
+# without recording which; the task now refuses such runs. Each entry was
+# measured by rerunning the same clues at the listed levels.
+EFFORT_RAN_AS = {
+    # 10 clues: median reasoning 546 tokens at "medium", 585 at low, 1,502 at high.
+    ("openrouter/moonshotai/kimi-k3.1-pro", "medium"): "low",
+}
+
+
 def run_effort(log: EvalLog) -> str:
     """Effort the run was made at: the task's default unless the CLI set one."""
     effort = log.plan.config.merge(log.eval.model_generate_config).reasoning_effort
@@ -145,10 +154,12 @@ def load_runs(log_dir: Path) -> list[dict]:
                 "metadata": sample.metadata or {},
             }
 
+        requested = run_effort(log)
         run = {
             "cohort": log.eval.dataset.name or log.eval.task,
             "model": log.eval.model,
-            "effort": run_effort(log),
+            "effort": EFFORT_RAN_AS.get((log.eval.model, requested), requested),
+            "requested_effort": requested,
             "created": log.eval.created,
             "public": is_public_log(path),
             "log_file": path.name,
@@ -207,10 +218,12 @@ def summarise_run(run: dict, pricing: dict | None = None) -> dict:
             "correct": sorted(s["tokens"]["reasoning"] for s in scored if s["outcome"] == "correct"),
             "missed": sorted(s["tokens"]["reasoning"] for s in scored if s["outcome"] != "correct"),
         }
+    requested = run.get("requested_effort", run["effort"])
     return {
         "model": run["model"],
         "provider": provider_of(run["model"]),
         "effort": run["effort"],
+        **({"requested_effort": requested} if requested != run["effort"] else {}),
         "label": f"{short_model(run['model'])} · {run['effort']}",
         "correct": correct,
         "total": total,
@@ -393,8 +406,10 @@ def render_leaderboard(cohort: dict) -> str:
     rows = ""
     for rank, run in enumerate(cohort["runs"], 1):
         low, high = run["ci95"]
-        tip = (
-            f"{run['model']} · {run['effort']} effort\n"
+        tip = f"{run['model']} · {run['effort']} effort\n"
+        if "requested_effort" in run:
+            tip += f"Requested as {run['requested_effort']}, which the model doesn't offer; OpenRouter ran it at {run['effort']}\n"
+        tip += (
             f"{run['correct']} of {run['total']} correct ({pct(run['accuracy'])})\n"
             f"95% interval {pct(low)} to {pct(high)}"
         )

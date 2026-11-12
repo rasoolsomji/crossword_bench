@@ -123,3 +123,16 @@ def test_reasoning_chart_skipped_without_reasoning_tokens():
 def test_quantile_interpolates():
     assert site.quantile([0, 10], 0.5) == 5
     assert site.quantile([1, 2, 3, 4], 0.25) == 1.75
+
+
+def test_remapped_effort_is_shown_with_the_requested_level():
+    remapped = run("openrouter/moonshotai/kimi-k3.1-pro", True, ["correct"])
+    remapped.update(effort="low", requested_effort="medium")
+    plain = run("a/x", True, ["correct"])
+    cohort = site.build_cohort("c", [remapped, plain], {})
+    rows = {r["model"]: r for r in cohort["runs"]}
+    assert rows["openrouter/moonshotai/kimi-k3.1-pro"]["label"] == "moonshotai/kimi-k3.1-pro · low"
+    assert rows["openrouter/moonshotai/kimi-k3.1-pro"]["requested_effort"] == "medium"
+    assert "requested_effort" not in rows["a/x"]
+    assert "Requested as medium" in site.render_leaderboard(cohort)
+    assert site.EFFORT_RAN_AS[("openrouter/moonshotai/kimi-k3.1-pro", "medium")] == "low"
