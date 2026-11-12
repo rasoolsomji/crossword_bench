@@ -38,8 +38,9 @@ uv run inspect eval src/crossword_bench/task.py \
 `dataset` takes a file, directory, glob, or comma-separated list;
 `label` names the cohort on the leaderboard. Models are only comparable
 within a cohort, so use the same `dataset` and `label` for every model.
-Add `--reasoning-effort high` (etc.) to vary effort; each effort level
-is its own leaderboard row.
+The task runs at `medium` reasoning effort unless you pass
+`--reasoning-effort high` (etc.), so every log records the effort it
+used; each effort level is its own leaderboard row.
 
 No search or tools are given to the model, which is what keeps the live
 track honest: answers are blogged within hours of publication.

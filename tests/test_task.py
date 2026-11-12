@@ -27,3 +27,10 @@ def test_ids_assigned_when_missing_and_duplicates_rejected(tmp_path):
     c = write(tmp_path / "c.json", [{"id": "dup", "input": "x (1)", "target": "X"}])
     with pytest.raises(ValueError):
         load_samples([c, c])
+
+
+def test_task_always_sets_an_effort(tmp_path):
+    from crossword_bench.task import DEFAULT_EFFORT, cryptic_crossword
+
+    data = write(tmp_path / "a.json", [{"id": "a1", "input": "x (1)", "target": "X"}])
+    assert cryptic_crossword(dataset=str(data)).config.reasoning_effort == DEFAULT_EFFORT

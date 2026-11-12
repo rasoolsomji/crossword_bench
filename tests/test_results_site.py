@@ -12,7 +12,7 @@ def run(model, public, outcomes):
     return {
         "cohort": "c",
         "model": model,
-        "effort": "default",
+        "effort": "medium",
         "created": "2026-01-01",
         "public": public,
         "log_file": f"{model}.eval",

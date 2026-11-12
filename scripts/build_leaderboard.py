@@ -14,8 +14,9 @@ from datetime import date, datetime, timezone
 from html import escape
 from pathlib import Path
 
-from inspect_ai.log import read_eval_log
+from inspect_ai.log import EvalLog, read_eval_log
 
+from crossword_bench.codex_provider import DEFAULT_EFFORT as CODEX_DEFAULT_EFFORT
 from crossword_bench.scorer import OUTCOMES, classify_outcome, extract_answer
 from crossword_bench.stats import mcnemar_exact, wilson_interval
 
@@ -75,6 +76,21 @@ def provider_slot(provider: str) -> int:
     return PROVIDER_ORDER.index(provider) + 1
 
 
+def run_effort(log: EvalLog) -> str:
+    """Effort the run was made at: the task's default unless the CLI set one."""
+    effort = log.plan.config.merge(log.eval.model_generate_config).reasoning_effort
+    if effort:
+        return effort
+    # Runs from before the task always set an effort. Both providers used
+    # then defaulted to medium: the codex provider's own fallback, and the
+    # Anthropic API default for Haiku 5.5.
+    if log.eval.model.startswith("codex/"):
+        return CODEX_DEFAULT_EFFORT
+    if log.eval.model == "anthropic/claude-haiku-5-5":
+        return "medium"
+    return "default"
+
+
 def load_runs(log_dir: Path) -> list[dict]:
     """Latest successful run per (cohort, model, effort)."""
     latest: dict[tuple, dict] = {}
@@ -115,7 +131,7 @@ def load_runs(log_dir: Path) -> list[dict]:
         run = {
             "cohort": log.eval.dataset.name or log.eval.task,
             "model": log.eval.model,
-            "effort": log.eval.model_generate_config.reasoning_effort or "default",
+            "effort": run_effort(log),
             "created": log.eval.created,
             "public": path.parent.name == PUBLIC_DIR_NAME,
             "log_file": path.name,

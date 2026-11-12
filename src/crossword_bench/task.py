@@ -5,12 +5,14 @@ from pathlib import Path
 
 from inspect_ai import Task, task
 from inspect_ai.dataset import MemoryDataset, Sample, json_dataset
+from inspect_ai.model import GenerateConfig
 from inspect_ai.solver import generate, system_message
 
 from crossword_bench.scorer import cryptic_scorer
 
 PROJECT_ROOT = Path(__file__).parent.parent.parent
 DATA_DIR = PROJECT_ROOT / "data"
+DEFAULT_EFFORT = "medium"
 
 SYSTEM_PROMPT = """\
 You are solving a cryptic crossword clue. The number in parentheses \
@@ -95,4 +97,8 @@ def cryptic_crossword(
         dataset=MemoryDataset(load_samples(files), name=label),
         solver=solvers,
         scorer=cryptic_scorer(),
+        # Provider defaults differ and are not logged, and Claude only returns
+        # readable thinking summaries when an effort is set, so every run
+        # records one. --reasoning-effort overrides it.
+        config=GenerateConfig(reasoning_effort=DEFAULT_EFFORT),
     )
