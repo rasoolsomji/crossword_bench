@@ -101,6 +101,13 @@ def is_public_log(path: Path) -> bool:
     return path.parent.resolve() == PUBLIC_LOG_DIR.resolve()
 
 
+def run_settings(log: EvalLog) -> dict:
+    return {
+        "max_tokens": log.plan.config.merge(log.eval.model_generate_config).max_tokens,
+        "cot": bool((log.eval.task_args or {}).get("cot")),
+    }
+
+
 def load_runs(log_dir: Path) -> list[dict]:
     """Latest successful run per (cohort, model, effort)."""
     latest: dict[tuple, dict] = {}
@@ -145,12 +152,29 @@ def load_runs(log_dir: Path) -> list[dict]:
             "created": log.eval.created,
             "public": is_public_log(path),
             "log_file": path.name,
+            "settings": run_settings(log),
             "samples": samples,
         }
         key = (run["cohort"], run["model"], run["effort"])
         if key not in latest or latest[key]["created"] < run["created"]:
+            if key in latest:
+                warn_if_downgraded(latest[key], run)
             latest[key] = run
+        elif latest[key]["created"] > run["created"]:
+            warn_if_downgraded(run, latest[key])
     return list(latest.values())
+
+
+def warn_if_downgraded(older: dict, newer: dict) -> None:
+    """Flag a newer run that replaces a row under settings that change scores."""
+    old, new = older["settings"], newer["settings"]
+    lower_cap = old["max_tokens"] and (not new["max_tokens"] or new["max_tokens"] < old["max_tokens"])
+    if lower_cap or old["cot"] != new["cot"]:
+        print(
+            f"Warning: {newer['log_file']} ({new}) replaces {older['log_file']} ({old}) "
+            f"for {newer['model']} at {newer['effort']} effort in cohort {newer['cohort']}",
+            file=sys.stderr,
+        )
 
 
 def summarise_run(run: dict, pricing: dict | None = None) -> dict:

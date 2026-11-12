@@ -40,10 +40,11 @@ def test_task_always_sets_an_effort(tmp_path):
 
 
 def test_default_label_changes_with_the_clues(tmp_path):
-    from crossword_bench.task import cryptic_crossword
+    from crossword_bench.task import DEFAULT_MAX_TOKENS, cryptic_crossword
 
     data = write(tmp_path / "clues.json", [{"input": "x (1)", "target": "X"}])
     before = cryptic_crossword(dataset=str(data))
+    assert before.config.max_tokens == DEFAULT_MAX_TOKENS
     write(data, [{"input": "x (1)", "target": "Y"}])
     after = cryptic_crossword(dataset=str(data))
     assert before.dataset.name.startswith("clues-")

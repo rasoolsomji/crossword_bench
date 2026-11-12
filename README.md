@@ -36,7 +36,7 @@ uv run fetch-guardian --since 2026-11-09
 
 ```bash
 uv run inspect eval src/crossword_bench/task.py \
-  --model anthropic/claude-haiku-5-5 --max-tokens 64000 \
+  --model anthropic/claude-haiku-5-5 \
   -T dataset=data/live/guardian -T label=guardian-cryptic-2026-11-09..12 \
   --log-dir logs/live
 ```
@@ -46,9 +46,9 @@ uv run inspect eval src/crossword_bench/task.py \
 within a cohort, so use the same `dataset` and `label` for every model.
 The task runs at `medium` reasoning effort unless you pass
 `--reasoning-effort high` (etc.), so every log records the effort it
-used; each effort level is its own leaderboard row. Give API-backed
-models `--max-tokens 64000`: at 16,000 some models ran out mid-reasoning
-on a sixth of the clues. The Codex provider sets no cap.
+used; each effort level is its own leaderboard row. It also caps output
+at 64,000 tokens (`--max-tokens` overrides it): at 16,000 some models ran
+out mid-reasoning on a sixth of the clues. The Codex provider sets no cap.
 
 No search or tools are given to the model, which is what keeps the live
 track honest: answers are blogged within hours of publication.
