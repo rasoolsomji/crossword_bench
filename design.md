@@ -81,6 +81,18 @@ because those models will be evaluated on future clues.
 - Copyright: don't mirror a paper's full puzzle verbatim in the repo;
   reference clue IDs/URLs alongside our scoring.
 - Runs as a daily scheduled job (GitHub Action cron or equivalent).
+- Prototype (Nov 2026): `fetch-guardian` pulls puzzles by date range
+  into `data/live/` (gitignored — the copyright rule above), and the
+  task runs a directory of them as one cohort. Each clue is posed alone,
+  without the grid or crossing letters, so scores understate what a
+  model could do on a full puzzle. Guardian Saturday prize puzzles
+  withhold solutions for a week and are skipped until then.
+- Model access without API keys goes through harnesses (`codex
+  app-server` for a ChatGPT plan). A harness is not a bare model: it
+  injects its own context and tools that cannot all be removed. The
+  Codex provider disables web search and interrupts any turn that
+  starts a tool call, but treat harness-backed rows as indicative, not
+  as clean API measurements.
 
 ### Track 2 — The London Paper anchor (private)
 
@@ -144,5 +156,7 @@ calling it the anchor set.
 - [ ] Extract remaining months from the PDF archive
 - [ ] Split anchor set vs rotation stock
 - [ ] First real-model runs on the anchor set
-- [ ] Prototype live-track fetcher (Guardian/Lovatts) and daily job
+- [x] Prototype live-track fetcher (Guardian) and first live cohort
+      (9–12 Nov 2026, 116 clues)
+- [ ] Live-track daily job; second source (Lovatts/FT/Independent)
 - [ ] Hash commitments + opaque-ID per-sample vectors in `docs/`
