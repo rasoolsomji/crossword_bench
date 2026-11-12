@@ -21,7 +21,7 @@ from crossword_bench.scorer import OUTCOMES, classify_outcome, extract_answer
 from crossword_bench.stats import mcnemar_exact, wilson_interval
 
 PROJECT_ROOT = Path(__file__).parent.parent
-PUBLIC_DIR_NAME = "live"
+PUBLIC_LOG_DIR = PROJECT_ROOT / "logs" / "live"
 MISS_GROUPS = ["correct", "wrong_answer", "near_miss", "wrong_length", "no_answer"]
 GROUP_OF = {"truncated": "no_answer", "interrupted": "no_answer"}
 GLYPHS = {
@@ -96,6 +96,10 @@ def run_effort(log: EvalLog) -> str:
     return "default"
 
 
+def is_public_log(path: Path) -> bool:
+    return path.parent.resolve() == PUBLIC_LOG_DIR.resolve()
+
+
 def load_runs(log_dir: Path) -> list[dict]:
     """Latest successful run per (cohort, model, effort)."""
     latest: dict[tuple, dict] = {}
@@ -138,7 +142,7 @@ def load_runs(log_dir: Path) -> list[dict]:
             "model": log.eval.model,
             "effort": run_effort(log),
             "created": log.eval.created,
-            "public": path.parent.name == PUBLIC_DIR_NAME,
+            "public": is_public_log(path),
             "log_file": path.name,
             "samples": samples,
         }

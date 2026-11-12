@@ -69,6 +69,12 @@ def test_public_cohort_has_clues_and_head_to_head():
     assert "Secret clue text" in site.generate_html([cohort])
 
 
+def test_only_the_top_level_live_dir_is_public():
+    assert site.is_public_log(site.PUBLIC_LOG_DIR / "x.eval")
+    assert not site.is_public_log(site.PUBLIC_LOG_DIR.parent / "archive" / "live" / "x.eval")
+    assert not site.is_public_log(site.PUBLIC_LOG_DIR / "nested" / "x.eval")
+
+
 def test_provider_mapping():
     assert site.provider_of("codex/gpt-6-luna") == "OpenAI"
     assert site.provider_of("anthropic/claude-haiku-5-5") == "Anthropic"
