@@ -205,6 +205,13 @@
   .detail-grid .who { color: var(--ink2); display: block; }
   .detail-grid .said { display: block; margin: 2px 0; }
   .detail-links { font-size: 13px; display: flex; flex-wrap: wrap; gap: 6px 18px; }
+  a.ext::after {
+    content: ""; display: inline-block; width: .8em; height: .8em; margin-left: .3em; vertical-align: -.05em;
+    background: currentColor;
+    -webkit-mask: var(--ext-icon) no-repeat center / contain; mask: var(--ext-icon) no-repeat center / contain;
+  }
+  :root { --ext-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6'/%3E%3Cpath d='M15 3h6v6'/%3E%3Cpath d='M10 14 21 3'/%3E%3C/svg%3E"); }
+  .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
 
   .notes { color: var(--ink2); font-size: 14px; }
   .notes ul { margin: 8px 0 0; padding-left: 20px; }
@@ -264,7 +271,7 @@ __BODY__
   with overlapping intervals are not clearly separated; head to head is the sharper test, because both
   runs faced identical clues.</li>
   <li><strong>Effort</strong> is each provider's own reasoning setting. The labels are not comparable
-  between providers: "default" on one can spend more reasoning than "high" on another.</li>
+  between providers: "medium" on one can spend more reasoning than "high" on another.</li>
   <li><strong>Harness-backed runs.</strong> Models listed without an API (currently the OpenAI models,
   reached through the Codex app server) run inside an agent harness that adds its own context. Web
   search was disabled and any attempt to use a tool is cut off and scored as a miss, but treat those
@@ -293,6 +300,14 @@ const el = (tag, cls, text) => {
   return node;
 };
 const groupOf = (outcome) => DATA.groupOf[outcome] || outcome;
+const newTabLink = (href, label) => {
+  const link = el("a", "ext", label);
+  link.href = href;
+  link.target = "_blank";
+  link.rel = "noopener";
+  link.append(el("span", "sr-only", " (opens in a new tab)"));
+  return link;
+};
 
 // Tooltip: hover and keyboard focus show the same content.
 const tip = el("div", "tip");
@@ -367,19 +382,17 @@ document.querySelectorAll(".explorer").forEach((section) => {
         box.append(el("span", "who", result.output_tokens.toLocaleString("en") + " output tokens"));
       }
       if (run.log) {
-        const link = el("a", "", "Transcript and reasoning");
-        link.href = `logs/#/tasks/${encodeURIComponent(run.log)}/samples/sample/${encodeURIComponent(clue.id)}/1/`;
-        box.append(link);
+        box.append(newTabLink(
+          `logs/#/tasks/${encodeURIComponent(run.log)}/samples/sample/${encodeURIComponent(clue.id)}/1/`,
+          "Transcript and reasoning"
+        ));
       }
       grid.append(box);
     });
     const links = el("div", "detail-links");
     [[clue.url, "Puzzle on the Guardian"], [clue.parsing_url, "How it parses (Fifteensquared)"]].forEach(
       ([href, label]) => {
-        if (!href) return;
-        const link = el("a", "", label);
-        link.href = href;
-        links.append(link);
+        if (href) links.append(newTabLink(href, label));
       }
     );
     cell.append(grid, links);
