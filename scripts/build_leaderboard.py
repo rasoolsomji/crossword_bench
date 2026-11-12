@@ -40,6 +40,10 @@ PROVIDER_NAMES = {
     "mistral": "Mistral",
     "grok": "xAI",
     "together": "Together",
+    "deepseek": "DeepSeek",
+    "meta-llama": "Meta",
+    "mistralai": "Mistral",
+    "x-ai": "xAI",
 }
 # Colour follows the provider, so this order is fixed: adding a provider
 # appends a slot and never repaints an existing one.

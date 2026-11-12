@@ -21,6 +21,12 @@ Model credentials:
   `codex app-server` rather than the OpenAI API — see
   [codex_provider.py](src/crossword_bench/codex_provider.py) for the
   caveats. With an API key, use Inspect's `openai/<model>` instead.
+- **OpenRouter**: put `OPENROUTER_API_KEY=...` in `.env` and use
+  `--model openrouter/<vendor>/<model>`. Inspect's OpenRouter provider
+  needs the `openai` package, so run with `uv run --with openai inspect
+  eval ...`. Pin the serving endpoint so every clue hits the same weights
+  and quantization, e.g. for DeepSeek:
+  `-M 'provider={"order": ["deepinfra/fp8"], "allow_fallbacks": false}'`.
 
 ## Live track (Guardian cryptic)
 

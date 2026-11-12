@@ -73,6 +73,7 @@ def test_provider_mapping():
     assert site.provider_of("codex/gpt-6-luna") == "OpenAI"
     assert site.provider_of("anthropic/claude-haiku-5-5") == "Anthropic"
     assert site.provider_of("openrouter/google/gemini") == "Google"
+    assert site.provider_of("openrouter/deepseek/deepseek-v4.1-flash-1017") == "DeepSeek"
     assert site.provider_of("somewhere/new-model") == "Other"
 
 

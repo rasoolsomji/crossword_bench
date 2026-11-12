@@ -16,6 +16,9 @@ See [README.md](README.md) for setup and commands, and
 - Live-track runs go to `--log-dir logs/live`, which is published in
   full. Logs anywhere else in `logs/` may hold private anchor clues and
   must stay private.
+- OpenRouter runs pin one endpoint with `-M provider=...` and
+  `allow_fallbacks: false` (see README). Unpinned, OpenRouter spreads
+  requests across hosts serving different quantizations.
 - `codex/<slug>` runs log reasoning summaries that are bold headings
   only. That is what Codex sends on a ChatGPT login, not a provider bug
   (checked against `codex exec`); see the docstring in
