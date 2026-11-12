@@ -113,7 +113,8 @@ def fetch_blog_post(number: int, published: date) -> dict | None:
 
 def classify_puzzle(
     client: anthropic.Anthropic, model: str, samples: list[dict], blog: dict | None
-) -> list[dict]:
+) -> tuple[list[dict], str]:
+    """Device labels for each clue, and the model that actually produced them."""
     clues = [{"id": s["id"], "clue": s["input"], "answer": s["target"]} for s in samples]
     prompt = f"<clues>\n{json.dumps(clues, ensure_ascii=False, indent=1)}\n</clues>\n\n"
     if blog:
@@ -151,7 +152,12 @@ def classify_puzzle(
                 "source": entry["source"] if blog else "model",
             }
         )
-    return results
+    # With server-side fallback a substitute model may have served the reply.
+    served = next(
+        (it.model for it in (response.usage.iterations or []) if it.type == "fallback_message"),
+        response.model,
+    )
+    return results, served
 
 
 def main() -> None:
@@ -184,9 +190,9 @@ def main() -> None:
         # A puzzle labelled before its blog post appeared is redone once it has.
         if done and not blog and not args.force:
             continue
-        labels = classify_puzzle(client, args.model, samples, blog)
+        labels, classifier = classify_puzzle(client, args.model, samples, blog)
         annotations["puzzles"][str(number)] = {
-            "classifier": args.model,
+            "classifier": classifier,
             "parsing_url": blog["url"] if blog else None,
         }
         for label in labels:
