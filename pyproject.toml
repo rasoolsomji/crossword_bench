@@ -4,8 +4,15 @@ version = "0.1.0"
 description = "Benchmark for evaluating LLMs on cryptic crossword clues"
 requires-python = ">=3.11"
 dependencies = [
+    "anthropic>=2.8.0",
     "inspect-ai>=0.3.74",
 ]
+
+[project.scripts]
+fetch-guardian = "crossword_bench.guardian:main"
+
+[project.entry-points.inspect_ai]
+crossword_bench = "crossword_bench._registry"
 
 [build-system]
 requires = ["hatchling"]
@@ -13,3 +20,8 @@ build-backend = "hatchling.build"
 
 [tool.hatch.build.targets.wheel]
 packages = ["src/crossword_bench"]
+
+[dependency-groups]
+dev = [
+    "pytest>=9.2.0",
+]
