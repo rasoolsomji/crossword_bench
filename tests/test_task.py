@@ -21,9 +21,12 @@ def test_resolves_directories_globs_and_lists(tmp_path):
 
 
 def test_ids_assigned_when_missing_and_duplicates_rejected(tmp_path):
-    a = write(tmp_path / "a.json", [{"input": "x (1)", "target": "X"}])
+    a = write(tmp_path / "a.json", [{"input": "x (1)", "target": "X"}, {"input": "y (1)", "target": "Y"}])
     b = write(tmp_path / "b.json", [{"input": "y (1)", "target": "Y"}])
-    assert [s.id for s in load_samples([a, b])] == [1, 2]
+    c = write(tmp_path / "c.json", [{"id": "kept", "input": "z (1)", "target": "Z"}])
+    ids = [s.id for s in load_samples([a, c])]
+    assert ids[2] == "kept"
+    assert [s.id for s in load_samples([b])] == ids[1:2]
     c = write(tmp_path / "c.json", [{"id": "dup", "input": "x (1)", "target": "X"}])
     with pytest.raises(ValueError):
         load_samples([c, c])
@@ -34,3 +37,15 @@ def test_task_always_sets_an_effort(tmp_path):
 
     data = write(tmp_path / "a.json", [{"id": "a1", "input": "x (1)", "target": "X"}])
     assert cryptic_crossword(dataset=str(data)).config.reasoning_effort == DEFAULT_EFFORT
+
+
+def test_default_label_changes_with_the_clues(tmp_path):
+    from crossword_bench.task import cryptic_crossword
+
+    data = write(tmp_path / "clues.json", [{"input": "x (1)", "target": "X"}])
+    before = cryptic_crossword(dataset=str(data))
+    write(data, [{"input": "x (1)", "target": "Y"}])
+    after = cryptic_crossword(dataset=str(data))
+    assert before.dataset.name.startswith("clues-")
+    assert before.dataset.name != after.dataset.name
+    assert cryptic_crossword(dataset=str(data), label="fixed").dataset.name == "fixed"

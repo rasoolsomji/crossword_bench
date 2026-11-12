@@ -1,5 +1,7 @@
 """Cryptic crossword benchmark tasks for Inspect AI."""
 
+import hashlib
+import json
 from glob import glob
 from pathlib import Path
 
@@ -56,13 +58,19 @@ def load_samples(files: list[Path]) -> list[Sample]:
     samples: list[Sample] = []
     for file in files:
         samples.extend(json_dataset(str(file)))
-    if any(sample.id is None for sample in samples):
-        for index, sample in enumerate(samples, 1):
-            sample.id = index
+    for sample in samples:
+        if sample.id is None:
+            # Derived from the clue rather than its position, so editing or
+            # dropping other clues in the file leaves this id unchanged.
+            sample.id = content_digest([sample.input, sample.target])[:12]
     ids = [sample.id for sample in samples]
     if len(set(ids)) != len(ids):
         raise ValueError("Duplicate sample ids across dataset files")
     return samples
+
+
+def content_digest(value: object) -> str:
+    return hashlib.sha256(json.dumps(value, sort_keys=True, default=str).encode()).hexdigest()
 
 
 @task
@@ -77,12 +85,18 @@ def cryptic_crossword(
         dataset: Clues JSON file, directory, glob, or comma-separated list
             of those. Defaults to data/clues.json.
         label: Cohort name shown on the leaderboard. Models are only
-            comparable within the same cohort (identical clues).
+            comparable within the same cohort (identical clues). Defaults
+            to the dataset file name plus a hash of its clues.
         cot: If True, prepend a chain-of-thought solver.
     """
     files = resolve_dataset_files(dataset)
+    samples = load_samples(files)
     if label is None:
         label = files[0].stem if len(files) == 1 else f"{files[0].stem}..{files[-1].stem}"
+        # A changed clue set gets a new default cohort instead of joining
+        # runs made on the old one.
+        digest = content_digest([[s.id, s.input, s.target] for s in samples])
+        label = f"{label}-{digest[:8]}"
 
     solvers = [system_message(SYSTEM_PROMPT)]
 
@@ -94,7 +108,7 @@ def cryptic_crossword(
     solvers.append(generate())
 
     return Task(
-        dataset=MemoryDataset(load_samples(files), name=label),
+        dataset=MemoryDataset(samples, name=label),
         solver=solvers,
         scorer=cryptic_scorer(),
         # Provider defaults differ and are not logged, and Claude only returns
