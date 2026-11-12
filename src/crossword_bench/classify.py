@@ -177,9 +177,13 @@ def main() -> None:
     for path in sorted(args.data.glob("*.json")):
         samples = json.loads(path.read_text())
         number = samples[0]["metadata"]["puzzle"]
-        if str(number) in annotations["puzzles"] and not args.force:
+        done = annotations["puzzles"].get(str(number))
+        if done and done.get("parsing_url") and not args.force:
             continue
         blog = fetch_blog_post(number, date.fromisoformat(samples[0]["metadata"]["date"]))
+        # A puzzle labelled before its blog post appeared is redone once it has.
+        if done and not blog and not args.force:
+            continue
         labels = classify_puzzle(client, args.model, samples, blog)
         annotations["puzzles"][str(number)] = {
             "classifier": args.model,
