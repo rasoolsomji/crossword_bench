@@ -129,6 +129,10 @@ def load_runs(log_dir: Path) -> list[dict]:
 
         samples = {}
         for sample in log.samples:
+            if (sample.metadata or {}).get("cross_reference"):
+                # Needs another entry's answer, which a clue posed on its own
+                # doesn't have.
+                continue
             output = sample.output
             # Re-extracted rather than read from the logged score, so scorer
             # fixes apply to logs recorded before them.
