@@ -25,7 +25,7 @@ from datetime import datetime
 from pathlib import Path
 
 from crossword_bench.classify import BLOG_API, BLOG_CACHE
-from crossword_bench.guardian import BASE_URL, _get, clean_clue
+from crossword_bench.guardian import BASE_URL, _get, clean_clue, refers_to_other_entry
 
 PROJECT_ROOT = Path(__file__).parent.parent
 DEFAULT_OUT = PROJECT_ROOT / "data" / "live" / "guardian-hard"
@@ -102,6 +102,9 @@ def main() -> None:
         lengths = [int(n) for n in re.findall(r"\d+", enumeration.group(1))] if enumeration else []
         if sum(lengths) != len(target):
             sys.exit(f"Enumeration of '{clue}' does not fit {answer}")
+        if refers_to_other_entry(clue):
+            print(f"  skipping {answer}: refers to another entry: {clue}", file=sys.stderr)
+            continue
         samples.append(
             {
                 "id": f"guardian-genius-{args.number}-{position:02d}",
@@ -117,7 +120,6 @@ def main() -> None:
                     "direction": "",
                     "number": position,
                     "url": url,
-                    "cross_reference": bool(re.search(r"\d", clue[: enumeration.start()])),
                 },
             }
         )
@@ -128,7 +130,7 @@ def main() -> None:
     BLOG_CACHE.mkdir(parents=True, exist_ok=True)
     cache = {"url": post["url"], "title": post["title"], "text": _text(post["html"])}
     (BLOG_CACHE / f"{args.number}.json").write_text(json.dumps(cache, ensure_ascii=False, indent=2))
-    print(f"Genius {args.number} ({published}, {setter}): {len(samples)} clues, {len(args.skip)} skipped -> {path}")
+    print(f"Genius {args.number} ({published}, {setter}): {len(samples)} clues, {len(rows) - len(samples)} skipped -> {path}")
 
 
 if __name__ == "__main__":

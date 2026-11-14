@@ -58,11 +58,23 @@ def clean_clue(raw: str) -> str:
     return re.sub(r"\s+", " ", html.unescape(_TAG.sub("", raw))).strip()
 
 
+def refers_to_other_entry(clue: str) -> bool:
+    """Whether the clue has a number before its enumeration.
+
+    That is usually a pointer to another entry ("a taste of 25"), whose
+    answer a clue posed on its own doesn't have. It also catches a few
+    fair clues ("1st of January"), which are dropped with the rest.
+    """
+    enumeration = _ENUMERATION.search(clue)
+    return bool(re.search(r"\d", clue[: enumeration.start()] if enumeration else clue))
+
+
 def puzzle_to_samples(puzzle: dict) -> list[dict]:
     """Convert a Guardian puzzle into Inspect samples, one per clue.
 
     Linked entries ("See 12") are folded into the clue that carries the
-    text, with the solution joined across the group's entries.
+    text, with the solution joined across the group's entries. Clues that
+    refer to another entry are skipped.
     """
     if not puzzle.get("solutionAvailable"):
         raise ValueError(f"Solutions not yet available for {puzzle.get('id')}")
@@ -88,6 +100,9 @@ def puzzle_to_samples(puzzle: dict) -> list[dict]:
         if sum(lengths) != len(solution):
             print(f"  skipping {entry['id']}: enumeration does not match solution", file=sys.stderr)
             continue
+        if refers_to_other_entry(clue):
+            print(f"  skipping {entry['id']}: refers to another entry: {clue}", file=sys.stderr)
+            continue
         samples.append(
             {
                 "id": f"guardian-{kind}-{number}-{entry['id']}",
@@ -101,8 +116,6 @@ def puzzle_to_samples(puzzle: dict) -> list[dict]:
                     "direction": entry["direction"],
                     "number": entry["number"],
                     "url": f"{BASE_URL}/{puzzle['id']}",
-                    # Clues that point at other entries can't be solved in isolation.
-                    "cross_reference": bool(re.search(r"\d", clue[: enumeration.start()])),
                 },
             }
         )

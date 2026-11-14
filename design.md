@@ -86,8 +86,11 @@ because those models will be evaluated on future clues.
   into `data/live/` (gitignored), and the
   task runs a directory of them as one cohort. Each clue is posed alone,
   without the grid or crossing letters, so scores understate what a
-  model could do on a full puzzle. Guardian Saturday prize puzzles
-  withhold solutions for a week and are skipped until then.
+  model could do on a full puzzle. Clues with a number before the
+  enumeration usually point at another entry ("a taste of 25") and are
+  skipped, as are a few fair clues the rule also catches. Guardian
+  Saturday prize puzzles withhold solutions for a week and are skipped
+  until then.
 - Model access without API keys goes through harnesses (`codex
   app-server` for a ChatGPT plan). A harness is not a bare model: it
   injects its own context and tools that cannot all be removed. The

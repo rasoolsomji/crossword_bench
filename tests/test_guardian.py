@@ -46,17 +46,17 @@ def test_single_and_linked_entries():
     assert samples[1]["target"] == "FORTHEBETTER"
 
 
-def test_cross_reference_flag_and_enumeration_check():
+def test_cross_references_and_wrong_enumerations_skipped():
     samples = puzzle_to_samples(
         puzzle(
             [
                 entry("1-across", "Partner of 7 down, perhaps (4)", "JILL"),
                 entry("3-across", "Wrong length (4)", "TOOLONG"),
+                entry("4-across", "Fruit (5)", "MELON"),
             ]
         )
     )
-    assert len(samples) == 1
-    assert samples[0]["metadata"]["cross_reference"] is True
+    assert [s["id"] for s in samples] == ["guardian-cryptic-1-4-across"]
 
 
 def test_published_date_is_the_uk_day():
