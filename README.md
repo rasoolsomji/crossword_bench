@@ -64,6 +64,24 @@ out mid-reasoning on a sixth of the clues. The Codex provider sets no cap.
 No search or tools are given to the model, which is what keeps the live
 track honest: answers are blogged within hours of publication.
 
+## Live track (Observer Azed and Gemelo)
+
+```bash
+uv run fetch-observer --since 2026-10-01
+```
+
+Fetches the Observer's two barred cryptics into `data/live/observer/`
+(`--series azed` or `gemelo` for one; `--numbers` with a single series
+for particular puzzles). Both are prize puzzles: a puzzle's data holds
+only a hash of its solution until the solution is released in its own
+data or with the next puzzle in the series, two to four weeks later, so
+the default window is the last six weeks and newer puzzles are reported
+and skipped. Clues keep the paper's enumerations, e.g. `(12, 5 words)`.
+Special puzzles (any with a preamble, including Azed's clue-writing
+competitions) are skipped, since their clues can't be posed on their
+own. Vocabulary is Chambers-only and far harder than the Guardian's, so
+run these as cohorts of their own.
+
 ## Anchor track (private London Paper set)
 
 With `data/clues.json` present, omit `-T dataset=...`. Without it the
