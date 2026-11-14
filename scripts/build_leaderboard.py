@@ -476,9 +476,9 @@ def render_outcomes(cohort: dict) -> str:
 <h3>How answers went wrong</h3>
 <p class="lede">Every response sorted into one outcome. A wrong-length answer ignores the
 enumeration in the clue; a near miss has the right length and is within two letters. A
-placeholder such as UNKNOWN on the answer line counts as no answer. A reply is cut off when
-it was stopped before it finished: the provider refused part way through, or the model
-started to use a tool.</p>
+placeholder such as UNKNOWN on the answer line counts as no answer, and so do replies that
+ran out of tokens or were cut off (the provider refused part way through, or the model
+started to use a tool); the table splits those out.</p>
 <div class="legend">{legend}</div>
 <div class="oc">
 {rows}</div>
