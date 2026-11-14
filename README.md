@@ -35,7 +35,11 @@ uv run fetch-guardian --since 2026-11-09
 ```
 
 `--numbers` fetches particular puzzles, Saturday Prize ones included
-(their solutions come out a week later).
+(their solutions come out a week later). The monthly Genius has no clue
+data on its page once the competition closes, so
+[scripts/fetch_genius.py](scripts/fetch_genius.py) takes clues and
+answers from the Fifteensquared post instead; see its docstring for the
+checks to make.
 
 ```bash
 uv run inspect eval src/crossword_bench/task.py \
