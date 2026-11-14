@@ -15,7 +15,7 @@ uv sync
 Model credentials:
 
 - **Claude**: put `ANTHROPIC_API_KEY=...` in `.env` (gitignored; Inspect
-  loads it automatically).
+  and `classify-clues` load it automatically).
 - **OpenAI via a ChatGPT plan**: log in with `codex login`, then use
   `--model codex/<slug>` (e.g. `codex/gpt-6-luna`). This drives
   `codex app-server` rather than the OpenAI API — see

@@ -17,8 +17,10 @@ from datetime import date, timedelta
 from pathlib import Path
 
 import anthropic
+from dotenv import load_dotenv
 
 PROJECT_ROOT = Path(__file__).parent.parent.parent
+ENV_PATH = PROJECT_ROOT / ".env"
 RUBRIC_PATH = PROJECT_ROOT / "clue_taxonomy.md"
 DEFAULT_DATA = PROJECT_ROOT / "data" / "live" / "guardian"
 DEFAULT_OUT = PROJECT_ROOT / "annotations" / "guardian-cryptic.json"
@@ -167,6 +169,7 @@ def main() -> None:
     parser.add_argument("--model", default="claude-sonnet-5-5")
     parser.add_argument("--force", action="store_true", help="Re-label puzzles that already have labels.")
     args = parser.parse_args()
+    load_dotenv(ENV_PATH)
 
     rubric_version = re.search(r"^Version:\s*(\S+)", RUBRIC_PATH.read_text(), re.MULTILINE).group(1)
     annotations = {"rubric_version": rubric_version, "puzzles": {}, "clues": {}}

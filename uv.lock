@@ -380,6 +380,7 @@ source = { editable = "." }
 dependencies = [
     { name = "anthropic" },
     { name = "inspect-ai" },
+    { name = "python-dotenv" },
 ]
 
 [package.dev-dependencies]
@@ -391,6 +392,7 @@ dev = [
 requires-dist = [
     { name = "anthropic", specifier = ">=2.8.0" },
     { name = "inspect-ai", specifier = ">=0.3.74" },
+    { name = "python-dotenv", specifier = ">=1.2.2" },
 ]
 
 [package.metadata.requires-dev]
