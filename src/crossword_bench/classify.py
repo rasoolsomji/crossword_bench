@@ -92,7 +92,8 @@ def fetch_blog_post(number: int, published: date) -> dict | None:
         {
             "search": "Guardian",
             "after": f"{published - timedelta(days=1)}T00:00:00",
-            "before": f"{published + timedelta(days=3)}T00:00:00",
+            # Prize puzzles are blogged once their solution is out, a week later.
+            "before": f"{published + timedelta(days=10)}T00:00:00",
             "per_page": 50,
             "_fields": "link,title,content",
         }
