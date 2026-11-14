@@ -142,6 +142,18 @@ First cohort (Guardian 9–12 Nov 2026, 116 clues from four puzzles), medium-eff
 
 Setter matters more than source. In the DeepSeek run, Carpathian's puzzle went 29/30 and Anto's 30/30, while Paul's (No 30,161) went 19/28 and held 9 of its 14 misses. A cohort without a hard setter would barely separate the top models.
 
+### Which Guardian setters are hard
+
+No published per-setter difficulty data turned up. As a proxy, the intros (text before the first clue) of 741 Fifteensquared posts on Guardian daily and Prize puzzles, 1 Jul 2024 – 14 Nov 2026, were scored for difficulty words (tough, tricky, difficult, struggled, …) against ease words (gentle, easy, straightforward, …), with negations ("not too tricky") and mentions of other setters discounted. This is crude: each weekday has its own blogger, so blogger habits and day of week are confounded with setter, and only the two ends of the ranking mean anything.
+
+- **Harder** (share of posts with difficulty words minus share with ease words ≥ +20 points): Vlad (25 posts), Enigmatist (18), Fed (30), Imogen (35), Paul (94), Brockwell (35). Boatman and Harpo score as high on ≤10 posts.
+- **Easier** (≤ −15 points): Maskarade (17), Alia (10), Anto (26), Carpathian (15), Vulcan (61), Pangakupu (28).
+- **Not separable**: Brendan, Brummie, Kite, Omnibus, Pasquale, Philistine, Picaroon (left for the Telegraph in Jan 2025), Qaos, Tramp, Yank.
+
+The proxy orders the first cohort's setters the same way the models did: Paul hardest, then Pasquale, then Anto and Carpathian.
+
+Prize puzzles skew hard. Over the same window the six harder setters set 48% of Prize puzzles and the six easier ones 6%; Prize puzzles were 16% of posts. In 2025 the six harder setters had about 110 Daily Cryptic appearances between them (Paul 44, Brockwell 17, Imogen 17, Vlad 12, Enigmatist 10, Fed 10, per Fifteensquared's "Guardian Crossword Stats – 2025"), roughly two a week.
+
 ### What Fifteensquared covers
 
 Post counts from the blog's WordPress API (`/wp-json/wp/v2/categories`) on 13 Nov 2026. Difficulty is general reputation, not measured here.
@@ -167,7 +179,7 @@ Beelzebub (Independent on Sunday, 387 posts) has had no posts in the past month.
 ### Access
 
 - **Guardian daily and Prize**: puzzle JSON in the page (`fetch-guardian`). Prize solutions appear a week later.
-- **Guardian Genius**: now article pages with a PDF (e.g. `/crosswords/2026/aug/03/genius-crossword-no-278`), not the JSON component, so `fetch-guardian` would not pick it up.
+- **Guardian Genius**: each puzzle is an HTML article (e.g. `/crosswords/2026/nov/02/genius-crossword-no-281`) with an image of the empty grid, a print PDF, and a Formstack entry form in an iframe. The form carries the clues as text: `https://guardiannewsandmedia.formstack.com/forms/genius_crossword_<n>` embeds JSON in which each answer field's `label` is the clue number, text and enumeration (e.g. "1 Her exercise snubs liberal society bars (8)"), under sections headed Across and Down. Multi-word enumerations read "(6, two words)" rather than "(3,3)". There is no grid data (image and PDF only) and no answers: the page of the closed No 278 still shows the empty grid, so answers would come from Fifteensquared, which blogs each Genius after its deadline, about a month after publication. `fetch-guardian` reads none of this, and `/crosswords/genius/<n>` returns 404.
 - **Independent**: hosted at puzzles.independent.co.uk on Arkadium's games platform. Neither the page nor its network calls held clue data. On 13 Nov the game page carried a banner saying the Independent Cryptic and Concise crosswords "will be discontinued on Nov. 30th"; unclear whether the puzzle ends or moves.
 - **FT**: ft.com/crossword answers plain requests with a Cloudflare challenge (HTTP 403). No free PDF or data feed found.
 - **Observer (Azed, Everyman, Gemelo)**: observer.co.uk (Tortoise Media since 2025). Each article page carries a puzzle uuid, and `https://content-api.slowdownwiseup.co.uk/api/mobile/v1/puzzle-data/<uuid>/file/data.json` returns grid, clues and enumerations with no login. Everyman includes per-clue answers; Azed and Gemelo withhold them until the next week's JSON, which carries the previous solution as a flat grid string. The API is undocumented.
@@ -185,7 +197,7 @@ A typical post reproduces each clue with its answer and parsing, and nearly all 
 ### Options for more signal
 
 1. **Score the parse, not just the answer.** Have the model state its definition and wordplay, and check them against the blog's underlined definition and parsing. Answer-only accuracy rewards guessing from the definition; this raises the ceiling without changing source, and `classify-clues` already fetches the posts.
-2. **Weight toward hard setters.** Include Prize puzzles once solved, and report results by setter.
+2. **Weight toward hard setters.** Include Prize puzzles once solved (half are by the harder setters above), and report results by setter.
 3. **Azed as a hard track**, with the Observer's permission, filtering special-format weeks.
 4. **FT via Fifteensquared**, with the caveats above.
 5. **Run a frontier model on the current cohort first.** Around 95% would mean the Guardian track is saturated whatever else changes.
