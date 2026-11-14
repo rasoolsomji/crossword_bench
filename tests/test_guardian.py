@@ -74,3 +74,10 @@ def test_parse_puzzle_page():
     props = html.escape(json.dumps({"data": puzzle([entry("1-across", "Clue (5)", "MELON")])}))
     page = f'<html><gu-island name="CrosswordComponent" priority="critical" props="{props}"></gu-island></html>'
     assert parse_puzzle_page(page)["number"] == 1
+
+
+def test_prize_puzzles_are_named_as_prize():
+    prize = {**puzzle([entry("1-across", "Clue (5)", "MELON")]), "crosswordType": "prize"}
+    [sample] = puzzle_to_samples(prize)
+    assert sample["id"] == "guardian-prize-1-1-across"
+    assert sample["metadata"]["source"] == "Guardian prize"

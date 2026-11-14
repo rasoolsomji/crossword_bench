@@ -9,6 +9,7 @@ import html
 import json
 import re
 import sys
+import urllib.error
 import urllib.request
 from datetime import date, datetime
 from pathlib import Path
@@ -67,6 +68,7 @@ def puzzle_to_samples(puzzle: dict) -> list[dict]:
         raise ValueError(f"Solutions not yet available for {puzzle.get('id')}")
 
     number = puzzle["number"]
+    kind = puzzle.get("crosswordType", "cryptic")
     published = published_date(puzzle)
     setter = (puzzle.get("creator") or {}).get("name")
     by_id = {entry["id"]: entry for entry in puzzle["entries"]}
@@ -88,11 +90,11 @@ def puzzle_to_samples(puzzle: dict) -> list[dict]:
             continue
         samples.append(
             {
-                "id": f"guardian-cryptic-{number}-{entry['id']}",
+                "id": f"guardian-{kind}-{number}-{entry['id']}",
                 "input": clue,
                 "target": solution,
                 "metadata": {
-                    "source": "Guardian cryptic",
+                    "source": f"Guardian {kind}",
                     "puzzle": number,
                     "date": published.isoformat(),
                     "setter": setter,
@@ -108,14 +110,22 @@ def puzzle_to_samples(puzzle: dict) -> list[dict]:
 
 
 def fetch_puzzle(number: int) -> dict:
-    return parse_puzzle_page(_get(f"{BASE_URL}/crosswords/cryptic/{number}"))
+    # Saturday Prize puzzles share the cryptic numbering but live under their own path.
+    try:
+        return parse_puzzle_page(_get(f"{BASE_URL}/crosswords/cryptic/{number}"))
+    except urllib.error.HTTPError as error:
+        if error.code != 404:
+            raise
+        return parse_puzzle_page(_get(f"{BASE_URL}/crosswords/prize/{number}"))
 
 
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     parser.add_argument("--since", type=date.fromisoformat, help="Earliest publication date (YYYY-MM-DD). Default: today.")
     parser.add_argument("--until", type=date.fromisoformat, help="Latest publication date. Default: today.")
-    parser.add_argument("--numbers", type=int, nargs="+", help="Fetch these puzzle numbers instead of a date range.")
+    parser.add_argument(
+        "--numbers", type=int, nargs="+", help="Fetch these puzzle numbers (cryptic or Prize) instead of a date range."
+    )
     parser.add_argument("--out", type=Path, default=DEFAULT_OUT)
     args = parser.parse_args()
 
@@ -142,7 +152,8 @@ def main() -> None:
         except ValueError as error:
             print(f"{number} ({published}): {error}", file=sys.stderr)
             continue
-        path = args.out / f"{published.isoformat()}-cryptic-{number}.json"
+        kind = puzzle.get("crosswordType", "cryptic")
+        path = args.out / f"{published.isoformat()}-{kind}-{number}.json"
         path.write_text(json.dumps(samples, indent=2, ensure_ascii=False) + "\n")
         print(f"{number} ({published}): {len(samples)} clues -> {path}")
 

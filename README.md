@@ -34,6 +34,9 @@ Model credentials:
 uv run fetch-guardian --since 2026-11-09
 ```
 
+`--numbers` fetches particular puzzles, Saturday Prize ones included
+(their solutions come out a week later).
+
 ```bash
 uv run inspect eval src/crossword_bench/task.py \
   --model anthropic/claude-haiku-5-5 \
