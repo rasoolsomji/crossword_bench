@@ -1,6 +1,3697 @@
 {
  "cohorts": [
   {
+   "name": "guardian-cryptic-paul-2026-10-14..11-06",
+   "public": true,
+   "clues": 78,
+   "runs": [
+    {
+     "model": "openrouter/deepseek/deepseek-v4.1-flash-1017",
+     "provider": "DeepSeek",
+     "effort": "medium",
+     "label": "deepseek/deepseek-v4.1-flash-1017 · medium",
+     "correct": 51,
+     "total": 78,
+     "accuracy": 0.6538461538461539,
+     "ci95": [
+      0.5432998724955743,
+      0.749949526343158
+     ],
+     "outcomes": {
+      "correct": 51,
+      "near_miss": 1,
+      "wrong_answer": 19,
+      "wrong_length": 1,
+      "truncated": 6
+     },
+     "tokens": {
+      "input": 9482,
+      "cached_input": 0,
+      "output": 1450381,
+      "reasoning": 1449819,
+      "output_per_clue": 18594.628205128207,
+      "input_per_clue": 121.56410256410257
+     },
+     "reasoning_by_result": {
+      "correct": [
+       94,
+       204,
+       293,
+       336,
+       470,
+       494,
+       515,
+       517,
+       517,
+       616,
+       759,
+       774,
+       1001,
+       1580,
+       1604,
+       1629,
+       1738,
+       1956,
+       3725,
+       4197,
+       4328,
+       4409,
+       4920,
+       5375,
+       5705,
+       5825,
+       5862,
+       6210,
+       6308,
+       6753,
+       6861,
+       8598,
+       8915,
+       9585,
+       9781,
+       10163,
+       11396,
+       11448,
+       12307,
+       12742,
+       13368,
+       16101,
+       18259,
+       20540,
+       22853,
+       27509,
+       27762,
+       28658,
+       32347,
+       35969,
+       53807
+      ],
+      "missed": [
+       497,
+       1274,
+       1281,
+       2658,
+       7363,
+       7647,
+       8338,
+       21457,
+       28479,
+       29923,
+       30794,
+       32814,
+       36571,
+       37714,
+       41395,
+       44127,
+       46759,
+       47209,
+       49331,
+       51669,
+       60837,
+       63999,
+       64000,
+       64000,
+       64000,
+       64000,
+       64000
+      ]
+     },
+     "estimated_cost": {
+      "total": 0.42734124999999995,
+      "per_100_clues": 0.5478733974358974
+     },
+     "created": "2026-11-12T20:27:13+00:00",
+     "log_file": "2026-11-12T20-27-13-00-00_cryptic-crossword_CwkcThpPwCfnJ5XeeXEgjj.eval"
+    },
+    {
+     "model": "anthropic/claude-sonnet-5-5",
+     "provider": "Anthropic",
+     "effort": "medium",
+     "label": "claude-sonnet-5-5 · medium",
+     "correct": 38,
+     "total": 78,
+     "accuracy": 0.48717948717948717,
+     "ci95": [
+      0.37948764475056745,
+      0.5960749053462049
+     ],
+     "outcomes": {
+      "correct": 38,
+      "wrong_answer": 35,
+      "wrong_length": 3,
+      "no_answer": 2
+     },
+     "tokens": {
+      "input": 12094,
+      "cached_input": 0,
+      "output": 75197,
+      "reasoning": 0,
+      "output_per_clue": 964.0641025641025,
+      "input_per_clue": 155.05128205128204
+     },
+     "reasoning_by_result": null,
+     "estimated_cost": {
+      "total": 0.776158,
+      "per_100_clues": 0.995074358974359
+     },
+     "created": "2026-11-12T20:27:11+00:00",
+     "log_file": "2026-11-12T20-27-11-00-00_cryptic-crossword_kf9YRhd4NAWmfPE85dWPsU.eval"
+    },
+    {
+     "model": "anthropic/claude-haiku-5-5",
+     "provider": "Anthropic",
+     "effort": "medium",
+     "label": "claude-haiku-5-5 · medium",
+     "correct": 16,
+     "total": 78,
+     "accuracy": 0.20512820512820512,
+     "ci95": [
+      0.13039684796163398,
+      0.30754180426412897
+     ],
+     "outcomes": {
+      "correct": 16,
+      "near_miss": 1,
+      "wrong_answer": 45,
+      "wrong_length": 7,
+      "no_answer": 9
+     },
+     "tokens": {
+      "input": 12094,
+      "cached_input": 0,
+      "output": 177511,
+      "reasoning": 166017,
+      "output_per_clue": 2275.7820512820513,
+      "input_per_clue": 155.05128205128204
+     },
+     "reasoning_by_result": {
+      "correct": [
+       222,
+       288,
+       378,
+       655,
+       669,
+       1102,
+       1206,
+       1212,
+       1231,
+       1527,
+       1702,
+       2015,
+       2106,
+       2893,
+       4325,
+       4808
+      ],
+      "missed": [
+       478,
+       712,
+       826,
+       944,
+       1004,
+       1011,
+       1205,
+       1262,
+       1295,
+       1327,
+       1411,
+       1461,
+       1470,
+       1479,
+       1492,
+       1547,
+       1580,
+       1679,
+       1698,
+       1761,
+       1810,
+       1813,
+       1848,
+       1858,
+       1888,
+       1891,
+       1967,
+       1982,
+       2000,
+       2019,
+       2025,
+       2032,
+       2043,
+       2045,
+       2118,
+       2145,
+       2145,
+       2148,
+       2170,
+       2209,
+       2275,
+       2321,
+       2365,
+       2365,
+       2396,
+       2409,
+       2528,
+       2575,
+       2605,
+       2779,
+       2805,
+       2865,
+       2923,
+       2966,
+       2995,
+       3015,
+       3107,
+       3846,
+       4231,
+       4783,
+       5033,
+       10693
+      ]
+     },
+     "estimated_cost": {
+      "total": 0.0899649,
+      "per_100_clues": 0.11533961538461537
+     },
+     "created": "2026-11-12T20:27:09+00:00",
+     "log_file": "2026-11-12T20-27-09-00-00_cryptic-crossword_boJAqURMEEVJwyqGeVQRD8.eval"
+    },
+    {
+     "model": "codex/gpt-6-luna",
+     "provider": "OpenAI",
+     "effort": "medium",
+     "label": "gpt-6-luna · medium",
+     "correct": 11,
+     "total": 78,
+     "accuracy": 0.14102564102564102,
+     "ci95": [
+      0.08060961324830107,
+      0.23514178946132336
+     ],
+     "outcomes": {
+      "correct": 11,
+      "wrong_answer": 36,
+      "wrong_length": 30,
+      "no_answer": 1
+     },
+     "tokens": {
+      "input": 447807,
+      "cached_input": 293760,
+      "output": 22775,
+      "reasoning": 21111,
+      "output_per_clue": 291.9871794871795,
+      "input_per_clue": 5741.115384615385
+     },
+     "reasoning_by_result": {
+      "correct": [
+       0,
+       194,
+       284,
+       291,
+       516,
+       516,
+       516,
+       516,
+       767,
+       946,
+       964
+      ],
+      "missed": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       426,
+       434,
+       490,
+       508,
+       516,
+       516,
+       516,
+       516,
+       516,
+       516,
+       516,
+       516,
+       516,
+       516,
+       516,
+       516,
+       516,
+       516,
+       814,
+       854,
+       870,
+       890,
+       1023,
+       1034,
+       1034
+      ]
+     },
+     "estimated_cost": {
+      "total": 0.0297298,
+      "per_100_clues": 0.038115128205128204
+     },
+     "created": "2026-11-12T20:27:11+00:00",
+     "log_file": "2026-11-12T20-27-11-00-00_cryptic-crossword_n27uugJc7EMo9wzMixYRtH.eval"
+    }
+   ],
+   "head_to_head": [
+    {
+     "a": 0,
+     "b": 1,
+     "both": 31,
+     "only_a": 20,
+     "only_b": 7,
+     "neither": 20,
+     "p": 0.0191572904586792
+    },
+    {
+     "a": 0,
+     "b": 2,
+     "both": 15,
+     "only_a": 36,
+     "only_b": 1,
+     "neither": 26,
+     "p": 5.529727786779404e-10
+    },
+    {
+     "a": 0,
+     "b": 3,
+     "both": 11,
+     "only_a": 40,
+     "only_b": 0,
+     "neither": 27,
+     "p": 1.8189894035458565e-12
+    },
+    {
+     "a": 1,
+     "b": 2,
+     "both": 13,
+     "only_a": 25,
+     "only_b": 3,
+     "neither": 37,
+     "p": 2.744048833847046e-05
+    },
+    {
+     "a": 1,
+     "b": 3,
+     "both": 8,
+     "only_a": 30,
+     "only_b": 3,
+     "neither": 37,
+     "p": 1.4011748135089874e-06
+    },
+    {
+     "a": 2,
+     "b": 3,
+     "both": 4,
+     "only_a": 12,
+     "only_b": 7,
+     "neither": 55,
+     "p": 0.359283447265625
+    }
+   ],
+   "by_device": [
+    {
+     "name": "charade",
+     "clues": 37,
+     "all_runs": {
+      "correct": 63,
+      "total": 148
+     },
+     "runs": [
+      {
+       "correct": 26,
+       "total": 37
+      },
+      {
+       "correct": 22,
+       "total": 37
+      },
+      {
+       "correct": 9,
+       "total": 37
+      },
+      {
+       "correct": 6,
+       "total": 37
+      }
+     ]
+    },
+    {
+     "name": "container",
+     "clues": 30,
+     "all_runs": {
+      "correct": 43,
+      "total": 120
+     },
+     "runs": [
+      {
+       "correct": 20,
+       "total": 30
+      },
+      {
+       "correct": 14,
+       "total": 30
+      },
+      {
+       "correct": 5,
+       "total": 30
+      },
+      {
+       "correct": 4,
+       "total": 30
+      }
+     ]
+    },
+    {
+     "name": "letter_selection",
+     "clues": 17,
+     "all_runs": {
+      "correct": 28,
+      "total": 68
+     },
+     "runs": [
+      {
+       "correct": 14,
+       "total": 17
+      },
+      {
+       "correct": 8,
+       "total": 17
+      },
+      {
+       "correct": 3,
+       "total": 17
+      },
+      {
+       "correct": 3,
+       "total": 17
+      }
+     ]
+    },
+    {
+     "name": "anagram",
+     "clues": 16,
+     "all_runs": {
+      "correct": 27,
+      "total": 64
+     },
+     "runs": [
+      {
+       "correct": 14,
+       "total": 16
+      },
+      {
+       "correct": 8,
+       "total": 16
+      },
+      {
+       "correct": 2,
+       "total": 16
+      },
+      {
+       "correct": 3,
+       "total": 16
+      }
+     ]
+    },
+    {
+     "name": "reversal",
+     "clues": 11,
+     "all_runs": {
+      "correct": 19,
+      "total": 44
+     },
+     "runs": [
+      {
+       "correct": 7,
+       "total": 11
+      },
+      {
+       "correct": 7,
+       "total": 11
+      },
+      {
+       "correct": 4,
+       "total": 11
+      },
+      {
+       "correct": 1,
+       "total": 11
+      }
+     ]
+    },
+    {
+     "name": "deletion",
+     "clues": 9,
+     "all_runs": {
+      "correct": 11,
+      "total": 36
+     },
+     "runs": [
+      {
+       "correct": 6,
+       "total": 9
+      },
+      {
+       "correct": 2,
+       "total": 9
+      },
+      {
+       "correct": 2,
+       "total": 9
+      },
+      {
+       "correct": 1,
+       "total": 9
+      }
+     ]
+    },
+    {
+     "name": "homophone",
+     "clues": 5,
+     "all_runs": {
+      "correct": 5,
+      "total": 20
+     },
+     "runs": [
+      {
+       "correct": 2,
+       "total": 5
+      },
+      {
+       "correct": 2,
+       "total": 5
+      },
+      {
+       "correct": 1,
+       "total": 5
+      },
+      {
+       "correct": 0,
+       "total": 5
+      }
+     ]
+    },
+    {
+     "name": "hidden",
+     "clues": 5,
+     "all_runs": {
+      "correct": 5,
+      "total": 20
+     },
+     "runs": [
+      {
+       "correct": 2,
+       "total": 5
+      },
+      {
+       "correct": 2,
+       "total": 5
+      },
+      {
+       "correct": 0,
+       "total": 5
+      },
+      {
+       "correct": 1,
+       "total": 5
+      }
+     ]
+    },
+    {
+     "name": "double_definition",
+     "clues": 2,
+     "all_runs": {
+      "correct": 3,
+      "total": 8
+     },
+     "runs": [
+      {
+       "correct": 1,
+       "total": 2
+      },
+      {
+       "correct": 1,
+       "total": 2
+      },
+      {
+       "correct": 1,
+       "total": 2
+      },
+      {
+       "correct": 0,
+       "total": 2
+      }
+     ]
+    },
+    {
+     "name": "cryptic_definition",
+     "clues": 2,
+     "all_runs": {
+      "correct": 0,
+      "total": 8
+     },
+     "runs": [
+      {
+       "correct": 0,
+       "total": 2
+      },
+      {
+       "correct": 0,
+       "total": 2
+      },
+      {
+       "correct": 0,
+       "total": 2
+      },
+      {
+       "correct": 0,
+       "total": 2
+      }
+     ]
+    },
+    {
+     "name": "spoonerism",
+     "clues": 1,
+     "all_runs": {
+      "correct": 3,
+      "total": 4
+     },
+     "runs": [
+      {
+       "correct": 1,
+       "total": 1
+      },
+      {
+       "correct": 1,
+       "total": 1
+      },
+      {
+       "correct": 1,
+       "total": 1
+      },
+      {
+       "correct": 0,
+       "total": 1
+      }
+     ]
+    }
+   ],
+   "by_puzzle": [
+    {
+     "name": "No 30,137 · Paul",
+     "clues": 28,
+     "all_runs": {
+      "correct": 42,
+      "total": 112
+     },
+     "runs": [
+      {
+       "correct": 19,
+       "total": 28
+      },
+      {
+       "correct": 14,
+       "total": 28
+      },
+      {
+       "correct": 4,
+       "total": 28
+      },
+      {
+       "correct": 5,
+       "total": 28
+      }
+     ]
+    },
+    {
+     "name": "No 30,151 · Paul",
+     "clues": 25,
+     "all_runs": {
+      "correct": 37,
+      "total": 100
+     },
+     "runs": [
+      {
+       "correct": 16,
+       "total": 25
+      },
+      {
+       "correct": 11,
+       "total": 25
+      },
+      {
+       "correct": 6,
+       "total": 25
+      },
+      {
+       "correct": 4,
+       "total": 25
+      }
+     ]
+    },
+    {
+     "name": "No 30,157 · Paul",
+     "clues": 25,
+     "all_runs": {
+      "correct": 37,
+      "total": 100
+     },
+     "runs": [
+      {
+       "correct": 16,
+       "total": 25
+      },
+      {
+       "correct": 13,
+       "total": 25
+      },
+      {
+       "correct": 6,
+       "total": 25
+      },
+      {
+       "correct": 2,
+       "total": 25
+      }
+     ]
+    }
+   ],
+   "source": "Guardian cryptic",
+   "dates": [
+    "2026-10-14",
+    "2026-11-06"
+   ],
+   "puzzles": 3,
+   "clue_list": [
+    {
+     "id": "guardian-cryptic-30137-1-across",
+     "puzzle": 30137,
+     "setter": "Paul",
+     "ref": "1a",
+     "clue": "Piglet grabbing time with a sheep, say (8)",
+     "answer": "RUMINANT",
+     "url": "https://www.theguardian.com/crosswords/cryptic/30137",
+     "parsing_url": "https://fifteensquared.net/2026/10/14/guardian-30137-paul/",
+     "devices": [
+      "charade",
+      "container",
+      "letter_selection"
+     ],
+     "and_lit": false,
+     "results": [
+      {
+       "outcome": "correct",
+       "answer": "RUMINANT",
+       "output_tokens": 5713
+      },
+      {
+       "outcome": "correct",
+       "answer": "RUMINANT",
+       "output_tokens": 296
+      },
+      {
+       "outcome": "wrong_answer",
+       "answer": "SUCKLING",
+       "output_tokens": 2985
+      },
+      {
+       "outcome": "correct",
+       "answer": "RUMINANT",
+       "output_tokens": 557
+      }
+     ]
+    },
+    {
+     "id": "guardian-cryptic-30137-10-across",
+     "puzzle": 30137,
+     "setter": "Paul",
+     "ref": "10a",
+     "clue": "Rubbing it in, first of ointment absorbed by tongue in horse (8)",
+     "answer": "GLOATING",
+     "url": "https://www.theguardian.com/crosswords/cryptic/30137",
+     "parsing_url": "https://fifteensquared.net/2026/10/14/guardian-30137-paul/",
+     "devices": [
+      "container",
+      "letter_selection"
+     ],
+     "and_lit": false,
+     "results": [
+      {
+       "outcome": "correct",
+       "answer": "GLOATING",
+       "output_tokens": 27767
+      },
+      {
+       "outcome": "correct",
+       "answer": "GLOATING",
+       "output_tokens": 635
+      },
+      {
+       "outcome": "wrong_answer",
+       "answer": "STROKING",
+       "output_tokens": 5228
+      },
+      {
+       "outcome": "wrong_answer",
+       "answer": "MOUTHING",
+       "output_tokens": 9
+      }
+     ]
+    },
+    {
+     "id": "guardian-cryptic-30137-11-across",
+     "puzzle": 30137,
+     "setter": "Paul",
+     "ref": "11a",
+     "clue": "I had cakes in there, fancy was left (9)",
+     "answer": "INHERITED",
+     "url": "https://www.theguardian.com/crosswords/cryptic/30137",
+     "parsing_url": "https://fifteensquared.net/2026/10/14/guardian-30137-paul/",
+     "devices": [
+      "anagram",
+      "container"
+     ],
+     "and_lit": false,
+     "results": [
+      {
+       "outcome": "correct",
+       "answer": "INHERITED",
+       "output_tokens": 53814
+      },
+      {
+       "outcome": "wrong_answer",
+       "answer": "ABANDONED",
+       "output_tokens": 990
+      },
+      {
+       "outcome": "wrong_answer",
+       "answer": "MADELEINE",
+       "output_tokens": 2692
+      },
+      {
+       "outcome": "wrong_answer",
+       "answer": "LEFTOVERS",
+       "output_tokens": 7
+      }
+     ]
+    },
+    {
+     "id": "guardian-cryptic-30137-12-down",
+     "puzzle": 30137,
+     "setter": "Paul",
+     "ref": "12d",
+     "clue": "Nothing about don that’s boring is in the red poetry book (3,2,3,3)",
+     "answer": "NOWWEARESIX",
+     "url": "https://www.theguardian.com/crosswords/cryptic/30137",
+     "parsing_url": "https://fifteensquared.net/2026/10/14/guardian-30137-paul/",
+     "devices": [
+      "container"
+     ],
+     "and_lit": false,
+     "results": [
+      {
+       "outcome": "truncated",
+       "answer": null,
+       "output_tokens": 64000
+      },
+      {
+       "outcome": "wrong_answer",
+       "answer": "OUT OF THE RED",
+       "output_tokens": 1455
+      },
+      {
+       "outcome": "no_answer",
+       "answer": "UNKNOWN",
+       "output_tokens": 1705
+      },
+      {
+       "outcome": "wrong_length",
+       "answer": "THE RUBAIYAT OF OMAR KHAYYAM",
+       "output_tokens": 534
+      }
+     ]
+    },
+    {
+     "id": "guardian-cryptic-30137-13-across",
+     "puzzle": 30137,
+     "setter": "Paul",
+     "ref": "13a",
+     "clue": "Pooh-pooh s-schmaltz (5)",
+     "answer": "SCORN",
+     "url": "https://www.theguardian.com/crosswords/cryptic/30137",
+     "parsing_url": "https://fifteensquared.net/2026/10/14/guardian-30137-paul/",
+     "devices": [
+      "charade"
+     ],
+     "and_lit": false,
+     "results": [
+      {
+       "outcome": "correct",
+       "answer": "SCORN",
+       "output_tokens": 5868
+      },
+      {
+       "outcome": "correct",
+       "answer": "SCORN",
+       "output_tokens": 641
+      },
+      {
+       "outcome": "wrong_answer",
+       "answer": "SLUSH",
+       "output_tokens": 2220
+      },
+      {
+       "outcome": "correct",
+       "answer": "SCORN",
+       "output_tokens": 549
+      }
+     ]
+    },
+    {
+     "id": "guardian-cryptic-30137-14-down",
+     "puzzle": 30137,
+     "setter": "Paul",
+     "ref": "14d",
+     "clue": "Without ramifications, joke locked in redbrick outhouse? (10)",
+     "answer": "UNPUNISHED",
+     "url": "https://www.theguardian.com/crosswords/cryptic/30137",
+     "parsing_url": "https://fifteensquared.net/2026/10/14/guardian-30137-paul/",
+     "devices": [
+      "charade",
+      "container"
+     ],
+     "and_lit": false,
+     "results": [
+      {
+       "outcome": "correct",
+       "answer": "UNPUNISHED",
+       "output_tokens": 6317
+      },
+      {
+       "outcome": "wrong_answer",
+       "answer": "UNBRANCHED",
+       "output_tokens": 1166
+      },
+      {
+       "outcome": "wrong_answer",
+       "answer": "UNBRANCHED",
+       "output_tokens": 3116
+      },
+      {
+       "outcome": "wrong_answer",
+       "answer": "BRANCHLESS",
+       "output_tokens": 568
+      }
+     ]
+    },
+    {
+     "id": "guardian-cryptic-30137-15-across",
+     "puzzle": 30137,
+     "setter": "Paul",
+     "ref": "15a",
+     "clue": "Antipodean native in flap, cut after tripping over (6)",
+     "answer": "WOMBAT",
+     "url": "https://www.theguardian.com/crosswords/cryptic/30137",
+     "parsing_url": "https://fifteensquared.net/2026/10/14/guardian-30137-paul/",
+     "devices": [
+      "charade",
+      "reversal"
+     ],
+     "and_lit": false,
+     "results": [
+      {
+       "outcome": "correct",
+       "answer": "WOMBAT",
+       "output_tokens": 3732
+      },
+      {
+       "outcome": "correct",
+       "answer": "WOMBAT",
+       "output_tokens": 782
+      },
+      {
+       "outcome": "correct",
+       "answer": "WOMBAT",
+       "output_tokens": 1679
+      },
+      {
+       "outcome": "wrong_answer",
+       "answer": "AUSSIE",
+       "output_tokens": 825
+      }
+     ]
+    },
+    {
+     "id": "guardian-cryptic-30137-16-down",
+     "puzzle": 30137,
+     "setter": "Paul",
+     "ref": "16d",
+     "clue": "Author’s written about lost wandering albatross (9)",
+     "answer": "MILLSTONE",
+     "url": "https://www.theguardian.com/crosswords/cryptic/30137",
+     "parsing_url": "https://fifteensquared.net/2026/10/14/guardian-30137-paul/",
+     "devices": [
+      "anagram",
+      "container"
+     ],
+     "and_lit": false,
+     "results": [
+      {
+       "outcome": "correct",
+       "answer": "MILLSTONE",
+       "output_tokens": 4416
+      },
+      {
+       "outcome": "wrong_answer",
+       "answer": "COLERIDGE",
+       "output_tokens": 808
+      },
+      {
+       "outcome": "wrong_answer",
+       "answer": "ASTRAYING",
+       "output_tokens": 2307
+      },
+      {
+       "outcome": "correct",
+       "answer": "MILLSTONE",
+       "output_tokens": 974
+      }
+     ]
+    },
+    {
+     "id": "guardian-cryptic-30137-17-across",
+     "puzzle": 30137,
+     "setter": "Paul",
+     "ref": "17a",
+     "clue": "Notice alongside short relative bear being picked up? (6)",
+     "answer": "UNCLAD",
+     "url": "https://www.theguardian.com/crosswords/cryptic/30137",
+     "parsing_url": "https://fifteensquared.net/2026/10/14/guardian-30137-paul/",
+     "devices": [
+      "charade",
+      "homophone",
+      "deletion"
+     ],
+     "and_lit": false,
+     "results": [
+      {
+       "outcome": "truncated",
+       "answer": null,
+       "output_tokens": 64000
+      },
+      {
+       "outcome": "wrong_answer",
+       "answer": "ADOPTS",
+       "output_tokens": 1534
+      },
+      {
+       "outcome": "wrong_answer",
+       "answer": "PORTER",
+       "output_tokens": 4459
+      },
+      {
+       "outcome": "wrong_answer",
+       "answer": "ASSIST",
+       "output_tokens": 518
+      }
+     ]
+    },
+    {
+     "id": "guardian-cryptic-30137-18-across",
+     "puzzle": 30137,
+     "setter": "Paul",
+     "ref": "18a",
+     "clue": "Something sweet in hideaway found by bare neck (6)",
+     "answer": "ECLAIR",
+     "url": "https://www.theguardian.com/crosswords/cryptic/30137",
+     "parsing_url": "https://fifteensquared.net/2026/10/14/guardian-30137-paul/",
+     "devices": [
+      "charade",
+      "letter_selection"
+     ],
+     "and_lit": false,
+     "results": [
+      {
+       "outcome": "correct",
+       "answer": "ECLAIR",
+       "output_tokens": 11403
+      },
+      {
+       "outcome": "correct",
+       "answer": "ECLAIR",
+       "output_tokens": 1704
+      },
+      {
+       "outcome": "wrong_answer",
+       "answer": "TREATS",
+       "output_tokens": 2335
+      },
+      {
+       "outcome": "wrong_answer",
+       "answer": "NECTAR",
+       "output_tokens": 1045
+      }
+     ]
+    },
+    {
+     "id": "guardian-cryptic-30137-19-across",
+     "puzzle": 30137,
+     "setter": "Paul",
+     "ref": "19a",
+     "clue": "Instructions Kanga’s house builder read out? (6)",
+     "answer": "RUBRIC",
+     "url": "https://www.theguardian.com/crosswords/cryptic/30137",
+     "parsing_url": "https://fifteensquared.net/2026/10/14/guardian-30137-paul/",
+     "devices": [
+      "homophone"
+     ],
+     "and_lit": false,
+     "results": [
+      {
+       "outcome": "wrong_answer",
+       "answer": "JOINER",
+       "output_tokens": 47215
+      },
+      {
+       "outcome": "correct",
+       "answer": "RUBRIC",
+       "output_tokens": 564
+      },
+      {
+       "outcome": "wrong_answer",
+       "answer": "MANUAL",
+       "output_tokens": 2001
+      },
+      {
+       "outcome": "wrong_answer",
+       "answer": "POOHED",
+       "output_tokens": 7
+      }
+     ]
+    },
+    {
+     "id": "guardian-cryptic-30137-2-down",
+     "puzzle": 30137,
+     "setter": "Paul",
+     "ref": "2d",
+     "clue": "Three of four proving cryptic, observed puzzler? (3)",
+     "answer": "UFO",
+     "url": "https://www.theguardian.com/crosswords/cryptic/30137",
+     "parsing_url": "https://fifteensquared.net/2026/10/14/guardian-30137-paul/",
+     "devices": [
+      "anagram",
+      "deletion"
+     ],
+     "and_lit": false,
+     "results": [
+      {
+       "outcome": "correct",
+       "answer": "UFO",
+       "output_tokens": 1961
+      },
+      {
+       "outcome": "wrong_answer",
+       "answer": "QED",
+       "output_tokens": 1079
+      },
+      {
+       "outcome": "wrong_answer",
+       "answer": "QED",
+       "output_tokens": 1096
+      },
+      {
+       "outcome": "wrong_answer",
+       "answer": "ODD",
+       "output_tokens": 6
+      }
+     ]
+    },
+    {
+     "id": "guardian-cryptic-30137-21-across",
+     "puzzle": 30137,
+     "setter": "Paul",
+     "ref": "21a",
+     "clue": "Top loose, feeling like one’s balloon has burst? (11)",
+     "answer": "CRESTFALLEN",
+     "url": "https://www.theguardian.com/crosswords/cryptic/30137",
+     "parsing_url": "https://fifteensquared.net/2026/10/14/guardian-30137-paul/",
+     "devices": [
+      "charade"
+     ],
+     "and_lit": false,
+     "results": [
+      {
+       "outcome": "correct",
+       "answer": "CRESTFALLEN",
+       "output_tokens": 526
+      },
+      {
+       "outcome": "wrong_answer",
+       "answer": "DOWNHEARTED",
+       "output_tokens": 689
+      },
+      {
+       "outcome": "correct",
+       "answer": "CRESTFALLEN",
+       "output_tokens": 823
+      },
+      {
+       "outcome": "correct",
+       "answer": "CRESTFALLEN",
+       "output_tokens": 304
+      }
+     ]
+    },
+    {
+     "id": "guardian-cryptic-30137-22-across",
+     "puzzle": 30137,
+     "setter": "Paul",
+     "ref": "22a",
+     "clue": "Studs made lines all over the place (6,3)",
+     "answer": "LADIESMEN",
+     "url": "https://www.theguardian.com/crosswords/cryptic/30137",
+     "parsing_url": "https://fifteensquared.net/2026/10/14/guardian-30137-paul/",
+     "devices": [
+      "anagram"
+     ],
+     "and_lit": false,
+     "results": [
+      {
+       "outcome": "correct",
+       "answer": "LADIES MEN",
+       "output_tokens": 11456
+      },
+      {
+       "outcome": "correct",
+       "answer": "LADIES MEN",
+       "output_tokens": 1435
+      },
+      {
+       "outcome": "no_answer",
+       "answer": "UNSURE",
+       "output_tokens": 2584
+      },
+      {
+       "outcome": "wrong_length",
+       "answer": "STU",
+       "output_tokens": 12
+      }
+     ]
+    },
+    {
+     "id": "guardian-cryptic-30137-23-down",
+     "puzzle": 30137,
+     "setter": "Paul",
+     "ref": "23d",
+     "clue": "Small drink for Piglet, say (5)",
+     "answer": "SWINE",
+     "url": "https://www.theguardian.com/crosswords/cryptic/30137",
+     "parsing_url": "https://fifteensquared.net/2026/10/14/guardian-30137-paul/",
+     "devices": [
+      "charade"
+     ],
+     "and_lit": false,
+     "results": [
+      {
+       "outcome": "wrong_answer",
+       "answer": "SNORT",
+       "output_tokens": 1287
+      },
+      {
+       "outcome": "correct",
+       "answer": "SWINE",
+       "output_tokens": 598
+      },
+      {
+       "outcome": "wrong_answer",
+       "answer": "SHOTE",
+       "output_tokens": 590
+      },
+      {
+       "outcome": "wrong_length",
+       "answer": "PIGLET",
+       "output_tokens": 65
+      }
+     ]
+    },
+    {
+     "id": "guardian-cryptic-30137-24-down",
+     "puzzle": 30137,
+     "setter": "Paul",
+     "ref": "24d",
+     "clue": "Old doghouse, draughty kennels (4)",
+     "answer": "USED",
+     "url": "https://www.theguardian.com/crosswords/cryptic/30137",
+     "parsing_url": "https://fifteensquared.net/2026/10/14/guardian-30137-paul/",
+     "devices": [
+      "hidden"
+     ],
+     "and_lit": false,
+     "results": [
+      {
+       "outcome": "wrong_answer",
+       "answer": "TYKE",
+       "output_tokens": 7654
+      },
+      {
+       "outcome": "wrong_answer",
+       "answer": "TYKE",
+       "output_tokens": 358
+      },
+      {
+       "outcome": "wrong_answer",
+       "answer": "DENS",
+       "output_tokens": 1459
+      },
+      {
+       "outcome": "wrong_answer",
+       "answer": "LAIR",
+       "output_tokens": 524
+      }
+     ]
+    },
+    {
+     "id": "guardian-cryptic-30137-25-across",
+     "puzzle": 30137,
+     "setter": "Paul",
+     "ref": "25a",
+     "clue": "Unruly lass, nameless one, up for adoption (8)",
+     "answer": "ESPOUSAL",
+     "url": "https://www.theguardian.com/crosswords/cryptic/30137",
+     "parsing_url": "https://fifteensquared.net/2026/10/14/guardian-30137-paul/",
+     "devices": [
+      "anagram",
+      "deletion"
+     ],
+     "and_lit": false,
+     "results": [
+      {
+       "outcome": "correct",
+       "answer": "ESPOUSAL",
+       "output_tokens": 5382
+      },
+      {
+       "outcome": "wrong_answer",
+       "answer": "SEASONAL",
+       "output_tokens": 1657
+      },
+      {
+       "outcome": "wrong_answer",
+       "answer": "ORPHANED",
+       "output_tokens": 3956
+      },
+      {
+       "outcome": "wrong_answer",
+       "answer": "ORPHANED",
+       "output_tokens": 866
+      }
+     ]
+    },
+    {
+     "id": "guardian-cryptic-30137-26-across",
+     "puzzle": 30137,
+     "setter": "Paul",
+     "ref": "26a",
+     "clue": "Cow with lump of Pooh, might he say? (6)",
+     "answer": "HEIFER",
+     "url": "https://www.theguardian.com/crosswords/cryptic/30137",
+     "parsing_url": "https://fifteensquared.net/2026/10/14/guardian-30137-paul/",
+     "devices": [
+      "homophone"
+     ],
+     "and_lit": false,
+     "results": [
+      {
+       "outcome": "correct",
+       "answer": "HEIFER",
+       "output_tokens": 13406
+      },
+      {
+       "outcome": "wrong_answer",
+       "answer": "COWPAT",
+       "output_tokens": 918
+      },
+      {
+       "outcome": "wrong_answer",
+       "answer": "HUMBLE",
+       "output_tokens": 2151
+      },
+      {
+       "outcome": "wrong_answer",
+       "answer": "MOOING",
+       "output_tokens": 879
+      }
+     ]
+    },
+    {
+     "id": "guardian-cryptic-30137-27-down",
+     "puzzle": 30137,
+     "setter": "Paul",
+     "ref": "27d",
+     "clue": "Fish eagle’s wings above lake (3)",
+     "answer": "EEL",
+     "url": "https://www.theguardian.com/crosswords/cryptic/30137",
+     "parsing_url": "https://fifteensquared.net/2026/10/14/guardian-30137-paul/",
+     "devices": [
+      "charade",
+      "letter_selection"
+     ],
+     "and_lit": false,
+     "results": [
+      {
+       "outcome": "correct",
+       "answer": "EEL",
+       "output_tokens": 299
+      },
+      {
+       "outcome": "correct",
+       "answer": "EEL",
+       "output_tokens": 199
+      },
+      {
+       "outcome": "wrong_length",
+       "answer": "MERE",
+       "output_tokens": 1956
+      },
+      {
+       "outcome": "correct",
+       "answer": "EEL",
+       "output_tokens": 526
+      }
+     ]
+    },
+    {
+     "id": "guardian-cryptic-30137-28-across",
+     "puzzle": 30137,
+     "setter": "Paul",
+     "ref": "28a",
+     "clue": "Run over pip that’s been dropped, by the sound of it? (6)",
+     "answer": "EXCEED",
+     "url": "https://www.theguardian.com/crosswords/cryptic/30137",
+     "parsing_url": "https://fifteensquared.net/2026/10/14/guardian-30137-paul/",
+     "devices": [
+      "homophone",
+      "deletion"
+     ],
+     "and_lit": false,
+     "results": [
+      {
+       "outcome": "correct",
+       "answer": "EXCEED",
+       "output_tokens": 6760
+      },
+      {
+       "outcome": "wrong_answer",
+       "answer": "SEEDED",
+       "output_tokens": 964
+      },
+      {
+       "outcome": "wrong_answer",
+       "answer": "SPILLS",
+       "output_tokens": 2562
+      },
+      {
+       "outcome": "wrong_answer",
+       "answer": "REVIEW",
+       "output_tokens": 899
+      }
+     ]
+    },
+    {
+     "id": "guardian-cryptic-30137-29-across",
+     "puzzle": 30137,
+     "setter": "Paul",
+     "ref": "29a",
+     "clue": "Notorious Australian journalist, hack ultimately spearing elephant (3,5)",
+     "answer": "NEDKELLY",
+     "url": "https://www.theguardian.com/crosswords/cryptic/30137",
+     "parsing_url": "https://fifteensquared.net/2026/10/14/guardian-30137-paul/",
+     "devices": [
+      "charade",
+      "container",
+      "letter_selection"
+     ],
+     "and_lit": false,
+     "results": [
+      {
+       "outcome": "correct",
+       "answer": "NED KELLY",
+       "output_tokens": 12749
+      },
+      {
+       "outcome": "correct",
+       "answer": "NED KELLY",
+       "output_tokens": 325
+      },
+      {
+       "outcome": "no_answer",
+       "answer": "UNKNOWN",
+       "output_tokens": 1855
+      },
+      {
+       "outcome": "wrong_length",
+       "answer": "HACK",
+       "output_tokens": 53
+      }
+     ]
+    },
+    {
+     "id": "guardian-cryptic-30137-3-down",
+     "puzzle": 30137,
+     "setter": "Paul",
+     "ref": "3d",
+     "clue": "Very little brain, an eejit – so? (5)",
+     "answer": "INANE",
+     "url": "https://www.theguardian.com/crosswords/cryptic/30137",
+     "parsing_url": "https://fifteensquared.net/2026/10/14/guardian-30137-paul/",
+     "devices": [
+      "hidden"
+     ],
+     "and_lit": false,
+     "results": [
+      {
+       "outcome": "wrong_length",
+       "answer": "NITWIT",
+       "output_tokens": 505
+      },
+      {
+       "outcome": "wrong_answer",
+       "answer": "PSHAW",
+       "output_tokens": 1124
+      },
+      {
+       "outcome": "wrong_answer",
+       "answer": "DUNCE",
+       "output_tokens": 2155
+      },
+      {
+       "outcome": "wrong_answer",
+       "answer": "IDIOT",
+       "output_tokens": 525
+      }
+     ]
+    },
+    {
+     "id": "guardian-cryptic-30137-4-down",
+     "puzzle": 30137,
+     "setter": "Paul",
+     "ref": "4d",
+     "clue": "One on prickly cacti I found on surface of desert – that’s sharp! (6,4)",
+     "answer": "ACETICACID",
+     "url": "https://www.theguardian.com/crosswords/cryptic/30137",
+     "parsing_url": "https://fifteensquared.net/2026/10/14/guardian-30137-paul/",
+     "devices": [
+      "charade",
+      "letter_selection"
+     ],
+     "and_lit": false,
+     "results": [
+      {
+       "outcome": "wrong_answer",
+       "answer": "ACIDIC TONE",
+       "output_tokens": 7372
+      },
+      {
+       "outcome": "wrong_answer",
+       "answer": "BARBED WIRE",
+       "output_tokens": 1449
+      },
+      {
+       "outcome": "wrong_length",
+       "answer": "CUTTING EDGE",
+       "output_tokens": 2498
+      },
+      {
+       "outcome": "wrong_length",
+       "answer": "PRICKLY PEAR",
+       "output_tokens": 44
+      }
+     ]
+    },
+    {
+     "id": "guardian-cryptic-30137-5-down",
+     "puzzle": 30137,
+     "setter": "Paul",
+     "ref": "5d",
+     "clue": "Right from start, wonderful thing? (6)",
+     "answer": "TIGGER",
+     "url": "https://www.theguardian.com/crosswords/cryptic/30137",
+     "parsing_url": "https://fifteensquared.net/2026/10/14/guardian-30137-paul/",
+     "devices": [
+      "deletion"
+     ],
+     "and_lit": false,
+     "results": [
+      {
+       "outcome": "wrong_answer",
+       "answer": "FRIGHT",
+       "output_tokens": 28485
+      },
+      {
+       "outcome": "wrong_answer",
+       "answer": "MARVEL",
+       "output_tokens": 1002
+      },
+      {
+       "outcome": "wrong_answer",
+       "answer": "MARVEL",
+       "output_tokens": 1139
+      },
+      {
+       "outcome": "wrong_answer",
+       "answer": "RADISH",
+       "output_tokens": 8
+      }
+     ]
+    },
+    {
+     "id": "guardian-cryptic-30137-6-across",
+     "puzzle": 30137,
+     "setter": "Paul",
+     "ref": "6a",
+     "clue": "Solver’s after scrap, then seeking reflection – admirable (6)",
+     "answer": "WORTHY",
+     "url": "https://www.theguardian.com/crosswords/cryptic/30137",
+     "parsing_url": "https://fifteensquared.net/2026/10/14/guardian-30137-paul/",
+     "devices": [
+      "charade",
+      "reversal"
+     ],
+     "and_lit": false,
+     "results": [
+      {
+       "outcome": "correct",
+       "answer": "WORTHY",
+       "output_tokens": 8922
+      },
+      {
+       "outcome": "correct",
+       "answer": "WORTHY",
+       "output_tokens": 1548
+      },
+      {
+       "outcome": "correct",
+       "answer": "WORTHY",
+       "output_tokens": 2166
+      },
+      {
+       "outcome": "wrong_answer",
+       "answer": "PRAISE",
+       "output_tokens": 8
+      }
+     ]
+    },
+    {
+     "id": "guardian-cryptic-30137-7-down",
+     "puzzle": 30137,
+     "setter": "Paul",
+     "ref": "7d",
+     "clue": "A curler swerved around it upwards, netted (9)",
+     "answer": "RETICULAR",
+     "url": "https://www.theguardian.com/crosswords/cryptic/30137",
+     "parsing_url": "https://fifteensquared.net/2026/10/14/guardian-30137-paul/",
+     "devices": [
+      "anagram",
+      "container",
+      "reversal"
+     ],
+     "and_lit": false,
+     "results": [
+      {
+       "outcome": "correct",
+       "answer": "RETICULAR",
+       "output_tokens": 623
+      },
+      {
+       "outcome": "correct",
+       "answer": "RETICULAR",
+       "output_tokens": 334
+      },
+      {
+       "outcome": "wrong_answer",
+       "answer": "ENTANGLED",
+       "output_tokens": 2660
+      },
+      {
+       "outcome": "wrong_length",
+       "answer": "CURLINGNET",
+       "output_tokens": 9
+      }
+     ]
+    },
+    {
+     "id": "guardian-cryptic-30137-8-down",
+     "puzzle": 30137,
+     "setter": "Paul",
+     "ref": "8d",
+     "clue": "Criminal minds and rude criminal gang in cuddly characters’ manor? (7,4,4)",
+     "answer": "HUNDREDACREWOOD",
+     "url": "https://www.theguardian.com/crosswords/cryptic/30137",
+     "parsing_url": "https://fifteensquared.net/2026/10/14/guardian-30137-paul/",
+     "devices": [
+      "anagram",
+      "charade",
+      "container"
+     ],
+     "and_lit": false,
+     "results": [
+      {
+       "outcome": "correct",
+       "answer": "HUNDRED ACRE WOOD",
+       "output_tokens": 10174
+      },
+      {
+       "outcome": "correct",
+       "answer": "HUNDRED ACRE WOOD",
+       "output_tokens": 844
+      },
+      {
+       "outcome": "correct",
+       "answer": "HUNDRED ACRE WOOD",
+       "output_tokens": 1886
+      },
+      {
+       "outcome": "wrong_length",
+       "answer": "TEDDY BEARS’ PICNIC",
+       "output_tokens": 11
+      }
+     ]
+    },
+    {
+     "id": "guardian-cryptic-30137-9-across",
+     "puzzle": 30137,
+     "setter": "Paul",
+     "ref": "9a",
+     "clue": "Silver honey pots for something fragrant to eat (6)",
+     "answer": "LOVAGE",
+     "url": "https://www.theguardian.com/crosswords/cryptic/30137",
+     "parsing_url": "https://fifteensquared.net/2026/10/14/guardian-30137-paul/",
+     "devices": [
+      "container"
+     ],
+     "and_lit": false,
+     "results": [
+      {
+       "outcome": "truncated",
+       "answer": null,
+       "output_tokens": 64000
+      },
+      {
+       "outcome": "correct",
+       "answer": "LOVAGE",
+       "output_tokens": 1586
+      },
+      {
+       "outcome": "wrong_answer",
+       "answer": "GARLIC",
+       "output_tokens": 2501
+      },
+      {
+       "outcome": "wrong_length",
+       "answer": "HONEYCOMB",
+       "output_tokens": 8
+      }
+     ]
+    },
+    {
+     "id": "guardian-cryptic-30151-1-across",
+     "puzzle": 30151,
+     "setter": "Paul",
+     "ref": "1a",
+     "clue": "Bird attacked bird (7)",
+     "answer": "BITTERN",
+     "url": "https://www.theguardian.com/crosswords/cryptic/30151",
+     "parsing_url": "https://fifteensquared.net/2026/10/30/guardian-30151-paul/",
+     "devices": [
+      "charade"
+     ],
+     "and_lit": false,
+     "results": [
+      {
+       "outcome": "correct",
+       "answer": "BITTERN",
+       "output_tokens": 5831
+      },
+      {
+       "outcome": "correct",
+       "answer": "BITTERN",
+       "output_tokens": 552
+      },
+      {
+       "outcome": "wrong_answer",
+       "answer": "HARRIER",
+       "output_tokens": 929
+      },
+      {
+       "outcome": "wrong_answer",
+       "answer": "HARRIER",
+       "output_tokens": 448
+      }
+     ]
+    },
+    {
+     "id": "guardian-cryptic-30151-10-across",
+     "puzzle": 30151,
+     "setter": "Paul",
+     "ref": "10a",
+     "clue": "Mortgage’s ending, better rate coming back? That’s a long, long way off (4,5)",
+     "answer": "DEEPSPACE",
+     "url": "https://www.theguardian.com/crosswords/cryptic/30151",
+     "parsing_url": "https://fifteensquared.net/2026/10/30/guardian-30151-paul/",
+     "devices": [
+      "charade",
+      "reversal",
+      "letter_selection"
+     ],
+     "and_lit": false,
+     "results": [
+      {
+       "outcome": "correct",
+       "answer": "DEEP SPACE",
+       "output_tokens": 35977
+      },
+      {
+       "outcome": "correct",
+       "answer": "DEEP SPACE",
+       "output_tokens": 725
+      },
+      {
+       "outcome": "wrong_answer",
+       "answer": "MILES AWAY",
+       "output_tokens": 1143
+      },
+      {
+       "outcome": "wrong_length",
+       "answer": "FAR AWAY",
+       "output_tokens": 80
+      }
+     ]
+    },
+    {
+     "id": "guardian-cryptic-30151-11-across",
+     "puzzle": 30151,
+     "setter": "Paul",
+     "ref": "11a",
+     "clue": "An irritation voiced when checking out matinee hit, cryptically? (10,4,2,3,7,4)",
+     "answer": "UNEXPECTEDITEMINTHEBAGGINGAREA",
+     "url": "https://www.theguardian.com/crosswords/cryptic/30151",
+     "parsing_url": "https://fifteensquared.net/2026/10/30/guardian-30151-paul/",
+     "devices": [
+      "anagram",
+      "letter_selection"
+     ],
+     "and_lit": false,
+     "results": [
+      {
+       "outcome": "correct",
+       "answer": "UNEXPECTED ITEM IN THE BAGGING AREA",
+       "output_tokens": 20557
+      },
+      {
+       "outcome": "no_answer",
+       "answer": "UNKNOWN",
+       "output_tokens": 1342
+      },
+      {
+       "outcome": "no_answer",
+       "answer": "UNKNOWN",
+       "output_tokens": 1831
+      },
+      {
+       "outcome": "wrong_length",
+       "answer": "A COMPLAINT ON LEAVING A BIG SHOW",
+       "output_tokens": 18
+      }
+     ]
+    },
+    {
+     "id": "guardian-cryptic-30151-12-across",
+     "puzzle": 30151,
+     "setter": "Paul",
+     "ref": "12a",
+     "clue": "Discipline of the Chinese discussing what they drink in the east with Spooner? (3,3)",
+     "answer": "TAICHI",
+     "url": "https://www.theguardian.com/crosswords/cryptic/30151",
+     "parsing_url": "https://fifteensquared.net/2026/10/30/guardian-30151-paul/",
+     "devices": [
+      "spoonerism"
+     ],
+     "and_lit": false,
+     "results": [
+      {
+       "outcome": "correct",
+       "answer": "TAI CHI",
+       "output_tokens": 502
+      },
+      {
+       "outcome": "correct",
+       "answer": "TAI CHI",
+       "output_tokens": 368
+      },
+      {
+       "outcome": "correct",
+       "answer": "TAI CHI",
+       "output_tokens": 1415
+      },
+      {
+       "outcome": "wrong_answer",
+       "answer": "TEA DEA",
+       "output_tokens": 40
+      }
+     ]
+    },
+    {
+     "id": "guardian-cryptic-30151-13-across",
+     "puzzle": 30151,
+     "setter": "Paul",
+     "ref": "13a",
+     "clue": "Something flowing in Italy when quaffing wine, case of classic Italian tipple (8)",
+     "answer": "PROSECCO",
+     "url": "https://www.theguardian.com/crosswords/cryptic/30151",
+     "parsing_url": "https://fifteensquared.net/2026/10/30/guardian-30151-paul/",
+     "devices": [
+      "charade",
+      "container",
+      "letter_selection"
+     ],
+     "and_lit": false,
+     "results": [
+      {
+       "outcome": "correct",
+       "answer": "PROSECCO",
+       "output_tokens": 16108
+      },
+      {
+       "outcome": "correct",
+       "answer": "PROSECCO",
+       "output_tokens": 1035
+      },
+      {
+       "outcome": "correct",
+       "answer": "PROSECCO",
+       "output_tokens": 2264
+      },
+      {
+       "outcome": "correct",
+       "answer": "PROSECCO",
+       "output_tokens": 777
+      }
+     ]
+    },
+    {
+     "id": "guardian-cryptic-30151-15-down",
+     "puzzle": 30151,
+     "setter": "Paul",
+     "ref": "15d",
+     "clue": "Girl combo composed series of short messages (9)",
+     "answer": "MICROBLOG",
+     "url": "https://www.theguardian.com/crosswords/cryptic/30151",
+     "parsing_url": "https://fifteensquared.net/2026/10/30/guardian-30151-paul/",
+     "devices": [
+      "anagram"
+     ],
+     "and_lit": false,
+     "results": [
+      {
+       "outcome": "correct",
+       "answer": "MICROBLOG",
+       "output_tokens": 344
+      },
+      {
+       "outcome": "correct",
+       "answer": "MICROBLOG",
+       "output_tokens": 247
+      },
+      {
+       "outcome": "wrong_answer",
+       "answer": "BULLETINS",
+       "output_tokens": 1961
+      },
+      {
+       "outcome": "correct",
+       "answer": "MICROBLOG",
+       "output_tokens": 231
+      }
+     ]
+    },
+    {
+     "id": "guardian-cryptic-30151-16-across",
+     "puzzle": 30151,
+     "setter": "Paul",
+     "ref": "16a",
+     "clue": "Laborious routine in stadium mentioned by royal? (5)",
+     "answer": "GRIND",
+     "url": "https://www.theguardian.com/crosswords/cryptic/30151",
+     "parsing_url": "https://fifteensquared.net/2026/10/30/guardian-30151-paul/",
+     "devices": [
+      "homophone"
+     ],
+     "and_lit": false,
+     "results": [
+      {
+       "outcome": "wrong_answer",
+       "answer": "SWEAT",
+       "output_tokens": 37721
+      },
+      {
+       "outcome": "correct",
+       "answer": "GRIND",
+       "output_tokens": 1042
+      },
+      {
+       "outcome": "correct",
+       "answer": "GRIND",
+       "output_tokens": 3053
+      },
+      {
+       "outcome": "wrong_answer",
+       "answer": "DRILL",
+       "output_tokens": 6
+      }
+     ]
+    },
+    {
+     "id": "guardian-cryptic-30151-18-down",
+     "puzzle": 30151,
+     "setter": "Paul",
+     "ref": "18d",
+     "clue": "A skirt lifted, inside which an old instrument (7)",
+     "answer": "PIANOLA",
+     "url": "https://www.theguardian.com/crosswords/cryptic/30151",
+     "parsing_url": "https://fifteensquared.net/2026/10/30/guardian-30151-paul/",
+     "devices": [
+      "container",
+      "reversal",
+      "letter_selection"
+     ],
+     "and_lit": false,
+     "results": [
+      {
+       "outcome": "wrong_answer",
+       "answer": "AEOLINA",
+       "output_tokens": 29930
+      },
+      {
+       "outcome": "wrong_answer",
+       "answer": "SAMBUCA",
+       "output_tokens": 1781
+      },
+      {
+       "outcome": "wrong_answer",
+       "answer": "SACKBUT",
+       "output_tokens": 10810
+      },
+      {
+       "outcome": "wrong_length",
+       "answer": "CRUMHORN",
+       "output_tokens": 8
+      }
+     ]
+    },
+    {
+     "id": "guardian-cryptic-30151-19-across",
+     "puzzle": 30151,
+     "setter": "Paul",
+     "ref": "19a",
+     "clue": "Possible result when charges withdrawn, having saved foundation (5,4)",
+     "answer": "SCOREDRAW",
+     "url": "https://www.theguardian.com/crosswords/cryptic/30151",
+     "parsing_url": "https://fifteensquared.net/2026/10/30/guardian-30151-paul/",
+     "devices": [
+      "container",
+      "reversal"
+     ],
+     "and_lit": false,
+     "results": [
+      {
+       "outcome": "truncated",
+       "answer": null,
+       "output_tokens": 64000
+      },
+      {
+       "outcome": "wrong_answer",
+       "answer": "CLEAN BASE",
+       "output_tokens": 1153
+      },
+      {
+       "outcome": "wrong_length",
+       "answer": "CLEAN SLATE",
+       "output_tokens": 3068
+      },
+      {
+       "outcome": "wrong_length",
+       "answer": "STAY OF EXECUTION",
+       "output_tokens": 9
+      }
+     ]
+    },
+    {
+     "id": "guardian-cryptic-30151-2-down",
+     "puzzle": 30151,
+     "setter": "Paul",
+     "ref": "2d",
+     "clue": "Account in newspaper subsequently in need of clarification (7)",
+     "answer": "INEXACT",
+     "url": "https://www.theguardian.com/crosswords/cryptic/30151",
+     "parsing_url": "https://fifteensquared.net/2026/10/30/guardian-30151-paul/",
+     "devices": [
+      "charade",
+      "container"
+     ],
+     "and_lit": false,
+     "results": [
+      {
+       "outcome": "wrong_answer",
+       "answer": "UNCLEAR",
+       "output_tokens": 41402
+      },
+      {
+       "outcome": "wrong_answer",
+       "answer": "UNCLEAR",
+       "output_tokens": 1561
+      },
+      {
+       "outcome": "wrong_answer",
+       "answer": "OBSCURE",
+       "output_tokens": 3138
+      },
+      {
+       "outcome": "wrong_answer",
+       "answer": "CRYPTIC",
+       "output_tokens": 527
+      }
+     ]
+    },
+    {
+     "id": "guardian-cryptic-30151-20-down",
+     "puzzle": 30151,
+     "setter": "Paul",
+     "ref": "20d",
+     "clue": "Intense sorrow in Constantine’s Rome revved up (7)",
+     "answer": "REMORSE",
+     "url": "https://www.theguardian.com/crosswords/cryptic/30151",
+     "parsing_url": "https://fifteensquared.net/2026/10/30/guardian-30151-paul/",
+     "devices": [
+      "reversal",
+      "hidden"
+     ],
+     "and_lit": false,
+     "results": [
+      {
+       "outcome": "correct",
+       "answer": "REMORSE",
+       "output_tokens": 4204
+      },
+      {
+       "outcome": "correct",
+       "answer": "REMORSE",
+       "output_tokens": 881
+      },
+      {
+       "outcome": "wrong_answer",
+       "answer": "TORMENT",
+       "output_tokens": 1664
+      },
+      {
+       "outcome": "correct",
+       "answer": "REMORSE",
+       "output_tokens": 957
+      }
+     ]
+    },
+    {
+     "id": "guardian-cryptic-30151-21-down",
+     "puzzle": 30151,
+     "setter": "Paul",
+     "ref": "21d",
+     "clue": "Endless trouble breaking loose around a plant (7)",
+     "answer": "ALLHEAL",
+     "url": "https://www.theguardian.com/crosswords/cryptic/30151",
+     "parsing_url": "https://fifteensquared.net/2026/10/30/guardian-30151-paul/",
+     "devices": [
+      "container",
+      "deletion"
+     ],
+     "and_lit": false,
+     "results": [
+      {
+       "outcome": "wrong_answer",
+       "answer": "ASTILBE",
+       "output_tokens": 46766
+      },
+      {
+       "outcome": "wrong_length",
+       "answer": "OLEANDER",
+       "output_tokens": 1672
+      },
+      {
+       "outcome": "no_answer",
+       "answer": "UNKNOWN",
+       "output_tokens": 3060
+      },
+      {
+       "outcome": "no_answer",
+       "answer": null,
+       "output_tokens": 530
+      }
+     ]
+    },
+    {
+     "id": "guardian-cryptic-30151-22-down",
+     "puzzle": 30151,
+     "setter": "Paul",
+     "ref": "22d",
+     "clue": "Boy, that’s labyrinthine! (6)",
+     "answer": "WARREN",
+     "url": "https://www.theguardian.com/crosswords/cryptic/30151",
+     "parsing_url": "https://fifteensquared.net/2026/10/30/guardian-30151-paul/",
+     "devices": [
+      "double_definition"
+     ],
+     "and_lit": false,
+     "results": [
+      {
+       "outcome": "wrong_answer",
+       "answer": "AMAZES",
+       "output_tokens": 51676
+      },
+      {
+       "outcome": "wrong_answer",
+       "answer": "DAEDAL",
+       "output_tokens": 555
+      },
+      {
+       "outcome": "wrong_answer",
+       "answer": "TWISTY",
+       "output_tokens": 2163
+      },
+      {
+       "outcome": "wrong_length",
+       "answer": "MAZEY",
+       "output_tokens": 525
+      }
+     ]
+    },
+    {
+     "id": "guardian-cryptic-30151-23-across",
+     "puzzle": 30151,
+     "setter": "Paul",
+     "ref": "23a",
+     "clue": "Land covering periphery of our view (8)",
+     "answer": "PANORAMA",
+     "url": "https://www.theguardian.com/crosswords/cryptic/30151",
+     "parsing_url": "https://fifteensquared.net/2026/10/30/guardian-30151-paul/",
+     "devices": [
+      "container",
+      "letter_selection"
+     ],
+     "and_lit": false,
+     "results": [
+      {
+       "outcome": "correct",
+       "answer": "PANORAMA",
+       "output_tokens": 32354
+      },
+      {
+       "outcome": "wrong_answer",
+       "answer": "HORIZONS",
+       "output_tokens": 1426
+      },
+      {
+       "outcome": "correct",
+       "answer": "PANORAMA",
+       "output_tokens": 1338
+      },
+      {
+       "outcome": "wrong_answer",
+       "answer": "OVERGROW",
+       "output_tokens": 580
+      }
+     ]
+    },
+    {
+     "id": "guardian-cryptic-30151-24-across",
+     "puzzle": 30151,
+     "setter": "Paul",
+     "ref": "24a",
+     "clue": "Chap originally captivated by savage, a bit of a looker (6)",
+     "answer": "MACULA",
+     "url": "https://www.theguardian.com/crosswords/cryptic/30151",
+     "parsing_url": "https://fifteensquared.net/2026/10/30/guardian-30151-paul/",
+     "devices": [
+      "charade",
+      "container",
+      "letter_selection"
+     ],
+     "and_lit": false,
+     "results": [
+      {
+       "outcome": "correct",
+       "answer": "MACULA",
+       "output_tokens": 18263
+      },
+      {
+       "outcome": "wrong_answer",
+       "answer": "CORNEA",
+       "output_tokens": 1420
+      },
+      {
+       "outcome": "wrong_length",
+       "answer": "DISHY",
+       "output_tokens": 2110
+      },
+      {
+       "outcome": "wrong_answer",
+       "answer": "PEEPER",
+       "output_tokens": 554
+      }
+     ]
+    },
+    {
+     "id": "guardian-cryptic-30151-25-down",
+     "puzzle": 30151,
+     "setter": "Paul",
+     "ref": "25d",
+     "clue": "American mammal: film one (5)",
+     "answer": "COATI",
+     "url": "https://www.theguardian.com/crosswords/cryptic/30151",
+     "parsing_url": "https://fifteensquared.net/2026/10/30/guardian-30151-paul/",
+     "devices": [
+      "charade"
+     ],
+     "and_lit": false,
+     "results": [
+      {
+       "outcome": "correct",
+       "answer": "COATI",
+       "output_tokens": 781
+      },
+      {
+       "outcome": "correct",
+       "answer": "COATI",
+       "output_tokens": 145
+      },
+      {
+       "outcome": "wrong_answer",
+       "answer": "TAPIR",
+       "output_tokens": 1432
+      },
+      {
+       "outcome": "wrong_answer",
+       "answer": "BISON",
+       "output_tokens": 552
+      }
+     ]
+    },
+    {
+     "id": "guardian-cryptic-30151-26-across",
+     "puzzle": 30151,
+     "setter": "Paul",
+     "ref": "26a",
+     "clue": "Sign of criminal activity duly noted by party (5,5)",
+     "answer": "JOLLYROGER",
+     "url": "https://www.theguardian.com/crosswords/cryptic/30151",
+     "parsing_url": "https://fifteensquared.net/2026/10/30/guardian-30151-paul/",
+     "devices": [
+      "charade"
+     ],
+     "and_lit": false,
+     "results": [
+      {
+       "outcome": "wrong_answer",
+       "answer": "CRIME SCENE",
+       "output_tokens": 49337
+      },
+      {
+       "outcome": "wrong_answer",
+       "answer": "CRIME SCENE",
+       "output_tokens": 1222
+      },
+      {
+       "outcome": "wrong_answer",
+       "answer": "CRIME SCENE",
+       "output_tokens": 2329
+      },
+      {
+       "outcome": "wrong_length",
+       "answer": "TRACE ELEMENT",
+       "output_tokens": 38
+      }
+     ]
+    },
+    {
+     "id": "guardian-cryptic-30151-29-across",
+     "puzzle": 30151,
+     "setter": "Paul",
+     "ref": "29a",
+     "clue": "I didn’t, I didn’t, Stormy Daniels! (7)",
+     "answer": "DENIALS",
+     "url": "https://www.theguardian.com/crosswords/cryptic/30151",
+     "parsing_url": "https://fifteensquared.net/2026/10/30/guardian-30151-paul/",
+     "devices": [
+      "anagram"
+     ],
+     "and_lit": true,
+     "results": [
+      {
+       "outcome": "correct",
+       "answer": "DENIALS",
+       "output_tokens": 477
+      },
+      {
+       "outcome": "correct",
+       "answer": "DENIALS",
+       "output_tokens": 293
+      },
+      {
+       "outcome": "correct",
+       "answer": "DENIALS",
+       "output_tokens": 380
+      },
+      {
+       "outcome": "correct",
+       "answer": "DENIALS",
+       "output_tokens": 295
+      }
+     ]
+    },
+    {
+     "id": "guardian-cryptic-30151-3-down",
+     "puzzle": 30151,
+     "setter": "Paul",
+     "ref": "3d",
+     "clue": "Issue getting helmet on head of cyclist (5)",
+     "answer": "TOPIC",
+     "url": "https://www.theguardian.com/crosswords/cryptic/30151",
+     "parsing_url": "https://fifteensquared.net/2026/10/30/guardian-30151-paul/",
+     "devices": [
+      "charade",
+      "letter_selection"
+     ],
+     "and_lit": false,
+     "results": [
+      {
+       "outcome": "correct",
+       "answer": "TOPIC",
+       "output_tokens": 1744
+      },
+      {
+       "outcome": "wrong_answer",
+       "answer": "SCION",
+       "output_tokens": 1238
+      },
+      {
+       "outcome": "correct",
+       "answer": "TOPIC",
+       "output_tokens": 4467
+      },
+      {
+       "outcome": "wrong_answer",
+       "answer": "HATCH",
+       "output_tokens": 562
+      }
+     ]
+    },
+    {
+     "id": "guardian-cryptic-30151-4-down",
+     "puzzle": 30151,
+     "setter": "Paul",
+     "ref": "4d",
+     "clue": "Concerned with educational institution on French island (7)",
+     "answer": "REUNION",
+     "url": "https://www.theguardian.com/crosswords/cryptic/30151",
+     "parsing_url": "https://fifteensquared.net/2026/10/30/guardian-30151-paul/",
+     "devices": [
+      "charade",
+      "deletion"
+     ],
+     "and_lit": false,
+     "results": [
+      {
+       "outcome": "correct",
+       "answer": "REUNION",
+       "output_tokens": 6866
+      },
+      {
+       "outcome": "wrong_answer",
+       "answer": "PREPONE",
+       "output_tokens": 1597
+      },
+      {
+       "outcome": "wrong_answer",
+       "answer": "COLLEGE",
+       "output_tokens": 2436
+      },
+      {
+       "outcome": "wrong_answer",
+       "answer": "RELATED",
+       "output_tokens": 525
+      }
+     ]
+    },
+    {
+     "id": "guardian-cryptic-30151-5-across",
+     "puzzle": 30151,
+     "setter": "Paul",
+     "ref": "5a",
+     "clue": "Son with right punching old man, naturally prickly? (7)",
+     "answer": "SHRUBBY",
+     "url": "https://www.theguardian.com/crosswords/cryptic/30151",
+     "parsing_url": "https://fifteensquared.net/2026/10/30/guardian-30151-paul/",
+     "devices": [
+      "container",
+      "letter_selection"
+     ],
+     "and_lit": false,
+     "results": [
+      {
+       "outcome": "correct",
+       "answer": "SHRUBBY",
+       "output_tokens": 9593
+      },
+      {
+       "outcome": "wrong_answer",
+       "answer": "THISTLE",
+       "output_tokens": 1226
+      },
+      {
+       "outcome": "wrong_answer",
+       "answer": "ECHIDNA",
+       "output_tokens": 2239
+      },
+      {
+       "outcome": "wrong_length",
+       "answer": "THORNY",
+       "output_tokens": 9
+      }
+     ]
+    },
+    {
+     "id": "guardian-cryptic-30151-6-down",
+     "puzzle": 30151,
+     "setter": "Paul",
+     "ref": "6d",
+     "clue": "I’m being introduced to contemporary music containing minimum of harmony – this? (3-3)",
+     "answer": "HIPHOP",
+     "url": "https://www.theguardian.com/crosswords/cryptic/30151",
+     "parsing_url": "https://fifteensquared.net/2026/10/30/guardian-30151-paul/",
+     "devices": [
+      "container",
+      "letter_selection"
+     ],
+     "and_lit": false,
+     "results": [
+      {
+       "outcome": "correct",
+       "answer": "HIP-HOP",
+       "output_tokens": 12314
+      },
+      {
+       "outcome": "correct",
+       "answer": "HIP-HOP",
+       "output_tokens": 1152
+      },
+      {
+       "outcome": "wrong_answer",
+       "answer": "NEW AGE",
+       "output_tokens": 2091
+      },
+      {
+       "outcome": "wrong_answer",
+       "answer": "NEW AGE",
+       "output_tokens": 500
+      }
+     ]
+    },
+    {
+     "id": "guardian-cryptic-30151-7-down",
+     "puzzle": 30151,
+     "setter": "Paul",
+     "ref": "7d",
+     "clue": "Still messy, McCarthyite aunt’s grounds for divorce? (9)",
+     "answer": "UNCLEARED",
+     "url": "https://www.theguardian.com/crosswords/cryptic/30151",
+     "parsing_url": "https://fifteensquared.net/2026/10/30/guardian-30151-paul/",
+     "devices": [
+      "charade",
+      "cryptic_definition"
+     ],
+     "and_lit": false,
+     "results": [
+      {
+       "outcome": "truncated",
+       "answer": null,
+       "output_tokens": 64000
+      },
+      {
+       "outcome": "wrong_answer",
+       "answer": "DESERTION",
+       "output_tokens": 1461
+      },
+      {
+       "outcome": "wrong_answer",
+       "answer": "DESERTION",
+       "output_tokens": 2271
+      },
+      {
+       "outcome": "wrong_length",
+       "answer": "ADULTERY",
+       "output_tokens": 527
+      }
+     ]
+    },
+    {
+     "id": "guardian-cryptic-30151-8-down",
+     "puzzle": 30151,
+     "setter": "Paul",
+     "ref": "8d",
+     "clue": "Native American in nick after capsizing vessel (4,3)",
+     "answer": "BEERCAN",
+     "url": "https://www.theguardian.com/crosswords/cryptic/30151",
+     "parsing_url": "https://fifteensquared.net/2026/10/30/guardian-30151-paul/",
+     "devices": [
+      "container",
+      "reversal"
+     ],
+     "and_lit": false,
+     "results": [
+      {
+       "outcome": "truncated",
+       "answer": null,
+       "output_tokens": 64000
+      },
+      {
+       "outcome": "no_answer",
+       "answer": null,
+       "output_tokens": 1168
+      },
+      {
+       "outcome": "no_answer",
+       "answer": "UNKNOWN",
+       "output_tokens": 2528
+      },
+      {
+       "outcome": "wrong_answer",
+       "answer": "INCA MAN",
+       "output_tokens": 1045
+      }
+     ]
+    },
+    {
+     "id": "guardian-cryptic-30151-9-down",
+     "puzzle": 30151,
+     "setter": "Paul",
+     "ref": "9d",
+     "clue": "Kilogramme awfully cheap then, gee: you deserve more! (4,3,6)",
+     "answer": "KEEPTHECHANGE",
+     "url": "https://www.theguardian.com/crosswords/cryptic/30151",
+     "parsing_url": "https://fifteensquared.net/2026/10/30/guardian-30151-paul/",
+     "devices": [
+      "anagram",
+      "charade"
+     ],
+     "and_lit": false,
+     "results": [
+      {
+       "outcome": "correct",
+       "answer": "KEEP THE CHANGE",
+       "output_tokens": 1009
+      },
+      {
+       "outcome": "correct",
+       "answer": "KEEP THE CHANGE",
+       "output_tokens": 419
+      },
+      {
+       "outcome": "no_answer",
+       "answer": "UNKNOWN",
+       "output_tokens": 2106
+      },
+      {
+       "outcome": "wrong_length",
+       "answer": "WELL EARNED MORE",
+       "output_tokens": 10
+      }
+     ]
+    },
+    {
+     "id": "guardian-cryptic-30157-1-across",
+     "puzzle": 30157,
+     "setter": "Paul",
+     "ref": "1a",
+     "clue": "Examiner made redundant it seems, unconditionally (2,9,5)",
+     "answer": "NOQUESTIONSASKED",
+     "url": "https://www.theguardian.com/crosswords/cryptic/30157",
+     "parsing_url": "https://fifteensquared.net/2026/11/06/guardian-cryptic-30157-by-paul/",
+     "devices": [
+      "double_definition"
+     ],
+     "and_lit": false,
+     "results": [
+      {
+       "outcome": "correct",
+       "answer": "NO QUESTIONS ASKED",
+       "output_tokens": 1638
+      },
+      {
+       "outcome": "correct",
+       "answer": "NO QUESTIONS ASKED",
+       "output_tokens": 508
+      },
+      {
+       "outcome": "correct",
+       "answer": "NO QUESTIONS ASKED",
+       "output_tokens": 1399
+      },
+      {
+       "outcome": "wrong_length",
+       "answer": "AT ALL EVENTS",
+       "output_tokens": 7
+      }
+     ]
+    },
+    {
+     "id": "guardian-cryptic-30157-1-down",
+     "puzzle": 30157,
+     "setter": "Paul",
+     "ref": "1d",
+     "clue": "Gambler who hasn’t been handled very well? (5,4,6)",
+     "answer": "NEVERFELTBETTER",
+     "url": "https://www.theguardian.com/crosswords/cryptic/30157",
+     "parsing_url": "https://fifteensquared.net/2026/11/06/guardian-cryptic-30157-by-paul/",
+     "devices": [
+      "cryptic_definition"
+     ],
+     "and_lit": false,
+     "results": [
+      {
+       "outcome": "wrong_answer",
+       "answer": "LOUSY CARD PLAYER",
+       "output_tokens": 21466
+      },
+      {
+       "outcome": "wrong_length",
+       "answer": "SHORT OF A FULL DECK",
+       "output_tokens": 1264
+      },
+      {
+       "outcome": "wrong_answer",
+       "answer": "BLACKJACKPLAYER",
+       "output_tokens": 1647
+      },
+      {
+       "outcome": "wrong_length",
+       "answer": "ROUGHLY TREATED",
+       "output_tokens": 34
+      }
+     ]
+    },
+    {
+     "id": "guardian-cryptic-30157-10-across",
+     "puzzle": 30157,
+     "setter": "Paul",
+     "ref": "10a",
+     "clue": "Design cut out, street artist’s tool blunted? (7)",
+     "answer": "STENCIL",
+     "url": "https://www.theguardian.com/crosswords/cryptic/30157",
+     "parsing_url": "https://fifteensquared.net/2026/11/06/guardian-cryptic-30157-by-paul/",
+     "devices": [
+      "charade",
+      "deletion"
+     ],
+     "and_lit": false,
+     "results": [
+      {
+       "outcome": "correct",
+       "answer": "STENCIL",
+       "output_tokens": 524
+      },
+      {
+       "outcome": "correct",
+       "answer": "STENCIL",
+       "output_tokens": 364
+      },
+      {
+       "outcome": "correct",
+       "answer": "STENCIL",
+       "output_tokens": 832
+      },
+      {
+       "outcome": "correct",
+       "answer": "STENCIL",
+       "output_tokens": 6
+      }
+     ]
+    },
+    {
+     "id": "guardian-cryptic-30157-11-across",
+     "puzzle": 30157,
+     "setter": "Paul",
+     "ref": "11a",
+     "clue": "Soldier on with alder sculpting ornament with branches (9)",
+     "answer": "GIRANDOLE",
+     "url": "https://www.theguardian.com/crosswords/cryptic/30157",
+     "parsing_url": "https://fifteensquared.net/2026/11/06/guardian-cryptic-30157-by-paul/",
+     "devices": [
+      "anagram",
+      "charade"
+     ],
+     "and_lit": false,
+     "results": [
+      {
+       "outcome": "correct",
+       "answer": "GIRANDOLE",
+       "output_tokens": 1611
+      },
+      {
+       "outcome": "correct",
+       "answer": "GIRANDOLE",
+       "output_tokens": 425
+      },
+      {
+       "outcome": "wrong_length",
+       "answer": "CANDELABRA",
+       "output_tokens": 1521
+      },
+      {
+       "outcome": "wrong_length",
+       "answer": "GARDENIA",
+       "output_tokens": 1035
+      }
+     ]
+    },
+    {
+     "id": "guardian-cryptic-30157-12-across",
+     "puzzle": 30157,
+     "setter": "Paul",
+     "ref": "12a",
+     "clue": "Bloomer, very big one breaking heart in metropolis (5)",
+     "answer": "OXLIP",
+     "url": "https://www.theguardian.com/crosswords/cryptic/30157",
+     "parsing_url": "https://fifteensquared.net/2026/11/06/guardian-cryptic-30157-by-paul/",
+     "devices": [
+      "container",
+      "letter_selection"
+     ],
+     "and_lit": false,
+     "results": [
+      {
+       "outcome": "correct",
+       "answer": "OXLIP",
+       "output_tokens": 27516
+      },
+      {
+       "outcome": "wrong_answer",
+       "answer": "ASTER",
+       "output_tokens": 1703
+      },
+      {
+       "outcome": "wrong_length",
+       "answer": "LOAF",
+       "output_tokens": 4967
+      },
+      {
+       "outcome": "wrong_answer",
+       "answer": "ERROR",
+       "output_tokens": 542
+      }
+     ]
+    },
+    {
+     "id": "guardian-cryptic-30157-13-across",
+     "puzzle": 30157,
+     "setter": "Paul",
+     "ref": "13a",
+     "clue": "Peak with unidentified primate? (4)",
+     "answer": "APEX",
+     "url": "https://www.theguardian.com/crosswords/cryptic/30157",
+     "parsing_url": "https://fifteensquared.net/2026/11/06/guardian-cryptic-30157-by-paul/",
+     "devices": [
+      "charade"
+     ],
+     "and_lit": false,
+     "results": [
+      {
+       "outcome": "correct",
+       "answer": "APEX",
+       "output_tokens": 100
+      },
+      {
+       "outcome": "correct",
+       "answer": "APEX",
+       "output_tokens": 215
+      },
+      {
+       "outcome": "correct",
+       "answer": "APEX",
+       "output_tokens": 471
+      },
+      {
+       "outcome": "wrong_answer",
+       "answer": "PEAK",
+       "output_tokens": 463
+      }
+     ]
+    },
+    {
+     "id": "guardian-cryptic-30157-14-across",
+     "puzzle": 30157,
+     "setter": "Paul",
+     "ref": "14a",
+     "clue": "Sheets say on end of bed in illusionary realm (5,5)",
+     "answer": "DREAMSTATE",
+     "url": "https://www.theguardian.com/crosswords/cryptic/30157",
+     "parsing_url": "https://fifteensquared.net/2026/11/06/guardian-cryptic-30157-by-paul/",
+     "devices": [
+      "charade",
+      "letter_selection"
+     ],
+     "and_lit": false,
+     "results": [
+      {
+       "outcome": "wrong_answer",
+       "answer": "DREAM WORLD",
+       "output_tokens": 1281
+      },
+      {
+       "outcome": "wrong_answer",
+       "answer": "DREAM WORLD",
+       "output_tokens": 921
+      },
+      {
+       "outcome": "wrong_answer",
+       "answer": "DREAMWORLD",
+       "output_tokens": 1423
+      },
+      {
+       "outcome": "wrong_answer",
+       "answer": "SLEEP STATE",
+       "output_tokens": 7
+      }
+     ]
+    },
+    {
+     "id": "guardian-cryptic-30157-15-down",
+     "puzzle": 30157,
+     "setter": "Paul",
+     "ref": "15d",
+     "clue": "Butcher saving me – from this? (8)",
+     "answer": "VEGANISM",
+     "url": "https://www.theguardian.com/crosswords/cryptic/30157",
+     "parsing_url": "https://fifteensquared.net/2026/11/06/guardian-cryptic-30157-by-paul/",
+     "devices": [
+      "anagram"
+     ],
+     "and_lit": true,
+     "results": [
+      {
+       "outcome": "correct",
+       "answer": "VEGANISM",
+       "output_tokens": 1588
+      },
+      {
+       "outcome": "wrong_answer",
+       "answer": "MEATLESS",
+       "output_tokens": 752
+      },
+      {
+       "outcome": "wrong_answer",
+       "answer": "HEREFROM",
+       "output_tokens": 1596
+      },
+      {
+       "outcome": "wrong_answer",
+       "answer": "ABSTEMIA",
+       "output_tokens": 53
+      }
+     ]
+    },
+    {
+     "id": "guardian-cryptic-30157-16-across",
+     "puzzle": 30157,
+     "setter": "Paul",
+     "ref": "16a",
+     "clue": "Short distance when knocked over caught by punch – as far as possible (2,3,5)",
+     "answer": "TOTHELIMIT",
+     "url": "https://www.theguardian.com/crosswords/cryptic/30157",
+     "parsing_url": "https://fifteensquared.net/2026/11/06/guardian-cryptic-30157-by-paul/",
+     "devices": [
+      "charade",
+      "container",
+      "reversal"
+     ],
+     "and_lit": false,
+     "results": [
+      {
+       "outcome": "correct",
+       "answer": "TO THE LIMIT",
+       "output_tokens": 28666
+      },
+      {
+       "outcome": "correct",
+       "answer": "TO THE LIMIT",
+       "output_tokens": 796
+      },
+      {
+       "outcome": "correct",
+       "answer": "TO THE LIMIT",
+       "output_tokens": 1246
+      },
+      {
+       "outcome": "wrong_length",
+       "answer": "AT ARM’S LENGTH",
+       "output_tokens": 8
+      }
+     ]
+    },
+    {
+     "id": "guardian-cryptic-30157-17-down",
+     "puzzle": 30157,
+     "setter": "Paul",
+     "ref": "17d",
+     "clue": "Could supporter be on tour of a hot city in Iran (7)",
+     "answer": "ISFAHAN",
+     "url": "https://www.theguardian.com/crosswords/cryptic/30157",
+     "parsing_url": "https://fifteensquared.net/2026/11/06/guardian-cryptic-30157-by-paul/",
+     "devices": [
+      "charade",
+      "container"
+     ],
+     "and_lit": false,
+     "results": [
+      {
+       "outcome": "correct",
+       "answer": "ISFAHAN",
+       "output_tokens": 6217
+      },
+      {
+       "outcome": "correct",
+       "answer": "ISFAHAN",
+       "output_tokens": 742
+      },
+      {
+       "outcome": "wrong_answer",
+       "answer": "BUSHEHR",
+       "output_tokens": 2330
+      },
+      {
+       "outcome": "wrong_length",
+       "answer": "TEHRAN",
+       "output_tokens": 48
+      }
+     ]
+    },
+    {
+     "id": "guardian-cryptic-30157-18-down",
+     "puzzle": 30157,
+     "setter": "Paul",
+     "ref": "18d",
+     "clue": "Cocktail of deceit with a drink (4,3)",
+     "answer": "ICEDTEA",
+     "url": "https://www.theguardian.com/crosswords/cryptic/30157",
+     "parsing_url": "https://fifteensquared.net/2026/11/06/guardian-cryptic-30157-by-paul/",
+     "devices": [
+      "anagram",
+      "charade"
+     ],
+     "and_lit": false,
+     "results": [
+      {
+       "outcome": "wrong_answer",
+       "answer": "CAPE COD",
+       "output_tokens": 30801
+      },
+      {
+       "outcome": "correct",
+       "answer": "ICED TEA",
+       "output_tokens": 579
+      },
+      {
+       "outcome": "no_answer",
+       "answer": null,
+       "output_tokens": 2731
+      },
+      {
+       "outcome": "wrong_length",
+       "answer": "LYING RUM",
+       "output_tokens": 9
+      }
+     ]
+    },
+    {
+     "id": "guardian-cryptic-30157-19-across",
+     "puzzle": 30157,
+     "setter": "Paul",
+     "ref": "19a",
+     "clue": "Bedtime companion who’s stuffed, head ripped off in vortex (4)",
+     "answer": "EDDY",
+     "url": "https://www.theguardian.com/crosswords/cryptic/30157",
+     "parsing_url": "https://fifteensquared.net/2026/11/06/guardian-cryptic-30157-by-paul/",
+     "devices": [
+      "deletion"
+     ],
+     "and_lit": false,
+     "results": [
+      {
+       "outcome": "correct",
+       "answer": "EDDY",
+       "output_tokens": 211
+      },
+      {
+       "outcome": "correct",
+       "answer": "EDDY",
+       "output_tokens": 203
+      },
+      {
+       "outcome": "correct",
+       "answer": "EDDY",
+       "output_tokens": 366
+      },
+      {
+       "outcome": "wrong_answer",
+       "answer": "TEDD",
+       "output_tokens": 42
+      }
+     ]
+    },
+    {
+     "id": "guardian-cryptic-30157-2-down",
+     "puzzle": 30157,
+     "setter": "Paul",
+     "ref": "2d",
+     "clue": "Piece found in here, for example? (5)",
+     "answer": "QUEEN",
+     "url": "https://www.theguardian.com/crosswords/cryptic/30157",
+     "parsing_url": "https://fifteensquared.net/2026/11/06/guardian-cryptic-30157-by-paul/",
+     "devices": [
+      "hidden"
+     ],
+     "and_lit": false,
+     "results": [
+      {
+       "outcome": "wrong_answer",
+       "answer": "AMPLE",
+       "output_tokens": 36577
+      },
+      {
+       "outcome": "wrong_answer",
+       "answer": "CHESS",
+       "output_tokens": 569
+      },
+      {
+       "outcome": "wrong_answer",
+       "answer": "FOREX",
+       "output_tokens": 854
+      },
+      {
+       "outcome": "wrong_answer",
+       "answer": "THERE",
+       "output_tokens": 7
+      }
+     ]
+    },
+    {
+     "id": "guardian-cryptic-30157-20-across",
+     "puzzle": 30157,
+     "setter": "Paul",
+     "ref": "20a",
+     "clue": "Character of Mr. Kipling’s cake, layered jams (5)",
+     "answer": "AKELA",
+     "url": "https://www.theguardian.com/crosswords/cryptic/30157",
+     "parsing_url": "https://fifteensquared.net/2026/11/06/guardian-cryptic-30157-by-paul/",
+     "devices": [
+      "hidden"
+     ],
+     "and_lit": false,
+     "results": [
+      {
+       "outcome": "correct",
+       "answer": "AKELA",
+       "output_tokens": 4926
+      },
+      {
+       "outcome": "correct",
+       "answer": "AKELA",
+       "output_tokens": 818
+      },
+      {
+       "outcome": "wrong_answer",
+       "answer": "ANGEL",
+       "output_tokens": 1319
+      },
+      {
+       "outcome": "wrong_answer",
+       "answer": "TREAT",
+       "output_tokens": 6
+      }
+     ]
+    },
+    {
+     "id": "guardian-cryptic-30157-21-across",
+     "puzzle": 30157,
+     "setter": "Paul",
+     "ref": "21a",
+     "clue": "Payment admissible, experience nausea? (4,5)",
+     "answer": "FEELAWFUL",
+     "url": "https://www.theguardian.com/crosswords/cryptic/30157",
+     "parsing_url": "https://fifteensquared.net/2026/11/06/guardian-cryptic-30157-by-paul/",
+     "devices": [
+      "charade"
+     ],
+     "and_lit": false,
+     "results": [
+      {
+       "outcome": "wrong_answer",
+       "answer": "FEEL GREEN",
+       "output_tokens": 32821
+      },
+      {
+       "outcome": "wrong_answer",
+       "answer": "TURN GREEN",
+       "output_tokens": 1655
+      },
+      {
+       "outcome": "wrong_answer",
+       "answer": "FEEL GREEN",
+       "output_tokens": 1592
+      },
+      {
+       "outcome": "wrong_length",
+       "answer": "FEE SICKNESS",
+       "output_tokens": 26
+      }
+     ]
+    },
+    {
+     "id": "guardian-cryptic-30157-23-across",
+     "puzzle": 30157,
+     "setter": "Paul",
+     "ref": "23a",
+     "clue": "Drunk son has too much, and I don’t say a word! (7)",
+     "answer": "SOTTISH",
+     "url": "https://www.theguardian.com/crosswords/cryptic/30157",
+     "parsing_url": "https://fifteensquared.net/2026/11/06/guardian-cryptic-30157-by-paul/",
+     "devices": [
+      "charade"
+     ],
+     "and_lit": false,
+     "results": [
+      {
+       "outcome": "correct",
+       "answer": "SOTTISH",
+       "output_tokens": 522
+      },
+      {
+       "outcome": "wrong_answer",
+       "answer": "SILENCE",
+       "output_tokens": 1498
+      },
+      {
+       "outcome": "wrong_answer",
+       "answer": "SILENCE",
+       "output_tokens": 3115
+      },
+      {
+       "outcome": "wrong_answer",
+       "answer": "SILENCE",
+       "output_tokens": 7
+      }
+     ]
+    },
+    {
+     "id": "guardian-cryptic-30157-24-across",
+     "puzzle": 30157,
+     "setter": "Paul",
+     "ref": "24a",
+     "clue": "Adopted sheep assimilating a range of knowledge (5,2)",
+     "answer": "TAKENUP",
+     "url": "https://www.theguardian.com/crosswords/cryptic/30157",
+     "parsing_url": "https://fifteensquared.net/2026/11/06/guardian-cryptic-30157-by-paul/",
+     "devices": [
+      "container"
+     ],
+     "and_lit": false,
+     "results": [
+      {
+       "outcome": "near_miss",
+       "answer": "TAKEN IN",
+       "output_tokens": 2666
+      },
+      {
+       "outcome": "correct",
+       "answer": "TAKEN UP",
+       "output_tokens": 278
+      },
+      {
+       "outcome": "near_miss",
+       "answer": "TAKEN IN",
+       "output_tokens": 2886
+      },
+      {
+       "outcome": "wrong_length",
+       "answer": "LAMB OF GOD",
+       "output_tokens": 8
+      }
+     ]
+    },
+    {
+     "id": "guardian-cryptic-30157-25-across",
+     "puzzle": 30157,
+     "setter": "Paul",
+     "ref": "25a",
+     "clue": "Brilliant autumn entertainer with line in book (5,6)",
+     "answer": "ROMANCANDLE",
+     "url": "https://www.theguardian.com/crosswords/cryptic/30157",
+     "parsing_url": "https://fifteensquared.net/2026/11/06/guardian-cryptic-30157-by-paul/",
+     "devices": [
+      "charade",
+      "container"
+     ],
+     "and_lit": false,
+     "results": [
+      {
+       "outcome": "wrong_answer",
+       "answer": "JIMMY FALLON",
+       "output_tokens": 60848
+      },
+      {
+       "outcome": "correct",
+       "answer": "ROMAN CANDLE",
+       "output_tokens": 553
+      },
+      {
+       "outcome": "wrong_answer",
+       "answer": "FALLEN ANGEL",
+       "output_tokens": 2146
+      },
+      {
+       "outcome": "wrong_length",
+       "answer": "GREAT PUMPKIN",
+       "output_tokens": 10
+      }
+     ]
+    },
+    {
+     "id": "guardian-cryptic-30157-3-down",
+     "puzzle": 30157,
+     "setter": "Paul",
+     "ref": "3d",
+     "clue": "Charm of European road crossing country after taking a spin (7)",
+     "answer": "ENAMOUR",
+     "url": "https://www.theguardian.com/crosswords/cryptic/30157",
+     "parsing_url": "https://fifteensquared.net/2026/11/06/guardian-cryptic-30157-by-paul/",
+     "devices": [
+      "container",
+      "reversal"
+     ],
+     "and_lit": false,
+     "results": [
+      {
+       "outcome": "correct",
+       "answer": "ENAMOUR",
+       "output_tokens": 8605
+      },
+      {
+       "outcome": "correct",
+       "answer": "ENAMOUR",
+       "output_tokens": 1729
+      },
+      {
+       "outcome": "correct",
+       "answer": "ENAMOUR",
+       "output_tokens": 4912
+      },
+      {
+       "outcome": "wrong_length",
+       "answer": "CHARMING",
+       "output_tokens": 7
+      }
+     ]
+    },
+    {
+     "id": "guardian-cryptic-30157-4-down",
+     "puzzle": 30157,
+     "setter": "Paul",
+     "ref": "4d",
+     "clue": "Tile, useful thing that’s pressed on towards the ceiling (7)",
+     "answer": "TESSERA",
+     "url": "https://www.theguardian.com/crosswords/cryptic/30157",
+     "parsing_url": "https://fifteensquared.net/2026/11/06/guardian-cryptic-30157-by-paul/",
+     "devices": [
+      "container",
+      "reversal"
+     ],
+     "and_lit": false,
+     "results": [
+      {
+       "outcome": "wrong_answer",
+       "answer": "UTENSIL",
+       "output_tokens": 8345
+      },
+      {
+       "outcome": "wrong_answer",
+       "answer": "PANTILE",
+       "output_tokens": 881
+      },
+      {
+       "outcome": "wrong_length",
+       "answer": "TOPPER",
+       "output_tokens": 3228
+      },
+      {
+       "outcome": "wrong_answer",
+       "answer": "UPLIFTS",
+       "output_tokens": 99
+      }
+     ]
+    },
+    {
+     "id": "guardian-cryptic-30157-5-down",
+     "puzzle": 30157,
+     "setter": "Paul",
+     "ref": "5d",
+     "clue": "Running desperate here, so piddling (3-5)",
+     "answer": "ONEHORSE",
+     "url": "https://www.theguardian.com/crosswords/cryptic/30157",
+     "parsing_url": "https://fifteensquared.net/2026/11/06/guardian-cryptic-30157-by-paul/",
+     "devices": [
+      "anagram",
+      "charade"
+     ],
+     "and_lit": false,
+     "results": [
+      {
+       "outcome": "correct",
+       "answer": "ONE-HORSE",
+       "output_tokens": 22861
+      },
+      {
+       "outcome": "wrong_answer",
+       "answer": "PEA-SIZED",
+       "output_tokens": 1194
+      },
+      {
+       "outcome": "wrong_answer",
+       "answer": "NIT-PICKY",
+       "output_tokens": 1744
+      },
+      {
+       "outcome": "wrong_length",
+       "answer": "SOS",
+       "output_tokens": 7
+      }
+     ]
+    },
+    {
+     "id": "guardian-cryptic-30157-6-down",
+     "puzzle": 30157,
+     "setter": "Paul",
+     "ref": "6d",
+     "clue": "Opening letters from CID, a line is infuriating criminal (8,7)",
+     "answer": "SICILIANDEFENCE",
+     "url": "https://www.theguardian.com/crosswords/cryptic/30157",
+     "parsing_url": "https://fifteensquared.net/2026/11/06/guardian-cryptic-30157-by-paul/",
+     "devices": [
+      "anagram",
+      "charade"
+     ],
+     "and_lit": false,
+     "results": [
+      {
+       "outcome": "wrong_answer",
+       "answer": "CRIMINAL OFFENCE",
+       "output_tokens": 44136
+      },
+      {
+       "outcome": "wrong_length",
+       "answer": "CAPITAL LETTERS",
+       "output_tokens": 1305
+      },
+      {
+       "outcome": "no_answer",
+       "answer": "UNKNOWN",
+       "output_tokens": 2086
+      },
+      {
+       "outcome": "wrong_answer",
+       "answer": "A CRIMINAL ANNOYS",
+       "output_tokens": 83
+      }
+     ]
+    },
+    {
+     "id": "guardian-cryptic-30157-7-down",
+     "puzzle": 30157,
+     "setter": "Paul",
+     "ref": "7d",
+     "clue": "Significant moment, dad carrying baby before adoption (8,5)",
+     "answer": "PREGNANTPAUSE",
+     "url": "https://www.theguardian.com/crosswords/cryptic/30157",
+     "parsing_url": "https://fifteensquared.net/2026/11/06/guardian-cryptic-30157-by-paul/",
+     "devices": [
+      "charade",
+      "container"
+     ],
+     "and_lit": false,
+     "results": [
+      {
+       "outcome": "correct",
+       "answer": "PREGNANT PAUSE",
+       "output_tokens": 9790
+      },
+      {
+       "outcome": "correct",
+       "answer": "PREGNANT PAUSE",
+       "output_tokens": 1154
+      },
+      {
+       "outcome": "wrong_answer",
+       "answer": "CRITICAL POINT",
+       "output_tokens": 1963
+      },
+      {
+       "outcome": "wrong_length",
+       "answer": "SIGNAL EVENT, PAPA",
+       "output_tokens": 11
+      }
+     ]
+    },
+    {
+     "id": "guardian-cryptic-30157-8-down",
+     "puzzle": 30157,
+     "setter": "Paul",
+     "ref": "8d",
+     "clue": "Noises from Centaurs, for example, where sauce and honey fed to Polyphemus? (8-5)",
+     "answer": "CLIPPETYCLOPS",
+     "url": "https://www.theguardian.com/crosswords/cryptic/30157",
+     "parsing_url": "https://fifteensquared.net/2026/11/06/guardian-cryptic-30157-by-paul/",
+     "devices": [
+      "container"
+     ],
+     "and_lit": false,
+     "results": [
+      {
+       "outcome": "correct",
+       "answer": "CLIPPETY-CLOPS",
+       "output_tokens": 4336
+      },
+      {
+       "outcome": "wrong_answer",
+       "answer": "MYTHICAL-GREEK",
+       "output_tokens": 1148
+      },
+      {
+       "outcome": "wrong_answer",
+       "answer": "NEIGHING BEAST",
+       "output_tokens": 1999
+      },
+      {
+       "outcome": "wrong_length",
+       "answer": "CYCLOPS’ ROARS",
+       "output_tokens": 12
+      }
+     ]
+    },
+    {
+     "id": "guardian-cryptic-30157-9-across",
+     "puzzle": 30157,
+     "setter": "Paul",
+     "ref": "9a",
+     "clue": "Nice place, one captured by painter (7)",
+     "answer": "RIVIERA",
+     "url": "https://www.theguardian.com/crosswords/cryptic/30157",
+     "parsing_url": "https://fifteensquared.net/2026/11/06/guardian-cryptic-30157-by-paul/",
+     "devices": [
+      "container"
+     ],
+     "and_lit": false,
+     "results": [
+      {
+       "outcome": "correct",
+       "answer": "RIVIERA",
+       "output_tokens": 767
+      },
+      {
+       "outcome": "wrong_answer",
+       "answer": "ARCADIA",
+       "output_tokens": 1578
+      },
+      {
+       "outcome": "wrong_answer",
+       "answer": "ARCADIA",
+       "output_tokens": 2148
+      },
+      {
+       "outcome": "correct",
+       "answer": "RIVIERA",
+       "output_tokens": 545
+      }
+     ]
+    }
+   ]
+  },
+  {
    "name": "guardian-cryptic-2026-11-09..12",
    "public": true,
    "clues": 116,
