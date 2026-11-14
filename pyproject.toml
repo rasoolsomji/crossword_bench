@@ -11,6 +11,7 @@ dependencies = [
 
 [project.scripts]
 fetch-guardian = "crossword_bench.guardian:main"
+fetch-observer = "crossword_bench.observer:main"
 classify-clues = "crossword_bench.classify:main"
 
 [project.entry-points.inspect_ai]
