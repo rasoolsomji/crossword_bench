@@ -133,6 +133,7 @@ def load_runs(log_dir: Path) -> list[dict]:
             # Re-extracted rather than read from the logged score, so scorer
             # fixes apply to logs recorded before them.
             answer = extract_answer(output.completion)
+            outcome = classify_outcome(answer, sample.target, output.stop_reason, output.error)
             usage = output.usage
             samples[str(sample.id)] = {
                 "tokens": {
@@ -145,10 +146,8 @@ def load_runs(log_dir: Path) -> list[dict]:
                 }
                 if usage
                 else None,
-                "outcome": classify_outcome(
-                    answer, sample.target, output.stop_reason, output.error
-                ),
-                "answer": answer,
+                "outcome": outcome,
+                "answer": None if outcome == "interrupted" else answer,
                 "input": sample.input,
                 "target": sample.target,
                 "metadata": sample.metadata or {},
@@ -473,7 +472,9 @@ def render_outcomes(cohort: dict) -> str:
 <h3>How answers went wrong</h3>
 <p class="lede">Every response sorted into one outcome. A wrong-length answer ignores the
 enumeration in the clue; a near miss has the right length and is within two letters. A
-placeholder such as UNKNOWN on the answer line counts as no answer.</p>
+placeholder such as UNKNOWN on the answer line counts as no answer. A reply is cut off when
+it was stopped before it finished: the provider refused part way through, or the model
+started to use a tool.</p>
 <div class="legend">{legend}</div>
 <div class="oc">
 {rows}</div>

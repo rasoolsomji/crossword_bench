@@ -29,6 +29,9 @@ from crossword_bench.scorer import classify_outcome, extract_answer, normalize
         ("HERMIT\n\nHER (female) + M (top of mountain) + IT; a hermit is cold.", "HERMIT"),
         ("ANSWER: MELON\n\nThe definition is 'fruit'; the answer = anagram of LEMON.", "MELON"),
         ("ANSWER: MELON\n\n(Note: the answer: an anagram of 'lemon'.)", "MELON"),
+        ("**Final answer:** MELON", "MELON"),
+        ("## Answer = MELON", "MELON"),
+        ("SMALL DRINK = PINT? Piglet, say. Answer: PIGLET?", "PIGLET"),
     ],
 )
 def test_extract_and_normalize(output, expected):
@@ -37,7 +40,16 @@ def test_extract_and_normalize(output, expected):
     assert normalize(extracted) == expected
 
 
-@pytest.mark.parametrize("output", ["", "I don't know.", "ANSWER:", "ANSWER: ???"])
+@pytest.mark.parametrize(
+    "output",
+    [
+        "",
+        "I don't know.",
+        "ANSWER:",
+        "ANSWER: ???",
+        "I can’t determine the answer: the enumeration (1,3,3) doesn’t fit.",
+    ],
+)
 def test_no_answer(output):
     assert extract_answer(output) is None
 
@@ -62,6 +74,8 @@ def test_normalize_keeps_only_alphanumerics():
         ("UNKNOWN", "UNKNOWN", {}, "correct"),
         (None, "MELON", {"stop_reason": "max_tokens"}, "truncated"),
         (None, "MELON", {"error": "Turn interrupted"}, "interrupted"),
+        ("- SEDATE", "URGENT", {"stop_reason": "content_filter"}, "interrupted"),
+        (None, "MELON", {"stop_reason": "content_filter"}, "interrupted"),
     ],
 )
 def test_classify_outcome(answer, target, kwargs, expected):

@@ -12,7 +12,12 @@ from inspect_ai.scorer import (
 from inspect_ai.solver import TaskState
 
 _ANSWER_LINE = re.compile(r"ANSWER\W*?[:=]\s*(.+)")
-_ANSWER_LINE_ANY_CASE = re.compile(_ANSWER_LINE.pattern, re.IGNORECASE)
+# Any case at the start of a line, capitalised elsewhere ("... Answer:
+# PIGLET?"), so prose such as "I can't determine the answer: the
+# enumeration doesn't fit" is not read as an answer line.
+_ANSWER_LINE_ANY_CASE = re.compile(
+    r"(?:^[\W_]*(?i:final\s+answer|answer)|\bAnswer)\W*?[:=]\s*(.+)", re.MULTILINE
+)
 _WRAPPING = "*_\"'`“”‘’ \t"
 
 
@@ -78,7 +83,7 @@ OUTCOMES = {
     "wrong_length": "Wrong length",
     "no_answer": "No answer",
     "truncated": "Ran out of tokens",
-    "interrupted": "Used a tool",
+    "interrupted": "Cut off",
 }
 
 
@@ -92,8 +97,13 @@ def classify_outcome(
 
     A near miss has the right length and differs from the target in at
     most two letters (answers of six letters or more only, since two
-    letters of a short word is a different word).
+    letters of a short word is a different word). A reply the provider
+    refused part way through is cut off whatever it holds: anything
+    extracted from it is a line of unfinished working, not an answer the
+    model committed to.
     """
+    if stop_reason == "content_filter":
+        return "interrupted"
     if answer is None or not normalize(answer):
         if error:
             return "interrupted"
