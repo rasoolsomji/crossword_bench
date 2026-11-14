@@ -28,6 +28,34 @@
   "30157": {
    "classifier": "claude-sonnet-5-5",
    "parsing_url": "https://fifteensquared.net/2026/11/06/guardian-cryptic-30157-by-paul/"
+  },
+  "30104": {
+   "classifier": "claude-sonnet-5-5",
+   "parsing_url": "https://fifteensquared.net/2026/09/12/guardian-saturday-prize-crossword-30104-by-enigmatist-5-september-2026/"
+  },
+  "280": {
+   "classifier": "claude-sonnet-5-5",
+   "parsing_url": "https://fifteensquared.net/2026/11/01/guardian-genius-280-by-enigmatist/"
+  },
+  "30131": {
+   "classifier": "claude-sonnet-5-5",
+   "parsing_url": "https://fifteensquared.net/2026/10/07/guardian-cryptic-crossword-no-30131-by-paul/"
+  },
+  "30143": {
+   "classifier": "claude-sonnet-5-5",
+   "parsing_url": "https://fifteensquared.net/2026/10/21/guardian-cryptic-crossword-no-30143-by-imogen/"
+  },
+  "30146": {
+   "classifier": "claude-sonnet-5-5",
+   "parsing_url": "https://fifteensquared.net/2026/10/31/guardian-prize-30146-vlad/"
+  },
+  "30148": {
+   "classifier": "claude-sonnet-5-5",
+   "parsing_url": "https://fifteensquared.net/2026/10/27/guardian-30148-fed/"
+  },
+  "30152": {
+   "classifier": "claude-sonnet-5-5",
+   "parsing_url": "https://fifteensquared.net/2026/11/07/guardian-saturday-prize-crossword-30152-by-brockwell-31-october-2026/"
   }
  },
  "clues": {
@@ -1686,6 +1714,1753 @@
    "devices": [
     "anagram",
     "charade"
+   ],
+   "and_lit": false,
+   "source": "blog"
+  },
+  "guardian-prize-30104-1-across": {
+   "primary": "container",
+   "devices": [
+    "anagram",
+    "container",
+    "letter_selection"
+   ],
+   "and_lit": false,
+   "source": "blog"
+  },
+  "guardian-prize-30104-6-across": {
+   "primary": "reversal",
+   "devices": [
+    "reversal"
+   ],
+   "and_lit": true,
+   "source": "blog"
+  },
+  "guardian-prize-30104-10-across": {
+   "primary": "charade",
+   "devices": [
+    "charade"
+   ],
+   "and_lit": false,
+   "source": "blog"
+  },
+  "guardian-prize-30104-11-across": {
+   "primary": "container",
+   "devices": [
+    "charade",
+    "container"
+   ],
+   "and_lit": false,
+   "source": "blog"
+  },
+  "guardian-prize-30104-12-across": {
+   "primary": "charade",
+   "devices": [
+    "charade",
+    "letter_selection"
+   ],
+   "and_lit": false,
+   "source": "blog"
+  },
+  "guardian-prize-30104-13-across": {
+   "primary": "container",
+   "devices": [
+    "anagram",
+    "container"
+   ],
+   "and_lit": false,
+   "source": "blog"
+  },
+  "guardian-prize-30104-14-across": {
+   "primary": "charade",
+   "devices": [
+    "charade",
+    "container"
+   ],
+   "and_lit": false,
+   "source": "blog"
+  },
+  "guardian-prize-30104-17-across": {
+   "primary": "charade",
+   "devices": [
+    "charade",
+    "reversal"
+   ],
+   "and_lit": false,
+   "source": "blog"
+  },
+  "guardian-prize-30104-21-across": {
+   "primary": "charade",
+   "devices": [
+    "charade",
+    "container",
+    "letter_selection"
+   ],
+   "and_lit": false,
+   "source": "blog"
+  },
+  "guardian-prize-30104-22-across": {
+   "primary": "spoonerism",
+   "devices": [
+    "spoonerism"
+   ],
+   "and_lit": false,
+   "source": "blog"
+  },
+  "guardian-prize-30104-24-across": {
+   "primary": "container",
+   "devices": [
+    "charade",
+    "container",
+    "reversal"
+   ],
+   "and_lit": false,
+   "source": "blog"
+  },
+  "guardian-prize-30104-25-across": {
+   "primary": "charade",
+   "devices": [
+    "charade",
+    "container",
+    "letter_selection"
+   ],
+   "and_lit": false,
+   "source": "blog"
+  },
+  "guardian-prize-30104-26-across": {
+   "primary": "container",
+   "devices": [
+    "charade",
+    "container",
+    "letter_selection"
+   ],
+   "and_lit": true,
+   "source": "blog"
+  },
+  "guardian-prize-30104-27-across": {
+   "primary": "container",
+   "devices": [
+    "anagram",
+    "container"
+   ],
+   "and_lit": false,
+   "source": "blog"
+  },
+  "guardian-prize-30104-1-down": {
+   "primary": "cryptic_definition",
+   "devices": [
+    "cryptic_definition"
+   ],
+   "and_lit": false,
+   "source": "blog"
+  },
+  "guardian-prize-30104-2-down": {
+   "primary": "charade",
+   "devices": [
+    "charade"
+   ],
+   "and_lit": false,
+   "source": "blog"
+  },
+  "guardian-prize-30104-3-down": {
+   "primary": "anagram",
+   "devices": [
+    "anagram",
+    "deletion"
+   ],
+   "and_lit": false,
+   "source": "blog"
+  },
+  "guardian-prize-30104-4-down": {
+   "primary": "other",
+   "devices": [
+    "other"
+   ],
+   "and_lit": false,
+   "source": "blog"
+  },
+  "guardian-prize-30104-5-down": {
+   "primary": "cryptic_definition",
+   "devices": [
+    "cryptic_definition"
+   ],
+   "and_lit": false,
+   "source": "blog"
+  },
+  "guardian-prize-30104-7-down": {
+   "primary": "anagram",
+   "devices": [
+    "anagram"
+   ],
+   "and_lit": false,
+   "source": "blog"
+  },
+  "guardian-prize-30104-8-down": {
+   "primary": "container",
+   "devices": [
+    "container"
+   ],
+   "and_lit": true,
+   "source": "blog"
+  },
+  "guardian-prize-30104-9-down": {
+   "primary": "charade",
+   "devices": [
+    "charade",
+    "container",
+    "reversal",
+    "letter_selection"
+   ],
+   "and_lit": false,
+   "source": "blog"
+  },
+  "guardian-prize-30104-15-down": {
+   "primary": "charade",
+   "devices": [
+    "charade"
+   ],
+   "and_lit": false,
+   "source": "blog"
+  },
+  "guardian-prize-30104-16-down": {
+   "primary": "double_definition",
+   "devices": [
+    "double_definition"
+   ],
+   "and_lit": false,
+   "source": "blog"
+  },
+  "guardian-prize-30104-18-down": {
+   "primary": "charade",
+   "devices": [
+    "charade",
+    "deletion"
+   ],
+   "and_lit": false,
+   "source": "blog"
+  },
+  "guardian-prize-30104-19-down": {
+   "primary": "charade",
+   "devices": [
+    "charade"
+   ],
+   "and_lit": false,
+   "source": "blog"
+  },
+  "guardian-prize-30104-20-down": {
+   "primary": "anagram",
+   "devices": [
+    "anagram",
+    "deletion",
+    "letter_selection"
+   ],
+   "and_lit": false,
+   "source": "blog"
+  },
+  "guardian-prize-30104-23-down": {
+   "primary": "anagram",
+   "devices": [
+    "anagram"
+   ],
+   "and_lit": false,
+   "source": "blog"
+  },
+  "guardian-genius-280-01": {
+   "primary": "charade",
+   "devices": [
+    "charade",
+    "deletion"
+   ],
+   "and_lit": false,
+   "source": "blog"
+  },
+  "guardian-genius-280-02": {
+   "primary": "container",
+   "devices": [
+    "container"
+   ],
+   "and_lit": false,
+   "source": "blog"
+  },
+  "guardian-genius-280-03": {
+   "primary": "reversal",
+   "devices": [
+    "charade",
+    "reversal"
+   ],
+   "and_lit": false,
+   "source": "blog"
+  },
+  "guardian-genius-280-04": {
+   "primary": "charade",
+   "devices": [
+    "charade"
+   ],
+   "and_lit": false,
+   "source": "blog"
+  },
+  "guardian-genius-280-06": {
+   "primary": "container",
+   "devices": [
+    "container",
+    "deletion"
+   ],
+   "and_lit": false,
+   "source": "blog"
+  },
+  "guardian-genius-280-07": {
+   "primary": "charade",
+   "devices": [
+    "charade"
+   ],
+   "and_lit": false,
+   "source": "blog"
+  },
+  "guardian-genius-280-08": {
+   "primary": "charade",
+   "devices": [
+    "charade",
+    "container"
+   ],
+   "and_lit": false,
+   "source": "blog"
+  },
+  "guardian-genius-280-09": {
+   "primary": "homophone",
+   "devices": [
+    "homophone"
+   ],
+   "and_lit": false,
+   "source": "blog"
+  },
+  "guardian-genius-280-10": {
+   "primary": "deletion",
+   "devices": [
+    "deletion"
+   ],
+   "and_lit": false,
+   "source": "blog"
+  },
+  "guardian-genius-280-11": {
+   "primary": "container",
+   "devices": [
+    "container"
+   ],
+   "and_lit": false,
+   "source": "blog"
+  },
+  "guardian-genius-280-12": {
+   "primary": "charade",
+   "devices": [
+    "charade",
+    "other"
+   ],
+   "and_lit": false,
+   "source": "blog"
+  },
+  "guardian-genius-280-14": {
+   "primary": "container",
+   "devices": [
+    "charade",
+    "container"
+   ],
+   "and_lit": false,
+   "source": "blog"
+  },
+  "guardian-genius-280-15": {
+   "primary": "anagram",
+   "devices": [
+    "anagram",
+    "deletion"
+   ],
+   "and_lit": false,
+   "source": "blog"
+  },
+  "guardian-genius-280-18": {
+   "primary": "container",
+   "devices": [
+    "container",
+    "letter_selection"
+   ],
+   "and_lit": false,
+   "source": "blog"
+  },
+  "guardian-genius-280-19": {
+   "primary": "anagram",
+   "devices": [
+    "anagram"
+   ],
+   "and_lit": false,
+   "source": "blog"
+  },
+  "guardian-genius-280-20": {
+   "primary": "container",
+   "devices": [
+    "container"
+   ],
+   "and_lit": false,
+   "source": "blog"
+  },
+  "guardian-genius-280-21": {
+   "primary": "deletion",
+   "devices": [
+    "deletion"
+   ],
+   "and_lit": false,
+   "source": "blog"
+  },
+  "guardian-genius-280-22": {
+   "primary": "charade",
+   "devices": [
+    "anagram",
+    "charade",
+    "container"
+   ],
+   "and_lit": false,
+   "source": "blog"
+  },
+  "guardian-genius-280-23": {
+   "primary": "homophone",
+   "devices": [
+    "homophone"
+   ],
+   "and_lit": false,
+   "source": "blog"
+  },
+  "guardian-genius-280-24": {
+   "primary": "reversal",
+   "devices": [
+    "reversal",
+    "hidden"
+   ],
+   "and_lit": false,
+   "source": "blog"
+  },
+  "guardian-genius-280-26": {
+   "primary": "substitution",
+   "devices": [
+    "substitution"
+   ],
+   "and_lit": false,
+   "source": "blog"
+  },
+  "guardian-genius-280-27": {
+   "primary": "container",
+   "devices": [
+    "container"
+   ],
+   "and_lit": false,
+   "source": "blog"
+  },
+  "guardian-genius-280-28": {
+   "primary": "anagram",
+   "devices": [
+    "anagram",
+    "deletion"
+   ],
+   "and_lit": false,
+   "source": "blog"
+  },
+  "guardian-genius-280-29": {
+   "primary": "anagram",
+   "devices": [
+    "anagram"
+   ],
+   "and_lit": false,
+   "source": "blog"
+  },
+  "guardian-genius-280-30": {
+   "primary": "anagram",
+   "devices": [
+    "anagram",
+    "deletion"
+   ],
+   "and_lit": false,
+   "source": "blog"
+  },
+  "guardian-genius-280-32": {
+   "primary": "double_definition",
+   "devices": [
+    "double_definition"
+   ],
+   "and_lit": false,
+   "source": "blog"
+  },
+  "guardian-genius-280-33": {
+   "primary": "other",
+   "devices": [
+    "letter_selection",
+    "other"
+   ],
+   "and_lit": false,
+   "source": "blog"
+  },
+  "guardian-genius-280-34": {
+   "primary": "anagram",
+   "devices": [
+    "anagram",
+    "deletion"
+   ],
+   "and_lit": false,
+   "source": "blog"
+  },
+  "guardian-genius-280-35": {
+   "primary": "double_definition",
+   "devices": [
+    "double_definition"
+   ],
+   "and_lit": false,
+   "source": "blog"
+  },
+  "guardian-genius-280-36": {
+   "primary": "other",
+   "devices": [
+    "other"
+   ],
+   "and_lit": false,
+   "source": "blog"
+  },
+  "guardian-genius-280-37": {
+   "primary": "hidden",
+   "devices": [
+    "hidden"
+   ],
+   "and_lit": false,
+   "source": "blog"
+  },
+  "guardian-genius-280-38": {
+   "primary": "charade",
+   "devices": [
+    "charade",
+    "container"
+   ],
+   "and_lit": false,
+   "source": "blog"
+  },
+  "guardian-cryptic-30131-1-across": {
+   "primary": "deletion",
+   "devices": [
+    "deletion"
+   ],
+   "and_lit": false,
+   "source": "blog"
+  },
+  "guardian-cryptic-30131-4-across": {
+   "primary": "container",
+   "devices": [
+    "charade",
+    "container",
+    "reversal",
+    "letter_selection"
+   ],
+   "and_lit": false,
+   "source": "blog"
+  },
+  "guardian-cryptic-30131-9-across": {
+   "primary": "charade",
+   "devices": [
+    "charade",
+    "letter_selection"
+   ],
+   "and_lit": false,
+   "source": "blog"
+  },
+  "guardian-cryptic-30131-10-across": {
+   "primary": "reversal",
+   "devices": [
+    "charade",
+    "reversal",
+    "deletion"
+   ],
+   "and_lit": false,
+   "source": "blog"
+  },
+  "guardian-cryptic-30131-11-across": {
+   "primary": "cryptic_definition",
+   "devices": [
+    "cryptic_definition"
+   ],
+   "and_lit": false,
+   "source": "blog"
+  },
+  "guardian-cryptic-30131-13-across": {
+   "primary": "charade",
+   "devices": [
+    "anagram",
+    "charade",
+    "container",
+    "deletion"
+   ],
+   "and_lit": false,
+   "source": "blog"
+  },
+  "guardian-cryptic-30131-14-across": {
+   "primary": "container",
+   "devices": [
+    "container"
+   ],
+   "and_lit": false,
+   "source": "blog"
+  },
+  "guardian-cryptic-30131-16-across": {
+   "primary": "container",
+   "devices": [
+    "container",
+    "letter_selection"
+   ],
+   "and_lit": false,
+   "source": "blog"
+  },
+  "guardian-cryptic-30131-18-across": {
+   "primary": "charade",
+   "devices": [
+    "charade"
+   ],
+   "and_lit": false,
+   "source": "blog"
+  },
+  "guardian-cryptic-30131-21-across": {
+   "primary": "cryptic_definition",
+   "devices": [
+    "cryptic_definition"
+   ],
+   "and_lit": false,
+   "source": "blog"
+  },
+  "guardian-cryptic-30131-23-across": {
+   "primary": "double_definition",
+   "devices": [
+    "double_definition"
+   ],
+   "and_lit": false,
+   "source": "blog"
+  },
+  "guardian-cryptic-30131-24-across": {
+   "primary": "double_definition",
+   "devices": [
+    "double_definition"
+   ],
+   "and_lit": false,
+   "source": "blog"
+  },
+  "guardian-cryptic-30131-25-across": {
+   "primary": "anagram",
+   "devices": [
+    "anagram"
+   ],
+   "and_lit": false,
+   "source": "blog"
+  },
+  "guardian-cryptic-30131-26-across": {
+   "primary": "container",
+   "devices": [
+    "container",
+    "letter_selection"
+   ],
+   "and_lit": false,
+   "source": "blog"
+  },
+  "guardian-cryptic-30131-1-down": {
+   "primary": "double_definition",
+   "devices": [
+    "double_definition"
+   ],
+   "and_lit": false,
+   "source": "blog"
+  },
+  "guardian-cryptic-30131-2-down": {
+   "primary": "double_definition",
+   "devices": [
+    "double_definition"
+   ],
+   "and_lit": false,
+   "source": "blog"
+  },
+  "guardian-cryptic-30131-3-down": {
+   "primary": "charade",
+   "devices": [
+    "charade",
+    "deletion"
+   ],
+   "and_lit": false,
+   "source": "blog"
+  },
+  "guardian-cryptic-30131-5-down": {
+   "primary": "container",
+   "devices": [
+    "anagram",
+    "container",
+    "reversal"
+   ],
+   "and_lit": false,
+   "source": "blog"
+  },
+  "guardian-cryptic-30131-6-down": {
+   "primary": "charade",
+   "devices": [
+    "charade",
+    "container",
+    "letter_selection"
+   ],
+   "and_lit": false,
+   "source": "blog"
+  },
+  "guardian-cryptic-30131-7-down": {
+   "primary": "container",
+   "devices": [
+    "container"
+   ],
+   "and_lit": false,
+   "source": "blog"
+  },
+  "guardian-cryptic-30131-8-down": {
+   "primary": "charade",
+   "devices": [
+    "anagram",
+    "charade",
+    "reversal"
+   ],
+   "and_lit": false,
+   "source": "blog"
+  },
+  "guardian-cryptic-30131-12-down": {
+   "primary": "anagram",
+   "devices": [
+    "anagram"
+   ],
+   "and_lit": false,
+   "source": "blog"
+  },
+  "guardian-cryptic-30131-13-down": {
+   "primary": "container",
+   "devices": [
+    "anagram",
+    "container"
+   ],
+   "and_lit": false,
+   "source": "blog"
+  },
+  "guardian-cryptic-30131-15-down": {
+   "primary": "container",
+   "devices": [
+    "container"
+   ],
+   "and_lit": false,
+   "source": "blog"
+  },
+  "guardian-cryptic-30131-17-down": {
+   "primary": "double_definition",
+   "devices": [
+    "double_definition"
+   ],
+   "and_lit": false,
+   "source": "blog"
+  },
+  "guardian-cryptic-30131-19-down": {
+   "primary": "charade",
+   "devices": [
+    "anagram",
+    "charade"
+   ],
+   "and_lit": false,
+   "source": "blog"
+  },
+  "guardian-cryptic-30131-20-down": {
+   "primary": "hidden",
+   "devices": [
+    "hidden"
+   ],
+   "and_lit": false,
+   "source": "blog"
+  },
+  "guardian-cryptic-30131-22-down": {
+   "primary": "reversal",
+   "devices": [
+    "reversal"
+   ],
+   "and_lit": false,
+   "source": "blog"
+  },
+  "guardian-cryptic-30143-1-across": {
+   "primary": "container",
+   "devices": [
+    "container",
+    "letter_selection"
+   ],
+   "and_lit": false,
+   "source": "blog"
+  },
+  "guardian-cryptic-30143-5-across": {
+   "primary": "charade",
+   "devices": [
+    "charade",
+    "container",
+    "letter_selection"
+   ],
+   "and_lit": false,
+   "source": "blog"
+  },
+  "guardian-cryptic-30143-9-across": {
+   "primary": "charade",
+   "devices": [
+    "charade"
+   ],
+   "and_lit": false,
+   "source": "blog"
+  },
+  "guardian-cryptic-30143-10-across": {
+   "primary": "double_definition",
+   "devices": [
+    "double_definition"
+   ],
+   "and_lit": false,
+   "source": "blog"
+  },
+  "guardian-cryptic-30143-11-across": {
+   "primary": "double_definition",
+   "devices": [
+    "double_definition"
+   ],
+   "and_lit": false,
+   "source": "blog"
+  },
+  "guardian-cryptic-30143-13-across": {
+   "primary": "charade",
+   "devices": [
+    "charade"
+   ],
+   "and_lit": false,
+   "source": "blog"
+  },
+  "guardian-cryptic-30143-14-across": {
+   "primary": "anagram",
+   "devices": [
+    "anagram"
+   ],
+   "and_lit": false,
+   "source": "blog"
+  },
+  "guardian-cryptic-30143-17-across": {
+   "primary": "container",
+   "devices": [
+    "container"
+   ],
+   "and_lit": false,
+   "source": "blog"
+  },
+  "guardian-cryptic-30143-18-across": {
+   "primary": "hidden",
+   "devices": [
+    "hidden"
+   ],
+   "and_lit": false,
+   "source": "blog"
+  },
+  "guardian-cryptic-30143-20-across": {
+   "primary": "charade",
+   "devices": [
+    "charade"
+   ],
+   "and_lit": false,
+   "source": "blog"
+  },
+  "guardian-cryptic-30143-23-across": {
+   "primary": "charade",
+   "devices": [
+    "charade"
+   ],
+   "and_lit": false,
+   "source": "blog"
+  },
+  "guardian-cryptic-30143-24-across": {
+   "primary": "anagram",
+   "devices": [
+    "anagram"
+   ],
+   "and_lit": false,
+   "source": "blog"
+  },
+  "guardian-cryptic-30143-25-across": {
+   "primary": "anagram",
+   "devices": [
+    "anagram",
+    "deletion"
+   ],
+   "and_lit": false,
+   "source": "blog"
+  },
+  "guardian-cryptic-30143-26-across": {
+   "primary": "charade",
+   "devices": [
+    "charade",
+    "deletion"
+   ],
+   "and_lit": false,
+   "source": "blog"
+  },
+  "guardian-cryptic-30143-2-down": {
+   "primary": "charade",
+   "devices": [
+    "charade",
+    "deletion"
+   ],
+   "and_lit": false,
+   "source": "blog"
+  },
+  "guardian-cryptic-30143-3-down": {
+   "primary": "charade",
+   "devices": [
+    "charade",
+    "container",
+    "letter_selection"
+   ],
+   "and_lit": false,
+   "source": "blog"
+  },
+  "guardian-cryptic-30143-4-down": {
+   "primary": "container",
+   "devices": [
+    "container",
+    "reversal"
+   ],
+   "and_lit": false,
+   "source": "blog"
+  },
+  "guardian-cryptic-30143-5-down": {
+   "primary": "charade",
+   "devices": [
+    "charade"
+   ],
+   "and_lit": false,
+   "source": "blog"
+  },
+  "guardian-cryptic-30143-6-down": {
+   "primary": "anagram",
+   "devices": [
+    "anagram"
+   ],
+   "and_lit": false,
+   "source": "blog"
+  },
+  "guardian-cryptic-30143-7-down": {
+   "primary": "deletion",
+   "devices": [
+    "deletion"
+   ],
+   "and_lit": false,
+   "source": "blog"
+  },
+  "guardian-cryptic-30143-8-down": {
+   "primary": "charade",
+   "devices": [
+    "charade",
+    "deletion"
+   ],
+   "and_lit": false,
+   "source": "blog"
+  },
+  "guardian-cryptic-30143-12-down": {
+   "primary": "container",
+   "devices": [
+    "container"
+   ],
+   "and_lit": false,
+   "source": "blog"
+  },
+  "guardian-cryptic-30143-15-down": {
+   "primary": "anagram",
+   "devices": [
+    "anagram"
+   ],
+   "and_lit": false,
+   "source": "blog"
+  },
+  "guardian-cryptic-30143-16-down": {
+   "primary": "container",
+   "devices": [
+    "container"
+   ],
+   "and_lit": false,
+   "source": "blog"
+  },
+  "guardian-cryptic-30143-19-down": {
+   "primary": "container",
+   "devices": [
+    "container"
+   ],
+   "and_lit": false,
+   "source": "blog"
+  },
+  "guardian-cryptic-30143-21-down": {
+   "primary": "deletion",
+   "devices": [
+    "deletion"
+   ],
+   "and_lit": false,
+   "source": "blog"
+  },
+  "guardian-cryptic-30143-22-down": {
+   "primary": "deletion",
+   "devices": [
+    "deletion"
+   ],
+   "and_lit": false,
+   "source": "blog"
+  },
+  "guardian-prize-30146-1-across": {
+   "primary": "double_definition",
+   "devices": [
+    "double_definition"
+   ],
+   "and_lit": false,
+   "source": "blog"
+  },
+  "guardian-prize-30146-9-across": {
+   "primary": "container",
+   "devices": [
+    "container"
+   ],
+   "and_lit": false,
+   "source": "blog"
+  },
+  "guardian-prize-30146-10-across": {
+   "primary": "charade",
+   "devices": [
+    "anagram",
+    "charade"
+   ],
+   "and_lit": false,
+   "source": "blog"
+  },
+  "guardian-prize-30146-11-across": {
+   "primary": "charade",
+   "devices": [
+    "charade",
+    "deletion"
+   ],
+   "and_lit": false,
+   "source": "blog"
+  },
+  "guardian-prize-30146-12-across": {
+   "primary": "charade",
+   "devices": [
+    "charade",
+    "letter_selection"
+   ],
+   "and_lit": false,
+   "source": "blog"
+  },
+  "guardian-prize-30146-15-across": {
+   "primary": "double_definition",
+   "devices": [
+    "double_definition"
+   ],
+   "and_lit": false,
+   "source": "blog"
+  },
+  "guardian-prize-30146-18-across": {
+   "primary": "charade",
+   "devices": [
+    "charade"
+   ],
+   "and_lit": false,
+   "source": "blog"
+  },
+  "guardian-prize-30146-19-across": {
+   "primary": "charade",
+   "devices": [
+    "anagram",
+    "charade",
+    "reversal"
+   ],
+   "and_lit": false,
+   "source": "blog"
+  },
+  "guardian-prize-30146-22-across": {
+   "primary": "cryptic_definition",
+   "devices": [
+    "cryptic_definition"
+   ],
+   "and_lit": false,
+   "source": "blog"
+  },
+  "guardian-prize-30146-24-across": {
+   "primary": "anagram",
+   "devices": [
+    "anagram"
+   ],
+   "and_lit": false,
+   "source": "blog"
+  },
+  "guardian-prize-30146-25-across": {
+   "primary": "anagram",
+   "devices": [
+    "anagram"
+   ],
+   "and_lit": false,
+   "source": "blog"
+  },
+  "guardian-prize-30146-26-across": {
+   "primary": "container",
+   "devices": [
+    "container",
+    "letter_selection"
+   ],
+   "and_lit": false,
+   "source": "blog"
+  },
+  "guardian-prize-30146-1-down": {
+   "primary": "container",
+   "devices": [
+    "container",
+    "deletion"
+   ],
+   "and_lit": false,
+   "source": "blog"
+  },
+  "guardian-prize-30146-2-down": {
+   "primary": "charade",
+   "devices": [
+    "charade",
+    "reversal"
+   ],
+   "and_lit": false,
+   "source": "blog"
+  },
+  "guardian-prize-30146-3-down": {
+   "primary": "container",
+   "devices": [
+    "container",
+    "letter_selection"
+   ],
+   "and_lit": false,
+   "source": "blog"
+  },
+  "guardian-prize-30146-4-down": {
+   "primary": "container",
+   "devices": [
+    "charade",
+    "container"
+   ],
+   "and_lit": false,
+   "source": "blog"
+  },
+  "guardian-prize-30146-5-down": {
+   "primary": "container",
+   "devices": [
+    "container",
+    "deletion"
+   ],
+   "and_lit": false,
+   "source": "blog"
+  },
+  "guardian-prize-30146-6-down": {
+   "primary": "charade",
+   "devices": [
+    "charade",
+    "letter_selection"
+   ],
+   "and_lit": false,
+   "source": "blog"
+  },
+  "guardian-prize-30146-7-down": {
+   "primary": "charade",
+   "devices": [
+    "charade",
+    "reversal"
+   ],
+   "and_lit": false,
+   "source": "blog"
+  },
+  "guardian-prize-30146-8-down": {
+   "primary": "charade",
+   "devices": [
+    "charade",
+    "container",
+    "letter_selection"
+   ],
+   "and_lit": false,
+   "source": "blog"
+  },
+  "guardian-prize-30146-14-down": {
+   "primary": "container",
+   "devices": [
+    "anagram",
+    "container"
+   ],
+   "and_lit": false,
+   "source": "blog"
+  },
+  "guardian-prize-30146-16-down": {
+   "primary": "anagram",
+   "devices": [
+    "anagram",
+    "letter_selection"
+   ],
+   "and_lit": false,
+   "source": "blog"
+  },
+  "guardian-prize-30146-17-down": {
+   "primary": "charade",
+   "devices": [
+    "charade"
+   ],
+   "and_lit": false,
+   "source": "blog"
+  },
+  "guardian-prize-30146-18-down": {
+   "primary": "charade",
+   "devices": [
+    "charade",
+    "reversal"
+   ],
+   "and_lit": false,
+   "source": "blog"
+  },
+  "guardian-prize-30146-20-down": {
+   "primary": "container",
+   "devices": [
+    "container"
+   ],
+   "and_lit": false,
+   "source": "blog"
+  },
+  "guardian-prize-30146-21-down": {
+   "primary": "charade",
+   "devices": [
+    "charade",
+    "letter_selection"
+   ],
+   "and_lit": false,
+   "source": "blog"
+  },
+  "guardian-prize-30146-23-down": {
+   "primary": "hidden",
+   "devices": [
+    "reversal",
+    "hidden"
+   ],
+   "and_lit": false,
+   "source": "blog"
+  },
+  "guardian-prize-30146-24-down": {
+   "primary": "container",
+   "devices": [
+    "container",
+    "homophone"
+   ],
+   "and_lit": false,
+   "source": "blog"
+  },
+  "guardian-cryptic-30148-1-across": {
+   "primary": "container",
+   "devices": [
+    "container",
+    "deletion"
+   ],
+   "and_lit": false,
+   "source": "blog"
+  },
+  "guardian-cryptic-30148-5-across": {
+   "primary": "container",
+   "devices": [
+    "container",
+    "letter_selection"
+   ],
+   "and_lit": false,
+   "source": "blog"
+  },
+  "guardian-cryptic-30148-9-across": {
+   "primary": "charade",
+   "devices": [
+    "charade",
+    "letter_selection"
+   ],
+   "and_lit": false,
+   "source": "blog"
+  },
+  "guardian-cryptic-30148-10-across": {
+   "primary": "anagram",
+   "devices": [
+    "anagram",
+    "deletion"
+   ],
+   "and_lit": false,
+   "source": "blog"
+  },
+  "guardian-cryptic-30148-11-across": {
+   "primary": "charade",
+   "devices": [
+    "charade",
+    "other"
+   ],
+   "and_lit": false,
+   "source": "blog"
+  },
+  "guardian-cryptic-30148-12-across": {
+   "primary": "deletion",
+   "devices": [
+    "deletion"
+   ],
+   "and_lit": false,
+   "source": "blog"
+  },
+  "guardian-cryptic-30148-14-across": {
+   "primary": "spoonerism",
+   "devices": [
+    "spoonerism"
+   ],
+   "and_lit": false,
+   "source": "blog"
+  },
+  "guardian-cryptic-30148-18-across": {
+   "primary": "anagram",
+   "devices": [
+    "anagram"
+   ],
+   "and_lit": false,
+   "source": "blog"
+  },
+  "guardian-cryptic-30148-21-across": {
+   "primary": "letter_selection",
+   "devices": [
+    "letter_selection"
+   ],
+   "and_lit": false,
+   "source": "blog"
+  },
+  "guardian-cryptic-30148-22-across": {
+   "primary": "container",
+   "devices": [
+    "anagram",
+    "container"
+   ],
+   "and_lit": false,
+   "source": "blog"
+  },
+  "guardian-cryptic-30148-25-across": {
+   "primary": "anagram",
+   "devices": [
+    "anagram"
+   ],
+   "and_lit": false,
+   "source": "blog"
+  },
+  "guardian-cryptic-30148-26-across": {
+   "primary": "container",
+   "devices": [
+    "container",
+    "other"
+   ],
+   "and_lit": false,
+   "source": "blog"
+  },
+  "guardian-cryptic-30148-27-across": {
+   "primary": "charade",
+   "devices": [
+    "charade"
+   ],
+   "and_lit": false,
+   "source": "blog"
+  },
+  "guardian-cryptic-30148-28-across": {
+   "primary": "container",
+   "devices": [
+    "container",
+    "letter_selection"
+   ],
+   "and_lit": false,
+   "source": "blog"
+  },
+  "guardian-cryptic-30148-1-down": {
+   "primary": "container",
+   "devices": [
+    "container",
+    "letter_selection"
+   ],
+   "and_lit": false,
+   "source": "blog"
+  },
+  "guardian-cryptic-30148-2-down": {
+   "primary": "charade",
+   "devices": [
+    "charade"
+   ],
+   "and_lit": false,
+   "source": "blog"
+  },
+  "guardian-cryptic-30148-3-down": {
+   "primary": "charade",
+   "devices": [
+    "charade"
+   ],
+   "and_lit": false,
+   "source": "blog"
+  },
+  "guardian-cryptic-30148-4-down": {
+   "primary": "container",
+   "devices": [
+    "container",
+    "deletion"
+   ],
+   "and_lit": false,
+   "source": "blog"
+  },
+  "guardian-cryptic-30148-5-down": {
+   "primary": "charade",
+   "devices": [
+    "charade",
+    "reversal"
+   ],
+   "and_lit": false,
+   "source": "blog"
+  },
+  "guardian-cryptic-30148-6-down": {
+   "primary": "letter_selection",
+   "devices": [
+    "letter_selection"
+   ],
+   "and_lit": false,
+   "source": "blog"
+  },
+  "guardian-cryptic-30148-7-down": {
+   "primary": "charade",
+   "devices": [
+    "charade"
+   ],
+   "and_lit": false,
+   "source": "blog"
+  },
+  "guardian-cryptic-30148-8-down": {
+   "primary": "charade",
+   "devices": [
+    "anagram",
+    "charade"
+   ],
+   "and_lit": false,
+   "source": "blog"
+  },
+  "guardian-cryptic-30148-13-down": {
+   "primary": "anagram",
+   "devices": [
+    "anagram"
+   ],
+   "and_lit": false,
+   "source": "blog"
+  },
+  "guardian-cryptic-30148-15-down": {
+   "primary": "container",
+   "devices": [
+    "charade",
+    "container"
+   ],
+   "and_lit": false,
+   "source": "blog"
+  },
+  "guardian-cryptic-30148-16-down": {
+   "primary": "charade",
+   "devices": [
+    "charade",
+    "deletion"
+   ],
+   "and_lit": false,
+   "source": "blog"
+  },
+  "guardian-cryptic-30148-17-down": {
+   "primary": "container",
+   "devices": [
+    "anagram",
+    "container",
+    "letter_selection"
+   ],
+   "and_lit": false,
+   "source": "blog"
+  },
+  "guardian-cryptic-30148-19-down": {
+   "primary": "charade",
+   "devices": [
+    "charade",
+    "deletion"
+   ],
+   "and_lit": false,
+   "source": "blog"
+  },
+  "guardian-cryptic-30148-20-down": {
+   "primary": "letter_selection",
+   "devices": [
+    "reversal",
+    "hidden",
+    "letter_selection"
+   ],
+   "and_lit": false,
+   "source": "blog"
+  },
+  "guardian-cryptic-30148-23-down": {
+   "primary": "container",
+   "devices": [
+    "charade",
+    "container",
+    "letter_selection"
+   ],
+   "and_lit": false,
+   "source": "blog"
+  },
+  "guardian-cryptic-30148-24-down": {
+   "primary": "charade",
+   "devices": [
+    "charade",
+    "letter_selection"
+   ],
+   "and_lit": false,
+   "source": "blog"
+  },
+  "guardian-prize-30152-1-across": {
+   "primary": "charade",
+   "devices": [
+    "charade",
+    "letter_selection"
+   ],
+   "and_lit": false,
+   "source": "blog"
+  },
+  "guardian-prize-30152-4-across": {
+   "primary": "homophone",
+   "devices": [
+    "homophone"
+   ],
+   "and_lit": false,
+   "source": "blog"
+  },
+  "guardian-prize-30152-9-across": {
+   "primary": "container",
+   "devices": [
+    "container"
+   ],
+   "and_lit": false,
+   "source": "blog"
+  },
+  "guardian-prize-30152-10-across": {
+   "primary": "anagram",
+   "devices": [
+    "anagram",
+    "deletion"
+   ],
+   "and_lit": false,
+   "source": "blog"
+  },
+  "guardian-prize-30152-11-across": {
+   "primary": "container",
+   "devices": [
+    "container"
+   ],
+   "and_lit": false,
+   "source": "blog"
+  },
+  "guardian-prize-30152-12-across": {
+   "primary": "charade",
+   "devices": [
+    "charade",
+    "letter_selection"
+   ],
+   "and_lit": false,
+   "source": "blog"
+  },
+  "guardian-prize-30152-13-across": {
+   "primary": "charade",
+   "devices": [
+    "charade"
+   ],
+   "and_lit": false,
+   "source": "blog"
+  },
+  "guardian-prize-30152-15-across": {
+   "primary": "charade",
+   "devices": [
+    "charade",
+    "reversal",
+    "letter_selection"
+   ],
+   "and_lit": false,
+   "source": "blog"
+  },
+  "guardian-prize-30152-16-across": {
+   "primary": "deletion",
+   "devices": [
+    "deletion"
+   ],
+   "and_lit": false,
+   "source": "blog"
+  },
+  "guardian-prize-30152-17-across": {
+   "primary": "charade",
+   "devices": [
+    "charade",
+    "letter_selection"
+   ],
+   "and_lit": false,
+   "source": "blog"
+  },
+  "guardian-prize-30152-21-across": {
+   "primary": "charade",
+   "devices": [
+    "charade"
+   ],
+   "and_lit": false,
+   "source": "blog"
+  },
+  "guardian-prize-30152-22-across": {
+   "primary": "charade",
+   "devices": [
+    "charade",
+    "container"
+   ],
+   "and_lit": false,
+   "source": "blog"
+  },
+  "guardian-prize-30152-24-across": {
+   "primary": "container",
+   "devices": [
+    "charade",
+    "container"
+   ],
+   "and_lit": false,
+   "source": "blog"
+  },
+  "guardian-prize-30152-25-across": {
+   "primary": "reversal",
+   "devices": [
+    "reversal"
+   ],
+   "and_lit": false,
+   "source": "blog"
+  },
+  "guardian-prize-30152-26-across": {
+   "primary": "homophone",
+   "devices": [
+    "charade",
+    "homophone"
+   ],
+   "and_lit": false,
+   "source": "blog"
+  },
+  "guardian-prize-30152-27-across": {
+   "primary": "letter_selection",
+   "devices": [
+    "letter_selection"
+   ],
+   "and_lit": false,
+   "source": "blog"
+  },
+  "guardian-prize-30152-1-down": {
+   "primary": "anagram",
+   "devices": [
+    "anagram"
+   ],
+   "and_lit": false,
+   "source": "blog"
+  },
+  "guardian-prize-30152-2-down": {
+   "primary": "double_definition",
+   "devices": [
+    "double_definition"
+   ],
+   "and_lit": false,
+   "source": "blog"
+  },
+  "guardian-prize-30152-3-down": {
+   "primary": "container",
+   "devices": [
+    "container",
+    "reversal",
+    "deletion"
+   ],
+   "and_lit": false,
+   "source": "blog"
+  },
+  "guardian-prize-30152-5-down": {
+   "primary": "charade",
+   "devices": [
+    "anagram",
+    "charade",
+    "letter_selection"
+   ],
+   "and_lit": false,
+   "source": "blog"
+  },
+  "guardian-prize-30152-6-down": {
+   "primary": "charade",
+   "devices": [
+    "charade",
+    "container",
+    "letter_selection"
+   ],
+   "and_lit": false,
+   "source": "blog"
+  },
+  "guardian-prize-30152-7-down": {
+   "primary": "charade",
+   "devices": [
+    "anagram",
+    "charade"
+   ],
+   "and_lit": false,
+   "source": "blog"
+  },
+  "guardian-prize-30152-8-down": {
+   "primary": "anagram",
+   "devices": [
+    "anagram"
+   ],
+   "and_lit": false,
+   "source": "blog"
+  },
+  "guardian-prize-30152-14-down": {
+   "primary": "container",
+   "devices": [
+    "container",
+    "deletion"
+   ],
+   "and_lit": false,
+   "source": "blog"
+  },
+  "guardian-prize-30152-16-down": {
+   "primary": "charade",
+   "devices": [
+    "charade"
+   ],
+   "and_lit": false,
+   "source": "blog"
+  },
+  "guardian-prize-30152-18-down": {
+   "primary": "double_definition",
+   "devices": [
+    "double_definition"
+   ],
+   "and_lit": false,
+   "source": "blog"
+  },
+  "guardian-prize-30152-19-down": {
+   "primary": "container",
+   "devices": [
+    "container",
+    "deletion",
+    "letter_selection"
+   ],
+   "and_lit": false,
+   "source": "blog"
+  },
+  "guardian-prize-30152-20-down": {
+   "primary": "charade",
+   "devices": [
+    "charade"
+   ],
+   "and_lit": false,
+   "source": "blog"
+  },
+  "guardian-prize-30152-23-down": {
+   "primary": "deletion",
+   "devices": [
+    "deletion"
    ],
    "and_lit": false,
    "source": "blog"
