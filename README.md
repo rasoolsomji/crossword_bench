@@ -82,6 +82,26 @@ competitions) are skipped, since their clues can't be posed on their
 own. Vocabulary is Chambers-only and far harder than the Guardian's, so
 run these as cohorts of their own.
 
+## Live track (Financial Times, via Fifteensquared)
+
+```bash
+uv run fetch-ft --setter Io --since 2026-07-01
+```
+
+ft.com turns away scripted requests (a Cloudflare challenge), so
+`fetch-ft` takes clues and answers from Fifteensquared's FT posts into
+`data/live/ft/`, and caches each post for `classify-clues`. `--setter`
+keeps only the named setters, in any case; `--numbers` fetches particular
+puzzles. Without `--since` it covers the last six weeks of posts. It reads
+the blog's two fixed layouts (fts-list and fts-table); 263 of the 281 FT
+daily posts from Dec 2025 to Nov 2026 gave clues this way. Other posts are reported
+and skipped. So are entries a blogger garbled (an answer with no clue
+beside it) and clues whose enumeration doesn't fit the answer. This is
+the blogger's copy, not the FT's own text. Across four Guardian posts in
+these layouts, all 113 clues matched the Guardian's text exactly, but
+a typo would go uncaught. The post's date is used as the puzzle's date,
+since weekday puzzles are blogged the day they appear.
+
 ## Anchor track (private London Paper set)
 
 With `data/clues.json` present, omit `-T dataset=...`. Without it the
