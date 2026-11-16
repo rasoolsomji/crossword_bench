@@ -18,4 +18,8 @@ __pycache__/
 .claude/settings.local.json
 .env
 .pytest_cache/
+
+# Built by the Pages workflow on push.
+docs/index.html
+docs/results.json
 docs/logs/

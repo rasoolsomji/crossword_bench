@@ -1,12 +1,13 @@
 name: Deploy results site
 
-# docs/ holds the committed results page (built locally with
-# scripts/build_leaderboard.py). The transcript viewer is bundled here
-# from the public live-track logs; private logs never reach this repo.
+# The site is generated here from the committed live-track logs,
+# annotations and pricing; docs/index.html, docs/results.json and docs/logs/
+# are build outputs and are not committed. Runs on every push to main
+# because the inputs are spread across logs, annotations, pricing, the
+# scorer and the build script, and a missed path would leave a stale site.
 on:
   push:
     branches: [main]
-    paths: ['docs/**', 'logs/live/**']
   workflow_dispatch:
 
 permissions:
@@ -28,6 +29,9 @@ jobs:
       - uses: actions/checkout@v4
 
       - uses: astral-sh/setup-uv@v6
+
+      - name: Build leaderboard
+        run: uv run --frozen scripts/build_leaderboard.py --log-dir logs/live
 
       - name: Bundle transcript viewer
         run: uv run --frozen inspect view bundle --log-dir logs/live --output-dir docs/logs --overwrite

@@ -1036,7 +1036,7 @@ def build(log_dir: Path, annotations_dir: Path, output_dir: Path) -> None:
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description=__doc__.splitlines()[0])
-    parser.add_argument("--log-dir", type=Path, default=PROJECT_ROOT / "logs")
+    parser.add_argument("--log-dir", type=Path, default=PROJECT_ROOT / "logs" / "live")
     parser.add_argument("--annotations-dir", type=Path, default=PROJECT_ROOT / "annotations")
     parser.add_argument("--output-dir", type=Path, default=PROJECT_ROOT / "docs")
     args = parser.parse_args()
