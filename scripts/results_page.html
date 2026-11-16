@@ -410,12 +410,10 @@ document.querySelectorAll(".explorer").forEach((section) => {
       if (result.output_tokens != null) {
         box.append(el("span", "who", result.output_tokens.toLocaleString("en") + " output tokens"));
       }
-      if (run.log) {
-        box.append(newTabLink(
-          `logs/#/tasks/${encodeURIComponent(run.log)}/samples/sample/${encodeURIComponent(clue.id)}/1/`,
-          "Transcript and reasoning"
-        ));
-      }
+      box.append(newTabLink(
+        `logs/#/tasks/${encodeURIComponent(run.log)}/samples/sample/${encodeURIComponent(clue.id)}/1/`,
+        "Transcript and reasoning"
+      ));
       grid.append(box);
     });
     const links = el("div", "detail-links");

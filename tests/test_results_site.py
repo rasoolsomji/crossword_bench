@@ -1,5 +1,4 @@
 import importlib.util
-import json
 from pathlib import Path
 
 SCRIPT = Path(__file__).parent.parent / "scripts" / "build_leaderboard.py"
@@ -8,20 +7,19 @@ site = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(site)
 
 
-def run(model, public, outcomes):
+def run(model, outcomes):
     return {
         "cohort": "c",
         "model": model,
         "effort": "medium",
         "created": "2026-01-01",
-        "public": public,
         "log_file": f"{model}.eval",
         "samples": {
             f"clue-{i}": {
                 "outcome": outcome,
-                "answer": "SECRETANSWER" if outcome == "correct" else "WRONG",
-                "input": "Secret clue text (12)",
-                "target": "SECRETANSWER",
+                "answer": "ANSWER" if outcome == "correct" else "WRONG",
+                "input": "Clue text (6)",
+                "target": "ANSWER",
                 "tokens": {"input": 100, "cached_input": 20, "output": 40, "reasoning": 30},
                 "metadata": {"puzzle": 1, "setter": "S", "date": "2026-01-01", "source": "Src", "number": i, "direction": "across"},
             }
@@ -30,25 +28,15 @@ def run(model, public, outcomes):
     }
 
 
-def test_private_cohort_publishes_no_clue_text():
-    runs = [run("a/x", False, ["correct", "wrong_answer"]), run("b/y", True, ["correct", "correct"])]
-    cohort = site.build_cohort("c", runs, {})
-    rendered = json.dumps(cohort) + site.generate_html([cohort])
-    assert cohort["public"] is False
-    assert "Secret clue text" not in rendered
-    assert "SECRETANSWER" not in rendered
-    assert all(r["log_file"] is None for r in cohort["runs"] if r["model"] == "a/x")
-
-
-def test_public_cohort_has_clues_and_head_to_head():
+def test_cohort_has_clues_and_head_to_head():
     runs = [
-        run("a/x", True, ["correct", "wrong_answer", "correct"]),
-        run("b/y", True, ["correct", "correct", "wrong_length"]),
+        run("a/x", ["correct", "wrong_answer", "correct"]),
+        run("b/y", ["correct", "correct", "wrong_length"]),
     ]
     labels = {"clues": {"clue-0": {"devices": ["anagram"], "and_lit": False}}}
     pricing = {"models": {"x": {"input": 1.0, "cached_input": 0.5, "output": 10.0}}}
     cohort = site.build_cohort("c", runs, labels, pricing)
-    assert [c["answer"] for c in cohort["clue_list"]] == ["SECRETANSWER"] * 3
+    assert [c["answer"] for c in cohort["clue_list"]] == ["ANSWER"] * 3
     pair = cohort["head_to_head"][0]
     assert (pair["both"], pair["only_a"], pair["only_b"], pair["neither"]) == (1, 1, 1, 0)
     assert cohort["by_device"][0]["name"] == "anagram"
@@ -66,18 +54,12 @@ def test_public_cohort_has_clues_and_head_to_head():
     assert priced["estimated_cost"]["total"] == (240 * 1.0 + 60 * 0.5 + 120 * 10.0) / 1_000_000
     assert next(r for r in cohort["runs"] if r["model"] == "b/y")["estimated_cost"] is None
     assert cohort["by_device"][0]["all_runs"] == {"correct": 2, "total": 2}
-    assert "Secret clue text" in site.generate_html([cohort])
-
-
-def test_only_the_top_level_live_dir_is_public():
-    assert site.is_public_log(site.PUBLIC_LOG_DIR / "x.eval")
-    assert not site.is_public_log(site.PUBLIC_LOG_DIR.parent / "archive" / "live" / "x.eval")
-    assert not site.is_public_log(site.PUBLIC_LOG_DIR / "nested" / "x.eval")
+    assert "Clue text" in site.generate_html([cohort])
 
 
 def test_runs_on_a_different_clue_set_are_left_out():
-    full = [run(m, True, ["wrong_answer", "wrong_answer", "correct"]) for m in ("a/x", "b/y")]
-    partial = run("c/z", True, ["correct"])
+    full = [run(m, ["wrong_answer", "wrong_answer", "correct"]) for m in ("a/x", "b/y")]
+    partial = run("c/z", ["correct"])
     cohort = site.build_cohort("c", [*full, partial], {})
     assert [r["model"] for r in cohort["runs"]] == ["a/x", "b/y"]
     assert cohort["clues"] == 3
@@ -85,7 +67,7 @@ def test_runs_on_a_different_clue_set_are_left_out():
 
 
 def test_missing_setter_is_shown_as_unknown():
-    sample = run("a/x", True, ["correct"])
+    sample = run("a/x", ["correct"])
     sample["samples"]["clue-0"]["metadata"]["setter"] = None
     cohort = site.build_cohort("c", [sample], {})
     assert cohort["by_puzzle"][0]["name"] == "No 1 · ?"
@@ -102,7 +84,7 @@ def test_provider_mapping():
 
 
 def test_reasoning_split_by_result():
-    sample = run("a/x", True, ["correct", "wrong_answer", "no_answer"])
+    sample = run("a/x", ["correct", "wrong_answer", "no_answer"])
     for i, tokens in enumerate([200, 3000, 0]):
         sample["samples"][f"clue-{i}"]["tokens"]["reasoning"] = tokens
     cohort = site.build_cohort("c", [sample], {})
@@ -113,7 +95,7 @@ def test_reasoning_split_by_result():
 
 
 def test_reasoning_chart_skipped_without_reasoning_tokens():
-    sample = run("a/x", True, ["correct"])
+    sample = run("a/x", ["correct"])
     sample["samples"]["clue-0"]["tokens"]["reasoning"] = 0
     cohort = site.build_cohort("c", [sample], {})
     assert cohort["runs"][0]["reasoning_by_result"] is None
@@ -126,9 +108,9 @@ def test_quantile_interpolates():
 
 
 def test_remapped_effort_is_shown_with_the_requested_level():
-    remapped = run("openrouter/moonshotai/kimi-k3.1-pro", True, ["correct"])
+    remapped = run("openrouter/moonshotai/kimi-k3.1-pro", ["correct"])
     remapped.update(effort="low", requested_effort="medium")
-    plain = run("a/x", True, ["correct"])
+    plain = run("a/x", ["correct"])
     cohort = site.build_cohort("c", [remapped, plain], {})
     rows = {r["model"]: r for r in cohort["runs"]}
     assert rows["openrouter/moonshotai/kimi-k3.1-pro"]["label"] == "moonshotai/kimi-k3.1-pro · low"

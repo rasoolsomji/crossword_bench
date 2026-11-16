@@ -1,9 +1,8 @@
 #!/usr/bin/env python3
 """Build the results site (docs/) from Inspect evaluation logs.
 
-Logs under logs/live/ are public: their clues, answers and model
-responses are published in full. Logs anywhere else are private and
-contribute aggregate numbers only.
+Every run it reads is published in full: clues, answers, model answers
+and a link to the run's transcript.
 """
 
 import argparse
@@ -22,7 +21,6 @@ from crossword_bench.scorer import OUTCOMES, classify_outcome, extract_answer
 from crossword_bench.stats import mcnemar_exact, wilson_interval
 
 PROJECT_ROOT = Path(__file__).parent.parent
-PUBLIC_LOG_DIR = PROJECT_ROOT / "logs" / "live"
 MISS_GROUPS = ["correct", "wrong_answer", "near_miss", "wrong_length", "no_answer"]
 GROUP_OF = {"truncated": "no_answer", "interrupted": "no_answer"}
 GLYPHS = {
@@ -106,10 +104,6 @@ def run_effort(log: EvalLog) -> str:
     return "default"
 
 
-def is_public_log(path: Path) -> bool:
-    return path.parent.resolve() == PUBLIC_LOG_DIR.resolve()
-
-
 def run_settings(log: EvalLog) -> dict:
     return {
         "max_tokens": log.plan.config.merge(log.eval.model_generate_config).max_tokens,
@@ -164,7 +158,6 @@ def load_runs(log_dir: Path) -> list[dict]:
             "effort": EFFORT_RAN_AS.get((log.eval.model, requested), requested),
             "requested_effort": requested,
             "created": log.eval.created,
-            "public": is_public_log(path),
             "log_file": path.name,
             "settings": run_settings(log),
             "samples": samples,
@@ -237,7 +230,7 @@ def summarise_run(run: dict, pricing: dict | None = None) -> dict:
         "reasoning_by_result": reasoning,
         "estimated_cost": cost,
         "created": run["created"],
-        "log_file": run["log_file"] if run["public"] else None,
+        "log_file": run["log_file"],
     }
 
 
@@ -276,7 +269,6 @@ def build_cohort(name: str, runs: list[dict], annotations: dict, pricing: dict |
             )
     runs = [run for run in runs if frozenset(run["samples"]) == clue_set]
     runs = sorted(runs, key=lambda r: -summarise_run(r)["accuracy"])
-    public = all(run["public"] for run in runs)
     summaries = [summarise_run(run, pricing) for run in runs]
     clue_ids = list(runs[0]["samples"])
     labels = annotations.get("clues", {})
@@ -312,14 +304,11 @@ def build_cohort(name: str, runs: list[dict], annotations: dict, pricing: dict |
 
     cohort = {
         "name": name,
-        "public": public,
         "clues": len(clue_ids),
         "runs": summaries,
         "head_to_head": head_to_head,
         "by_device": device_rows,
     }
-    if not public:
-        return cohort
 
     metadata = {i: runs[0]["samples"][i]["metadata"] for i in clue_ids}
     by_puzzle: dict[str, list[str]] = defaultdict(list)
@@ -907,7 +896,7 @@ def render_heat_table(title: str, lede: str, first_header: str, rows: list[dict]
 
 
 def render_explorer(index: int, cohort: dict) -> str:
-    if not cohort.get("clue_list"):
+    if not cohort["clue_list"]:
         return ""
     key = "".join(
         f'<span class="key"><i class="glyph g-{name}">{GLYPHS[name]}</i>{escape(OUTCOMES[name])}</span>'
@@ -940,9 +929,9 @@ the reasoning summary the model returned.</p>
 
 def describe_cohort(cohort: dict) -> str:
     parts = []
-    if cohort.get("source"):
+    if cohort["source"]:
         parts.append(escape(cohort["source"]))
-    if cohort.get("dates"):
+    if cohort["dates"]:
         first, last = (date.fromisoformat(d) for d in cohort["dates"])
         if first == last:
             parts.append(f"{first.day} {first:%b %Y}")
@@ -950,11 +939,9 @@ def describe_cohort(cohort: dict) -> str:
             parts.append(f"{first.day}–{last.day} {last:%b %Y}")
         else:
             parts.append(f"{first.day} {first:%b} – {last.day} {last:%b %Y}")
-    if cohort.get("puzzles"):
+    if cohort["puzzles"]:
         parts.append(f"{cohort['puzzles']} puzzles")
     parts.append(f"{cohort['clues']} clues")
-    if not cohort["public"]:
-        parts.append("private set: aggregates only")
     return " · ".join(parts)
 
 
@@ -972,7 +959,7 @@ def render_cohort(index: int, cohort: dict) -> str:
 {render_reasoning(cohort)}
 {render_head_to_head(cohort)}
 {render_heat_table("By wordplay device", 'Accuracy on the clues that use each device. A clue using several devices counts under each. Labels follow the <a href="https://github.com/rasoolsomji/crossword_bench/blob/main/clue_taxonomy.md">clue taxonomy</a> and were assigned by a classifier model from published human parsings, so treat small rows with care.', "Device", cohort["by_device"], runs, DEVICE_LABELS)}
-{render_heat_table("By puzzle", "Accuracy on each puzzle. Setters differ a lot in style and difficulty.", "Puzzle", cohort.get("by_puzzle", []), runs)}
+{render_heat_table("By puzzle", "Accuracy on each puzzle. Setters differ a lot in style and difficulty.", "Puzzle", cohort["by_puzzle"], runs)}
 {render_explorer(index, cohort)}
 </section>
 """
@@ -989,7 +976,7 @@ def generate_html(cohorts: list[dict]) -> str:
                 {"label": r["label"], "model": short_model(r["model"]), "effort": r["effort"], "log": r["log_file"]}
                 for r in cohort["runs"]
             ],
-            "clues": cohort.get("clue_list", []),
+            "clues": cohort["clue_list"],
         }
         for cohort in cohorts
     ]
