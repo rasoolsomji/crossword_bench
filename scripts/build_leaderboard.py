@@ -980,9 +980,22 @@ def render_cohort(index: int, cohort: dict) -> str:
 """
 
 
+def render_cohort_index(cohorts: list[dict]) -> str:
+    items = ""
+    for index, cohort in enumerate(cohorts):
+        runs = cohort["runs"]
+        top = runs[0]
+        items += (
+            f'<li><a href="#cohort-{index}">{describe_cohort(cohort)}</a>'
+            f'<span class="muted"> · {len(runs)} run{"s" if len(runs) != 1 else ""}, top '
+            f"{escape(top['label'])} at {pct(top['accuracy'])}</span></li>\n"
+        )
+    return f'<section class="card notes">\n<h3>Cohorts</h3>\n<ul>\n{items}</ul>\n</section>\n'
+
+
 def generate_html(cohorts: list[dict]) -> str:
     now = datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M UTC")
-    body = "".join(render_cohort(i, cohort) for i, cohort in enumerate(cohorts))
+    body = render_cohort_index(cohorts) + "".join(render_cohort(i, cohort) for i, cohort in enumerate(cohorts))
     if not cohorts:
         body = '<section class="card"><p>No evaluation results yet.</p></section>'
     explorer_data = [
@@ -1024,10 +1037,8 @@ def build(log_dir: Path, annotations_dir: Path, output_dir: Path) -> None:
     by_cohort: dict[str, list[dict]] = defaultdict(list)
     for run in load_runs(log_dir):
         by_cohort[run["cohort"]].append(run)
-    cohorts = [
-        build_cohort(name, runs, annotations, pricing)
-        for name, runs in sorted(by_cohort.items(), reverse=True)
-    ]
+    cohorts = [build_cohort(name, runs, annotations, pricing) for name, runs in by_cohort.items()]
+    cohorts.sort(key=lambda c: ((c["dates"] or ["", ""])[1], c["name"]), reverse=True)
 
     (output_dir / "index.html").write_text(generate_html(cohorts))
     (output_dir / "results.json").write_text(
