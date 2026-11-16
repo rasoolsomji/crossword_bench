@@ -48,8 +48,8 @@ uv run inspect eval src/crossword_bench/task.py \
   --log-dir logs/live
 ```
 
-`dataset` takes a file, directory, glob, or comma-separated list;
-`label` names the cohort on the leaderboard. Models are only comparable
+`dataset` (required) takes a file, directory, glob, or comma-separated
+list; `label` names the cohort on the leaderboard. Models are only comparable
 within a cohort, so use the same `dataset` and `label` for every model.
 The task runs at `medium` reasoning effort unless you pass
 `--reasoning-effort high` (etc.), so every log records the effort it

@@ -16,7 +16,6 @@ from inspect_ai.solver import generate, system_message
 from crossword_bench.scorer import cryptic_scorer
 
 PROJECT_ROOT = Path(__file__).parent.parent.parent
-DATA_DIR = PROJECT_ROOT / "data"
 DEFAULT_EFFORT = "medium"
 DEFAULT_MAX_TOKENS = 64000
 OPENROUTER_MODELS_URL = "https://openrouter.ai/api/v1/models"
@@ -34,14 +33,8 @@ Give your final answer in uppercase on its own line, like this:
 ANSWER: EXAMPLE"""
 
 
-def resolve_dataset_files(spec: str | None) -> list[Path]:
+def resolve_dataset_files(spec: str) -> list[Path]:
     """Expand a dataset spec (file, directory, glob, or comma-separated mix)."""
-    if spec is None:
-        # Real clue data is private and gitignored; fall back to the
-        # committed sample so a fresh clone still runs.
-        default = DATA_DIR / "clues.json"
-        return [default if default.exists() else DATA_DIR / "sample_clues.json"]
-
     files: list[Path] = []
     for part in spec.split(","):
         path = Path(part.strip()).expanduser()
@@ -118,7 +111,7 @@ def evaluated_model() -> Model | None:
 
 @task
 def cryptic_crossword(
-    dataset: str | None = None,
+    dataset: str,
     label: str | None = None,
     cot: bool = False,
 ):
@@ -126,7 +119,7 @@ def cryptic_crossword(
 
     Args:
         dataset: Clues JSON file, directory, glob, or comma-separated list
-            of those. Defaults to data/clues.json.
+            of those.
         label: Cohort name shown on the leaderboard. Models are only
             comparable within the same cohort (identical clues). Defaults
             to the dataset file name plus a hash of its clues.
