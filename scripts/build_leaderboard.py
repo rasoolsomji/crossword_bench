@@ -13,6 +13,7 @@ from collections import Counter, defaultdict
 from datetime import date, datetime, timezone
 from html import escape
 from pathlib import Path
+from urllib.parse import urlparse
 
 from inspect_ai.log import EvalLog, read_eval_log
 
@@ -63,6 +64,19 @@ DEVICE_LABELS = {
     "spoonerism": "Spoonerism",
     "other": "Other",
 }
+PUZZLE_LINK_LABELS = {
+    "theguardian.com": "Puzzle on the Guardian",
+    "observer.co.uk": "Puzzle on the Observer",
+    # FT clues are taken from the blog post, which is also their parsing.
+    "fifteensquared.net": "How it parses (Fifteensquared)",
+}
+
+
+def puzzle_link_label(url: str | None) -> str | None:
+    if not url:
+        return None
+    host = (urlparse(url).hostname or "").removeprefix("www.")
+    return PUZZLE_LINK_LABELS.get(host, f"Puzzle on {host}")
 
 
 def short_model(model: str) -> str:
@@ -333,6 +347,7 @@ def build_cohort(name: str, runs: list[dict], annotations: dict, pricing: dict |
             "clue": runs[0]["samples"][clue_id]["input"],
             "answer": runs[0]["samples"][clue_id]["target"],
             "url": metadata[clue_id].get("url"),
+            "url_label": puzzle_link_label(metadata[clue_id].get("url")),
             "parsing_url": puzzles.get(str(metadata[clue_id].get("puzzle")), {}).get("parsing_url"),
             "devices": labels.get(clue_id, {}).get("devices", []),
             "and_lit": labels.get(clue_id, {}).get("and_lit", False),

@@ -73,6 +73,15 @@ def test_missing_setter_is_shown_as_unknown():
     assert cohort["by_puzzle"][0]["name"] == "No 1 · ?"
 
 
+def test_puzzle_link_names_its_site():
+    assert site.puzzle_link_label("https://www.theguardian.com/crosswords/cryptic/30159") == "Puzzle on the Guardian"
+    assert site.puzzle_link_label("https://observer.co.uk/puzzles/azed/article/azed-no-2783") == "Puzzle on the Observer"
+    ft_post = "https://fifteensquared.net/2026/10/14/financial-times-18505-by-io/"
+    assert site.puzzle_link_label(ft_post) == "How it parses (Fifteensquared)"
+    assert site.puzzle_link_label("https://example.org/x") == "Puzzle on example.org"
+    assert site.puzzle_link_label(None) is None
+
+
 def test_provider_mapping():
     assert site.provider_of("codex/gpt-6-luna") == "OpenAI"
     assert site.provider_of("anthropic/claude-haiku-5-5") == "Anthropic"

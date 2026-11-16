@@ -417,11 +417,8 @@ document.querySelectorAll(".explorer").forEach((section) => {
       grid.append(box);
     });
     const links = el("div", "detail-links");
-    [[clue.url, "Puzzle on the Guardian"], [clue.parsing_url, "How it parses (Fifteensquared)"]].forEach(
-      ([href, label]) => {
-        if (href) links.append(newTabLink(href, label));
-      }
-    );
+    if (clue.url && clue.url !== clue.parsing_url) links.append(newTabLink(clue.url, clue.url_label));
+    if (clue.parsing_url) links.append(newTabLink(clue.parsing_url, "How it parses (Fifteensquared)"));
     cell.append(grid, links);
     row.append(cell);
     return row;
