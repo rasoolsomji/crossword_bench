@@ -3,8 +3,8 @@
 Measures how well LLMs solve cryptic crossword clues on data that can't
 be in their training sets. Each clue is posed on its own (no grid, no
 crossing letters, no tools). See [design.md](design.md) for the threat
-model and the two-track architecture, and [research.md](research.md)
-for prior work.
+model and what is published, and [research.md](research.md) for prior
+work.
 
 ## Setup
 
@@ -102,11 +102,6 @@ these layouts, all 113 clues matched the Guardian's text exactly, but
 a typo would go uncaught. The post's date is used as the puzzle's date,
 since weekday puzzles are blogged the day they appear.
 
-## Anchor track (private London Paper set)
-
-With `data/clues.json` present, omit `-T dataset=...`. Without it the
-task falls back to the toy `data/sample_clues.json`.
-
 ## Clue labels
 
 ```bash
@@ -148,8 +143,7 @@ uv run inspect view bundle --log-dir logs/live --output-dir docs/logs --overwrit
 | Path | Published | Why |
 |---|---|---|
 | `logs/live/*.eval` | Yes, in full | Live-track clues are already public and are never reused, so transcripts and reasoning summaries can be open. Pass `--log-dir logs/live` when running a live cohort. |
-| `logs/` (anything else) | Never | Anchor-set logs embed every private clue and answer. The site shows aggregates only for these. |
-| `data/clues.json`, source PDFs | Never | The private anchor set. |
+| `logs/` (anything else) | No | Scratch runs; gitignored. |
 | `data/live/` | No | Fetched puzzles and cached blog text; reproducible with the fetch commands. |
 
 ## Tests

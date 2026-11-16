@@ -1,6 +1,6 @@
 # Cryptic Crossword Bench — Design
 
-Decision record as of September 2026. Background research and source
+Decision record as of November 2026. Background research and source
 vetting live in [research.md](research.md).
 
 ## Goal
@@ -10,7 +10,7 @@ provably cannot be in their training sets, and keep that property as
 new models ship. Contamination resistance is the benchmark's entire
 differentiator: 500K+ cryptic clues are already public (Cryptonite,
 Decrypt, George Ho's dataset), so a new benchmark is only interesting
-if its clues aren't scrapeable.
+if its clues postdate the models it tests.
 
 ## Where model performance stands (Sep 2026)
 
@@ -42,22 +42,16 @@ scores drift upward in a way that imitates progress.
 
 **Consequences:**
 
-- Public GitHub is pretraining data. Repos are scraped quickly and
-  weighted heavily. "We run evals with web search disabled" is no
-  defense — that blocks retrieval at eval time, not weights that
-  already contain the pair.
+- Only clues published after a model's training cutoff are clean for
+  it. Public text, GitHub included, is pretraining data, and "we run
+  evals with web search disabled" is no defense for older clues: that
+  blocks retrieval at eval time, not weights that already contain the
+  pair.
 - Raw Inspect `.eval` logs embed every sample's input and target, and
   model transcripts restate both. Publishing logs = publishing the
-  dataset. Only aggregates (accuracy, per-type tables, per-sample
-  correct/incorrect vectors keyed by opaque IDs) are safe to publish.
-- API usage is fine. Anthropic/OpenAI API traffic is not trained on by
-  default; the real risk is public exposure, not evaluation. Extraction
-  of the held-out set is still done with local-only OCR as
-  belt-and-braces (see below).
+  clues, which is safe only once they have been used.
 
-## Architecture: two tracks
-
-### Track 1 — Live daily track (fully public)
+## Architecture: the live track
 
 Fetch clues on the day a newspaper/hobby site publishes them, evaluate
 the same day, score against the published answers. Clues postdate every
@@ -98,84 +92,31 @@ because those models will be evaluated on future clues.
   starts a tool call, but treat harness-backed rows as indicative, not
   as clean API measurements.
 
-### Track 2 — The London Paper anchor (private)
-
-The London Paper (2006–2009, defunct, physical-first, near-zero digital
-footprint — see research.md for the vetting) supplies clues that no
-model has seen and no scrape will find. Two uses:
-
-1. **Static anchor set**: a fixed subset every model is evaluated on
-   identically, forever. This is what the live track can't provide —
-   longitudinal comparison (a 2027 model vs a 2026 model on the same
-   clues). Never published; aggregates only.
-2. **Rotation batches** (LiveBench-style): evaluate all current models
-   on a batch, then optionally publish that batch in full for
-   transparency and never reuse it. Freshness starts at publication,
-   not authorship, so a batch must be evaluated before it appears
-   anywhere. The PDF archive is large enough to sustain this.
-
 ### Publishing rules
 
-| Public | Private |
+| Public | Not published |
 |---|---|
-| All code, this doc, research notes | Source PDFs |
-| Aggregate results (`docs/`: accuracy, stderr, per-type tables) | Clue text + answers (`data/clues.json`) |
-| Per-sample correct/incorrect vectors keyed by opaque IDs | Raw `.eval` logs and transcripts of the anchor set |
+| All code, this doc, research notes | Fetched puzzle files (`data/live/`) |
+| Results site: accuracy, intervals, per-clue outcomes with clue text and answers | Scratch logs elsewhere in `logs/` |
 | Live-track logs in full (`logs/live/`): clues, answers, transcripts, reasoning summaries | |
 | Device labels for live clues (`annotations/`) | Cached third-party blog text used to produce them |
-| Optional: SHA-256 commitments of each clue+answer; a handful of sacrificed example clues; used-up rotation batches | Anything else containing clue text |
 
-Enforced by `.gitignore` (`*.pdf`, `data/clues.json`, every `.eval`
-outside `logs/live/`). The results builder treats a run as public only
-if its log sits in `logs/live/`; any other cohort gets aggregate numbers
-and no clue text. The Pages workflow deploys committed `docs/` plus a
-transcript viewer bundled from `logs/live/`.
+Enforced by `.gitignore` (`data/live/`, every `.eval` outside
+`logs/live/`). The Pages workflow builds the site from `logs/live/` on
+every push to `main`, with a transcript viewer bundled from the same
+logs.
 
 Publishing live logs supersedes the earlier "reference clue IDs, don't
 mirror the puzzle" caution: the logs do reproduce each clue and answer.
 That is a deliberate trade for transparency, on the footing that solver
 blogs reproduce every clue daily; revisit it if a publisher objects.
 
-## Dataset pipeline (August 2009 set)
-
-`extraction/extract_crosswords.py` OCRs each page locally (pymupdf +
-tesseract — no AI touches the clues) and matches day *N* clues to day
-*N+1* solutions. OCR drops clue numbers on some pages, which originally
-shifted ~32% of pairs onto wrong answers. Matching therefore no longer
-trusts OCR'd numbers: clue texts are aligned to solution slots with an
-order-preserving DP in which a clue may only occupy a slot whose answer
-length matches the clue's enumeration; unvalidated fragments act as
-place-holding wildcards, interior gaps are penalized, and OCR-glued
-multi-clue texts are split at interior enumerations. Every emitted pair
-is enumeration-consistent by construction.
-
-Current yield: **350 matched pairs** from Aug 2009 (spot-checks solve
-correctly), 97 unmatched (54 unusable fragments — recoverable by human
-review against the PDFs, 31 from the month's last day whose solutions
-fell outside the archive, 12 with no consistent slot). Re-run matching
-without OCR via `uv run extraction/extract_crosswords.py
-extraction/output/pages.json`.
-
-Known gaps: the anchor set has no device labels (live clues are
-labelled by `classify-clues` from published parsings, which the London
-Paper lacks, so anchor labels would have to rest on the classifier's
-own parsing); a human review pass over the
-350 (OCR noise like "limber" for "climber") is worthwhile before
-calling it the anchor set.
-
 ## Status / next steps
 
-- [x] Inspect task + scorer + leaderboard + Pages deploy (aggregates only)
-- [x] Extraction pipeline with realignment; 350-pair Aug 2009 set wired
-      into `data/clues.json` (private)
-- [ ] Human review pass over the 350 pairs; salvage fragments
-- [ ] Extract remaining months from the PDF archive
-- [ ] Split anchor set vs rotation stock
-- [ ] First real-model runs on the anchor set
+- [x] Inspect task + scorer + leaderboard + Pages deploy
 - [x] Prototype live-track fetcher (Guardian) and first live cohort
       (9–12 Nov 2026, 116 clues)
 - [x] Outcome classes, device labels ([clue_taxonomy.md](clue_taxonomy.md)),
       head-to-head, published live logs
 - [ ] Live-track daily job; second source (Lovatts/FT/Independent)
 - [ ] Human spot-check of the classifier's device labels
-- [ ] Hash commitments + opaque-ID per-sample vectors in `docs/`
