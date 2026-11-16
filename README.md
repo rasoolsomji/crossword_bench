@@ -122,19 +122,22 @@ evaluated.
 
 ## Results site
 
+The [Pages workflow](.github/workflows/pages.yml) builds and deploys the
+site on every push to `main`, so committing a run's log in `logs/live/`
+(and its labels in `annotations/`) and pushing is all it takes. The site
+has a leaderboard with intervals, outcome classes, accuracy against
+tokens and estimated cost, head-to-head, accuracy by device and by
+puzzle, and a per-clue table linking to transcripts. Cost estimates use
+the list prices in [pricing.json](pricing.json); add a model there to
+give it a cost. Deploying needs the repository's Pages source set to
+"GitHub Actions": "Deploy from a branch" would serve the committed
+`docs/`, which holds only the favicon.
+
+To preview it locally (the outputs are gitignored):
+
 ```bash
 uv run scripts/build_leaderboard.py
 ```
-
-Writes `docs/index.html` and `docs/results.json`: leaderboard with
-intervals, outcome classes, accuracy against tokens and estimated cost,
-head-to-head, accuracy by device and by puzzle, and a per-clue table
-linking to transcripts. Cost estimates use the list prices in
-[pricing.json](pricing.json); add a model there to give it a cost. The Pages workflow
-bundles the Inspect log viewer from `logs/live/` on deploy, which needs
-the repository's Pages source set to "GitHub Actions" (with "Deploy from
-a branch" the viewer is never published and transcript links 404). To
-preview the viewer locally:
 
 ```bash
 uv run inspect view bundle --log-dir logs/live --output-dir docs/logs --overwrite
